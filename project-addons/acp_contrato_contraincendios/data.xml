@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+<!-- 
+        TIPOS DE PRODUCTOS COINTRAINCENDIOS
+-->                    
+        <record id="extintores" model="acp_contrato.tipo_producto">
+            <field name="name">Extintores</field>
+            <field name="descripcion">Extintores</field>
+        </record>
+        <record id="bies" model="acp_contrato.tipo_producto">
+            <field name="name">BIES</field>
+            <field name="descripcion">BIES</field>
+        </record>
+        <record id="det_aut_ala_man_inc" model="acp_contrato.tipo_producto">
+            <field name="name">Deteccion Automatica y Alarma Manual de Incendios</field>
+            <field name="descripcion">Detección y Alarma Manual de Incendios</field>
+        </record>
+        <record id="grup_pre_cont_inc" model="acp_contrato.tipo_producto">
+            <field name="name">Grupo de Presion Contra Incendios</field>
+            <field name="descripcion">Grupo de Presión Contra Incendios</field>
+        </record>
+        <record id="alu_emer" model="acp_contrato.tipo_producto">
+            <field name="name">Alumbrado de Emergencia</field>
+            <field name="descripcion">Alumbrado de Emergencia</field>
+        </record>
+        <record id="hidrantes" model="acp_contrato.tipo_producto">
+            <field name="name">Hidrantes</field>
+            <field name="descripcion">Hidrantes</field>
+        </record>
+        <record id="colum_seca" model="acp_contrato.tipo_producto">
+            <field name="name">Columna Seca</field>
+            <field name="descripcion">Columna Seca</field>
+        </record>
+        <record id="roc_aut_pue_cont" model="acp_contrato.tipo_producto">
+            <field name="name">Rociadores Automaticos y Puestos de Control</field>
+            <field name="descripcion">Rociadores Automáticos y Puestos de Control</field>
+        </record>
+        <record id="sist_ext_aut" model="acp_contrato.tipo_producto">
+            <field name="name">Sistema de Extincion Automatico</field>
+            <field name="descripcion">Sistema de Extinción Automático</field>
+        </record>
+        <record id="sist_monoxido" model="acp_contrato.tipo_producto">
+            <field name="name">Sistema de Monoxido</field>
+            <field name="descripcion">Sistema de Monoxido</field>
+        </record>
+
+<!-- 
+        ACTIVIDADES COINTRAINCENDIOS
+-->   
+
+        <record id="PREMAT_REVEXT" model="acp_contrato.actividad">
+          <field name="code">PREMAT_REVEXT</field>
+          <field name="name" >Preparar material para visita revision de extintores</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record>
+        <record id="PREMAT_INST" model="acp_contrato.actividad">
+          <field name="code">PREMAT_INST</field>
+          <field name="name" >Preparar material para instalacion</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record> 
+        <record id="RETRIMBADO" model="acp_contrato.actividad">
+          <field name="code">RETRIMBADO</field>
+          <field name="name" >Retimbrado</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record>    
+        <record id="RECOGIDA" model="acp_contrato.actividad">
+          <field name="code">RECOGIDA</field>
+          <field name="name" >Recogida</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record>   
+        <record id="DEV_MATERIAL" model="acp_contrato.actividad">
+          <field name="code">DEV_MATERIAL</field>
+          <field name="name" >Devolucion Material</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record>  
+        <record id="ENV_FACTURA" model="acp_contrato.actividad">
+          <field name="code">ENV_FACTURA</field>
+          <field name="name" >Enviar Factura</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record> 
+        <record id="RECL_FACTURA" model="acp_contrato.actividad">
+          <field name="code">RECL_FACTURA</field>
+          <field name="name" >Reclamar Factura</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record> 
+        <record id="TAR_PDTE_INST_MANT" model="acp_contrato.actividad">
+          <field name="code">TAR_PDTE_INST_MANT</field>
+          <field name="name" >Tareas pendientes en instalacion o mantenimiento</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>          
+        </record>                                                                         
+
+ 
+<!-- 
+        TIPOS DE CONTRATOS
+-->
+        <record id="contraincendios" model="acp_contrato.tipo_contrato">
+            <field name="name">Contraincendios </field>
+            <field name="descripcion">Contraincendios</field>
+        </record>
+        
+        <record id="general" model="acp_contrato.tipo_contrato">
+            <field name="name">General </field>
+            <field name="descripcion">General</field>
+        </record>        
+       
+        
+<!-- 
+        TIPOS DE SERVICIOS CONTRAINCENDIOS
+ -->       
+        <record id="mant_extintores" model="acp_contrato.tipo_servicio">
+            <field name="name">Mantenimiento Extintores</field>
+            <field name="descripcion">Mantenimiento Extintores</field>
+        </record>
+        <record id="mant_alarma_deteccion" model="acp_contrato.tipo_servicio">
+            <field name="name">Mantenimiento  Alarmas de Deteccion</field>
+            <field name="descripcion">Mantenimiento Alarmas de Detección</field>
+        </record>
+        <record id="mat_ext_bie_gp" model="acp_contrato.tipo_servicio">
+            <field name="name">Mantenimiento de Extincion por Agua BIEs y Grupos de Presion</field>
+            <field name="descripcion">Mantenimiento de Extinción por Agua BIEs y Grupos de Presión</field>
+        </record>
+        <record id="mant_mon_carb" model="acp_contrato.tipo_servicio">
+            <field name="name">Mantenimiento Monoxido de Carbono</field>
+            <field name="descripcion">Mantenimiento Monóxido de Carbono</field>
+        </record>
+        <record id="mant_puert_cort" model="acp_contrato.tipo_servicio">
+            <field name="name">Mantenimiento Puertas Cortafuegos</field>
+            <field name="descripcion">Mantenimiento Puertas Cortafuegos</field>
+        </record>
+        <record id="mant_alum_emer" model="acp_contrato.tipo_servicio">
+            <field name="name">Mantenimiento Alumbrado de Emergencia</field>
+            <field name="descripcion">Mantenimiento Alumbrado de Emergencia</field>
+        </record>
+        <record id="mant_ext_gas_esp" model="acp_contrato.tipo_servicio">
+            <field name="name">Mantenimiento Extincion automatica por gases y espumogenos</field>
+            <field name="descripcion">Mantenimiento extinción automática por gases y espumogenos</field>
+        </record>
+        <record id="int_extintores" model="acp_contrato.tipo_servicio">
+            <field name="name">Instalacion Extintores</field>
+            <field name="descripcion">Instalación Extintores</field>
+        </record>
+        <record id="int_alarma_deteccion" model="acp_contrato.tipo_servicio">
+            <field name="name">Instalacion Alarmas de Deteccion</field>
+            <field name="descripcion">Instalación Alarmas de Detección</field>
+        </record>
+        <record id="int_ext_bie_gp" model="acp_contrato.tipo_servicio">
+            <field name="name">Instalacion de Extincion por Agua BIEs y Grupos de Presion</field>
+            <field name="descripcion">Instalación de Extinción por Agua BIEs y Grupos de Presión</field>
+        </record>
+        <record id="int_mon_carb" model="acp_contrato.tipo_servicio">
+            <field name="name">Instalacion Monoxido de Carbono</field>
+            <field name="descripcion">Instalación Monóxido de Carbono</field>
+        </record>
+        <record id="int_puert_cort" model="acp_contrato.tipo_servicio">
+            <field name="name">Instalacion Puertas Cortafuegos</field>
+            <field name="descripcion">Instalación Puertas Cortafuegos</field>
+        </record>
+        <record id="int_alum_emer" model="acp_contrato.tipo_servicio">
+            <field name="name">Instalacion Alumbrado de Emergencia</field>
+            <field name="descripcion">Instalación Alumbrado de Emergencia</field>
+        </record>
+        <record id="int_ext_gas_esp" model="acp_contrato.tipo_servicio">
+            <field name="name">Instalacion Extincion automatica por gases y espumogenos</field>
+            <field name="descripcion">Instalación Extinción automática por gases y espumógenos</field>
+        </record>
+        <record id="asis_tec_ave_avi" model="acp_contrato.tipo_servicio">
+            <field name="name">Asistencia Tecnica (SAT): Averia y Avisos</field>
+            <field name="descripcion">Asistencia Tecnica (SAT): Avería y Avisos.</field>
+        </record>
+        <record id="extra_otros" model="acp_contrato.tipo_servicio">
+            <field name="name">Extra: Fontaneria, Electricidad, otros</field>
+            <field name="descripcion">Extra: Fontanería, Electricidad, otros</field>
+        </record> 
+           
+<!-- 
+        MOTIVOS DE ESPERA CONTRAINCENDIOS
+-->       
+        <record id="falta_material" model="acp_contrato.motivo_espera">
+              <field name="name">Falta Material</field>
+              <field name="descripcion">Falta de material</field>
+              <field name="fecha_limite" eval="True"/> 
+              <field name="horas">48</field>
+        </record>
+        <record id="necesidad_cliente" model="acp_contrato.motivo_espera">
+              <field name="name">Cliente</field>
+              <field name="descripcion">Necesidad del cliente (Liquidez, problemas organizativos, no disponibilidad, etc.)</field>
+              <field name="fecha_limite" eval="True"/> 
+              <field name="horas">48</field>
+        </record>
+        <record id="proveedor" model="acp_contrato.motivo_espera">
+              <field name="name">Proveedor</field>
+              <field name="descripcion">Plazos del Proveedor u otras contingencias relacionadas con el proveedor</field>
+              <field name="fecha_limite" eval="True"/> 
+              <field name="horas">72</field>
+        </record>         
+
+  </data>
+</openerp>

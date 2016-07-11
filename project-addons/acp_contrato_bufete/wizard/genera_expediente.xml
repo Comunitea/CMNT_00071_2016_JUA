@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_genera_expediente_bu">
+      <field name="name">acp_contrato.genera_expediente.form</field>
+      <field name="model">acp_contrato.genera_expediente</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Genera Expediente">
+            <group>
+              <separator colspan="4" string="Creación de Expedientes" />
+              <group>
+                <field name="contrato_id" options='{"no_open": True}' on_change="onchange_contrato_id(contrato_id, context)" readonly="1"/>
+                <field name="tipo_contrato" options='{"no_open": True}' readonly="1"/>
+                <field name="partner_id" options='{"no_open": True}' readonly="1"/>
+                <field name="solicitante" domain="[('parent_id','=',partner_id)]" context="{'default_parent_id':partner_id}" />
+                <!--options='{"create":false,"create_edit": false,"no_open": True}'/>-->
+                <field name="materia_id"  options="{'create': false, 'create_edit': false,'no_open': True}"/>                
+                <field name="area" />
+                <field name="oficina_id"/>
+                <field name="organo_legislativo_id"/>
+                <field name="fase_judicial_id"/>
+              </group>              
+              <footer>
+                <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
+                <button name="action_genera_expediente" type="object" string="Crear Expediente" icon="gtk-go-forward" />
+              </footer>
+            </group>
+        </form>
+      </field>
+    </record>
+    <!-- accion -->
+    <record model="ir.actions.act_window" id="action_genera_expediente_bu">
+      <field name="name">Generar Expedientes</field>
+      <field name="res_model">acp_contrato.genera_expediente</field>
+      <field name="src_model">acp_contrato.contrato</field>
+      <field name="key2">client_action_multi</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_genera_expediente_bu" />
+      <field name="target">new</field>
+    </record>
+  </data>     
+</openerp>

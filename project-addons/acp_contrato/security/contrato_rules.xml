@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.rule" id="acp_contrato_multi_company_rule">
+      <field name="name">Contratos-Expedientes multi-company</field>
+      <field name="model_id" ref="crm.model_crm_lead" />
+      <field name="global" eval="True" />
+      <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    <!-- Regla para que los clientes solo vean sus expedientes  -->
+    <record model="ir.rule" id="acp_contrato_contrato_portal">
+      <field name="name">Los clientes solo ven sus expedientes</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato" />
+      <field name="domain_force">[('partner_id', '=', user.commercial_partner_id.id)]</field>
+      <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="False" />
+      <field name="perm_create" eval="False" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+
+
+    <!-- Regla para que los clientes solo vean las servicios de sus expedientes y -->
+    <record model="ir.rule" id="acp_contrato_servicio_portal">
+      <field name="name">Los clientes solo ven sus servicios</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_servicio" />
+      <field name="domain_force">[('contrato_id.partner_id.id', '=', user.commercial_partner_id.id)]</field>
+      <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="False" />
+      <field name="perm_create" eval="False" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+    
+    <!-- Regla para que los clientes solo vean las tareas de sus expedientes y -->
+    <record model="ir.rule" id="acp_contrato_tarea_portal">
+      <field name="name">Los clientes solo ven sus tareas</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_tarea" />
+      <field name="domain_force">[('contrato_id.partner_id.id', '=', user.commercial_partner_id.id)]</field>
+      <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="False" />
+      <field name="perm_create" eval="False" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+
+  </data>
+</openerp>

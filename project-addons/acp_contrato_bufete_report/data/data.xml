@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<openerp>
+  <data noupdate="1">
+    <!--Plantilla horas diarias letrado -->   
+    <record id="acp_contrato_report_template_horas_letrado" model="email.template">
+      <field name="name">Informe Horas diarias letrados</field>
+      <field name="email_from">Jbi</field>
+      <field name="subject">Informe Horas diarias letrados </field>
+      <field name="model_id" ref="acp_contrato_bufete_report.model_acp_contrato_bufete_horas_letrado_wizard" />
+      <field name="email_to" />
+      <!--<field name="report_template" ref="acp_contrato_bufete_report.acp_contrato_bu_horas_letrado_jasper"/>-->
+      <!--<field name="report_name" >Horas-Letrado.pdf</field>-->
+      <field name="partner_to" />
+      <field name="auto_delete" eval="True" />
+      <field name="body_html">
+        <![CDATA[
+                 Se adjunta informe diario horas letrados  
+        ]]>
+      </field>
+    </record>
+    <!--Plantilla horas iguala -->   
+    <record id="acp_contrato_report_template_horas_iguala" model="email.template">
+      <field name="name">Informe Horas iguala</field>
+      <field name="email_from">Jbi</field>
+      <field name="subject">Informe Horas iguala </field>
+      <field name="model_id" ref="acp_contrato_bufete_report.model_acp_contrato_bufete_igualas_wizard" />
+      <field name="email_to" />
+      <!--<field name="report_template" ref="acp_contrato_bufete_report.acp_contrato_bu_horas_letrado_jasper"/>-->
+      <!--<field name="report_name" >Horas-Letrado.pdf</field>-->
+      <field name="partner_to" />
+      <field name="auto_delete" eval="True" />
+      <field name="body_html">
+        <![CDATA[
+                 Se adjunta informe horas igualas 
+        ]]>
+      </field>
+    </record>
+
+    <!-- Scheduler -->
+    <record forcecreate="True" id="ir_cron_scheduler_informes" model="ir.cron">
+      <field name="name">Ejecutar informes diarios</field>
+      <field eval="False" name="active" />
+      <field name="user_id" ref="base.user_root" />
+      <field name="interval_number">1</field>
+      <field name="interval_type">days</field>
+      <field name="numbercall">-1</field>
+      <field eval="False" name="doall" />
+      <field eval="'acp_contrato_bufete_report.scheduler'" name="model" />
+      <field eval="'run'" name="function" />
+    </record>
+  </data>
+</openerp>

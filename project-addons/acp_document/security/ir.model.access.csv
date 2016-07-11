@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acp_document_category all,acp_document_category all,model_acp_document_category,,1,1,1,1
+

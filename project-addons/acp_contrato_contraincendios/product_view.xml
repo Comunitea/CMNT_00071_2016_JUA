@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="stock_production_lot_form_contrato2">
+      <field name="name">acp_contrato.stock.production.lot.form.contrato2</field>
+      <field name="model">stock.production.lot</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="stock.view_production_lot_form" />
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <page string="Products" position="after">
+          <page string="Informacion Adicional">
+            <group colspan="2">
+              <field name="ci_numero" string="Número" attrs="{'invisible':[('tipo_producto_n','not in',['Extintores','BIES','Alumbrado de Emergencia','Hidrantes','Columna Seca'])]}"/>
+              <field name="ci_marca" attrs="{'invisible':[('tipo_producto_n','not in',['Extintores','Alumbrado de Emergencia'])]}"/>
+              <field name="ci_ubicacion" string="Ubicación" attrs="{'invisible':[('tipo_producto_n','not in',['Alumbrado de Emergencia','Hidrantes','Columna Seca'])]}"/>
+              <field name="ci_planta" string="Planta" attrs="{'invisible':[('tipo_producto_n','not in',['Extintores','BIES',])]}"/>
+              <field name="ci_situacion" string="Situación" attrs="{'invisible':[('tipo_producto_n','not in',['Extintores','BIES',])]}"/>               
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Extintores')]}">
+              <group>                               
+                <field name="ci_tipo" />
+                <field name="ci_carga" />
+                <field name="ci_eficacia" />
+                <field name="ci_numero_industria" string="Número Industria" />
+                <field name="ci_manguera" />
+                <field name="ci_altura_extintor" />
+                <field name="ci_boquilla_lanza" />
+                <field name="ci_senal" string="Señal" />
+                <field name="ci_peso_presion" string="Peso/Presión" />
+              </group>
+              <group name="fechas" string="Fechas" style="font-size:10pt;">
+                <field name="ci_fecha_fabricacion" string="Fecha Fabricación" />
+                <field name="ci_fecha_1_ret" />
+                <field name="ci_fecha_2_ret" />
+                <field name="ci_fecha_3_ret" />
+              </group>
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','BIES')]}">
+              <group name="general">                
+                <field name="ci_armario" />
+                <field name="ci_devanadera" />
+              </group>
+              <group>
+                <field name="ci_valvula" />
+                <field name="ci_racor" />
+                <field name="ci_lanza" />
+                <field name="ci_cristal" />
+              </group>
+              <group name="manguera" string="Manguera" style="font-size:10pt;">
+                <field name="ci_manguera_diametro" string="m/m" />
+                <field name="ci_manguera_longitud" string="Longitud" />
+                <field name="ci_manguera_estado" string="Estado" />
+              </group>
+              <group name="manometro" string="Manómetro" style="font-size:10pt;">
+                <field name="ci_manometro_estado" string="Estado" />
+                <field name="ci_manometro_presion" string="Kg/cm2" />
+              </group>
+              <group name="fecha" string="Fechas" style="font-size:10pt;">
+                <group>
+                  <field name="ci_fecha_nueva" string="Nueva" />
+                </group>
+                <group>
+                  <field name="ci_fecha_timbre" string="Timbre" />
+                </group>
+              </group>
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','not in',['Deteccion Automatica y Alarma Manual de Incendios','Sistema de Extincion Automatico','Sistema de Monoxido'])]}">
+              <group name="caracteristicas" string="Caracteristicas de la Central" style="font-size:10pt;" colspan="4">
+                <group>
+                  <field name="ci_cent_marca" />
+                  <field name="ci_cent_modelo" />
+                  <field name="ci_cent_num_zona" string="Nº de Zonas/Lazos" />
+                  <field name="ci_cent_zona_extincion" string="Zona Extinción" attrs="{'invisible':[('tipo_producto_n','in',['Sistema de Monoxido'])]}"/>
+                  <field name="ci_cent_pilotos" />
+                  <field name="ci_cent_reles" string="Relés" />
+                </group>
+                <group attrs="{'invisible':[('tipo_producto_n','in',['Sistema de Monoxido'])]}">
+                  <field name="ci_cent_zumbador" />
+                  <field name="ci_cent_zonas_lazos_reserva" string="Zonas/Lazos de Reserva" />
+                  <field name="ci_cent_tipo_baterias" string="Tipos Baterías" />
+                  <field name="ci_cent_unidades" />
+                  <field name="ci_cent_estado_carga" />
+                  <field name="ci_cent_red_independiente" />
+                </group>
+              </group> 
+            </group>           
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Deteccion Automatica y Alarma Manual de Incendios')]}">
+              <group name="distribucion" string="Distribucion de Elementos" style="font-size:10pt;" colspan="4">
+                <group>
+                  <field name="ci_del_ubicacion" string="Ubicación" />
+                  <field name="ci_del_zonas_lazos_reserva" string="Nº de Zona/Lazos" />
+                  <field name="ci_del_detector_numero" string="Detector Nº" />
+                  <field name="ci_del_detector_estado" string="Detector Estado" />
+                  <field name="ci_del_pulsador_numero" string="Pulsador Nº" />
+                  <field name="ci_del_pulsador_estado" string="Pulsador Estado" />
+                </group>
+                <group>
+                  <field name="ci_del_indicador_numero" string="Indicador Nº" />
+                  <field name="ci_del_indicador_estado" string="Indicador Estado" />
+                  <field name="ci_del_sirena_numero" string="Sirena/Campana Nº" />
+                  <field name="ci_del_sirena_estado" string="Sirena/Campana Estado" />
+                  <field name="ci_del_retenedor_numero" string="Retenedor Nº" />
+                  <field name="ci_del_retenedor_estado" string="Retenedor Estado" />
+                </group>
+              </group>
+
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Grupo de Presion Contra Incendios')]}">
+              <group name="bomba_jockey" string="Bomba Jockey" style="font-size:12pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_jock_marca" />
+                  <field name="ci_jock_modelo" />
+                  <field name="ci_jock_tipo" />
+                  <field name="ci_jock_potencia" />
+                  <field name="ci_jock_caudal" />
+                </group>
+                <group style="font-size:10pt;">
+                  <field name="ci_jock_altura" />
+                  <field name="ci_jock_rpm" string="r.p.m" />
+                  <field name="ci_jock_horas_inicial" />
+                  <field name="ci_jock_horas_final" />
+                </group>
+              </group>
+              <group name="bomba_electrica" string="Bomba Principal Electrica" style="font-size:12pt;" colspan="4">
+                <group name="bomba_electrica_motor" string="Bomba" style="font-size:10pt;">
+                  <field name="ci_elec_bomba_marca" />
+                  <field name="ci_elec_bomba_modelo" />
+                  <field name="ci_elec_bomba_caudal" />
+                  <field name="ci_elec_bomba_altura" />
+                </group>
+                <group name="bomba_electrica_motor" string="Motor" style="font-size:10pt;">
+                  <field name="ci_elec_motor_marca" />
+                  <field name="ci_elec_motor_modelo" />
+                  <field name="ci_elec_motor_potencia" />
+                  <field name="ci_elec_motor_rpm" string="r.p.m" />
+                  <field name="ci_elec_motor_automatico" string="Automático" />
+                  <field name="ci_elec_motor_consumo" />
+                  <field name="ci_elec_motor_horas_inicial" string="Cuenta Horas (Inicial)" />
+                  <field name="ci_elec_motor_horas_final" string="Cuenta Horas (Final)" />
+                </group>
+              </group>
+              <group name="bomba_diesel" string="Bomba Diesel" style="font-size:12pt;" colspan="4">
+                <group name="bomba_diesel_bomba" string="Bomba" style="font-size:11pt;" colspan="4">
+                  <group style="font-size:10pt;">
+                    <field name="ci_dies_bomba_marca" />
+                    <field name="ci_dies_bomba_modelo" />
+                  </group>
+                  <group style="font-size:10pt;">
+                    <field name="ci_dies_bomba_tipo_num" string="Tipo/Nº" />
+                    <field name="ci_dies_bomba_caudal" />
+                    <field name="ci_dies_bomba_altura" />
+                  </group>
+                </group>
+                <group name="bomba_diesel_motor" string="Motor" style="font-size:11pt;" colspan="4">
+                  <group style="font-size:10pt;">
+                    <group>
+                      <field name="ci_dies_motor_marca" />
+                      <field name="ci_dies_motor_modelo" />
+                      <field name="ci_dies_motor_tipo_num" string="Tipo/Nº" />
+                    </group>
+                    <group>
+                      <field name="ci_dies_motor_potencia" />
+                      <field name="ci_dies_motor_rpm" string="r.p.m" />
+                      <field name="ci_dies_motor_horas_inicial" string="Cuenta Horas (Inicial)" />
+                      <field name="ci_dies_motor_horas_final" string="Cuenta Horas (Final)" />
+                    </group>
+                    <group name="filtro_aceite" string="Filtro Aceite" style="font-size:10pt;">
+                      <field name="ci_dies_filaceite_marca" />
+                      <field name="ci_dies_filaceite_modelo" />
+                    </group>
+                    <group name="filtro_aire" string="Filtro Aire" style="font-size:10pt;">
+                      <field name="ci_dies_filaire_marca" />
+                      <field name="ci_dies_filaire_modelo" />
+                    </group>
+                    <group name="filtro_gasoil" string="Filtro Gasoil" style="font-size:10pt;">
+                      <field name="ci_dies_filgasoil_marca" />
+                      <field name="ci_dies_filgasoil_modelo" />
+                    </group>
+                    <group name="niveles" string="Niveles" style="font-size:10pt;">
+                      <field name="ci_dies_nivel_gasoil" />
+                      <field name="ci_dies_nivel_aceite" />
+                    </group>
+                    <group name="bateria" string="Bateria" style="font-size:10pt;">
+                      <field name="ci_dies_bateria_marca" />
+                      <field name="ci_dies_bateria_unidad" />
+                      <field name="ci_dies_bateria_tipo" />
+                      <field name="ci_dies_bateria_estado" />
+                    </group>
+                  </group>
+                </group>
+                <group name="bomba_diesel_regpresostatos" string="Regulación de Presostatos" style="font-size:11pt;" colspan="4">
+                  <group name="regpres_jock" string="Jockey" style="font-size:10pt;">
+                    <field name="ci_regpres_jock_arranque" string="Arranque (kg/cm2)" />
+                    <field name="ci_regpres_jock_parada" string="Parada (kg/cm2)" />
+                  </group>
+                  <group name="regpres_elec" string="Eléctrica" style="font-size:10pt;">
+                    <field name="ci_regpres_elec_arranque" string="Arranque (kg/cm2)" />
+                    <field name="ci_regpres_elec_parada" string="Parada (kg/cm2)" />
+                  </group>
+                  <group name="regpres_dies" string="Diesel" style="font-size:10pt;">
+                    <field name="ci_regpres_dies_arranque" string="Arranque (kg/cm2)" />
+                    <field name="ci_regpres_dies_parada" string="Parada (kg/cm2)" />
+                  </group>
+                </group>
+                <group name="bomba_diesel_deppre" string="Deposito de Presión" style="font-size:11pt;" colspan="4">
+                  <group style="font-size:10pt;">
+                    <field name="ci_deppre_marca" />
+                    <field name="ci_deppre_modelo" />
+                    <field name="ci_deppre_tipo" />
+                  </group>
+                  <group style="font-size:10pt;">
+                    <field name="ci_deppre_capacidad" />
+                    <field name="ci_deppre_presion" string="Presión" />
+                  </group>
+                </group>
+                <group name="bomba_diesel_elem" string="Elementos" style="font-size:11pt;" colspan="4">
+                  <group style="font-size:10pt;">
+                    <field name="ci_elem_caudalimetro" />
+                    <field name="ci_elem_valvula_seguridad" string="Válvula de seguridad" />
+                    <field name="ci_elem_tarada" />
+                    <field name="ci_elem_colect_prueba" />
+                  </group>
+                  <group style="font-size:10pt;">
+                    <field name="ci_elem_cuadro_control" />
+                    <field name="ci_elem_bypass" />
+                    <field name="ci_elem_valvulas" string="Válvulas" />
+                    <field name="ci_elem_desague" string="Desagüe conducido" />
+                  </group>
+                </group>
+              </group>
+              <group name="revision" string="Revisión del Grupo de Presión Contra Incendios" style="font-size:11pt;" colspan="4">
+                <group name="revision_curpre" string="Curvas de presión-caudal" style="font-size:11pt;" colspan="4">
+                  <group name="revision_curpre_elec" string="Electrica" style="font-size:11pt;" colspan="2">
+                    <group name="revision_curpre_elec_0" string="0%" style="font-size:10pt;">
+                      <field name="ci_curpre_elec_0_caudal" string="Cuadal" />
+                      <field name="ci_curpre_elec_0_htotal" string="H.Total" />
+                      <field name="ci_curpre_elec_0_consumo" />
+                      <field name="ci_curpre_elec_0_voltaje" />
+                      <field name="ci_curpre_elec_0_rpm" string="r.p.m" />
+                    </group>
+                    <group name="revision_curpre_elec_50" string="50%" style="font-size:10pt;">
+                      <field name="ci_curpre_elec_50_caudal" string="Cuadal" />
+                      <field name="ci_curpre_elec_50_htotal" string="H.Total" />
+                      <field name="ci_curpre_elec_50_consumo" string="Consumo" />
+                      <field name="ci_curpre_elec_50_voltaje" string="Voltaje" />
+                      <field name="ci_curpre_elec_50_rpm" string="r.p.m" />
+                    </group>
+                    <group name="revision_curpre_elec_100" string="100%" style="font-size:10pt;">
+                      <field name="ci_curpre_elec_100_caudal" string="Cuadal" />
+                      <field name="ci_curpre_elec_100_htotal" string="H.Total" />
+                      <field name="ci_curpre_elec_100_consumo" string="Consumo" />
+                      <field name="ci_curpre_elec_100_voltaje" string="Voltaje" />
+                      <field name="ci_curpre_elec_100_rpm" string="r.p.m" />
+                    </group>
+                    <group name="revision_curpre_elec_140" string="140%" style="font-size:10pt;">
+                      <field name="ci_curpre_elec_140_caudal" string="Cuadal" />
+                      <field name="ci_curpre_elec_140_htotal" string="H.Total" />
+                      <field name="ci_curpre_elec_140_consumo" string="Consumo" />
+                      <field name="ci_curpre_elec_140_voltaje" string="Voltaje" />
+                      <field name="ci_curpre_elec_140_rpm" string="r.p.m" />
+                    </group>
+                  </group>
+                  <group name="revision_curpre_Diesel" string="Diesel" style="font-size:11pt;" colspan="2">
+                    <group name="revision_curpre_die_0" string="0%" style="font-size:10pt;">
+                      <field name="ci_curpre_dies_0_caudal" string="Cuadal" />
+                      <field name="ci_curpre_dies_0_htotal" string="H.Total" />
+                      <field name="ci_curpre_dies_0_consumo" string="Consumo" />
+                      <field name="ci_curpre_dies_0_voltaje" string="Voltaje" />
+                      <field name="ci_curpre_dies_0_rpm" string="r.p.m" />
+                    </group>
+                    <group name="revision_curpre_die_50" string="50%" style="font-size:10pt;">
+                      <field name="ci_curpre_dies_50_caudal" string="Cuadal" />
+                      <field name="ci_curpre_dies_50_htotal" string="H.Total" />
+                      <field name="ci_curpre_dies_50_consumo" string="Consumo" />
+                      <field name="ci_curpre_dies_50_voltaje" string="Voltaje" />
+                      <field name="ci_curpre_dies_50_rpm" string="r.p.m" />
+                    </group>
+                    <group name="revision_curpre_die_100" string="100%" style="font-size:10pt;">
+                      <field name="ci_curpre_dies_100_caudal" string="Cuadal" />
+                      <field name="ci_curpre_dies_100_htotal" string="H.Total" />
+                      <field name="ci_curpre_dies_100_consumo" string="Consumo" />
+                      <field name="ci_curpre_dies_100_voltaje" string="Voltaje" />
+                      <field name="ci_curpre_dies_100_rpm" string="r.p.m" />
+                    </group>
+                    <group name="revision_curpre_die_140" string="140%" style="font-size:10pt;">
+                      <field name="ci_curpre_dies_140_caudal" string="Cuadal" />
+                      <field name="ci_curpre_dies_140_htotal" string="H.Total" />
+                      <field name="ci_curpre_dies_140_consumo" string="Consumo" />
+                      <field name="ci_curpre_dies_140_voltaje" string="Voltaje" />
+                      <field name="ci_curpre_dies_140_rpm" string="r.p.m" />
+                    </group>
+                  </group>
+                </group>
+                <group name="revision_alji" string="Aljibe" style="font-size:11pt;" colspan="4">
+                  <group style="font-size:10pt;">
+                    <field name="ci_alji_dimensiones" />
+                    <field name="ci_alji_capacidad" />
+                    <field name="ci_alji_electrovalvula" string="Electroválvula entrada" />
+                  </group>
+                  <group style="font-size:10pt;">
+                    <field name="ci_alji_sondas_nivel" />
+                    <field name="ci_alji_valvula_flotador" string="Válvula flotador" />
+                  </group>
+                </group>
+                <group name="revision_acom" string="Acometida" style="font-size:11pt;" colspan="4">
+                  <group style="font-size:10pt;">
+                    <field name="ci_acom_llave_abierta" />
+                    <field name="ci_acom_precintada" />
+                    <field name="ci_acom_independiente" />
+                  </group>
+                  <group style="font-size:10pt;">
+                    <field name="ci_acom_contador" />
+                    <field name="ci_acom_pulgadas" />
+                  </group>
+                </group>
+                <group name="revision_cuabom" string="Cuarto de bombas" style="font-size:11pt;" colspan="4">
+                  <group style="font-size:10pt;">
+                    <field name="ci_cuabom_ventilacion" string="Ventilación" />
+                    <field name="ci_cuabom_limpieza" />
+                    <field name="ci_cuabom_rociadores" />
+                  </group>
+                  <group style="font-size:10pt;">
+                    <field name="ci_cuabom_deteccion" string="Detección" />
+                    <field name="ci_cuabom_senal_central" string="Señal central" />
+                  </group>
+                </group>
+              </group>
+
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Alumbrado de Emergencia')]}">
+              <group>
+                <field name="ci_elemento" />
+                <field name="ci_lumenes" string="Lúmenes" />
+                <field name="ci_estado" />
+              </group>
+
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Hidrantes')]}">
+              <group>
+                <group>
+                  <field name="ci_accesibilidad" />
+                  <field name="ci_racores" />
+                  <field name="ci_juntas" />
+                  <field name="ci_tapas" />
+                </group>
+                <group>
+                  <field name="ci_drenaje" />
+                  <field name="ci_engrase" />
+                  <field name="ci_caudal" string="Caudal(L/min)" />
+                  <field name="ci_senalizacion" string="Señalización" />
+                  <field name="ci_distancia_caseta" string="Distancia a la caseta (m)" />
+                </group>
+              </group>
+              <group name="hidrantes_casext" string="Casetas Exteriores" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <group>
+                    <field name="ci_casext_numero" string="Número" />
+                    <field name="ci_casext_ubicacion" string="Ubicación" />
+                    <field name="ci_casext_accesibilidad" />
+                    <field name="ci_casext_llave_hidrante" />
+                  </group>
+                  <group name="hidrantes_casext_lanzas" string="Lanzas" style="font-size:10pt;">
+                    <field name="ci_casext_1_lanza_70mm" />
+                    <field name="ci_casext_2_lanza_80mm" />
+                  </group>
+                  <group name="hidrantes_casext_mang_45" string="Manguera 45mm" style="font-size:10pt;">
+                    <field name="ci_casext_mang45_fecfabrica" string="Fecha fabricación" />
+                    <field name="ci_casext_mang45_fecretimbrado" />
+                  </group>
+                  <group name="hidrantes_casext_mang_70" string="Manguera 70mm" style="font-size:10pt;">
+                    <field name="ci_casext_mang70_fecfabrica" string="Fecha fabricación" />
+                    <field name="ci_casext_mang70_fecretimbrado" />
+                  </group>
+                  <group>
+                    <field name="ci_casext_bifurcacion_siamesa" string="Bifurcación Siamesa" />
+                    <field name="ci_casext_reduccion" string="Reducción de 70-45mm" />
+                  </group>
+                </group>
+              </group>
+
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Columna Seca')]}">
+              <group>
+                <field name="ci_toma_siamesa" />
+                <field name="ci_racores_tampones" />
+                <field name="ci_cadenas" />
+              </group>
+              <group>
+                <field name="ci_tapa_cristal" />
+                <field name="ci_cierre" />
+                <field name="ci_rotulo" string="Rótulo" />
+                <field name="ci_valvula_seccionamiento" string="Válvula de Seccionamiento" />
+              </group>
+
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Rociadores Automaticos y Puestos de Control')]}">
+              <group name="puscont" string="Puestos de Control" style="font-size:10pt;">
+                <field name="ci_puscont_ubicacion" string="Ubicación" />
+                <field name="ci_puscont_marca" />
+                <field name="ci_puscont_pulgada" />
+                <field name="ci_puscont_presion_arriba" string="Presión Arriba" />
+                <field name="ci_puscont_presion_abajo" string="Presión Abajo" />
+                <field name="ci_puscont_detector_flujo" />
+                <field name="ci_puscont_gong" />
+                <field name="ci_puscont_valvulas" string="Válvulas" />
+                <field name="ci_puscont_senal_central" string="Señal Central" />
+              </group>
+              <group name="rocaut" string="Rociadores Automáticos" style="font-size:10pt;">
+                <field name="ci_rocaut_ubicacion" string="Ubicación" />
+                <field name="ci_rocaut_diametro" string="Diámetro" />
+                <field name="ci_rocaut_tipo" />
+                <field name="ci_rocaut_tipo_numero" />
+                <field name="ci_rocaut_color" />
+                <field name="ci_rocaut_punpru_ubicacion" string="Punto Prueba Ubicación" />
+                <field name="ci_rocaut_punpru_presion" string="Punto Prueba Presión" />
+              </group>
+
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Sistema de Extincion Automatico')]}">
+              <group name="sisectaut_fal" string="Caracteristicas de la Fuente de Alimentación" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_fal_marca" />
+                  <field name="ci_fal_modelo" />
+                  <field name="ci_fal_unidades" />
+                </group>
+                <group style="font-size:10pt;">
+                  <field name="ci_fal_tipo_baterias" string="Tipo Baterías" />
+                  <field name="ci_fal_estado_carga" />
+                </group>
+              </group>
+              <group name="sisectaut_sdi" string="Elementos del Sistema de Distribución" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_sdi_marca_detectores" string="Marca Detectores" />
+                  <field name="ci_sdi_tipo" />
+                  <field name="ci_sdi_modelo" />
+                  <field name="ci_sdi_ubicacion" string="Ubicación" />
+                  <field name="ci_sdi_num_zona" string="Zona Nº" />
+                  <field name="ci_sdi_detector_num" string="Detector Nº" />
+                  <field name="ci_sdi_detector_estado" string="Detector Estado" />
+                </group>
+                <group style="font-size:10pt;">
+                  <field name="ci_sdi_pul_bloqueo_num" string="Pul. Bloqueo Nº" />
+                  <field name="ci_sdi_pul_bloqueo_estado" string="Pul. Bloqueo Estado" />
+                  <field name="ci_sdi_pul_disparo_num" string="Pul. Disparo Nº" />
+                  <field name="ci_sdi_pul_disparo_estado" string="Pul. Disparo Estado" />
+                  <field name="ci_sdi_cartel_num" string="Cartel Nº" />
+                  <field name="ci_sdi_cartel_estado" />
+                  <field name="ci_sdi_sirena_num" string="Sirena Nº" />
+                  <field name="ci_sdi_sirena_estado" />
+                </group>
+              </group>
+              <group name="sisectaut_aex" string="Agente de Extinción" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_aex_tipo_agente" />
+                  <field name="ci_aex_marca_valvuleria" />
+                  <field name="ci_aex_soportacion" string="Soportación" />
+                  <field name="ci_aex_situacion" string="Situación" />
+                  <field name="ci_aex_sistema_pesaje" />
+                  <field name="ci_aex_direccionables" />
+                  <field name="ci_aex_antiterremotos" />
+                  <field name="ci_aex_ubicacion" string="Ubicación" />
+                  <field name="ci_aex_cilindro_num" string="Nº Cilindro" />
+                </group>
+                <group style="font-size:10pt;">
+                  <field name="ci_aex_cilindro_peso" />
+                  <field name="ci_aex_carga" string="Carga (kg)" />
+                  <field name="ci_aex_peso_total" />
+                  <field name="ci_aex_fecha_carga" />
+                  <field name="ci_aex_presion" string="Presión" />
+                  <field name="ci_aex_fecha_retimbrado" />
+                  <field name="ci_aex_fecha_fabricacion" string="Fecha Fabricación" />
+                  <field name="ci_aex_tipo_disparo" />
+                  <field name="ci_aex_difusores" />
+                </group>
+              </group>
+
+            </group>
+            <group attrs="{'invisible':[('tipo_producto_n','!=','Sistema de Monoxido')]}">
+              <group name="sismon_sdi" string="Elementos del Sistema de Distribución" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_sdi_marca_detectores" string="Marca Detectores" />
+                  <field name="ci_sdi_fecha_caducidad_sensor" />
+                  <field name="ci_sdi_ubicacion" string="Ubicación" />
+                  <field name="ci_sdi_num_zona" string="Zona Nº" />
+                  <field name="ci_sdi_dettoma_num" string="Detector/Toma Nº" />
+                  <field name="ci_sdi_dettoma_estado" string="Detector/Toma Estado" />
+                  <field name="ci_sdi_motor_num" string="Motor Nº" />
+                  <field name="ci_sdi_motor_estado" string="Motor Estado" />
+                </group>
+                <group style="font-size:10pt;">
+                  <field name="ci_sdi_correas_num" string="Correas Nº" />
+                  <field name="ci_sdi_correas_estado" />
+                  <field name="ci_sdi_engrase_num" string="Engrase Nº" />
+                  <field name="ci_sdi_engrase_estado" />
+                  <field name="ci_sdi_conductos_rejillas" />
+                  <field name="ci_sdi_compuertas_num" string="Compuertas Nº" />
+                  <field name="ci_sdi_compuertas_estado" />
+                </group>
+              </group>
+              <group name="sismon_motext" string="Motores Extracción" style="font-size:11pt;" colspan="4">
+                <group name="sismon_motext_aut" string="Automático" style="font-size:10pt;">
+                  <field name="ci_mex_aut_marca" />
+                  <field name="ci_mex_aut_intensidad" />
+                </group>
+                <group name="sismon_motext_cont" string="Contactor" style="font-size:10pt;">
+                  <field name="ci_mex_cont_marca" />
+                  <field name="ci_mex_cont_modelo" />
+                </group>
+                <group name="sismon_motext_aut" string="Guardamotor" style="font-size:10pt;">
+                  <field name="ci_mex_guar_marca" />
+                  <field name="ci_mex_guar_modelo" />
+                  <field name="ci_mex_guar_regulacion" string="Regulación" />
+                  <field name="ci_mex_guar_ajustado" />
+                </group>
+              </group>
+              <group name="sismon_mot" string="Motor" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_mot_ubicacion" string="Ubicación" />
+                  <field name="ci_mot_modelo" />
+                  <field name="ci_mot_potencia" string="Potencia (CV o KW)" />
+                  <field name="ci_mot_tension" string="Tensión" />
+                </group>
+                <group style="font-size:10pt;">
+                  <field name="ci_mot_intensidad" />
+                  <field name="ci_mot_rmp" string="r.p.m" />
+                  <field name="ci_mot_coseno" />
+                </group>
+              </group>
+              <group name="sismon_vent" string="Ventilador" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_vent_marca" />
+                  <field name="ci_vent_modelo" />
+                  <field name="ci_vent_caudal" string="Caudal (m3/h)" />
+                </group>
+                <group style="font-size:10pt;">
+                  <field name="ci_vent_potencia" string="Potencia (CV)" />
+                  <field name="ci_vent_rpm" string="r.p.m" />
+                  <field name="ci_vent_presion" string="Presión (mm.cda.)" />
+                </group>
+              </group>
+              <group name="sismon_corr" string="Correas" style="font-size:11pt;" colspan="4">
+                <group style="font-size:10pt;">
+                  <field name="ci_corr_marca" />
+                  <field name="ci_corr_modelo" />
+                  <field name="ci_corr_numero" string="Número" />
+                </group>
+              </group>
+              <group>
+                <field name="ci_tipo_ventilacion" string="Tipo de Ventilación" />
+              </group>
+            </group>
+            <group colspan="4">
+              <field name="ci_observaciones" />
+            </group>            
+          </page>
+        </page>
+      </field>
+    </record>
+  </data>
+</openerp>

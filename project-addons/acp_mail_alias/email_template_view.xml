@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	
+
+
+ 
+            	    	
+        <record model="ir.ui.view" id="email_template_form_acp1">
+            <field name="name">email.template.forma.cp1</field>
+            <field name="model">email.template</field>
+            <field name="inherit_id" ref="email_template.email_template_form"/>
+            <field name="arch" type="xml">
+                <field name="mail_server_id" position="after">
+                   
+                            <field name="company_id" widget="selection" groups="base.group_multi_company"/>                    
+                </field>    
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="email_template_tree_acp1">
+            <field name="name">email.template.tree.acp1</field>
+            <field name="model">email.template</field>
+            <field name="inherit_id" ref="email_template.email_template_tree"/>            
+            <field name="arch" type="xml">
+                <field name="model_id" position="after">
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_email_template_search_acp1" model="ir.ui.view">
+           <field name="name">email.template.search.acp1</field>
+           <field name="model">email.template</field>
+            <field name="inherit_id" ref="email_template.view_email_template_search"/>                
+           <field name="arch" type="xml">
+                    <field name="model_id" position="after">
+                    	 <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                    </field>	
+
+           </field>
+        </record>
+
+ 
+ 
+
+    </data>
+</openerp>

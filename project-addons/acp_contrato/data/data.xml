@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+<!-- 
+        TIPOS DE ACTIVIDAD
+-->
+
+        <record id="EMAIL_RECIBIDO" model="acp_contrato.actividad">
+          <field name="code">EMAIL RECIBIDO</field>
+          <field name="name" >Email recibido</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >mail_recibido</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>
+ 
+        <record id="ANULAR_SERVICIO" model="acp_contrato.actividad">
+          <field name="code">ANULAR SERVICIO</field>
+          <field name="name" >Anular Servicio</field>
+          <field name="estado_inicial" >done</field>
+          <field name="tipo" >anular</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>
+
+
+
+        
+        <record id="ATENCION" model="acp_contrato.actividad">
+          <field name="code">ATENCION</field>
+          <field name="name" >Especial Atención</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="True"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="True"/>
+          <field name="active" eval="True"/>      
+        </record>        
+        
+        
+        <record id="BLOQUEAR_CONTRATO" model="acp_contrato.actividad">
+          <field name="code">BLOQUEAR CONTRATO</field>
+          <field name="name" >Bloquear Contrato</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="True"/>
+          <field name="especial_atencion" eval="True"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>  
+        
+        <record id="BLOQUEAR_SERVICIO" model="acp_contrato.actividad">
+          <field name="code">BLOQUEAR SERVICIO</field>
+          <field name="name" >Bloquear Servicio</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="True"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="True"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record> 
+        
+        <record id="EN_ESPERA" model="acp_contrato.actividad">
+          <field name="code">EN ESPERA</field>
+          <field name="name" >En Espera</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >espera</field>
+          <field name="horas" >22</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>  
+        
+        <record id="FINALIZAR_SERVICIO" model="acp_contrato.actividad">
+          <field name="code">FINALIZAR SERVICIO</field>
+          <field name="name" >Finalizar Servicio</field>
+          <field name="estado_inicial" >done</field>
+          <field name="tipo" >finalizar</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record> 
+        
+        <record id="FINALIZAR_SERVICIO" model="acp_contrato.actividad">
+          <field name="code">FINALIZAR SERVICIO</field>
+          <field name="name" >Finalizar Servicio</field>
+          <field name="estado_inicial" >done</field>
+          <field name="tipo" >finalizar</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>   
+        
+        <record id="VISITA" model="acp_contrato.actividad">
+          <field name="code">VISITA</field>
+          <field name="name" >Visita</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >cita</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record> 
+        
+        <record id="RE-ABRIR" model="acp_contrato.actividad">
+          <field name="code">RE-ABRIR</field>
+          <field name="name" >Re-Abrir Servicio</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >reabrir</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>
+        
+        <record id="RECLAMACION" model="acp_contrato.actividad">
+          <field name="code">RECLAMACION</field>
+          <field name="name" >Reclamación</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >reclamacion</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="True"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>    
+        
+        <record id="NOTA INTERNA" model="acp_contrato.actividad">
+          <field name="code">NOTA INTERNA</field>
+          <field name="name" >Nota Interna</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >otro</field>
+          <field name="horas" >4</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>  
+        
+        <record id="MATERIAL" model="acp_contrato.actividad">
+          <field name="code">MATERIAL</field>
+          <field name="name" >Agregar Material</field>
+          <field name="estado_inicial" >done</field>
+          <field name="tipo" >material</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="False"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record>                             
+        <record id="ENVIAR_MAIL" model="acp_contrato.actividad">
+          <field name="code">ENVIARMAIL</field>
+          <field name="name" >Enviar email</field>
+          <field name="estado_inicial" >open</field>
+          <field name="tipo" >enviar_mail</field>
+          <field name="horas" >0</field>
+          <field name="bloquear_servicio" eval="False"/>
+          <field name="bloquear_contrato" eval="False"/>
+          <field name="especial_atencion" eval="False"/>
+          <field name="enviar_mensaje" eval="False"/>
+          <field name="cerrar_automaticamente" eval="True"/>
+          <field name="mostrar_en_resumen" eval="False"/>
+          <field name="active" eval="True"/>      
+        </record> 
+<!--
+estado_inicial
+                     ('open','Abierto'),
+                     ('done','Cerrado'),
+tipo
+                     ('anular','Anular'),
+                     ('finalizar','Finalizar'),
+                     ('reabrir','Re-Abrir'),
+                     ('reclamacion','Reclamacion'),
+                     ('asignarrecurso','Asignar Recurso'),
+                     ('espera','Espera'),
+                     ('cita','Cita'),                                                                                                         
+                     ('contacto','Contacto'),                      
+                     ('otro','Otro'), 
+--> 
+    
+<!-- 
+        MOTIVOS DE ANULACION
+-->    
+        <record id="anulado" model="acp_contrato.motivo_anulacion">
+            <field name="name">Anulado</field>
+            <field name="descripcion">Anulado</field>
+        </record>
+        <record id="porcliente" model="acp_contrato.motivo_anulacion">
+            <field name="name">Anulado por el Cliente</field>
+            <field name="descripcion">Anulado por el Cliente</field>
+        </record>
+        <record id="cliente" model="acp_contrato.motivo_anulacion">
+            <field name="name">Motivo del cliente</field>
+            <field name="descripcion">Por motivos del cliente</field>
+        </record>
+        <record id="empresa" model="acp_contrato.motivo_anulacion">
+            <field name="name">Motivo de nuestra empresa</field>
+            <field name="descripcion">Por motivos de nuestra empresa</field>
+        </record>
+        <record id="precio_inferior" model="acp_contrato.motivo_anulacion">
+            <field name="name">Precio Inferior</field>
+            <field name="descripcion">Precio inferior</field>
+        </record>
+        <record id="impago" model="acp_contrato.motivo_anulacion">
+            <field name="name">Impago</field>
+            <field name="descripcion">Impago</field>
+        </record>        
+
+<!-- 
+        MOTIVOS DE ESPERA
+-->    
+        <record id="material" model="acp_contrato.motivo_espera">
+              <field name="name" >En espera de Material</field>
+              <field name="descripcion" >En espera de Material</field>
+              <field name="fecha_limite" eval="True"/> 
+              <field name="horas" >8</field>
+        </record>        
+        <record id="autorizacion" model="acp_contrato.motivo_espera">
+              <field name="name" >En espera de Autorizacion</field>
+              <field name="descripcion" >En espera de Autorizacion</field>
+              <field name="fecha_limite" eval="True"/> 
+              <field name="horas" >8</field>
+        </record>        
+        <record id="otros" model="acp_contrato.motivo_espera">
+              <field name="name" >Otros</field>
+              <field name="descripcion" >Otros</field>
+              <field name="fecha_limite" eval="True"/> 
+              <field name="horas" >8</field>
+        </record> 
+
+<!-- 
+        MOTIVOS DE RECLAMACION
+-->    
+        <record id="defectuoso" model="acp_contrato.motivo_reclamacion">
+              <field name="name" >Servicio Completado con Defectos</field>
+              <field name="descripcion" >Servicio Completado con Defectos</field>
+        </record>
+        
+        <record id="retraso" model="acp_contrato.motivo_reclamacion">
+              <field name="name" >Retraso</field>
+              <field name="descripcion" >Retraso</field>
+        </record>     
+        <record id="incumpl_tiempo" model="acp_contrato.motivo_reclamacion">
+              <field name="name">Incumplimiento de tiempo</field>
+              <field name="descripcion">Incumplimiento de tiempo</field>
+        </record>
+        <record id="incumpl_contrato" model="acp_contrato.motivo_reclamacion">
+              <field name="name">Incumplimiento de contrato</field>
+              <field name="descripcion">Incumplimiento de contrato</field>
+        </record>
+        <record id="mala_ejecucion" model="acp_contrato.motivo_reclamacion">
+              <field name="name">Mala ejecucion</field>
+              <field name="descripcion">Mala ejecución</field>
+        </record>           
+  
+<!-- 
+        EMAIL CONTATO
+-->  
+
+ <record id="acp_contrato_email_template" model="email.template">
+            <field name="name">Expediente/Contrato</field>
+            <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">${object.company_id.name|safe} Contrato (N\ ${object.name or 'n/a'})</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato"/>
+            <field name="auto_delete" eval="True"/>
+            <!--
+            <field name="report_template" ref="account_invoices"/>
+            <field name="report_name">Invoice_${(object.number or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+            -->
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Hola ${object.partner_id.name},</p>
+
+    <p>Tiene Un nuevo contrato: </p>
+    
+    <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
+       &nbsp;&nbsp;<strong>REFERECIA</strong><br />
+       &nbsp;&nbsp;Numero: <strong>${object.name}</strong><br />              
+       &nbsp;&nbsp;Referencia: <strong>${object.referencia}</strong><br />
+       % if object.user_id:
+       &nbsp;&nbsp;Su contacto: <a href="mailto:${object.user_id.email or ''}?subject=Contrato%20${object.referencia}">${object.user_id.name}</a>
+       % endif
+    </p>  
+    
+
+    
+    <br/>
+    <p>Si tiene cualquier pregunta, no dude en contactarnos</p>
+    <p>Gracias por elegir ${object.company_id.name or 'us'}!</p>
+    <br/>
+    <br/>
+    <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+        <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+            <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
+    </div>
+    <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+        <span style="color: #222; margin-bottom: 5px; display: block; ">
+        % if object.company_id.street:
+            ${object.company_id.street}<br/>
+        % endif
+        % if object.company_id.street2:
+            ${object.company_id.street2}<br/>
+        % endif
+        % if object.company_id.city or object.company_id.zip:
+            ${object.company_id.zip} ${object.company_id.city}<br/>
+        % endif
+        % if object.company_id.country_id:
+            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
+        % endif
+        </span>
+        % if object.company_id.phone:
+            <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                Phone:&nbsp; ${object.company_id.phone}
+            </div>
+        % endif
+        % if object.company_id.website:
+            <div>
+                Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
+            </div>
+        %endif
+        <p></p>
+    </div>
+</div>
+            ]]></field>
+        </record>
+  
+  </data>
+</openerp>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_invoice_supplier_form_expbu">
+      <field name="name">invoice_supplier_form.expbu</field>
+      <field name="model">account.invoice</field>
+      <field name="priority">31</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form" />
+      <field name="arch" type="xml">
+        <button name="action_cancel_draft" position="after">
+          <button name="action_genera_factura" string="Crear Factura de Ventas" type="object" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </button>
+      </field>
+    </record>
+    <record id="view_invoice_tree_expbu" model="ir.ui.view">
+      <field name="name">view.invoice.tree.expbu</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_tree" />
+      <field name="arch" type="xml">
+        <field name="number" position="after">
+          <field name="dft_contrato_id" />
+          <field name="tipo_contrato_id" />
+        </field>
+      </field>
+    </record>
+    <record id="view_invoice_search_expbu" model="ir.ui.view">
+      <field name="name">view.invoice.search.expbu</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.view_account_invoice_filter" />
+      <field name="arch" type="xml">
+        <field name="partner_id" position="after">
+          <field name="dft_contrato_id" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

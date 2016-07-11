@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_acp_contrato_bufete_nuevo_mensaje_bu">
+      <field name="name">acp_contrato_bufete.nuevo_mensaje.form</field>
+      <field name="model">acp_contrato_bufete.nuevo_mensaje</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Nuevo mensaje">
+          <group>
+            <separator colspan="4" string="Enviar mensaje a abogados" />
+            <group colspan="4">
+              <field name="user_seg_id" />
+              <field name="msg" />
+            </group>
+            <footer>
+              <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
+              <button name="send_msg" type="object" string="Enviar" icon="gtk-go-forward" />
+            </footer>
+          </group>
+        </form>
+      </field>
+    </record>
+    <!-- accion 
+         <record model="ir.actions.act_window" id="action_genera_expediente_bu">
+         <field name="name">Generar Expedientes</field>
+         <field name="res_model">acp_contrato.genera_expediente</field>
+         <field name="src_model">acp_contrato.contrato</field>
+         <field name="key2">client_action_multi</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="view_genera_expediente_bu" />
+         <field name="target">new</field>
+         </record>-->
+  </data>
+</openerp>

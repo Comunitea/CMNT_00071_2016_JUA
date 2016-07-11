@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         User Extension
+    -->
+    <record id="acp_contrato_view_res_users_form_contrato" model="ir.ui.view">
+      <field name="name">acp_contrato.view.res.users.form.contrato</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form" />
+      <field name="arch" type="xml">
+        <page string="Preferences" position="after">
+          <page string="Contratos">
+            <group>
+              <field name="contrato_ids" nolabel="1" />
+            </group>
+          </page>
+        </page>
+      </field>
+    </record>
+  </data>
+</openerp>

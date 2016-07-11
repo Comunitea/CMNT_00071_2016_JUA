@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         Payment Mode View
+    -->
+    <record id="acp_yanez.view_payment_mode_form" model="ir.ui.view">
+      <field name="name">acp_yanez.account_payment.view.payment.mode.form</field>
+      <field name="model">payment.mode</field>
+      <field name="inherit_id" ref="account_payment.view_payment_mode_form" />
+      <field name="arch" type="xml">
+        <group col="4" position="after">
+          <group string="Opciones Para la aceptacion del presupuesto Online" colspan="4">
+            <group>
+              <field name="visible_online" />
+              <field name="acquirer_id" />
+              
+            </group>
+            <group>
+              <field name="tipo_documento" />
+              <field name="guardar" />
+            </group>
+          </group>
+          <group colspan="4">
+            <field name="terms_ids" nolabel="1" />
+          </group>
+        </group>
+      </field>
+    </record>
+  </data>
+</openerp>

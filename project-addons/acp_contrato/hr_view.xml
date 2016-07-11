@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Employees Extension
+        -->
+        <record model="ir.ui.view" id="view_employee_form_exp1">
+            <field name="name">hr.employee.form.exp1</field>
+            <field name="model">hr.employee</field>
+            <field name="priority">30</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <field name="vehicle_distance" position = "after">
+                 <field name="product_rel_id"  />
+                    <field name="horas_objetivo" widget="float_time" />
+                </field>
+            </field>
+        </record>        
+        <record id="acp_view_employee_list_my" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="hr.view_employee_filter"/>
+        </record>
+        <menuitem name="Empleados" id="menu_acp_contrato_empleados" action="acp_view_employee_list_my" parent="contratos_conf" sequence="60" groups="contratos_manager"/> 
+    </data>    
+</openerp>

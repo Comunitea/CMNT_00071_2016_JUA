@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="acp_yanez.view_partner_agent_comision_tree" model="ir.ui.view">
+      <field name="name">acp_yanez.view_partner.agent.comision.tree</field>
+      <field name="model">res.partner.agent</field>
+      <field name="inherit_id" ref="sale_commission.view_partner_agent_comision_tree" />
+      <field name="arch" type="xml">
+        <field name="commission_id" position="after">
+          <field name="date_from" />
+          <field name="date_to" />
+        </field>
+      </field>
+    </record>
+    <record id="acp_yanez.view_partner_agent_comision_form" model="ir.ui.view">
+      <field name="name">acp_yanez.view_partner.agent.comission.form</field>
+      <field name="model">res.partner.agent</field>
+      <field name="inherit_id" ref="sale_commission.view_partner_agent_comision_form" />
+      <field name="arch" type="xml">
+        <field name="commission_id" position="after">
+          <field name="date_from" />
+          <field name="date_to" />
+        </field>
+      </field>
+    </record>
+    <record id="acp_yanez.view_partner_form_add_agents" model="ir.ui.view">
+      <field name="name">acp_yanez.view.partner.form.add.agents</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="sale_commission.view_partner_form_add_agents" />
+      <field name="arch" type="xml">
+        <field name="commission_ids" position="replace">
+          <field name="commission_ids" colspan="4" nolabel="1">
+            <tree string="Agents and Commissions" editable="top">
+              <field name="agent_id" on_change="onchange_agent_id(agent_id)" />
+              <field name="commission_id" on_change="onchange_commission_id(agent_id,commission_id)" />
+              <field name="date_from" />
+              <field name="date_to" />
+            </tree>
+          </field>
+        </field>
+      </field>
+    </record>
+    <record id="acp_yanez.view_order_form_commission" model="ir.ui.view">
+      <field name="name">acp_yanez.sale.view.order.form.commission</field>
+      <field name="model">sale.order</field>
+      <field name="type">form</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <field name="partner_id" position="replace">
+          <field name="partner_id" on_change="onchange_partner_id2(date_order,partner_id,early_payment_discount,payment_term,context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}' />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

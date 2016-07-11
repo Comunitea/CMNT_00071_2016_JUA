@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Vista tree facturas historicas   -->
+    <record model="ir.ui.view" id="view_acp_yanez_invoice_tree">
+      <field name="name">acp_yanez.invoice.tree</field>
+      <field name="model">acp_yanez.invoice</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Facturas" >
+      <field name="name" />
+      <field name="date" />
+      <field name="partner_id" />
+      <field name="total" />
+      <field name="descripcion" />
+      
+      
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form facturas historicas -->
+    <record model="ir.ui.view" id="view_acp_yanez_invoice_form">
+      <field name="name">acp_yanez.invoice.form</field>
+      <field name="model">acp_yanez.invoice</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Tipo de Contratos" >
+          <sheet>
+            <group >
+				<group >
+      <field name="name" />
+      <field name="total" />
+      </group>
+      <group>
+      <field name="date" />
+      <field name="partner_id" />
+      </group>
+      <group colspan="4">
+      <field name="descripcion" colspen="4"/>
+      </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda facturas historicas -->
+    <record id="view_acp_contrato_invoice_search" model="ir.ui.view">
+      <field name="name">acp_yanez.invoice.search</field>
+      <field name="model">acp_yanez.invoice</field>
+      <field name="arch" type="xml">
+        <search string="emails">
+      <field name="name" />
+      <field name="date" />
+      <field name="partner_id" />
+      <field name="total" />
+      <field name="descripcion" />
+          <group expand="0" string="Group By...">
+          <filter string="Cliente" icon="terp-go-month" domain="[]" context="{'group_by':'partner_id'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada facturas historicas-->
+    <record model="ir.actions.act_window" id="action_acp_yanez_invoice">
+      <field name="name">Historico de facturas</field>
+      <field name="res_model">acp_yanez.invoice</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_yanez_invoice_tree" />
+    </record>
+    <!--Entrada en menu facturas historicas-->
+    <menuitem name="Historico de facturas" id="menu_acp_yanez_invoice" action="action_acp_yanez_invoice" parent="account.menu_finance_receivables" sequence="100" />
+    <!--Entrada en menu facturas historicas para portal-->    
+    <menuitem name="Historico de facturas" id="menu_acp_yanez_invoice_portal" parent="portal.portal_orders"
+            action="action_acp_yanez_invoice" sequence="40"/>
+          
+  </data>
+</openerp>

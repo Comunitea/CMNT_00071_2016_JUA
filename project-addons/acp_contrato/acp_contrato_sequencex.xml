@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Sequences for sale.order -->
+        <record id="seq_type_acp_contrato" model="ir.sequence.type">
+            <field name="name">Acp Contrato</field>
+            <field name="code">acp_contrato.contrato</field>
+        </record>
+
+        <record id="seq_acp_contrato" model="ir.sequence">
+            <field name="name">Acp Contrato</field>
+            <field name="code">acp_contrato.contrato</field>
+            <field name="prefix">EXP</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

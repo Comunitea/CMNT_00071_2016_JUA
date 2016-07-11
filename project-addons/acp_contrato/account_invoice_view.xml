@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_invoice_form_form_exp1">
+      <field name="name">invoice.form.exp1</field>
+      <field name="model">account.invoice</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="account.invoice_form" />
+      <field name="arch" type="xml">
+        <field name="invoice_line" position = "attributes">
+  <attribute name = "context">"{'type':  type,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
+        </field>
+         <field name="date_invoice" position="after">
+          <field name="dft_contrato_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="dft_servicio_id" domain="[('contrato_id','=',dft_contrato_id)]" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="dft_factprog_id" invisible="0" readonly="1" string="Fact.Progamada" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </field>
+        <field name="product_id" position="after">
+          <field name="contrato_id" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="servicio_id" domain="[('contrato_id','=',contrato_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="factprog_id" domain="[('contrato_id','=',contrato_id)]" readonly="1" string="Fact.Progamada" invisible="1" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </field>
+      </field>
+    </record>
+    <record id="view_invoice_form_line_exp1  " model="ir.ui.view">
+      <field name="name">account.invoice.form.line.exp1.form</field>
+      <field name="model">account.invoice.line</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="account.view_invoice_line_form" />
+      <field name="arch" type="xml">
+        <field name="product_id" position="after">
+          <field name="contrato_id" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="servicio_id" domain="[('contrato_id','=',contrato_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="factprog_id" domain="[('contrato_id','=',contrato_id)]" readonly="1" string="Fact.Progamada" invisible="1" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </field>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_invoice_supplier_form_form_exp1">
+      <field name="name">invoice.supplier.form.exp1</field>
+      <field name="model">account.invoice</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form" />
+      <field name="arch" type="xml">
+        <field name="invoice_line" position = "attributes">
+  <attribute name = "context">"{'partner_id':  partner_id, 'price_type': context.get('price_type') or False, 'type': type,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
+        </field>
+          <field name="date_invoice" position="after">
+          <field name="dft_contrato_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="dft_servicio_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </field>
+        <field name="product_id" position="after">
+          <field name="contrato_id" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="servicio_id" domain="[('contrato_id','=',contrato_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </field>
+      </field>
+    </record>
+    
+    
+  </data>
+</openerp>

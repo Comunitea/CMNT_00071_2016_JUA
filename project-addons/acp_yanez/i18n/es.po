@@ -1,0 +1,1347 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* acp_yanez
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0-20150422\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-01 20:10+0000\n"
+"PO-Revision-Date: 2015-09-01 20:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: acp_yanez
+#: field:sale.order,meeting_count:0
+msgid "# Agenda"
+msgstr "# Agenda"
+
+#. module: acp_yanez
+#: field:res.partner,event_registration_count:0
+msgid "# Asistencias"
+msgstr "# Asistencias"
+
+#. module: acp_yanez
+#: field:res.partner,attachment_count:0
+msgid "# Documentos"
+msgstr "# Documentos"
+
+#. module: acp_yanez
+#: field:res.partner,mail_message_count:0
+msgid "# Mensajes"
+msgstr "# Mensajes"
+
+#. module: acp_yanez
+#: field:res.partner,mass_mail_count:0
+msgid "# of Sales Order"
+msgstr "# of Sales Order"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "1º Seleccione Modo de Pago"
+msgstr "1º Seleccione Modo de Pago"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "2º Seleccione Plazo de Pago"
+msgstr "2º Seleccione Plazo de Pago"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "3º Adjuntar documentos"
+msgstr "3º Adjuntar documentos"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "4º Aceptar Terminos y condiciones"
+msgstr "4º Aceptar Terminos y condiciones"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "5º Confirmar el presupuesto"
+msgstr "5º Confirmar el presupuesto"
+
+#. module: acp_yanez
+#: model:ir.actions.act_window,help:acp_yanez.acp_yanez_action_partner_form
+msgid "<p class=\"oe_view_nocontent_create\">Click to add a contact in your address book.</p>\n"
+"        <p>\n"
+"          Odoo helps you easily track all activities related to\n"
+"          a customer; discussions, history of business opportunities,\n"
+"          documents, etc.\n"
+"        </p>\n"
+"      "
+msgstr "<p class=\"oe_view_nocontent_create\">Click to add a contact in your address book.</p>\n"
+"        <p>\n"
+"          Odoo helps you easily track all activities related to\n"
+"          a customer; discussions, history of business opportunities,\n"
+"          documents, etc.\n"
+"        </p>\n"
+"      "
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "A continuación se muestra el calendario de pagos."
+msgstr "A continuación se muestra el calendario de pagos."
+
+#. module: acp_yanez
+#: field:sale.order,ok_terms_conditions:0
+msgid "Acepta Terminos y Condiciones"
+msgstr "Acepta Terminos y Condiciones"
+
+#. module: acp_yanez
+#: field:acp_yanez.sale_attachment,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: acp_yanez
+#: field:acp_yanez.origen_cliente,active:0
+msgid "Activo"
+msgstr "Activo"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Adjuntar Documentos"
+msgstr "Adjuntar Documentos"
+
+#. module: acp_yanez
+#: field:sale.order,adjunto_id:0
+msgid "Adjuntos"
+msgstr "Adjuntos"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Agenda"
+msgstr "Agenda"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.view_partner_form_add_agents
+msgid "Agents and Commissions"
+msgstr "Agentes y comisiones"
+
+#. module: acp_yanez
+#: help:res.company,lopd_footer_msg:0
+msgid "Aparecera en el pie de todas las capagnas de email."
+msgstr "Aparecera en el pie de todas las capagnas de email."
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+msgid "Asistencia"
+msgstr "Asistencia"
+
+#. module: acp_yanez
+#: field:res.partner,event_registration_ids:0
+msgid "Asistencias Eventos"
+msgstr "Asistencias Eventos"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_res_partner_kanban_view
+msgid "CLIENTE"
+msgstr "CLIENTE"
+
+#. module: acp_yanez
+#: field:res.partner,crm_tracking_campaign:0
+msgid "Campaign"
+msgstr "Campaign"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+msgid "Campaña Marketing"
+msgstr "Campaña Marketing"
+
+#. module: acp_yanez
+#: help:res.partner,crm_tracking_campaign:0
+msgid "Campañas de Marketing"
+msgstr "Campañas de Marketing"
+
+#. module: acp_yanez
+#: view:acp_yanez.import:acp_yanez.view_acp_yanez_import
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: acp_yanez
+#: view:ir.attachment:acp_yanez.view_acp_yanez_attachment_form
+#: view:ir.attachment:acp_yanez.view_acp_yanez_attachment_form2
+msgid "Clasificacion"
+msgstr "Clasificacion"
+
+#. module: acp_yanez
+#: view:acp_yanez.invoice:acp_yanez.view_acp_contrato_invoice_search
+#: field:acp_yanez.invoice,partner_id:0
+#: selection:payment.mode,guardar:0
+msgid "Cliente"
+msgstr "Cliente"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_view_res_partner_filter
+#: field:res.partner,lead:0
+msgid "Cliente Potencial"
+msgstr "Cliente Potencial"
+
+#. module: acp_yanez
+#: model:ir.actions.act_window,name:acp_yanez.acp_yanez_action_partner_form
+msgid "Clientes"
+msgstr "Clientes"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_view_res_partner_filter
+msgid "Clientes Potenciales"
+msgstr "Clientes Potenciales"
+
+#. module: acp_yanez
+#: field:event.event,colaborador:0
+msgid "Colaborador"
+msgstr "Colaborador"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: acp_yanez
+#: field:mail.mass_mailing,company_id:0
+msgid "Company"
+msgstr "Company"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+#: field:res.partner,condiciones_especiales:0
+msgid "Condiciones Especiales"
+msgstr "Condiciones Especiales"
+
+#. module: acp_yanez
+#: field:res.company,condiciones_generales:0
+msgid "Condiciones Generales"
+msgstr "Condiciones Generales"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+#: field:res.partner,suscrito_conferencia:0
+msgid "Conferencia"
+msgstr "Conferencia"
+
+#. module: acp_yanez
+#: view:event.event:acp_yanez.view_event_form
+#: field:event.event,conferenciantes_ids:0
+msgid "Conferenciantes"
+msgstr "Conferenciantes"
+
+#. module: acp_yanez
+#: view:res.company:acp_yanez.acp_yanez_view_company
+msgid "Configuración de presupuestos"
+msgstr "Configuración de presupuestos"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Confirmar Presupuesto"
+msgstr "Confirmar Presupuesto"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Confirmar y Pagar Presupuesto"
+msgstr "Confirmar y Pagar Presupuesto"
+
+#. module: acp_yanez
+#: field:crm.lead,contact_id:0
+msgid "Contacto"
+msgstr "Contacto"
+
+#. module: acp_yanez
+#: view:mail.message:acp_yanez.acp_yanez_view_message_search
+msgid "Content"
+msgstr "Contenido"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,create_uid:0
+#: field:acp_yanez.import,create_uid:0
+#: field:acp_yanez.invoice,create_uid:0
+#: field:acp_yanez.origen_cliente,create_uid:0
+#: field:acp_yanez.sale_attachment,create_uid:0
+#: field:acp_yanez.sale_order_desglose,create_uid:0
+#: field:acp_yanez.select_payment_mode,create_uid:0
+#: field:acp_yanez.select_payment_mode_l,create_uid:0
+#: field:acp_yanez.select_payment_term,create_uid:0
+#: field:acp_yanez.select_payment_term_l,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,create_date:0
+#: field:acp_yanez.import,create_date:0
+#: field:acp_yanez.invoice,create_date:0
+#: field:acp_yanez.origen_cliente,create_date:0
+#: field:acp_yanez.sale_attachment,create_date:0
+#: field:acp_yanez.sale_order_desglose,create_date:0
+#: field:acp_yanez.select_payment_mode,create_date:0
+#: field:acp_yanez.select_payment_mode_l,create_date:0
+#: field:acp_yanez.select_payment_term,create_date:0
+#: field:acp_yanez.select_payment_term_l,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+msgid "Curso"
+msgstr "Curso"
+
+#. module: acp_yanez
+#: field:res.partner,suscrito_curso:0
+msgid "Cursos"
+msgstr "Cursos"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_view_res_partner_filter
+msgid "Customers"
+msgstr "Clientes"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:341
+#: code:addons/acp_yanez/sale.py:393
+#, python-format
+msgid "Debe aceptar los Terminos y Condiciones."
+msgstr "Debe aceptar los Terminos y Condiciones."
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:337
+#: code:addons/acp_yanez/sale.py:389
+#, python-format
+msgid "Debe selecionar un modo de pago."
+msgstr "Debe selecionar un modo de pago."
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:339
+#: code:addons/acp_yanez/sale.py:391
+#, python-format
+msgid "Debe selecionar un plazo de pago."
+msgstr "Debe selecionar un plazo de pago."
+
+#. module: acp_yanez
+#: field:res.partner,department:0
+msgid "Deparamento"
+msgstr "Deparamento"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+#: help:res.partner,department:0
+msgid "Departamento"
+msgstr "Departamento"
+
+#. module: acp_yanez
+#: field:acp_yanez.invoice,descripcion:0
+#: field:acp_yanez.origen_cliente,descripcion:0
+msgid "Descripcion"
+msgstr "Descripcion"
+
+#. module: acp_yanez
+#: field:acp_yanez.import,name:0
+#: field:acp_yanez.sale_attachment,name:0
+msgid "Descripción"
+msgstr "Descripción"
+
+#. module: acp_yanez
+#: field:event.event,materia:0
+msgid "Description"
+msgstr "Description"
+
+#. module: acp_yanez
+#: field:res.partner.agent,date_from:0
+msgid "Desde Fecha"
+msgstr "Desde Fecha"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Desestimar Presupuesto"
+msgstr "Desestimar Presupuesto"
+
+#. module: acp_yanez
+#: field:sale.order,desglose_id:0
+msgid "Desglose"
+msgstr "Desglose"
+
+#. module: acp_yanez
+#: field:acp_yanez.import,data:0
+#: field:acp_yanez.sale_attachment,data:0
+msgid "Documento"
+msgstr "Documento"
+
+#. module: acp_yanez
+#: help:res.company,mandato:0
+#: help:res.company,mandato_empresa:0
+msgid "Documento de Mandato"
+msgstr "Documento de Mandato"
+
+#. module: acp_yanez
+#: help:res.company,condiciones_generales:0
+msgid "Documento de condiciones generales"
+msgstr "Documento de condiciones generales"
+
+#. module: acp_yanez
+#: help:res.company,normas_internas:0
+msgid "Documento de normas internas"
+msgstr "Documento de normas internas"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+#: field:res.partner,attachment_ids:0
+msgid "Documentos"
+msgstr "Documentos"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Documentos Adjuntos"
+msgstr "Documentos Adjuntos"
+
+#. module: acp_yanez
+#: view:res.company:acp_yanez.acp_yanez_view_company
+msgid "Documentos para descargar"
+msgstr "Documentos para descargar"
+
+#. module: acp_yanez
+#: field:event.event,duracion:0
+msgid "Duración"
+msgstr "Duración"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Eliminar"
+msgstr "Eliminar"
+
+#. module: acp_yanez
+#: field:res.company,survey:0
+msgid "Encuesta"
+msgstr "Encuesta"
+
+#. module: acp_yanez
+#: help:res.company,survey:0
+msgid "Encuesta que se envia al cliente cuando se rechaza un presupuesto"
+msgstr "Encuesta que se envia al cliente cuando se rechaza un presupuesto"
+
+#. module: acp_yanez
+#: field:crm.lead,mass_mailing_id:0
+msgid "Envio Masivo"
+msgstr "Envio Masivo"
+
+#. module: acp_yanez
+#: model:ir.actions.act_window,name:acp_yanez.acp_yanez_action_view_mass_mail
+#: view:mail.mail.statistics:acp_yanez.acp_yanez_view_mail_mail_statistics_search
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+#: field:res.partner,mass_mail_ids:0
+msgid "Envios Masivos"
+msgstr "Envios Masivos"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/crm_lead.py:34
+#: code:addons/acp_yanez/mass_mail.py:81
+#: code:addons/acp_yanez/wizard/select_payment_mode.py:150
+#: code:addons/acp_yanez/wizard/select_payment_mode.py:155
+#: code:addons/acp_yanez/wizard/select_payment_mode.py:186
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Es necesario que adjunte el justificante de la transferencia."
+msgstr "Es necesario que adjunte el justificante de la transferencia."
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Es necesario que adjunte la Orden de Domiciliación o Mandato."
+msgstr "Es necesario que adjunte la Orden de Domiciliación o Mandato."
+
+#. module: acp_yanez
+#: field:sale.order,is_company:0
+msgid "Es una empresa"
+msgstr "Es una empresa"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/wizard/select_payment_mode.py:186
+#, python-format
+msgid "Esta intentando eliminar una transaccion ya confirmada."
+msgstr "Esta intentando eliminar una transaccion ya confirmada."
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/wizard/select_payment_term.py:126
+#, python-format
+msgid "Este metodo depago lleva un coste añadido, compruebe el total del pedido y los plazos de pago."
+msgstr "Este metodo depago lleva un coste añadido, compruebe el total del pedido y los plazos de pago."
+
+#. module: acp_yanez
+#: field:sale.order,etapa:0
+msgid "Etapa"
+msgstr "Etapa"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_calendar_event
+#: model:ir.model,name:acp_yanez.model_event_event
+msgid "Event"
+msgstr "Evento"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_event_registration
+msgid "Event Registration"
+msgstr "Registro evento"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_event_type
+msgid "Event Type"
+msgstr "Tipo de evento"
+
+#. module: acp_yanez
+#: field:calendar.event,event_id:0
+msgid "Evento"
+msgstr "Evento"
+
+#. module: acp_yanez
+#: selection:event.event,curso_type:0
+msgid "Executive"
+msgstr "Executive"
+
+#. module: acp_yanez
+#: view:acp_yanez.invoice:acp_yanez.view_acp_yanez_invoice_tree
+msgid "Facturas"
+msgstr "Facturas"
+
+#. module: acp_yanez
+#: field:acp_yanez.invoice,date:0
+msgid "Fecha"
+msgstr "Fecha"
+
+#. module: acp_yanez
+#: field:acp_yanez.sale_order_desglose,date:0
+msgid "Fecha Vencimiento"
+msgstr "Fecha Vencimiento"
+
+#. module: acp_yanez
+#: field:sale.order,condiciones_generales:0
+#: field:sale.order,condiciones_generales_n:0
+#: field:sale.order,mandato:0
+#: field:sale.order,mandato_empresa:0
+#: field:sale.order,mandato_empresa_n:0
+#: field:sale.order,mandato_n:0
+#: field:sale.order,normas_internas:0
+#: field:sale.order,normas_internas_n:0
+msgid "File Content"
+msgstr "File Content"
+
+#. module: acp_yanez
+#: view:acp_yanez.import:acp_yanez.view_acp_yanez_import
+msgid "Finalizar y volver al pedido"
+msgstr "Finalizar y volver al pedido"
+
+#. module: acp_yanez
+#: view:mail.message:acp_yanez.acp_yanez_view_message_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: acp_yanez
+#: view:acp_yanez.invoice:acp_yanez.view_acp_contrato_invoice_search
+msgid "Group By..."
+msgstr "Agrupar por"
+
+#. module: acp_yanez
+#: field:payment.mode,guardar:0
+msgid "Guardar cocumento en"
+msgstr "Guardar cocumento en"
+
+#. module: acp_yanez
+#: view:mail.message:acp_yanez.acp_yanez_view_message_search
+msgid "Has attachments"
+msgstr "Tiene adjuntos"
+
+#. module: acp_yanez
+#: field:res.partner.agent,date_to:0
+msgid "Hasta Fecha"
+msgstr "Hasta Fecha"
+
+#. module: acp_yanez
+#: model:ir.actions.act_window,name:acp_yanez.action_acp_yanez_invoice
+#: model:ir.model,name:acp_yanez.model_acp_yanez_invoice
+#: model:ir.ui.menu,name:acp_yanez.menu_acp_yanez_invoice
+#: model:ir.ui.menu,name:acp_yanez.menu_acp_yanez_invoice_portal
+msgid "Historico de facturas"
+msgstr "Historico de facturas"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,id:0
+#: field:acp_yanez.import,id:0
+#: field:acp_yanez.invoice,id:0
+#: field:acp_yanez.origen_cliente,id:0
+#: field:acp_yanez.sale_attachment,id:0
+#: field:acp_yanez.sale_order_desglose,id:0
+#: field:acp_yanez.select_payment_mode,id:0
+#: field:acp_yanez.select_payment_mode_l,id:0
+#: field:acp_yanez.select_payment_term,id:0
+#: field:acp_yanez.select_payment_term_l,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: acp_yanez
+#: field:event.event,image:0
+msgid "Image"
+msgstr "Imagen"
+
+#. module: acp_yanez
+#: view:acp_yanez.import:acp_yanez.view_acp_yanez_import
+msgid "Import Translation"
+msgstr "Import Translation"
+
+#. module: acp_yanez
+#: model:ir.actions.act_window,name:acp_yanez.action_view_acp_yanez_import
+msgid "Importar Archivo"
+msgstr "Importar Archivo"
+
+#. module: acp_yanez
+#: field:acp_yanez.sale_order_desglose,importe:0
+msgid "Importe"
+msgstr "Importe"
+
+#. module: acp_yanez
+#: selection:acp_yanez.account_payment_term_product,tipo:0
+msgid "Importe Fijo"
+msgstr "Importe Fijo"
+
+#. module: acp_yanez
+#: help:payment.mode,guardar:0
+msgid "Indica el modelo de datos donde debe validarse si el documento existe. \n"
+"                                                                                  Tambien será el modelo donde se guarde el documento.  "
+msgstr "Indica el modelo de datos donde debe validarse si el documento existe. \n"
+"                                                                                  Tambien será el modelo donde se guarde el documento.  "
+
+#. module: acp_yanez
+#: selection:event.event,curso_type:0
+msgid "Iniciación"
+msgstr "Iniciación"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Ir al paso Anterior"
+msgstr "Ir al paso Anterior"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Ir al paso Siguiente"
+msgstr "Ir al paso Siguiente"
+
+#. module: acp_yanez
+#: selection:acp_yanez.import,tipo:0
+#: selection:acp_yanez.sale_attachment,tipo:0
+#: selection:payment.mode,tipo_documento:0
+msgid "Justificante Transferencia"
+msgstr "Justificante Transferencia"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_acp_yanez_import
+msgid "Language Import"
+msgstr "Importación de idioma"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,write_uid:0
+#: field:acp_yanez.import,write_uid:0
+#: field:acp_yanez.invoice,write_uid:0
+#: field:acp_yanez.origen_cliente,write_uid:0
+#: field:acp_yanez.sale_attachment,write_uid:0
+#: field:acp_yanez.sale_order_desglose,write_uid:0
+#: field:acp_yanez.select_payment_mode,write_uid:0
+#: field:acp_yanez.select_payment_mode_l,write_uid:0
+#: field:acp_yanez.select_payment_term,write_uid:0
+#: field:acp_yanez.select_payment_term_l,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,write_date:0
+#: field:acp_yanez.import,write_date:0
+#: field:acp_yanez.invoice,write_date:0
+#: field:acp_yanez.origen_cliente,write_date:0
+#: field:acp_yanez.sale_attachment,write_date:0
+#: field:acp_yanez.sale_order_desglose,write_date:0
+#: field:acp_yanez.select_payment_mode,write_date:0
+#: field:acp_yanez.select_payment_mode_l,write_date:0
+#: field:acp_yanez.select_payment_term,write_date:0
+#: field:acp_yanez.select_payment_term_l,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Iniciativa/Oportunidad"
+
+#. module: acp_yanez
+#: field:sale.order,ready_to_pay:0
+msgid "Listo para pagar"
+msgstr "Listo para pagar"
+
+#. module: acp_yanez
+#: selection:acp_yanez.import,tipo:0
+#: selection:acp_yanez.sale_attachment,tipo:0
+#: selection:payment.mode,tipo_documento:0
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+#: field:res.partner,mandato_text:0
+msgid "Mandato"
+msgstr "Mandato"
+
+#. module: acp_yanez
+#: field:res.company,mandato_empresa:0
+msgid "Mandato (B2B)"
+msgstr "Mandato (B2B)"
+
+#. module: acp_yanez
+#: field:res.company,mandato:0
+msgid "Mandato (CORE)"
+msgstr "Mandato (CORE)"
+
+#. module: acp_yanez
+#: view:res.company:acp_yanez.acp_yanez_view_company
+msgid "Marketing"
+msgstr "Marketing"
+
+#. module: acp_yanez
+#: view:ir.attachment:acp_yanez.view_acp_yanez_attachment_form
+#: view:ir.attachment:acp_yanez.view_acp_yanez_attachment_form2
+msgid "Mas información"
+msgstr "Mas información"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_mail_mass_mailing
+msgid "Mass Mailing"
+msgstr "Envío masivo"
+
+#. module: acp_yanez
+#: view:event.event:acp_yanez.view_event_form
+msgid "Materia"
+msgstr "Materia"
+
+#. module: acp_yanez
+#: field:event.event,image_medium:0
+msgid "Medium-sized image"
+msgstr "Medium-sized image"
+
+#. module: acp_yanez
+#: field:res.company,lopd_footer_msg:0
+msgid "Mensaje LOPD"
+msgstr "Mensaje LOPD"
+
+#. module: acp_yanez
+#: field:res.company,unsubscribe_text:0
+msgid "Mensaje para \"cancelar suscripción\""
+msgstr "Mensaje para \"cancelar suscripción\""
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+msgid "Mensajes"
+msgstr "Mensajes"
+
+#. module: acp_yanez
+#: field:res.partner,mail_message_ids:0
+msgid "Message"
+msgstr "Message"
+
+#. module: acp_yanez
+#: model:ir.actions.act_window,name:acp_yanez.acp_yanez_action_view_mail_message
+#: view:mail.message:acp_yanez.acp_yanez_view_message_tree
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: acp_yanez
+#: view:mail.message:acp_yanez.acp_yanez_view_message_search
+msgid "Messages Search"
+msgstr "Buscar mensajes"
+
+#. module: acp_yanez
+#: field:acp_yanez.select_payment_mode,mode_ids:0
+#: field:acp_yanez.select_payment_mode_l,mode_id:0
+#: field:sale.order,payment_mode_id2:0
+msgid "Modo de Pago"
+msgstr "Modo de Pago"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Modo de pago seleccionado:"
+msgstr "Modo de pago seleccionado:"
+
+#. module: acp_yanez
+#: view:event.registration:acp_yanez.view_registration_search
+#: field:event.registration,muestra_interes:0
+msgid "Muestra Interes"
+msgstr "Muestra Interes"
+
+#. module: acp_yanez
+#: view:event.registration:acp_yanez.view_registration_search
+msgid "My Registrations"
+msgstr "Mis registros"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:495
+#, python-format
+msgid "No está definida la encuesta Encuesta Presupuestos Desestimados."
+msgstr "No está definida la encuesta Encuesta Presupuestos Desestimados."
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:500
+#, python-format
+msgid "No está definida la plantilla de correo Encuesta Presupuestos Desestimados."
+msgstr "No está definida la plantilla de correo Encuesta Presupuestos Desestimados."
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "No necesita adjuntar ninguna documentacion."
+msgstr "No necesita adjuntar ninguna documentacion."
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "No se podrá confirmar el presupuesto sin este documento."
+msgstr "No se podrá confirmar el presupuesto sin este documento."
+
+#. module: acp_yanez
+#: field:acp_yanez.import,data_fname:0
+#: field:acp_yanez.origen_cliente,name:0
+#: field:acp_yanez.sale_attachment,data_fname:0
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: acp_yanez
+#: field:res.company,normas_internas:0
+msgid "Normas Internas"
+msgstr "Normas Internas"
+
+#. module: acp_yanez
+#: field:ir.attachment,notario:0
+msgid "Notario"
+msgstr "Notario"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+#: field:sale.order,comment:0
+#: help:sale.order,comment:0
+msgid "Notas Internas"
+msgstr "Notas Internas"
+
+#. module: acp_yanez
+#: view:event.event:acp_yanez.view_event_form
+msgid "Nuevo Presupuesto"
+msgstr "Nuevo Presupuesto"
+
+#. module: acp_yanez
+#: sql_constraint:acp_yanez.invoice:0
+msgid "Numero de factura debe ser unico !"
+msgstr "Numero de factura debe ser unico !"
+
+#. module: acp_yanez
+#: field:ir.attachment,nprotocolo:0
+msgid "Nº Protocolo"
+msgstr "Nº Protocolo"
+
+#. module: acp_yanez
+#: field:acp_yanez.invoice,name:0
+msgid "Número"
+msgstr "Número"
+
+#. module: acp_yanez
+#: view:payment.mode:acp_yanez.view_payment_mode_form
+msgid "Opciones Para la aceptacion del presupuesto Online"
+msgstr "Opciones Para la aceptacion del presupuesto Online"
+
+#. module: acp_yanez
+#: field:res.partner,origen_cliente_id:0
+msgid "Origen Cliente"
+msgstr "Origen Cliente"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+msgid "Origen de Cliente"
+msgstr "Origen de Cliente"
+
+#. module: acp_yanez
+#: sql_constraint:acp_yanez.origen_cliente:0
+msgid "Origen de Cliente debe ser unico !"
+msgstr "Origen de Cliente debe ser unico !"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_acp_yanez_origen_cliente
+#: help:res.partner,origen_cliente_id:0
+msgid "Origenes de Clientes"
+msgstr "Origenes de Clientes"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Other Information"
+msgstr "Otra información"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Correos salientes"
+
+#. module: acp_yanez
+#: view:ir.attachment:acp_yanez.view_acp_yanez_attachment_search
+msgid "Owner"
+msgstr "Propietario"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_res_partner_kanban_view
+msgid "POTENCIAL"
+msgstr "POTENCIAL"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: acp_yanez
+#: field:payment.mode,acquirer_id:0
+msgid "Pasarela de pago  Online"
+msgstr "Pasarela de pago  Online"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_payment_mode
+msgid "Payment Mode"
+msgstr "Modo de pago"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_account_payment_term
+msgid "Payment Term"
+msgstr "Plazo de pago"
+
+#. module: acp_yanez
+#: field:acp_yanez.sale_attachment,sale_id:0
+#: field:acp_yanez.sale_order_desglose,sale_id:0
+#: field:acp_yanez.select_payment_mode,sale_id:0
+#: field:acp_yanez.select_payment_mode_l,wiz_id:0
+#: field:acp_yanez.select_payment_term,sale_id:0
+#: field:acp_yanez.select_payment_term_l,wiz_id:0
+msgid "Pedido"
+msgstr "Pedido"
+
+#. module: acp_yanez
+#: field:calendar.event,sale_order_id:0
+msgid "Pedido Venta"
+msgstr "Pedido Venta"
+
+#. module: acp_yanez
+#: help:acp_yanez.origen_cliente,active:0
+msgid "Permite ocultar este registro sin eliminarlo."
+msgstr "Permite ocultar este registro sin eliminarlo."
+
+#. module: acp_yanez
+#: field:res.company,mail_depart_template:0
+msgid "Plantilla de email cambio de estado"
+msgstr "Plantilla de email cambio de estado"
+
+#. module: acp_yanez
+#: field:res.company,mail_confirm_template:0
+msgid "Plantilla de email de confirmacion"
+msgstr "Plantilla de email de confirmacion"
+
+#. module: acp_yanez
+#: help:res.company,mail_confirm_template:0
+msgid "Plantilla de email para de confirmación de pedido"
+msgstr "Plantilla de email para de confirmación de pedido"
+
+#. module: acp_yanez
+#: field:res.company,mail_survey_template:0
+msgid "Plantilla de email para encuestas"
+msgstr "Plantilla de email para encuestas"
+
+#. module: acp_yanez
+#: help:res.company,mail_survey_template:0
+msgid "Plantilla de email para enviar la encuesta al cliente"
+msgstr "Plantilla de email para enviar la encuesta al cliente"
+
+#. module: acp_yanez
+#: help:res.company,mail_depart_template:0
+msgid "Plantilla de email para informar del cambio de estado de un pedido"
+msgstr "Plantilla de email para informar del cambio de estado de un pedido"
+
+#. module: acp_yanez
+#: view:res.company:acp_yanez.acp_yanez_view_company
+msgid "Plantillas"
+msgstr "Plantillas"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,term_id:0
+#: field:acp_yanez.select_payment_term,term_ids:0
+#: field:acp_yanez.select_payment_term_l,term_id:0
+#: field:sale.order,payment_term2:0
+msgid "Plazo de Pago"
+msgstr "Plazo de Pago"
+
+#. module: acp_yanez
+#: field:sale.order.line,orign_term_id:0
+msgid "Plazo de Pago Relacionado"
+msgstr "Plazo de Pago Relacionado"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Plazo de pago seleccionado:"
+msgstr "Plazo de pago seleccionado:"
+
+#. module: acp_yanez
+#: field:payment.mode,terms_ids:0
+msgid "Plazos de Pago"
+msgstr "Plazos de Pago"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/wizard/select_payment_term.py:125
+#, python-format
+msgid "Precio Extra!"
+msgstr "Precio Extra!"
+
+#. module: acp_yanez
+#: selection:payment.mode,guardar:0
+msgid "Presupuesto"
+msgstr "Presupuesto"
+
+#. module: acp_yanez
+#: view:ir.attachment:acp_yanez.view_acp_yanez_attachment_search
+#: field:ir.attachment,procurador:0
+msgid "Procurador"
+msgstr "Procurador"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_product_template
+msgid "Product Template"
+msgstr "Plantilla producto"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,product_id:0
+msgid "Producto"
+msgstr "Producto"
+
+#. module: acp_yanez
+#: view:account.payment.term:acp_yanez.view_payment_term_form
+#: field:account.payment.term,payment_term_product_ids:0
+msgid "Productos"
+msgstr "Productos"
+
+#. module: acp_yanez
+#: field:sale.order,expense_provision:0
+msgid "Provision Gastos"
+msgstr "Provision Gastos"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Puede descargar este documento en el siguiente enlace."
+msgstr "Puede descargar este documento en el siguiente enlace."
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Pulse aqui para Aceptar los términos y condiciones generales"
+msgstr "Pulse aqui para Aceptar los términos y condiciones generales"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Pulse en el boton \"Adjuntar Documentos\" para adjuntar los documentos solicitados."
+msgstr "Pulse en el boton \"Adjuntar Documentos\" para adjuntar los documentos solicitados."
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:387
+#, python-format
+msgid "Realice el pago para poder continuar con el proceso."
+msgstr "Realice el pago para poder continuar con el proceso."
+
+#. module: acp_yanez
+#: view:event.event:acp_yanez.view_event_form
+msgid "Registrations"
+msgstr "Registros"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/event.py:52
+#, python-format
+msgid "Registros de Eventos"
+msgstr "Registros de Eventos"
+
+#. module: acp_yanez
+#: view:res.company:acp_yanez.acp_yanez_view_company
+msgid "Report Configuration"
+msgstr "Configuración de informes"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Resp. Departamento"
+msgstr "Resp. Departamento"
+
+#. module: acp_yanez
+#: field:sale.order,department_user_id:0
+msgid "Responsable Departamento"
+msgstr "Responsable Departamento"
+
+#. module: acp_yanez
+#: field:res.partner,suscrito_revistafisica:0
+msgid "Revista Fisica"
+msgstr "Revista Fisica"
+
+#. module: acp_yanez
+#: field:res.partner,suscrito_revistaonline:0
+msgid "Revista Online"
+msgstr "Revista Online"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_sale_order
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: acp_yanez
+#: view:acp_yanez.select_payment_mode:acp_yanez.acp_yanez_view_select_payment_mode
+#: view:acp_yanez.select_payment_term:acp_yanez.acp_yanez_view_select_payment_term
+msgid "Sales Order Lines"
+msgstr "Sales Order Lines"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/wizard/select_payment_mode.py:150
+#, python-format
+msgid "Se ha encontrado mas de una transacción de pago."
+msgstr "Se ha encontrado mas de una transacción de pago."
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_acp_yanez_select_payment_mode
+msgid "Selecionar Modo de Pago"
+msgstr "Selecionar Modo de Pago"
+
+#. module: acp_yanez
+#: model:ir.model,name:acp_yanez.model_acp_yanez_select_payment_mode_l
+#: model:ir.model,name:acp_yanez.model_acp_yanez_select_payment_term
+#: model:ir.model,name:acp_yanez.model_acp_yanez_select_payment_term_l
+msgid "Selecionar Plazo de Pago"
+msgstr "Selecionar Plazo de Pago"
+
+#. module: acp_yanez
+#: view:acp_yanez.select_payment_mode:acp_yanez.acp_yanez_view_select_payment_mode
+#: view:acp_yanez.select_payment_term:acp_yanez.acp_yanez_view_select_payment_term
+msgid "Select Payment"
+msgstr "Select Payment"
+
+#. module: acp_yanez
+#: view:mail.message:acp_yanez.acp_yanez_view_message_search
+msgid "Show messages to read"
+msgstr "Ver mensajes por leer"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Si ya adjuntó este documento en un presupuesto anterior puede saltarse este paso."
+msgstr "Si ya adjuntó este documento en un presupuesto anterior puede saltarse este paso."
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Siga los pasos indicados a continuación para aceptar el presupuesto"
+msgstr "Siga los pasos indicados a continuación para aceptar el presupuesto"
+
+#. module: acp_yanez
+#: field:event.event,image_small:0
+msgid "Smal-sized image"
+msgstr "Smal-sized image"
+
+#. module: acp_yanez
+#: view:event.registration:acp_yanez.view_registration_search
+#: field:event.registration,solicita_presupuesto:0
+msgid "Solicita Presupuesto"
+msgstr "Solicita Presupuesto"
+
+#. module: acp_yanez
+#: view:res.partner:acp_yanez.acp_yanez_partner_view_buttons
+msgid "Suscripciones"
+msgstr "Suscripciones"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Tenga en cuenta que se pueden aplicar cargos adicionales dependiendo del plazo de pago seleccionado."
+msgstr "Tenga en cuenta que se pueden aplicar cargos adicionales dependiendo del plazo de pago seleccionado."
+
+#. module: acp_yanez
+#: help:acp_yanez.sale_attachment,active:0
+msgid "The active field allows you to hide the category without removing it."
+msgstr "The active field allows you to hide the category without removing it."
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:552
+#, python-format
+msgid "The content of the text don't contain '__URL__'.                         __URL__ is automaticaly converted into the special url of the survey."
+msgstr "The content of the text don't contain '__URL__'.                         __URL__ is automaticaly converted into the special url of the survey."
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/crm_lead.py:34
+#: code:addons/acp_yanez/mass_mail.py:81
+#, python-format
+msgid "There is no default company for the current user!"
+msgstr "There is no default company for the current user!"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,tipo:0
+#: field:acp_yanez.import,tipo:0
+#: field:acp_yanez.sale_attachment,tipo:0
+msgid "Tipo"
+msgstr "Tipo"
+
+#. module: acp_yanez
+#: view:acp_yanez.invoice:acp_yanez.view_acp_yanez_invoice_form
+msgid "Tipo de Contratos"
+msgstr "Tipo de Expedientes"
+
+#. module: acp_yanez
+#: field:event.event,curso_type:0
+msgid "Tipo de Curso"
+msgstr "Tipo de Curso"
+
+#. module: acp_yanez
+#: field:ir.attachment,tipo_documento:0
+#: field:sale.order,tipo_documento:0
+msgid "Tipo de documento"
+msgstr "Tipo de documento"
+
+#. module: acp_yanez
+#: help:payment.mode,tipo_documento:0
+msgid "Tipo de documento Requerido para validar el presupuesto online"
+msgstr "Tipo de documento Requerido para validar el presupuesto online"
+
+#. module: acp_yanez
+#: field:payment.mode,tipo_documento:0
+msgid "Tipo de documento requerido"
+msgstr "Tipo de documento requerido"
+
+#. module: acp_yanez
+#: view:mail.message:acp_yanez.acp_yanez_view_message_search
+msgid "To Read"
+msgstr "Por leer"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Total"
+msgstr "Total"
+
+#. module: acp_yanez
+#: field:acp_yanez.invoice,total:0
+msgid "Total Factura"
+msgstr "Total Factura"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/wizard/select_payment_mode.py:155
+#, python-format
+msgid "Transaccion ya confirmada."
+msgstr "Transaccion ya confirmada."
+
+#. module: acp_yanez
+#: view:mail.message:acp_yanez.acp_yanez_view_message_search
+msgid "Type"
+msgstr "Tipo"
+
+#. module: acp_yanez
+#: field:event.event,ubicacion2:0
+msgid "Ubicación2"
+msgstr "Ubicación2"
+
+#. module: acp_yanez
+#: help:event.type,user_id:0
+msgid "Usado para generar una entrada en el calendário"
+msgstr "Usado para generar una entrada en el calendário"
+
+#. module: acp_yanez
+#: field:event.type,user_id:0
+msgid "Usuario"
+msgstr "Usuario"
+
+#. module: acp_yanez
+#: field:acp_yanez.account_payment_term_product,valor:0
+msgid "Valor"
+msgstr "Valor"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "Vaya al siguiente paso."
+msgstr "Vaya al siguiente paso."
+
+#. module: acp_yanez
+#: field:payment.mode,visible_online:0
+msgid "Visible para pago online?"
+msgstr "Visible para pago online?"
+
+#. module: acp_yanez
+#: code:addons/acp_yanez/sale.py:337
+#: code:addons/acp_yanez/sale.py:339
+#: code:addons/acp_yanez/sale.py:341
+#: code:addons/acp_yanez/sale.py:351
+#: code:addons/acp_yanez/sale.py:359
+#: code:addons/acp_yanez/sale.py:387
+#: code:addons/acp_yanez/sale.py:389
+#: code:addons/acp_yanez/sale.py:391
+#: code:addons/acp_yanez/sale.py:393
+#: code:addons/acp_yanez/sale.py:403
+#: code:addons/acp_yanez/sale.py:411
+#: code:addons/acp_yanez/sale.py:495
+#: code:addons/acp_yanez/sale.py:500
+#: code:addons/acp_yanez/sale.py:552
+#, python-format
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: acp_yanez
+#: field:sale.order,website_message_ids:0
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: acp_yanez
+#: help:sale.order,website_message_ids:0
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "['|',('customer','=',True),('lead','=',True)]"
+msgstr "['|',('customer','=',True),('lead','=',True)]"
+
+#. module: acp_yanez
+#: view:acp_yanez.invoice:acp_yanez.view_acp_contrato_invoice_search
+msgid "emails"
+msgstr "emails"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form_remove_edit
+msgid "false"
+msgstr "false"
+
+#. module: acp_yanez
+#: field:sale.order,dummy_mostrar_adjuntos:0
+#: field:sale.order,dummy_mostrar_desglose:0
+msgid "mostrar adjuntos"
+msgstr "mostrar adjuntos"
+
+#. module: acp_yanez
+#: view:acp_yanez.import:acp_yanez.view_acp_yanez_import
+msgid "or"
+msgstr "or"
+
+#. module: acp_yanez
+#: selection:acp_yanez.account_payment_term_product,tipo:0
+msgid "porcentaje"
+msgstr "porcentaje"
+
+#. module: acp_yanez
+#: view:acp_yanez.select_payment_mode:acp_yanez.acp_yanez_view_select_payment_mode
+#: view:acp_yanez.select_payment_term:acp_yanez.acp_yanez_view_select_payment_term
+msgid "⇒ Seleccionar"
+msgstr "⇒ Seleccionar"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "⇒ Seleccionar Modo de Pago"
+msgstr "⇒ Seleccionar Modo de Pago"
+
+#. module: acp_yanez
+#: view:sale.order:acp_yanez.acp_yanez_view_order_form
+msgid "⇒ Seleccionar Plazo de Pago"
+msgstr "⇒ Seleccionar Plazo de Pago"
+

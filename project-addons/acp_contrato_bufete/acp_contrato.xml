@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- Top menu item -->
+    <menuitem name="Contratos" id="acp_contrato.contratos_base" groups="contratos_abogado,acp_contrato.contratos_user_accounting,acp_contrato.contratos_user,acp_contrato.contratos_manager" sequence="20" />
+    <menuitem id="acp_contrato.contratos" name="Contratos" parent="acp_contrato.contratos_base" sequence="10" groups="contratos_abogado,acp_contrato.contratos_user_accounting,acp_contrato.contratos_user,acp_contrato.contratos_manager" />
+    <menuitem id="acp_contrato.contratos_fact" name="Control de facturas" parent="acp_contrato.contratos_base" sequence="14" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" />
+    <menuitem id="acp_contrato.contratos_conf" name="Configuración" parent="acp_contrato.contratos_base" sequence="20" groups="acp_contrato.contratos_manager" />
+    <!--restringir acceso creacion en contratos a abogados-->
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_form_bu_create">
+      <field name="name">acp_contrato.contrato.form.bu.create</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_contrato_form" />
+      <field name="type">form</field>
+      <field name="groups_id" eval="[(6, 0, [ref('acp_contrato_bufete.contratos_abogado')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="attributes">
+          <attribute name="edit">true</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+        <button name="action_contrato_send" position="replace">
+          <button name="action_contrato_send" string="Enviar por email" type="object" class="oe_highlight" attrs="{'invisible': ['|',('contrato_plantilla','=',True),('state','not in',['confirmed'])]}" />
+        </button>
+        <button name="wkf_start" position="replace">
+          <button name="wkf_start" string="Reabrir" type="object" states="cancel" attrs="{'invisible': ['|',('contrato_plantilla','=',True),'|',('id','=',False),'|',('state','not in',['cancel'])]}" />
+        </button>
+        <button name="wkf_set_confirmed" position="replace">
+          <button name="wkf_set_confirmed" string="Confirmar" type="object" attrs="{'invisible': ['|',('contrato_plantilla','=',True),'|',('id','=',False),('state','not in',['open'])]}" />
+        </button>
+        <button name="wkf_set_done" position="replace">
+          <button name="wkf_set_done" string="Finalizar" type="object" class="oe_highlight" attrs="{'invisible': ['|',('contrato_plantilla','=',True),'|',('id','=',False),'|',('state','not in',['confirmed'])]}" />
+        </button>
+        <button name="wkf_set_ignore_exception" position="replace">
+          <button name="wkf_set_ignore_exception" string="Ignorar Excepciones" type="object" class="oe_highlight" attrs="{'invisible': ['|',('contrato_plantilla','=',True),'|',('id','=',False),'|',('state','not in',['exception'])]}" />
+        </button>
+        <button name="wkf_set_reopen_done" position="replace">
+          <button name="wkf_set_reopen_done" string="Reabrir" type="object" attrs="{'invisible': ['|',('contrato_plantilla','=',True),'|',('id','=',False),'|',('state','not in',['done'])]}" />
+        </button>
+        <button name="wkf_set_cancel" position="replace">
+          <button name="wkf_set_cancel" string="Anular" type="object" attrs="{'invisible': ['|',('contrato_plantilla','=',True),'|',('id','=',False),'|',('state','not in',['confirmed','exception'])]}" />
+        </button>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_tree_bu_create">
+      <field name="name">acp_contrato.contrato.tree.bu.create</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_contrato_tree" />
+      <field name="type">form</field>
+      <field name="groups_id" eval="[(6, 0, [ref('acp_contrato_bufete.contratos_abogado')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="attributes">
+          <attribute name="edit">true</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+      </field>
+    </record>
+    <!--restringir acceso creacion en servicios a abogados-->
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_form_bu_create">
+      <field name="name">acp_contrato.servicio.form.bu.create</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_servicio_form" />
+      <field name="type">form</field>
+      <field name="groups_id" eval="[(6, 0, [ref('acp_contrato_bufete.contratos_abogado')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="attributes">
+          <attribute name="edit">false</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_tree_bu_create">
+      <field name="name">acp_contrato.servicio.tree.bu.create</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_servicio_tree" />
+      <field name="type">form</field>
+      <field name="groups_id" eval="[(6, 0, [ref('acp_contrato_bufete.contratos_abogado')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="attributes">
+          <attribute name="edit">false</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+      </field>
+    </record>
+    <!-- Vista tree contrato -->
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_tree_bu">
+      <field name="name">acp_contrato.contrato.tree.bu</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_contrato_tree" />
+      <field name="arch" type="xml">
+        <field name="referencia" position="after">
+          <field name="progreso" widget="progressbar" />
+        </field>
+      </field>
+    </record>
+    <!-- Vista form contrato -->
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_form_bu">
+      <field name="name">acp_contrato.contrato.form.bu</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_contrato_form" />
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <field name="horas_estimadas" position="replace" />
+        <field name="horas_reales" position="replace" />
+        <xpath expr="//div[@name='buttons']/h4" position="replace">
+          <h4>
+            <group attrs="{'invisible': ['|','&amp;',('parent_id','!=',False),('contrato_plantilla','=',False),('contrato_plantilla','=',True)]}">
+              <field name="total_trabajado" widget='monetary' options="{'currency_field': 'currency_id'}" />
+              <field name="total_facturado" widget='monetary' options="{'currency_field': 'currency_id'}" />
+              <field name="total_coste" widget='monetary' options="{'currency_field': 'currency_id'}" groups="acp_contrato.contratos_manager" />
+            </group>
+            <group attrs="{'invisible': [('parent_id','=',False),('contrato_plantilla','=',False)]}">
+              <field name="total_horas_facturadas" widget="float_time" />
+              <field name="total_horas_trabajadas_expediente" widget="float_time" />
+              <field name="total_horas_trabajadas" widget="float_time" />
+            </group>
+          </h4>
+        </xpath>
+        <!--        
+             <xpath expr="//page[@string='Información General']/group/group/field[@name='name']" position="replace" />
+             <xpath expr="//page[@string='Programar Facturación']" position="replace">
+             <page string="Programar Facturación" invisible="1" />
+             </xpath>
+             <xpath expr="//page[@string='Programar Servicios']" position="replace">
+             <page string="Programar Servicios" invisible="1" />
+             </xpath>
+        -->
+        <button name="action_contrato_send" position="after">
+          <button name="action_crear_expediente" string="Crear Sub-expediente" type="object" attrs="{'invisible': ['|',('state','not in',['confirmed','open','done','exception']),('contrato_plantilla','=',False)]}" />
+          <!--<button name="action_xxx" string="No tocar" type="object" />-->
+        </button>
+        <xpath expr="//page[@string='Inventario']" position="replace">
+          <page string="Inventario" invisible="1" />
+        </xpath>
+        <field name="tipo_contrato" attrs="{'readonly': [('state','!=','open')]}" position="after">
+          <field name="fecha_limite_asignada" attrs="{'readonly': [('state','!=','open')]}" />
+          <field name="fecha_cierre" />
+          <field name="fecha_archivo" />
+          <field name="area" attrs="{'readonly': [('state','!=','open')]}" />
+          <field name="fase_judicial_id" attrs="{'invisible': [('area','!=','Judicial')]}" />
+          <field name="numero_auto" attrs="{'invisible': [('area','!=','Judicial')]}" />
+          <field name="materia_id" attrs="{'readonly': [('state','!=','open')]}" />
+          <field name="horas_estimadas" attrs="{'readonly': [('state','!=','open')]}" />
+          <field name="oficina_id" attrs="{'readonly': [('state','!=','open')]}" />
+          <field name="organo_legislativo_id" />
+          <field name="riesgo_operacional" />
+          <field name="riesgo" />
+          <field name="valor_economico" />
+          <field name="costas_tasadas" />
+          <field name="recobrado" />
+          <field name="autos" />
+          <field name="ultimo_estado" />
+        </field>
+        <field name="cliente_servicio" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="partner_id" position="before">
+          <field name="pais_id" />
+        </field>
+        <field name="partner_factura_id" position="after">
+          <!--<field name="origen_cliente_id" string="Origen Cliente"/>-->
+          <field name="solicitante" domain="[('parent_id','=',partner_id)]" />
+          <field name="crm_tracking_campaign" string="Campaña Marketing" />
+        </field>
+        <xpath expr="//page[@string='Información General']" position="after">
+          <page string="Materias" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager">
+            <field mode="tree" name="contrato_materia_ids" nolabel="1">
+              <tree editable="bottom">
+                <field name="materia_id" string="Materia" />
+                <field name="horas" string="Horas" sum="Total Horas" widget="float_time" />
+              </tree>
+            </field>
+          </page>
+          <page string="Procuradores" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+            <field mode="tree" name="procurador_ids" nolabel="1">
+              <tree editable="bottom">
+                <field name="procurador_id" on_change="onchange_procurador_id(procurador_id, context)" domain="[('procurador','=',True)]" context="{'default_procurador':1}" />
+                <field name="email" />
+                <button icon="terp-mail-message-new" name="action_procurador_send" string="Enviar por email" type="object" class="oe_highlight" />
+                <field name="phone" />
+                <field name="mobile" />
+                <field name="fax" />
+                <field name="partidos_judiciales" widget="many2many_tags" />
+              </tree>
+            </field>
+          </page>
+          <page string="Abogados" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+            <field mode="tree" name="abogado_ids" nolabel="1">
+              <tree editable="bottom">
+                <field name="abogado_id" on_change="onchange_abogado_id(abogado_id, context)" domain="[('abogado','=',True)]" context="{'default_abogado':1}" />
+                <field name="email" />
+                <button icon="terp-mail-message-new" name="action_abogado_send" string="Enviar por email" type="object" class="oe_highlight" />
+                <field name="phone" />
+                <field name="mobile" />
+                <field name="fax" />
+              </tree>
+            </field>
+          </page>
+          <page string="Contrarios" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+            <field mode="tree" name="contrario_ids" nolabel="1">
+              <tree editable="bottom">
+                <field name="name" />
+                <field name="email" />
+                <field name="phone" />
+                <field name="mobile" />
+                <field name="fax" />
+              </tree>
+            </field>
+          </page>
+          <page string="Notas Internas">
+            <field name="nota_interna" nolabel="1" />
+          </page>
+          <page string="Comisionistas" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" />
+        </xpath>
+        <xpath expr="//page[@string='Información General']/group/group/separator[@string='Observaciones']" position="replace">
+          <separator string="Descripción" colspan="4" />
+        </xpath>
+        <xpath expr="//page[@string='Información General']/group/group/field[@name='observaciones']" position="replace">
+          <field name="observaciones" colspan="4" nolabel="1" />
+        </xpath>
+        <xpath expr="//sheet/h1/label[@string='Contrato ']" position="replace">
+          <label string="Expediente " />
+        </xpath>
+        <xpath expr="//page[@string='Gastos']/field[@name='invoice_line_in']" position="after">
+          <h3>Recibos</h3>
+          <button states="confirmed,done" name="new_voucher_purchase" string="Nuevo Recibo" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
+          <field mode="tree" name="voucher_line_purchase" readonly="1" domain="[('type','in',('purchase','puchase_refund'))]">
+            <tree string="Recibos">
+              <button name="open_voucher_purchase" string="Ver Recibo" type="object" icon="gtk-edit" />
+              <field name="voucher_id" />
+              <field name="account_id" />
+              <field name="name" />
+              <field name="amount" sum="Total" />
+            </tree>
+          </field>
+        </xpath>
+        <xpath expr="//page[@string='Ingresos']/field[@name='invoice_line_out']" position="after">
+          <h3>Recibos</h3>
+          <button states="confirmed,done" name="new_voucher_sale" string="Nuevo Recibo" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':id}" />
+          <field mode="tree" name="voucher_line_sale" readonly="1" domain="[('type','in',('sale','sale_refund'))]">
+            <tree string="Recibos">
+              <button name="open_voucher_sale" string="Ver Recibo" type="object" icon="gtk-edit" />
+              <field name="voucher_id" />
+              <field name="account_id" />
+              <field name="name" />
+              <field name="amount" sum="Total" />
+            </tree>
+          </field>
+        </xpath>
+        <field name="baja" position="after">
+          <newline />
+          <separator string="Documentación" />
+          <newline />
+          <field name="originales_custodia" />
+          <field name="custodia_version_firmada" />
+          <field name="expediente_fisico" />
+        </field>
+      </field>
+    </record>
+    <!--Vista busqueda contratos -->
+    <record id="view_acp_contrato_contrato_search_buf" model="ir.ui.view">
+      <field name="name">acp_contrato.contrato.search.buf</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_contrato_search" />
+      <field name="arch" type="xml">
+        <field name="partner_factura_id" position="after">
+          <field name="solicitante" />
+          <field name="contrario_ids" string="Contrario" domain="[('contrario_ids.name','ilike',self)]" />
+          <field name="pais_id" />
+          <field name="riesgo" />
+          <field name="valor_economico" />
+          <field name="costas_tasadas" />
+          <field name="fecha_archivo" />
+          <field name="originales_custodia" />
+          <field name="custodia_version_firmada" />
+          <field name="expediente_fisico" />
+        </field>
+      </field>
+    </record>
+    <!-- Vista tree servicios -->
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_tree_bu">
+      <field name="name">acp_contrato.servicio.tree.bu</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_servicio_tree" />
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <field name="horas_estimadas" position="replace" />
+        <field name="horas_reales" position="replace" />
+      </field>
+    </record>
+    <!-- Vista form servicios -->
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_form_bu">
+      <field name="name">acp_contrato.servicio.form.bu</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_servicio_form" />
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <page string="Inventario" position="replace" />
+        <page string="Recursos" position="replace" />
+        <field name="horas_reales" position="replace" />
+        <field name="horas_facturables" position="replace" />
+        <page string="Tareas" position="after">
+        <page string="Operarios">
+          <field mode="tree" name="operario_ids" nolabel="1">
+            <tree editable="bottom">
+              <field name="operario_id" domain="[('operario','=',True)]" />
+            </tree>
+          </field>
+        </page>
+       </page>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_form_manager_bu">
+      <field name="name">acp_contrato.servicio.form.manager.bu</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_servicio_form_manager" />
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <field name="horas_estimadas" position="replace" />
+      </field>
+    </record>
+    <!-- Vista form tareas -->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_form_bu">
+      <field name="name">acp_contrato.tarea.form.bu</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_tarea_form" />
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <group string="Productos" position="replace">
+          <group colspan="4" string="Facturar" attrs="{'invisible': [('tipo', 'not in', ['material']) ]}">
+            <field mode="tree" name="producto_lineas" nolabel="1">
+              <tree>
+                <field name="product_id" on_change="onchange_product_id(product_id)" />
+                <field name="tipo_producto" invisible="1" />
+                <field name="tipo_producto_n" invisible="1" />
+                <field name="prodlot_id" invisible="1" />
+                <field name="cantidad" string="Tiempo/Cantidad" />
+                <field name="importe" string="Precio" />
+                <field name="tax_id" />
+                <field name="subtotal" />
+                <field name="ubicacion" invisible="1" />
+                <field name="incluir" invisible="1" />
+                <field name="invoice_state" invisible="False" />
+                <field name="observaciones" string="Descripcion tarea" />
+              </tree>
+            </field>
+          </group>
+        </group>
+        <field name="observaciones" position="after">
+          <field name="riesgo_operacional" />
+          <field name="resultado" />
+          <field name="seguimiento" />
+        </field>
+      </field>
+    </record>
+    <!-- Vista tree tareas -->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_tree_bu">
+      <field name="name">acp_contrato.tarea.tree.bu</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_tarea_tree" />
+      <field name="arch" type="xml">
+        <field name="state" position="after">
+          <field name="seguimiento" />
+          <button icon="gtk-apply" name="close_seg" string="Finalizar Seguimiento" type="object" class="oe_highlight" />
+        </field>
+      </field>
+    </record>
+    <!-- Vista search tareas -->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_search_bu">
+      <field name="name">acp_contrato.tarea.search.bu</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_tarea_search" />
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <filter string="Prioridad" position="after">
+          <filter icon="terp-document-new" string="Pendiente recibir factura" name="pdt_seguimiento" domain="[('seguimiento','=','pendiente')]" />
+        </filter>
+      </field>
+    </record>
+    <!-- Accion llamada contratos Iguala-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_contrato_iguala">
+      <field name="name">Contratos</field>
+      <field name="res_model">acp_contrato.contrato</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="acp_contrato.view_acp_contrato_contrato_tree" />
+      <field name="domain">[('tipo_contrato','=','Iguala')]</field>
+      <field name="context">{"search_default_encurso":1}</field>
+    </record>
+    <!--Entrada en menu contratos-->
+    <menuitem name="Expedientes Iguala" id="menu_acp_contrato_contrato_tree_iguala" action="action_acp_contrato_contrato_iguala" parent="acp_contrato.contratos" sequence="11" groups="acp_contrato.contratos_user,acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" />
+  </data>
+</openerp>

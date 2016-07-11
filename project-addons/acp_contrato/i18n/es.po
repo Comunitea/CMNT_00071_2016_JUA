@@ -1,0 +1,2938 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* acp_contrato
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-02 21:51+0000\n"
+"PO-Revision-Date: 2016-03-02 21:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: acp_contrato
+#: model:email.template,body_html:acp_contrato.acp_contrato_template_task_reminder
+msgid "\n"
+"                <html>\n"
+"                    <head>\n"
+"                        <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />\n"
+"                        <title>${object.name}</title>\n"
+"                        <style>\n"
+"                            span.oe_mail_footer_access {\n"
+"                                display:block;    \n"
+"                                text-align:center;\n"
+"                                color:grey;                                \n"
+"                            }\n"
+"                        </style>\n"
+"                    </head>\n"
+"                    <body>\n"
+"                        <div style=\"border-radius: 2px; max-width: 1200px; height: auto;margin-left: auto;margin-right: auto;background-color:#f9f9f9;\">\n"
+"                            <div style=\"height:auto;text-align: center;font-size : 30px;color: #8A89BA;\">\n"
+"                                <strong>${object.name}</strong>                                \n"
+"                            </div>\n"
+"                            <div style=\"height: 50px;text-align: left;font-size : 14px;border-collapse: separate;margin-top:10px\">\n"
+"                                <p style=\"margin-left:12px\">La siguiente tarea finaliza en la siguiente fecha : ${object.fecha_limite} </p>\n"
+"                            </div>\n"
+"                            <div style=\"height: auto;margin-left:12px;margin-top:30px;\">\n"
+"                                <table>\n"
+"                                    <tr>\n"
+"                                        <td>\n"
+"                                           ${object.actividad_id.name}\n"
+"                                        </td>\n"
+"                                        <td>\n"
+"                                        ${object.observaciones or ''}\n"
+"                                         </td>\n"
+"                                    </tr>                                    \n"
+"                                </table>\n"
+"                            </div>            \n"
+"                        </div>\n"
+"                    </body>\n"
+"                </html>\n"
+"                \n"
+"                "
+msgstr "\n"
+"                <html>\n"
+"                    <head>\n"
+"                        <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />\n"
+"                        <title>${object.name}</title>\n"
+"                        <style>\n"
+"                            span.oe_mail_footer_access {\n"
+"                                display:block;    \n"
+"                                text-align:center;\n"
+"                                color:grey;                                \n"
+"                            }\n"
+"                        </style>\n"
+"                    </head>\n"
+"                    <body>\n"
+"                        <div style=\"border-radius: 2px; max-width: 1200px; height: auto;margin-left: auto;margin-right: auto;background-color:#f9f9f9;\">\n"
+"                            <div style=\"height:auto;text-align: center;font-size : 30px;color: #8A89BA;\">\n"
+"                                <strong>${object.name}</strong>                                \n"
+"                            </div>\n"
+"                            <div style=\"height: 50px;text-align: left;font-size : 14px;border-collapse: separate;margin-top:10px\">\n"
+"                                <p style=\"margin-left:12px\">La siguiente tarea finaliza en la siguiente fecha : ${object.fecha_limite} </p>\n"
+"                            </div>\n"
+"                            <div style=\"height: auto;margin-left:12px;margin-top:30px;\">\n"
+"                                <table>\n"
+"                                    <tr>\n"
+"                                        <td>\n"
+"                                           ${object.actividad_id.name}\n"
+"                                        </td>\n"
+"                                        <td>\n"
+"                                        ${object.observaciones or ''}\n"
+"                                         </td>\n"
+"                                    </tr>                                    \n"
+"                                </table>\n"
+"                            </div>            \n"
+"                        </div>\n"
+"                    </body>\n"
+"                </html>\n"
+"                \n"
+"                "
+
+#. module: acp_contrato
+#: model:email.template,body_html:acp_contrato.acp_contrato_email_template
+msgid "\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hola ${object.partner_id.name},</p>\n"
+"\n"
+"    <p>Tiene Un nuevo contrato: </p>\n"
+"    \n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>REFERECIA</strong><br />\n"
+"       &nbsp;&nbsp;Numero: <strong>${object.name}</strong><br />              \n"
+"       &nbsp;&nbsp;Referencia: <strong>${object.referencia}</strong><br />\n"
+"       % if object.user_id:\n"
+"       &nbsp;&nbsp;Su contacto: <a href=\"mailto:${object.user_id.email or ''}?subject=Contrato%20${object.referencia}\">${object.user_id.name}</a>\n"
+"       % endif\n"
+"    </p>  \n"
+"    \n"
+"\n"
+"    \n"
+"    <br/>\n"
+"    <p>Si tiene cualquier pregunta, no dude en contactarnos</p>\n"
+"    <p>Gracias por elegir ${object.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+msgstr "\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hola ${object.partner_id.name},</p>\n"
+"\n"
+"    <p>Tiene Un nuevo contrato: </p>\n"
+"    \n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>REFERECIA</strong><br />\n"
+"       &nbsp;&nbsp;Numero: <strong>${object.name}</strong><br />              \n"
+"       &nbsp;&nbsp;Referencia: <strong>${object.referencia}</strong><br />\n"
+"       % if object.user_id:\n"
+"       &nbsp;&nbsp;Su contacto: <a href=\"mailto:${object.user_id.email or ''}?subject=Contrato%20${object.referencia}\">${object.user_id.name}</a>\n"
+"       % endif\n"
+"    </p>  \n"
+"    \n"
+"\n"
+"    \n"
+"    <br/>\n"
+"    <p>Si tiene cualquier pregunta, no dude en contactarnos</p>\n"
+"    <p>Gracias por elegir ${object.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+
+#. module: acp_contrato
+#: view:purchase.order:acp_contrato.view_purchase_order_form_exp1
+#: view:sale.order:acp_contrato.view_order_form_exp1
+msgid "\"{'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+msgstr "\"{'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+
+#. module: acp_contrato
+#: view:account.invoice:acp_contrato.view_invoice_supplier_form_form_exp1
+msgid "\"{'partner_id':  partner_id, 'price_type': context.get('price_type') or False, 'type': type,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+msgstr "\"{'partner_id':  partner_id, 'price_type': context.get('price_type') or False, 'type': type,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+
+#. module: acp_contrato
+#: view:account.invoice:acp_contrato.view_invoice_form_form_exp1
+msgid "\"{'type':  type,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+msgstr "\"{'type':  type,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,attachment_count:0
+msgid "# Documentos"
+msgstr "# Documentos"
+
+#. module: acp_contrato
+#: model:email.template,subject:acp_contrato.acp_contrato_email_template
+msgid "${object.company_id.name|safe} Contrato (N\\ ${object.name or 'n/a'})"
+msgstr "${object.company_id.name|safe} Contrato (N\\ ${object.name or 'n/a'})"
+
+#. module: acp_contrato
+#: model:email.template,subject:acp_contrato.acp_contrato_template_task_reminder
+msgid "${object.name} - Recordatorio - ${object.actividad_id.name} - Fecha limite: ${object.fecha_limite} "
+msgstr "${object.name} - Recordatorio - ${object.actividad_id.name} - Fecha limite: ${object.fecha_limite} "
+
+#. module: acp_contrato
+#: help:acp_contrato.tarea_producto,incluir:0
+msgid "* Indica si este producto debe incluirse ne la lista de materiales a mantener."
+msgstr "* Indica si este producto debe incluirse ne la lista de materiales a mantener."
+
+#. module: acp_contrato
+#: help:acp_contrato.facturacion,generar_pedido:0
+msgid "* Si está marcado se generará un Pedido de Venta en vez de una factura,                     \n"
+"* esto permite agregar productos antes de facturar y generar albaranes de entrega. "
+msgstr "* Si está marcado se generará un Pedido de Venta en vez de una factura,                     \n"
+"* esto permite agregar productos antes de facturar y generar albaranes de entrega. "
+
+#. module: acp_contrato
+#: help:acp_contrato.facturacion,autofactura:0
+msgid "* Si está marcado, se realizará la factura de forma automatica cuando                     \n"
+"* se lanza el proceso de facturacion de contratos.                     \n"
+"* Si no está marcado, la factura se creará desde el servicioo contrato de forma manual. "
+msgstr "* Si está marcado, se realizará la factura de forma automatica cuando                     \n"
+"* se lanza el proceso de facturacion de contratos.                     \n"
+"* Si no está marcado, la factura se creará desde el servicioo contrato de forma manual. "
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,afacturar:0
+msgid "A Facturar"
+msgstr "A Facturar"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,estado_inicial:0
+#: selection:acp_contrato.servicio,state:0
+#: selection:acp_contrato.tarea,state:0
+msgid "Abierto"
+msgstr "Abierto"
+
+#. module: acp_contrato
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+msgid "Abiertos"
+msgstr "Abiertos"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Abril"
+msgstr "Abril"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad_producto,actividad_id:0
+#: field:acp_contrato.tarea,actividad_id:0
+msgid "Actividad"
+msgstr "Actividad"
+
+#. module: acp_contrato
+#: view:acp_contrato.actividad:acp_contrato.view_acp_contrato_actividad_form
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_actividad
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_actividad_tree
+msgid "Actividades"
+msgstr "Actividades"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,active:0
+#: field:acp_contrato.motivo_anulacion,active:0
+#: field:acp_contrato.motivo_espera,active:0
+#: field:acp_contrato.motivo_reclamacion,active:0
+#: field:acp_contrato.resolucion,active:0
+#: field:acp_contrato.tipo_contrato,active:0
+#: field:acp_contrato.tipo_operario,active:0
+#: field:acp_contrato.tipo_producto,active:0
+#: field:acp_contrato.tipo_servicio,active:0
+msgid "Activo"
+msgstr "Activo"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Agosto"
+msgstr "Agosto"
+
+#. module: acp_contrato
+#: field:acp_contrato.generar_factura_servicio,agrupar:0
+#: field:acp_contrato.refacturar_gasto,agrupar:0
+msgid "Agrupar facturar por"
+msgstr "Agrupar facturar por"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,prioridad:0
+#: selection:acp_contrato.tarea,prioridad:0
+msgid "Alta"
+msgstr "Alta"
+
+#. module: acp_contrato
+#: field:acp_contrato.alarm,duration:0
+msgid "Amount"
+msgstr "Amount"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,perioricidad:0
+#: selection:acp_contrato.programar_servicio,perioricidad:0
+msgid "Anual"
+msgstr "Anual"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,state:0
+#: selection:acp_contrato.servicio,state:0
+msgid "Anulado"
+msgstr "Anulado"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+msgid "Anulados"
+msgstr "Anulados"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Anular"
+msgstr "Anular"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Asignar Recurso"
+msgstr "Asignar Recurso"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,user_seg_id:0
+msgid "Asignar a"
+msgstr "Asignar a"
+
+#. module: acp_contrato
+#: field:acp_contrato.mail_pop,name:0
+msgid "Asunto"
+msgstr "Asunto"
+
+#. module: acp_contrato
+#: field:acp_contrato.genera_servicio,ano:0
+msgid "Año"
+msgstr "Año"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Año Actual Con Centuria: %(year)s"
+msgstr "Año Actual Con Centuria: %(year)s"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Año Actual Sin Centuria: %(y)s"
+msgstr "Año Actual Sin Centuria: %(y)s"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,prioridad:0
+#: selection:acp_contrato.tarea,prioridad:0
+msgid "Baja"
+msgstr "Baja"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,bloquear_contrato:0
+msgid "Bloquear Contrato"
+msgstr "Bloquear Contrato"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,bloquear_servicio:0
+msgid "Bloquear Servicio"
+msgstr "Bloquear Servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: selection:acp_contrato.contrato,state:0
+msgid "Borrador"
+msgstr "Borrador"
+
+#. module: acp_contrato
+#: view:acp_contrato.actividad:acp_contrato.view_acp_contrato_actividad_search
+msgid "Busqueda de Actividades"
+msgstr "Busqueda de Actividades"
+
+#. module: acp_contrato
+#: view:acp_contrato.motivo_anulacion:acp_contrato.view_acp_contrato_motivo__anulacionsearch
+msgid "Busqueda de Motivos de Anulación"
+msgstr "Busqueda de Motivos de Anulación"
+
+#. module: acp_contrato
+#: view:acp_contrato.motivo_espera:acp_contrato.view_acp_contrato_motivo_espera_search
+msgid "Busqueda de Motivos de Espera"
+msgstr "Busqueda de Motivos de Espera"
+
+#. module: acp_contrato
+#: view:acp_contrato.motivo_reclamacion:acp_contrato.view_acp_contrato_motivo_reclamacion_search
+msgid "Busqueda de Motivos de Reclamacion"
+msgstr "Busqueda de Motivos de Reclamacion"
+
+#. module: acp_contrato
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+msgid "Busqueda de Servicios"
+msgstr "Busqueda de Servicios"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_factura_search
+msgid "Busqueda de Servicios Pendientes de Facturar"
+msgstr "Busqueda de Servicios Pendientes de Facturar"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+msgid "Busqueda de Tareas"
+msgstr "Busqueda de Tareas"
+
+#. module: acp_contrato
+#: view:acp_contrato.tipo_contrato:acp_contrato.view_acp_contrato_tipo_contrato_search
+msgid "Busqueda de Tipoos de Contratos"
+msgstr "Busqueda de Tipoos de Contratos"
+
+#. module: acp_contrato
+#: view:acp_contrato.tipo_producto:acp_contrato.view_acp_contrato_tipo_producto_search
+msgid "Busqueda de Tipoos de Producto"
+msgstr "Busqueda de Tipoos de Producto"
+
+#. module: acp_contrato
+#: view:acp_contrato.tipo_servicio:acp_contrato.view_acp_contrato_tipo_servicio_search
+msgid "Busqueda de Tipoos de Servicio"
+msgstr "Busqueda de Tipoos de Servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+msgid "Busqueda de contratos"
+msgstr "Busqueda de contratos"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_mail_pop_tree
+msgid "Buzon de entrada"
+msgstr "Buzon de entrada"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: field:acp_contrato.contrato,emails:0
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_mail_pop
+msgid "Buzón de entrada"
+msgstr "Buzón de entrada"
+
+#. module: acp_contrato
+#: field:acp_contrato.mail_pop,email_cc:0
+msgid "CC"
+msgstr "CC"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tareav_tree
+msgid "Calendário visitas"
+msgstr "Calendário visitas"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,company_id:0
+msgid "Campañia"
+msgstr "Campañia"
+
+#. module: acp_contrato
+#: view:acp_contrato.generar_factura_servicio:acp_contrato.view_acp_facturar_servicio
+#: view:acp_contrato.refacturar_gasto:acp_contrato.view_acp_refacturar_gasto
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: acp_contrato
+#: view:sale.order:acp_contrato.view_order_form_exp1
+msgid "Cancel Order"
+msgstr "Cancelar pedido"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad_producto,cantidad:0
+#: field:acp_contrato.conceptos_factura,cantidad:0
+#: field:acp_contrato.tarea_producto,cantidad:0
+msgid "Cantidad"
+msgstr "Cantidad"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,estado_inicial:0
+#: selection:acp_contrato.tarea,state:0
+msgid "Cerrado"
+msgstr "Cerrado"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+msgid "Cerrados"
+msgstr "Cerrados"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,cerrar_automaticamente:0
+msgid "Cerrar automáticamente"
+msgstr "Cerrar automáticamente"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Cita"
+msgstr "Cita"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: field:acp_contrato.contrato,partner_id:0
+#: selection:acp_contrato.generar_factura_servicio,agrupar:0
+#: selection:acp_contrato.refacturar_gasto,agrupar:0
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+#: field:acp_contrato.servicio,partner_id:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: field:acp_contrato.tarea,partner_id:0
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_factura_search
+#: field:acp_contrato.tarea_producto,partner_id:0
+msgid "Cliente"
+msgstr "Cliente"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,cliente_servicio:0
+msgid "Cliente Servicio"
+msgstr "Cliente Servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,company_id:0
+msgid "Company"
+msgstr "Company"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Conceptos"
+msgstr "Conceptos"
+
+#. module: acp_contrato
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+#: model:ir.model,name:acp_contrato.model_acp_contrato_conceptos_factura
+msgid "Conceptos a Facturar"
+msgstr "Conceptos a Facturar"
+
+#. module: acp_contrato
+#: field:acp_contrato.facturacion,conceptos_lineas:0
+msgid "Conceptos a facturar"
+msgstr "Conceptos a facturar"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.contratos_conf
+msgid "Configuración"
+msgstr "Configuración"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:255
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:259
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:697
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:702
+#: code:addons/acp_contrato/wizard/wizard_refactura.py:112
+#: code:addons/acp_contrato/wizard/wizard_refactura.py:117
+#, python-format
+msgid "Configuration Error!"
+msgstr "Configuration Error!"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,state:0
+msgid "Confirmado"
+msgstr "Confirmado"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+msgid "Confirmados"
+msgstr "Confirmados"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+msgid "Confirmar"
+msgstr "Confirmar"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: field:acp_contrato.mail_pop,partner_id:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Contacto"
+msgstr "Contacto"
+
+#. module: acp_contrato
+#: field:acp_contrato.programar_servicio,contratado:0
+msgid "Contratado"
+msgstr "Contratado"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: field:acp_contrato.contrato_producto,contrato_id:0
+#: field:acp_contrato.facturacion,contrato_id:0
+#: selection:acp_contrato.generar_factura_servicio,agrupar:0
+#: field:acp_contrato.mail_pop,contrato_id:0
+#: field:acp_contrato.programar_servicio,contrato_id:0
+#: selection:acp_contrato.refacturar_gasto,agrupar:0
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+#: field:acp_contrato.servicio,contrato_id:0
+#: field:acp_contrato.servicio_producto,contrato_id:0
+#: field:acp_contrato.tarea,contrato_id:0
+#: field:acp_contrato.tarea_horas,contrato_id:0
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_factura_search
+#: field:acp_contrato.tarea_producto,contrato_id:0
+#: view:ir.attachment:acp_contrato.view_acp_acp_contrato_attachment_search
+#: model:ir.model,name:acp_contrato.model_acp_contrato_contrato
+msgid "Contrato"
+msgstr "Contrato"
+
+#. module: acp_contrato
+#: sql_constraint:acp_contrato.contrato:0
+msgid "Contrato duplicado !"
+msgstr "Contrato duplicado !"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea_horas,parent_id:0
+msgid "Contrato padre"
+msgstr "Contrato padre"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,parent_id:0
+msgid "Contrato relacionado"
+msgstr "Contrato relacionado"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,child_ids:0
+msgid "Contrato relacionados"
+msgstr "Contrato relacionados"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,contrato_plantilla:0
+msgid "Contrato tipo plantilla"
+msgstr "Contrato tipo plantilla"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_tree
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_tree
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_contrato
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_contrato_portal
+#: model:ir.ui.menu,name:acp_contrato.contratos
+#: model:ir.ui.menu,name:acp_contrato.contratos_base
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_contrato_portal
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_contrato_portal_tree
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_contrato_tree
+#: view:product.template:acp_contrato.product_template_form_view_contrato1
+msgid "Contratos"
+msgstr "Contratos"
+
+#. module: acp_contrato
+#: model:res.groups,name:acp_contrato.contratos_user_accounting
+msgid "Contratos / Contable"
+msgstr "Contratos / Contable"
+
+#. module: acp_contrato
+#: model:res.groups,name:acp_contrato.contratos_manager
+msgid "Contratos / Responsable"
+msgstr "Contratos / Responsable"
+
+#. module: acp_contrato
+#: model:res.groups,name:acp_contrato.contratos_user
+msgid "Contratos / Usuario"
+msgstr "Contratos / Usuario"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Contratos relacionados"
+msgstr "Contratos relacionados"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.contratos_fact
+msgid "Control de facturas"
+msgstr "Control de facturas"
+
+#. module: acp_contrato
+#: field:acp_contrato.tipo_servicio,copia_materiales:0
+msgid "Copiar lista de materiales"
+msgstr "Copiar lista de materiales"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_generar_factura_servicio
+msgid "Creacion factura de servicio"
+msgstr "Creacion factura de servicio"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_refacturar_gasto
+msgid "Creacion factura de venta desde facturas de compra"
+msgstr "Creacion factura de venta desde facturas de compra"
+
+#. module: acp_contrato
+#: view:sale.order:acp_contrato.view_order_form_exp1
+msgid "Crear Contrato"
+msgstr "Crear Contrato"
+
+#. module: acp_contrato
+#: view:acp_contrato.generar_factura_servicio:acp_contrato.view_acp_facturar_servicio
+#: view:acp_contrato.refacturar_gasto:acp_contrato.view_acp_refacturar_gasto
+msgid "Crear Facturas de Servicio"
+msgstr "Crear Facturas de Servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,create_note:0
+msgid "Crear Nota"
+msgstr "Crear Nota"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_genera_servicio
+msgid "Crear servicio"
+msgstr "Crear servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,is_created:0
+msgid "Created"
+msgstr "Created"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,create_uid:0
+#: field:acp_contrato.actividad_producto,create_uid:0
+#: field:acp_contrato.alarm,create_uid:0
+#: field:acp_contrato.conceptos_factura,create_uid:0
+#: field:acp_contrato.contrato,create_uid:0
+#: field:acp_contrato.contrato_producto,create_uid:0
+#: field:acp_contrato.facturacion,create_uid:0
+#: field:acp_contrato.fechas_facturacion,create_uid:0
+#: field:acp_contrato.fechas_servicio,create_uid:0
+#: field:acp_contrato.genera_servicio,create_uid:0
+#: field:acp_contrato.generar_factura_servicio,create_uid:0
+#: field:acp_contrato.mail_pop,create_uid:0
+#: field:acp_contrato.motivo_anulacion,create_uid:0
+#: field:acp_contrato.motivo_espera,create_uid:0
+#: field:acp_contrato.motivo_reclamacion,create_uid:0
+#: field:acp_contrato.programar_servicio,create_uid:0
+#: field:acp_contrato.refacturar_gasto,create_uid:0
+#: field:acp_contrato.resolucion,create_uid:0
+#: field:acp_contrato.servicio,create_uid:0
+#: field:acp_contrato.servicio_operario,create_uid:0
+#: field:acp_contrato.servicio_producto,create_uid:0
+#: field:acp_contrato.tarea,create_uid:0
+#: field:acp_contrato.tarea_horas,create_uid:0
+#: field:acp_contrato.tarea_producto,create_uid:0
+#: field:acp_contrato.tipo_contrato,create_uid:0
+#: field:acp_contrato.tipo_operario,create_uid:0
+#: field:acp_contrato.tipo_producto,create_uid:0
+#: field:acp_contrato.tipo_servicio,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,create_date:0
+#: field:acp_contrato.actividad_producto,create_date:0
+#: field:acp_contrato.alarm,create_date:0
+#: field:acp_contrato.conceptos_factura,create_date:0
+#: field:acp_contrato.contrato,create_date:0
+#: field:acp_contrato.contrato_producto,create_date:0
+#: field:acp_contrato.facturacion,create_date:0
+#: field:acp_contrato.fechas_facturacion,create_date:0
+#: field:acp_contrato.fechas_servicio,create_date:0
+#: field:acp_contrato.genera_servicio,create_date:0
+#: field:acp_contrato.generar_factura_servicio,create_date:0
+#: field:acp_contrato.motivo_anulacion,create_date:0
+#: field:acp_contrato.motivo_espera,create_date:0
+#: field:acp_contrato.motivo_reclamacion,create_date:0
+#: field:acp_contrato.programar_servicio,create_date:0
+#: field:acp_contrato.refacturar_gasto,create_date:0
+#: field:acp_contrato.resolucion,create_date:0
+#: field:acp_contrato.servicio,create_date:0
+#: field:acp_contrato.servicio_operario,create_date:0
+#: field:acp_contrato.servicio_producto,create_date:0
+#: field:acp_contrato.tarea,create_date:0
+#: field:acp_contrato.tarea_horas,create_date:0
+#: field:acp_contrato.tarea_producto,create_date:0
+#: field:acp_contrato.tipo_contrato,create_date:0
+#: field:acp_contrato.tipo_operario,create_date:0
+#: field:acp_contrato.tipo_producto,create_date:0
+#: field:acp_contrato.tipo_servicio,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,currency_id:0
+msgid "Currency"
+msgstr "Currency"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,code:0
+msgid "Código"
+msgstr "Código"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,baja:0
+msgid "Dado de Baja"
+msgstr "Dado de Baja"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,message_last_post:0
+#: help:acp_contrato.mail_pop,message_last_post:0
+#: help:acp_contrato.servicio,message_last_post:0
+#: help:acp_contrato.tarea,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Date of the last message posted on the record."
+
+#. module: acp_contrato
+#: selection:acp_contrato.alarm,interval:0
+msgid "Days"
+msgstr "Days"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,name:0
+#: field:acp_contrato.conceptos_factura,name:0
+#: field:acp_contrato.facturacion,name:0
+#: field:acp_contrato.motivo_anulacion,descripcion:0
+#: field:acp_contrato.motivo_espera,descripcion:0
+#: field:acp_contrato.motivo_reclamacion,descripcion:0
+#: field:acp_contrato.programar_servicio,name:0
+#: field:acp_contrato.resolucion,descripcion:0
+#: field:acp_contrato.tipo_contrato,descripcion:0
+#: field:acp_contrato.tipo_operario,descripcion:0
+#: field:acp_contrato.tipo_producto,descripcion:0
+#: field:acp_contrato.tipo_servicio,descripcion:0
+msgid "Descripcion"
+msgstr "Descripcion"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form
+msgid "Descripcion tarea"
+msgstr "Descripcion tarea"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea_horas,descripcion:0
+msgid "Descripción"
+msgstr "Descripción"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,observaciones:0
+msgid "Descripción tarea"
+msgstr "Descripción tarea"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,detalle:0
+msgid "Detalle"
+msgstr "Detalle"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Dia de la Semana (0:Lunes): %(weekday)s"
+msgstr "Dia de la Semana (0:Lunes): %(weekday)s"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Dia del Año: %(doy)s"
+msgstr "Dia del Año: %(doy)s"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Dia: %(day)s"
+msgstr "Dia: %(day)s"
+
+#. module: acp_contrato
+#: field:acp_contrato.genera_servicio,diario_id:0
+#: field:acp_contrato.generar_factura_servicio,diario_id:0
+#: field:acp_contrato.refacturar_gasto,diario_id:0
+msgid "Diario"
+msgstr "Diario"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Diciembre"
+msgstr "Diciembre"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,partner_factura_id:0
+#: field:acp_contrato.servicio,partner_factura_id:0
+msgid "Dirección de factura"
+msgstr "Dirección de factura"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,partner_direccion_id:0
+#: field:acp_contrato.servicio,partner_direccion_id:0
+msgid "Dirección del contato"
+msgstr "Dirección del contato"
+
+#. module: acp_contrato
+#: view:acp_contrato.generar_factura_servicio:acp_contrato.view_acp_facturar_servicio
+#: view:acp_contrato.refacturar_gasto:acp_contrato.view_acp_refacturar_gasto
+msgid "Do you really want to create the invoice(s)?"
+msgstr "Do you really want to create the invoice(s)?"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: field:acp_contrato.contrato,attachment_ids:0
+msgid "Documentos"
+msgstr "Documentos"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Documentos adjuntos"
+msgstr "Documentos adjuntos"
+
+#. module: acp_contrato
+#: field:acp_contrato.fechas_facturacion,dia:0
+msgid "Día Facturación"
+msgstr "Día Facturación"
+
+#. module: acp_contrato
+#: field:acp_contrato.fechas_servicio,dia:0
+msgid "Día Servicio"
+msgstr "Día Servicio"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,cliente_servicio:0
+msgid "El cliente utilizado para la facturación será el indicado a nivel de servicio./ Este campo se utiliza para contratos genericos"
+msgstr "El cliente utilizado para la facturación será el indicado a nivel de servicio./ Este campo se utiliza para contratos genericos"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1041
+#, python-format
+msgid "El contrato no esta abierto."
+msgstr "El contrato no esta abierto."
+
+#. module: acp_contrato
+#: selection:acp_contrato.alarm,type:0
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_tree
+#: model:ir.ui.menu,name:acp_contrato.contratos_mail
+msgid "Email"
+msgstr "Email"
+
+#. module: acp_contrato
+#: help:acp_contrato.mail_pop,email_from:0
+msgid "Email address of the contact"
+msgstr "Email address of the contact"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Emails"
+msgstr "Emails"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_empleados
+msgid "Empleados"
+msgstr "Empleados"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: acp_contrato
+#: model:ir.actions.act_window,name:acp_contrato.acp_view_employee_list_my
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+msgid "En Curso"
+msgstr "En Curso"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato_producto,estado:0
+#: selection:acp_contrato.servicio_producto,estado:0
+msgid "En Servicio"
+msgstr "En Servicio"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato_producto,estado:0
+#: selection:acp_contrato.servicio_producto,estado:0
+msgid "En la Reserva"
+msgstr "En la Reserva"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "En la descripción del concepto puede usar la siguiente nomenclatura:"
+msgstr "En la descripción del concepto puede usar la siguiente nomenclatura:"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Enero"
+msgstr "Enero"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,enviar_mensaje:0
+msgid "Enviame un mensaje cuando se finalize la actividad"
+msgstr "Enviame un mensaje cuando se finalize la actividad"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,enviar_mensaje:0
+msgid "Enviar mensaje al finalizar"
+msgstr "Enviar mensaje al finalizar"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+msgid "Enviar por email"
+msgstr "Enviar por email"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,enviar_mensaje:0
+#: help:acp_contrato.tarea,enviar_mensaje:0
+msgid "Enviará un mensaje al cerrarse la actividad a la persona que creó la actividad( siempre que la persona que tiene asignada la actividad sea diferente de la persona que creó la actividad"
+msgstr "Enviará un mensaje al cerrarse la actividad a la persona que creó la actividad( siempre que la persona que tiene asignada la actividad sea diferente de la persona que creó la actividad"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/sale_order.py:85
+#, python-format
+msgid "Error"
+msgstr "Error"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1347
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,especial_atencion:0
+#: field:acp_contrato.tarea,especial_atencion:0
+msgid "Especial Atención"
+msgstr "Especial Atención"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Espera"
+msgstr "Espera"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: field:acp_contrato.contrato,state:0
+#: field:acp_contrato.contrato_producto,estado:0
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+#: field:acp_contrato.servicio,state:0
+#: field:acp_contrato.servicio_producto,estado:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: field:acp_contrato.tarea,state:0
+msgid "Estado"
+msgstr "Estado"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad_producto,invoice_state:0
+#: field:acp_contrato.facturacion,invoice_state:0
+#: field:acp_contrato.programar_servicio,invoice_state:0
+#: field:acp_contrato.servicio,invoice_state:0
+#: field:acp_contrato.tarea_producto,invoice_state:0
+msgid "Estado Factura"
+msgstr "Estado Factura"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,estado_inicial:0
+msgid "Estado Inicial de la Actividad"
+msgstr "Estado Inicial de la Actividad"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1512
+#, python-format
+msgid "Este Servicio está anulado"
+msgstr "Este Servicio está anulado"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1513
+#, python-format
+msgid "Este Servicio está anulado, no se puede realizar ninguna acción, re-abra el Servicio para poder crear tareas."
+msgstr "Este Servicio está anulado, no se puede realizar ninguna acción, re-abra el Servicio para poder crear tareas."
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1516
+#, python-format
+msgid "Este Servicio está finalizado"
+msgstr "Este Servicio está finalizado"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1517
+#, python-format
+msgid "Este Servicio está finalizado, no se puede realizar ninguna acción, re-abra el Servicio para poder crear tareas."
+msgstr "Este Servicio está finalizado, no se puede realizar ninguna acción, re-abra el Servicio para poder crear tareas."
+
+#. module: acp_contrato
+#: view:acp_contrato.genera_servicio:acp_contrato.genera_servicio_view
+msgid "Este asistente generará los servicios y facturas para el Año/Mes seleccionado"
+msgstr "Este asistente generará los servicios y facturas para el Año/Mes seleccionado"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,horas_acumuladas:0
+#: help:acp_contrato.contrato,saldo_acumulado:0
+msgid "Este campo se sumará a las horas trabajadas. \n"
+" Este campo se usa para expedientes/contratos importados de sistemas antiguos"
+msgstr "Este campo se sumará a las horas trabajadas. \n"
+" Este campo se usa para expedientes/contratos importados de sistemas antiguos"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_alarm
+msgid "Event alarm"
+msgstr "Alarma del evento"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+msgid "Excepcion"
+msgstr "Excepcion"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,state:0
+msgid "Excepción"
+msgstr "Excepción"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1048
+#: code:addons/acp_contrato/acp_contrato.py:1484
+#, python-format
+msgid "Existen actividades que estan bloqueando este contrato, cierre estas actividades antes de continnuar."
+msgstr "Existen actividades que estan bloqueando este contrato, cierre estas actividades antes de continnuar."
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1055
+#: code:addons/acp_contrato/acp_contrato.py:1491
+#, python-format
+msgid "Existen actividades que estan bloqueando este servicio, cierre estas actividades antes de continnuar."
+msgstr "Existen actividades que estan bloqueando este servicio, cierre estas actividades antes de continnuar."
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Existen tareas que requieren su atención"
+msgstr "Existen tareas que requieren su atención"
+
+#. module: acp_contrato
+#: view:account.invoice:acp_contrato.view_invoice_form_form_exp1
+#: view:account.invoice.line:acp_contrato.view_invoice_form_line_exp1  
+msgid "Fact.Progamada"
+msgstr "Fact.Progamada"
+
+#. module: acp_contrato
+#: field:acp_contrato.conceptos_factura,facturacion_id:0
+#: field:acp_contrato.contrato,facturacion_lineas:0
+#: field:acp_contrato.fechas_facturacion,facturacion_id:0
+msgid "Facturacion"
+msgstr "Facturacion"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_facturacion
+msgid "Facturacion de contratos"
+msgstr "Facturacion de contratos"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad_producto,invoice_state:0
+#: selection:acp_contrato.facturacion,invoice_state:0
+#: selection:acp_contrato.programar_servicio,invoice_state:0
+#: selection:acp_contrato.servicio,invoice_state:0
+#: selection:acp_contrato.tarea_producto,invoice_state:0
+msgid "Facturado"
+msgstr "Facturado"
+
+#. module: acp_contrato
+#: field:acp_contrato.facturacion,autofactura:0
+msgid "Facturar Automaticamente"
+msgstr "Facturar Automaticamente"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tarea_factura
+msgid "Facturar Servicios"
+msgstr "Facturar Servicios"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Facturas"
+msgstr "Facturas"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,invoice_line_in:0
+#: field:acp_contrato.servicio,invoice_line_in:0
+msgid "Facturas de Entrada"
+msgstr "Facturas de Entrada"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,invoice_line_out:0
+#: field:acp_contrato.servicio,invoice_line_out:0
+msgid "Facturas de Salida"
+msgstr "Facturas de Salida"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/sale_order.py:90
+#, python-format
+msgid "Faltan datos"
+msgstr "Faltan datos"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Febrero"
+msgstr "Febrero"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,fecha:0
+#: field:acp_contrato.mail_pop,create_date:0
+#: field:acp_contrato.servicio,fecha:0
+#: field:acp_contrato.servicio_producto,fecha:0
+#: field:acp_contrato.tarea,fecha:0
+#: field:acp_contrato.tarea_horas,fecha:0
+#: field:acp_contrato.tarea_producto,servicio_fecha:0
+msgid "Fecha"
+msgstr "Fecha"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,fecha_baja:0
+msgid "Fecha Baja"
+msgstr "Fecha Baja"
+
+#. module: acp_contrato
+#: field:acp_contrato.generar_factura_servicio,fecha_factura:0
+#: field:acp_contrato.refacturar_gasto,fecha_factura:0
+msgid "Fecha Factura"
+msgstr "Fecha Factura"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,fecha_fin:0
+msgid "Fecha Finalización"
+msgstr "Fecha Finalización"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,fecha_limite:0
+msgid "Fecha Limite"
+msgstr "Fecha Limite"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Fechas"
+msgstr "Fechas"
+
+#. module: acp_contrato
+#: field:acp_contrato.programar_servicio,fechas_lineas:0
+msgid "Fechas de Servicios"
+msgstr "Fechas de Servicios"
+
+#. module: acp_contrato
+#: field:acp_contrato.facturacion,fechas_lineas:0
+msgid "Fechas de factura"
+msgstr "Fechas de factura"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_fechas_facturacion
+msgid "Fechas de facturacion"
+msgstr "Fechas de facturacion"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_fechas_servicio
+msgid "Fechas de los Servicios Programados"
+msgstr "Fechas de los Servicios Programados"
+
+#. module: acp_contrato
+#: selection:acp_contrato.servicio,state:0
+msgid "Finalizado"
+msgstr "Finalizado"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+msgid "Finalizados"
+msgstr "Finalizados"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Finalizar"
+msgstr "Finalizar"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_tree
+msgid "Finalizar Actividad"
+msgstr "Finalizar Actividad"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,state:0
+msgid "Finalizdo"
+msgstr "Finalizdo"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,message_follower_ids:0
+#: field:acp_contrato.mail_pop,message_follower_ids:0
+#: field:acp_contrato.servicio,message_follower_ids:0
+#: field:acp_contrato.tarea,message_follower_ids:0
+msgid "Followers"
+msgstr "Followers"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato_producto,estado:0
+#: selection:acp_contrato.servicio_producto,estado:0
+msgid "Fuera de Servicio"
+msgstr "Fuera de Servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,reclamacion_fundada:0
+msgid "Fundada-Infundada"
+msgstr "Fundada-Infundada"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Gastos"
+msgstr "Gastos"
+
+#. module: acp_contrato
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_facturar_servicio
+msgid "Genera Factura Servicios"
+msgstr "Genera Factura Servicios"
+
+#. module: acp_contrato
+#: view:acp_contrato.genera_servicio:acp_contrato.genera_servicio_view
+msgid "Generar"
+msgstr "Generar"
+
+#. module: acp_contrato
+#: view:acp_contrato.generar_factura_servicio:acp_contrato.view_acp_facturar_servicio
+#: view:acp_contrato.refacturar_gasto:acp_contrato.view_acp_refacturar_gasto
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_refacturar_gasto
+msgid "Generar Facturas"
+msgstr "Generar Facturas"
+
+#. module: acp_contrato
+#: view:acp_contrato.genera_servicio:acp_contrato.genera_servicio_view
+msgid "Generar Facturas Programadas"
+msgstr "Generar Facturas Programadas"
+
+#. module: acp_contrato
+#: view:acp_contrato.genera_servicio:acp_contrato.genera_servicio_view
+msgid "Generar Facturas de Servicios"
+msgstr "Generar Facturas de Servicios"
+
+#. module: acp_contrato
+#: field:acp_contrato.facturacion,generar_pedido:0
+msgid "Generar Pedido de Venta"
+msgstr "Generar Pedido de Venta"
+
+#. module: acp_contrato
+#: view:acp_contrato.genera_servicio:acp_contrato.genera_servicio_view
+msgid "Generar Servicios"
+msgstr "Generar Servicios"
+
+#. module: acp_contrato
+#: view:acp_contrato.genera_servicio:acp_contrato.genera_servicio_view
+msgid "Generar Servicios y Facturas"
+msgstr "Generar Servicios y Facturas"
+
+#. module: acp_contrato
+#: field:acp_contrato.genera_servicio,generar_facturas:0
+msgid "Generar facturas programadas"
+msgstr "Generar facturas programadas"
+
+#. module: acp_contrato
+#: field:acp_contrato.genera_servicio,facturar_servicios:0
+msgid "Generar facturas servicios"
+msgstr "Generar facturas servicios"
+
+#. module: acp_contrato
+#: field:acp_contrato.genera_servicio,generar_servicios:0
+msgid "Generar servicios"
+msgstr "Generar servicios"
+
+#. module: acp_contrato
+#: model:ir.actions.act_window,name:acp_contrato.genera_servicio_act
+#: model:ir.ui.menu,name:acp_contrato.menu_wizard_genera_servicio
+msgid "Generar servicios y facturas"
+msgstr "Generar servicios y facturas"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_search
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_factura_search
+msgid "Group By..."
+msgstr "Group By..."
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: view:acp_contrato.contrato_producto:acp_contrato.view_acp_contrato_contrato_producto_form
+msgid "Historico"
+msgstr "Historico"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato_producto,historico_ids:0
+msgid "Historico de servicios"
+msgstr "Historico de servicios"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,message_summary:0
+#: help:acp_contrato.mail_pop,message_summary:0
+#: help:acp_contrato.servicio,message_summary:0
+#: help:acp_contrato.tarea,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Hora 00->12: %(h12)s"
+msgstr "Hora 00->12: %(h12)s"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Hora 00->24: %(h24)s"
+msgstr "Hora 00->24: %(h24)s"
+
+#. module: acp_contrato
+#: field:acp_contrato.motivo_espera,horas:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form
+#: field:acp_contrato.tarea_horas,horas:0
+msgid "Horas"
+msgstr "Horas"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,hours_next_act:0
+#: field:acp_contrato.tarea,hours_to_act:0
+msgid "Horas Proxima Actividad"
+msgstr "Horas Proxima Actividad"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,hours_next_act:0
+msgid "Horas Proxima Tarea"
+msgstr "Horas Proxima Tarea"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,horas_acumuladas:0
+msgid "Horas acumuladas"
+msgstr "Horas acumuladas"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_tarea_horas
+msgid "Horas asociados a tareas"
+msgstr "Horas asociados a tareas"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,horas_lineas:0
+msgid "Horas de la tarea"
+msgstr "Horas de la tarea"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,horas:0
+msgid "Horas límite para el cierre"
+msgstr "Horas límite para el cierre"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,total_horas_objetivo:0
+#: field:acp_contrato.contrato,total_horas_objetivo2:0
+msgid "Horas objetivo"
+msgstr "Horas objetivo"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,total_horas_hoy:0
+#: field:acp_contrato.contrato,total_horas_hoy2:0
+msgid "Horas trabajadas hoy"
+msgstr "Horas trabajadas hoy"
+
+#. module: acp_contrato
+#: selection:acp_contrato.alarm,interval:0
+msgid "Hours"
+msgstr "Hours"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,id:0
+#: field:acp_contrato.actividad_producto,id:0
+#: field:acp_contrato.alarm,id:0
+#: field:acp_contrato.alarm_manager,id:0
+#: field:acp_contrato.conceptos_factura,id:0
+#: field:acp_contrato.contrato,id:0
+#: field:acp_contrato.contrato_producto,id:0
+#: field:acp_contrato.facturacion,id:0
+#: field:acp_contrato.fechas_facturacion,id:0
+#: field:acp_contrato.fechas_servicio,id:0
+#: field:acp_contrato.genera_servicio,id:0
+#: field:acp_contrato.generar_factura_servicio,id:0
+#: field:acp_contrato.mail_pop,id:0
+#: field:acp_contrato.motivo_anulacion,id:0
+#: field:acp_contrato.motivo_espera,id:0
+#: field:acp_contrato.motivo_reclamacion,id:0
+#: field:acp_contrato.programar_servicio,id:0
+#: field:acp_contrato.refacturar_gasto,id:0
+#: field:acp_contrato.resolucion,id:0
+#: field:acp_contrato.servicio,id:0
+#: field:acp_contrato.servicio_operario,id:0
+#: field:acp_contrato.servicio_producto,id:0
+#: field:acp_contrato.tarea,id:0
+#: field:acp_contrato.tarea_horas,id:0
+#: field:acp_contrato.tarea_producto,id:0
+#: field:acp_contrato.tipo_contrato,id:0
+#: field:acp_contrato.tipo_operario,id:0
+#: field:acp_contrato.tipo_producto,id:0
+#: field:acp_contrato.tipo_servicio,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,message_unread:0
+#: help:acp_contrato.mail_pop,message_unread:0
+#: help:acp_contrato.servicio,message_unread:0
+#: help:acp_contrato.tarea,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+msgid "Ignorar Excepciones"
+msgstr "Ignorar Excepciones"
+
+#. module: acp_contrato
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_contrato_iguala_portal
+msgid "Igualas"
+msgstr "Igualas"
+
+#. module: acp_contrato
+#: field:acp_contrato.conceptos_factura,importe:0
+#: field:acp_contrato.tarea_producto,importe:0
+msgid "Importe"
+msgstr "Importe"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea_producto,tax_id:0
+msgid "Impuestos"
+msgstr "Impuestos"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea_producto,incluir:0
+msgid "Incluir en la lista de materiales a  mantener"
+msgstr "Incluir en la lista de materiales a  mantener"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:265
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:708
+#: code:addons/acp_contrato/wizard/wizard_refactura.py:123
+#, python-format
+msgid "Incorrect Data"
+msgstr "Incorrect Data"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/sale_order.py:91
+#, python-format
+msgid "Indique el tipo de contrato para poder crear el contrato."
+msgstr "Indique el tipo de contrato para poder crear el contrato."
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato_producto:acp_contrato.view_acp_contrato_contrato_producto_form
+#: view:acp_contrato.servicio_producto:acp_contrato.view_acp_contrato_servicio_producto_form
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_producto_form
+msgid "Información  Adicional"
+msgstr "Información  Adicional"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato_producto:acp_contrato.view_acp_contrato_contrato_producto_form
+#: view:acp_contrato.servicio_producto:acp_contrato.view_acp_contrato_servicio_producto_form
+msgid "Información  Gerneral"
+msgstr "Información  Gerneral"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_producto_form
+msgid "Información  Gerneral7"
+msgstr "Información  Gerneral7"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Información General"
+msgstr "Información General"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,informado:0
+msgid "Informado"
+msgstr "Informado"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Ingresos"
+msgstr "Ingresos"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,message_is_follower:0
+#: field:acp_contrato.mail_pop,message_is_follower:0
+#: field:acp_contrato.servicio,message_is_follower:0
+#: field:acp_contrato.tarea,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Julio"
+msgstr "Julio"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Junio"
+msgstr "Junio"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,message_last_post:0
+#: field:acp_contrato.mail_pop,message_last_post:0
+#: field:acp_contrato.servicio,message_last_post:0
+#: field:acp_contrato.tarea,message_last_post:0
+msgid "Last Message Date"
+msgstr "Last Message Date"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,write_uid:0
+#: field:acp_contrato.actividad_producto,write_uid:0
+#: field:acp_contrato.alarm,write_uid:0
+#: field:acp_contrato.conceptos_factura,write_uid:0
+#: field:acp_contrato.contrato,write_uid:0
+#: field:acp_contrato.contrato_producto,write_uid:0
+#: field:acp_contrato.facturacion,write_uid:0
+#: field:acp_contrato.fechas_facturacion,write_uid:0
+#: field:acp_contrato.fechas_servicio,write_uid:0
+#: field:acp_contrato.genera_servicio,write_uid:0
+#: field:acp_contrato.generar_factura_servicio,write_uid:0
+#: field:acp_contrato.mail_pop,write_uid:0
+#: field:acp_contrato.motivo_anulacion,write_uid:0
+#: field:acp_contrato.motivo_espera,write_uid:0
+#: field:acp_contrato.motivo_reclamacion,write_uid:0
+#: field:acp_contrato.programar_servicio,write_uid:0
+#: field:acp_contrato.refacturar_gasto,write_uid:0
+#: field:acp_contrato.resolucion,write_uid:0
+#: field:acp_contrato.servicio,write_uid:0
+#: field:acp_contrato.servicio_operario,write_uid:0
+#: field:acp_contrato.servicio_producto,write_uid:0
+#: field:acp_contrato.tarea,write_uid:0
+#: field:acp_contrato.tarea_horas,write_uid:0
+#: field:acp_contrato.tarea_producto,write_uid:0
+#: field:acp_contrato.tipo_contrato,write_uid:0
+#: field:acp_contrato.tipo_operario,write_uid:0
+#: field:acp_contrato.tipo_producto,write_uid:0
+#: field:acp_contrato.tipo_servicio,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,write_date:0
+#: field:acp_contrato.actividad_producto,write_date:0
+#: field:acp_contrato.alarm,write_date:0
+#: field:acp_contrato.conceptos_factura,write_date:0
+#: field:acp_contrato.contrato,write_date:0
+#: field:acp_contrato.contrato_producto,write_date:0
+#: field:acp_contrato.facturacion,write_date:0
+#: field:acp_contrato.fechas_facturacion,write_date:0
+#: field:acp_contrato.fechas_servicio,write_date:0
+#: field:acp_contrato.genera_servicio,write_date:0
+#: field:acp_contrato.generar_factura_servicio,write_date:0
+#: field:acp_contrato.mail_pop,write_date:0
+#: field:acp_contrato.motivo_anulacion,write_date:0
+#: field:acp_contrato.motivo_espera,write_date:0
+#: field:acp_contrato.motivo_reclamacion,write_date:0
+#: field:acp_contrato.programar_servicio,write_date:0
+#: field:acp_contrato.refacturar_gasto,write_date:0
+#: field:acp_contrato.resolucion,write_date:0
+#: field:acp_contrato.servicio,write_date:0
+#: field:acp_contrato.servicio_operario,write_date:0
+#: field:acp_contrato.servicio_producto,write_date:0
+#: field:acp_contrato.tarea,write_date:0
+#: field:acp_contrato.tarea_horas,write_date:0
+#: field:acp_contrato.tarea_producto,write_date:0
+#: field:acp_contrato.tipo_contrato,write_date:0
+#: field:acp_contrato.tipo_operario,write_date:0
+#: field:acp_contrato.tipo_producto,write_date:0
+#: field:acp_contrato.tipo_servicio,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Lote/Nº de serie"
+
+#. module: acp_contrato
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_form
+msgid "Mail"
+msgstr "Mail"
+
+#. module: acp_contrato
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Mail Recibido"
+msgstr "Mail Recibido"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Marzo"
+msgstr "Marzo"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Material"
+msgstr "Material"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Materiales"
+msgstr "Materiales"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,producto_lineas:0
+#: field:acp_contrato.contrato,producto_servicio_lineas:0
+msgid "Materiales del Contrato"
+msgstr "Materiales del Contrato"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,producto_lineas:0
+msgid "Materiales del Servicio"
+msgstr "Materiales del Servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form
+msgid "Materiales o Mano de Obrade la Tarea"
+msgstr "Materiales o Mano de Obrade la Tarea"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,producto_lineas:0
+#: field:acp_contrato.tarea,producto_lineas:0
+msgid "Materiales-Mano de Obra de la Tarea"
+msgstr "Materiales-Mano de Obra de la Tarea"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Mayo"
+msgstr "Mayo"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,prioridad:0
+#: selection:acp_contrato.tarea,prioridad:0
+msgid "Media"
+msgstr "Media"
+
+#. module: acp_contrato
+#: field:acp_contrato.mail_pop,description:0
+msgid "Mensaje"
+msgstr "Mensaje"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,perioricidad:0
+#: selection:acp_contrato.programar_servicio,perioricidad:0
+msgid "Mensual"
+msgstr "Mensual"
+
+#. module: acp_contrato
+#: field:acp_contrato.fechas_facturacion,mes:0
+#: field:acp_contrato.fechas_servicio,mes:0
+#: field:acp_contrato.genera_servicio,mes:0
+msgid "Mes"
+msgstr "Mes"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Mes: %(month)s"
+msgstr "Mes: %(month)s"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,message_ids:0
+#: field:acp_contrato.mail_pop,message_ids:0
+#: field:acp_contrato.servicio,message_ids:0
+#: field:acp_contrato.tarea,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,message_ids:0
+#: help:acp_contrato.mail_pop,message_ids:0
+#: help:acp_contrato.servicio,message_ids:0
+#: help:acp_contrato.tarea,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: acp_contrato
+#: selection:acp_contrato.alarm,interval:0
+msgid "Minutes"
+msgstr "Minutes"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Minuto: %(min)s"
+msgstr "Minuto: %(min)s"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+msgid "Mis Tareas"
+msgstr "Mis Tareas"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+msgid "Mis Tareas Abiertas"
+msgstr "Mis Tareas Abiertas"
+
+#. module: acp_contrato
+#: field:acp_contrato.motivo_espera,fecha_limite:0
+msgid "Mostrar Aviso?"
+msgstr "Mostrar Aviso?"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,mostrar_en_resumen:0
+#: field:acp_contrato.tarea,mostrar_en_resumen:0
+msgid "Mostrar en Resumen"
+msgstr "Mostrar en Resumen"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,motivo_anulacion_id:0
+msgid "Motivo Anulación"
+msgstr "Motivo Anulación"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,motivo_baja:0
+msgid "Motivo Baja"
+msgstr "Motivo Baja"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,motivo_espera_id:0
+msgid "Motivo Espera"
+msgstr "Motivo Espera"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,motivo_reclamacion_id:0
+msgid "Motivo Reclamación"
+msgstr "Motivo Reclamación"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Motivo de Baja"
+msgstr "Motivo de Baja"
+
+#. module: acp_contrato
+#: view:acp_contrato.motivo_espera:acp_contrato.view_acp_contrato_motivo_espera_tree
+msgid "Motivo de Espera"
+msgstr "Motivo de Espera"
+
+#. module: acp_contrato
+#: view:acp_contrato.motivo_anulacion:acp_contrato.view_acp_contrato_motivo_anulacion_form
+#: view:acp_contrato.motivo_anulacion:acp_contrato.view_acp_contrato_motivo_anulacion_tree
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_motivo_anulacion
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_motivo__anulaciontree
+msgid "Motivos de Anulación"
+msgstr "Motivos de Anulación"
+
+#. module: acp_contrato
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_motivo_espera
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_motivo_espera_tree
+msgid "Motivos de Espera"
+msgstr "Motivos de Espera"
+
+#. module: acp_contrato
+#: view:acp_contrato.motivo_espera:acp_contrato.view_acp_contrato_motivo_espera_form
+msgid "Motivos de Esperas"
+msgstr "Motivos de Esperas"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_motivo_reclamacion_tree
+msgid "Motivos de Reclamacion"
+msgstr "Motivos de Reclamacion"
+
+#. module: acp_contrato
+#: view:acp_contrato.motivo_reclamacion:acp_contrato.view_acp_contrato_motivo_reclamacion_form
+#: view:acp_contrato.motivo_reclamacion:acp_contrato.view_acp_contrato_motivo_reclamacion_tree
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_motivo_reclamacion
+msgid "Motivos de Reclamaciones"
+msgstr "Motivos de Reclamaciones"
+
+#. module: acp_contrato
+#: field:acp_contrato.alarm,name:0
+#: field:acp_contrato.servicio,name:0
+#: field:acp_contrato.tarea,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: acp_contrato
+#: selection:acp_contrato.servicio_producto,satisfactorio:0
+msgid "No"
+msgstr "No"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad_producto,invoice_state:0
+#: selection:acp_contrato.facturacion,invoice_state:0
+#: selection:acp_contrato.programar_servicio,invoice_state:0
+#: selection:acp_contrato.servicio,invoice_state:0
+#: selection:acp_contrato.tarea_producto,invoice_state:0
+msgid "No Aplicable"
+msgstr "No Aplicable"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:308
+#, python-format
+msgid "No Body"
+msgstr "No Body"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:307
+#, python-format
+msgid "No Subject"
+msgstr "No Subject"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1040
+#: code:addons/acp_contrato/acp_contrato.py:1047
+#: code:addons/acp_contrato/acp_contrato.py:1483
+#, python-format
+msgid "No puede realizar acciones en este contrato"
+msgstr "No puede realizar acciones en este contrato"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1054
+#: code:addons/acp_contrato/acp_contrato.py:1490
+#, python-format
+msgid "No puede realizar acciones en este servicio"
+msgstr "No puede realizar acciones en este servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.motivo_anulacion,name:0
+#: field:acp_contrato.motivo_espera,name:0
+#: field:acp_contrato.motivo_reclamacion,name:0
+#: field:acp_contrato.resolucion,name:0
+#: field:acp_contrato.servicio_operario,name:0
+#: field:acp_contrato.tipo_contrato,name:0
+#: field:acp_contrato.tipo_operario,name:0
+#: field:acp_contrato.tipo_producto,name:0
+#: field:acp_contrato.tipo_servicio,name:0
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,nota_facturacion:0
+msgid "Nota Interna"
+msgstr "Nota Interna"
+
+#. module: acp_contrato
+#: selection:acp_contrato.alarm,type:0
+msgid "Notification"
+msgstr "Notification"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Noviembre"
+msgstr "Noviembre"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Nueva Factura"
+msgstr "Nueva Factura"
+
+#. module: acp_contrato
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Nueva Tarea"
+msgstr "Nueva Tarea"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Nuevo Presupuesto"
+msgstr "Nuevo Presupuesto"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Nuevo Servicio"
+msgstr "Nuevo Servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,numero_tarea:0
+msgid "Numero"
+msgstr "Numero"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,numero_servicio:0
+msgid "Numero Servicio"
+msgstr "Numero Servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato_producto,prodlot_id:0
+#: field:acp_contrato.servicio_producto,prodlot_id:0
+#: field:acp_contrato.tarea_producto,prodlot_id:0
+msgid "Numero de Serie"
+msgstr "Numero de Serie"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,name:0
+msgid "Número"
+msgstr "Número"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: field:acp_contrato.contrato,observaciones:0
+#: field:acp_contrato.contrato_producto,observaciones:0
+#: field:acp_contrato.servicio,observaciones:0
+#: field:acp_contrato.servicio_producto,observaciones:0
+#: field:acp_contrato.tarea_producto,observaciones:0
+msgid "Observaciones"
+msgstr "Observaciones"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Octubre"
+msgstr "Octubre"
+
+#. module: acp_contrato
+#: view:acp_contrato.actividad:acp_contrato.view_acp_contrato_actividad_tree
+msgid "Oficios"
+msgstr "Oficios"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio_operario,operario_id:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: field:acp_contrato.tarea,operario_id:0
+msgid "Operario"
+msgstr "Operario"
+
+#. module: acp_contrato
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+#: field:acp_contrato.servicio,operario_ids:0
+#: model:ir.actions.act_window,name:acp_contrato.action_partner_form_operario
+#: model:ir.ui.menu,name:acp_contrato.menu_partner_form_operario
+msgid "Operarios"
+msgstr "Operarios"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_servicio_operario
+msgid "Operarios de los servicios"
+msgstr "Operarios de los servicios"
+
+#. module: acp_contrato
+#: view:sale.order:acp_contrato.view_order_form_exp1
+msgid "Other Information"
+msgstr "Otra información"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Otro"
+msgstr "Otro"
+
+#. module: acp_contrato
+#: view:ir.attachment:acp_contrato.view_acp_acp_contrato_attachment_search
+msgid "Owner"
+msgstr "Propietario"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad_producto,invoice_state:0
+#: selection:acp_contrato.facturacion,invoice_state:0
+#: selection:acp_contrato.programar_servicio,invoice_state:0
+#: selection:acp_contrato.servicio,invoice_state:0
+#: selection:acp_contrato.tarea_producto,invoice_state:0
+msgid "Para Facturar"
+msgstr "Para Facturar"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,horas:0
+msgid "Pasadas estas horas desde la fecha de creación de la actividad, se mostrará un aviso en el contrato/servicio."
+msgstr "Pasadas estas horas desde la fecha de creación de la actividad, se mostrará un aviso en el contrato/servicio."
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,sale_id:0
+msgid "Pedido que generó el expediente"
+msgstr "Pedido que generó el expediente"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,perioricidad:0
+#: field:acp_contrato.programar_servicio,perioricidad:0
+msgid "Periodicidad"
+msgstr "Periodicidad"
+
+#. module: acp_contrato
+#: view:sale.order:acp_contrato.view_order_form_exp1
+msgid "Perioricidad Facturación"
+msgstr "Perioricidad Facturación"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,active:0
+#: help:acp_contrato.motivo_anulacion,active:0
+#: help:acp_contrato.motivo_espera,active:0
+#: help:acp_contrato.motivo_reclamacion,active:0
+#: help:acp_contrato.resolucion,active:0
+#: help:acp_contrato.tipo_contrato,active:0
+#: help:acp_contrato.tipo_operario,active:0
+#: help:acp_contrato.tipo_producto,active:0
+#: help:acp_contrato.tipo_servicio,active:0
+msgid "Permite ocultar este registro sin eliminarlo."
+msgstr "Permite ocultar este registro sin eliminarlo."
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,contrato_plantilla:0
+msgid "Plantilla"
+msgstr "Plantilla"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_contrato_iguala_portal_tree
+msgid "Plantillas"
+msgstr "Plantillas"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Presupuestos"
+msgstr "Presupuestos"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,purchase_order_lineas:0
+#: field:acp_contrato.servicio,purchase_order_line:0
+msgid "Presupuestos Compra"
+msgstr "Presupuestos Compra"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,sale_order_line:0
+#: field:acp_contrato.servicio,sale_order_line:0
+msgid "Presupuestos Venta"
+msgstr "Presupuestos Venta"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: field:acp_contrato.tarea,prioridad:0
+msgid "Prioridad"
+msgstr "Prioridad"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,prioridad:0
+msgid "Prioridad por defecto"
+msgstr "Prioridad por defecto"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.contratos_wiz
+msgid "Procesamiento periodico"
+msgstr "Procesamiento periodico"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad_producto,product_id:0
+#: field:acp_contrato.conceptos_factura,product_id:0
+#: view:acp_contrato.contrato_producto:acp_contrato.view_acp_contrato_contrato_producto_form
+#: field:acp_contrato.contrato_producto,product_id:0
+#: view:acp_contrato.servicio_producto:acp_contrato.view_acp_contrato_servicio_producto_form
+#: field:acp_contrato.servicio_producto,product_id:0
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_producto_form
+#: field:acp_contrato.tarea_producto,product_id:0
+msgid "Producto"
+msgstr "Producto"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio_producto,contrato_producto_id:0
+msgid "Producto del contrato"
+msgstr "Producto del contrato"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,producto_tarea_lineas:0
+msgid "Productos Tareas"
+msgstr "Productos Tareas"
+
+#. module: acp_contrato
+#: view:acp_contrato.actividad:acp_contrato.view_acp_contrato_actividad_form
+msgid "Productos a cargar por defecto con esta actividad"
+msgstr "Productos a cargar por defecto con esta actividad"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_actividad_producto
+msgid "Productos asociados a actividades"
+msgstr "Productos asociados a actividades"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_tarea_producto
+msgid "Productos asociados a tareas"
+msgstr "Productos asociados a tareas"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_contrato_producto
+msgid "Productos del contrato de mantenimientor"
+msgstr "Productos del contrato de mantenimientor"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_servicio_producto
+msgid "Productos del servicio"
+msgstr "Productos del servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.fechas_servicio,programacion_id:0
+msgid "Programacion"
+msgstr "Programacion"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_programar_servicio
+msgid "Programación de Servicios"
+msgstr "Programación de Servicios"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Programar Facturación"
+msgstr "Programar Facturación"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato_producto,programar_servicio_id:0
+msgid "Programar Servicio"
+msgstr "Programar Servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Programar Servicios"
+msgstr "Programar Servicios"
+
+#. module: acp_contrato
+#: view:account.invoice.line:acp_contrato.account_invoice_line_refactura_tree_view
+msgid "Proveedor"
+msgstr "Proveedor"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea pedido de compra"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,perioricidad:0
+msgid "Quincenal"
+msgstr "Quincenal"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Re-Abrir"
+msgstr "Re-Abrir"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+msgid "Reabrir"
+msgstr "Reabrir"
+
+#. module: acp_contrato
+#: field:acp_contrato.tipo_servicio,recibir_mail:0
+msgid "Recibir email"
+msgstr "Recibir email"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,recibir_mail:0
+msgid "Recibir emails"
+msgstr "Recibir emails"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+#: selection:acp_contrato.tarea,tipo:0
+msgid "Reclamacion"
+msgstr "Reclamacion"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,alarm_ids:0
+#: field:acp_contrato.tarea,alarm_ids:0
+msgid "Recordatorios"
+msgstr "Recordatorios"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,alarm_ids:0
+msgid "Recordatorios por defecto para esta actividad"
+msgstr "Recordatorios por defecto para esta actividad"
+
+#. module: acp_contrato
+#: view:account.invoice.line:acp_contrato.account_invoice_line_refactura_tree_view
+#: model:ir.actions.act_window,name:acp_contrato.action_account_invoice_line_refactura_tree
+#: model:ir.ui.menu,name:acp_contrato.menu_account_invoice_line_refactura_tree
+msgid "Refacturar gastos"
+msgstr "Refacturar gastos"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,referencia:0
+msgid "Referencia"
+msgstr "Referencia"
+
+#. module: acp_contrato
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_search
+#: field:acp_contrato.mail_pop,email_from:0
+msgid "Remitente"
+msgstr "Remitente"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: field:acp_contrato.contrato,user_id:0
+msgid "Responsable"
+msgstr "Responsable"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: field:acp_contrato.contrato,especial_atencion_lineas:0
+#: field:acp_contrato.contrato,resumen_lineas:0
+msgid "Resumen"
+msgstr "Resumen"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,saldo_acumulado:0
+msgid "Saldo acumulado"
+msgstr "Saldo acumulado"
+
+#. module: acp_contrato
+#: view:product.template:acp_contrato.product_template_form_view_contrato1
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio_producto,satisfactorio:0
+msgid "Satisfactorio"
+msgstr "Satisfactorio"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Segundo: %(sec)s"
+msgstr "Segundo: %(sec)s"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Semana del Año: %(woy)s"
+msgstr "Semana del Año: %(woy)s"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,perioricidad:0
+msgid "Semanal"
+msgstr "Semanal"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,perioricidad:0
+#: selection:acp_contrato.programar_servicio,perioricidad:0
+msgid "Semestral"
+msgstr "Semestral"
+
+#. module: acp_contrato
+#: selection:acp_contrato.fechas_facturacion,mes:0
+#: selection:acp_contrato.fechas_servicio,mes:0
+#: selection:acp_contrato.genera_servicio,mes:0
+msgid "Septiembre"
+msgstr "Septiembre"
+
+#. module: acp_contrato
+#: selection:acp_contrato.generar_factura_servicio,agrupar:0
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+#: field:acp_contrato.servicio_operario,servicio_id:0
+#: field:acp_contrato.servicio_producto,servicio_id:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: field:acp_contrato.tarea,servicio_id:0
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_factura_search
+#: field:acp_contrato.tarea_producto,servicio_id:0
+msgid "Servicio"
+msgstr "Servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.servicio,servicio_prog_id:0
+msgid "Servicio Programado"
+msgstr "Servicio Programado"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: field:acp_contrato.contrato,contrato_lineas:0
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_servicio
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_servicio_tree
+msgid "Servicios"
+msgstr "Servicios"
+
+#. module: acp_contrato
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_tarea_factura
+msgid "Servicios Pendientes Facturar"
+msgstr "Servicios Pendientes Facturar"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,programar_servicio_lineas:0
+msgid "Servicios Programados"
+msgstr "Servicios Programados"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_factura_tree
+msgid "Servicios a Facturar"
+msgstr "Servicios a Facturar"
+
+#. module: acp_contrato
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+msgid "Servicios a facturar"
+msgstr "Servicios a facturar"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_servicio
+msgid "Servicios de Contratos"
+msgstr "Servicios de Contratos"
+
+#. module: acp_contrato
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_search
+msgid "Show messages to read"
+msgstr "Show messages to read"
+
+#. module: acp_contrato
+#: selection:acp_contrato.servicio_producto,satisfactorio:0
+msgid "Si"
+msgstr "Si"
+
+#. module: acp_contrato
+#: help:acp_contrato.servicio,recibir_mail:0
+#: help:acp_contrato.tipo_servicio,recibir_mail:0
+msgid "Si está activo este servicio se usará para crear las tareas de emails recibidos (Solo un servicio debe tener este campo activo)"
+msgstr "Si está activo este servicio se usará para crear las tareas de emails recibidos (Solo un servicio debe tener este campo activo)"
+
+#. module: acp_contrato
+#: help:acp_contrato.tipo_servicio,copia_materiales:0
+msgid "Si está activo se copiará la lista de materiales del contrato al crear este tipo de servicio."
+msgstr "Si está activo se copiará la lista de materiales del contrato al crear este tipo de servicio."
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,cerrar_automaticamente:0
+msgid "Si está activo, se cerrará la actividad automáticamente en el momento de crear una nueva actividad en el servicio( este parámtro no afecta si la actividad esta marcada para bloquear contrato o servicio)"
+msgstr "Si está activo, se cerrará la actividad automáticamente en el momento de crear una nueva actividad en el servicio( este parámtro no afecta si la actividad esta marcada para bloquear contrato o servicio)"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,bloquear_contrato:0
+msgid "Si está marcado, esta actividad bloquará el contrato, impidiendo que se creen actividades nuevas hasta que se finalice esta"
+msgstr "Si está marcado, esta actividad bloquará el contrato, impidiendo que se creen actividades nuevas hasta que se finalice esta"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,bloquear_servicio:0
+msgid "Si está marcado, esta actividad bloquará el servicio, impidiendo que se creen actividades nuevas hasta que se finalice esta"
+msgstr "Si está marcado, esta actividad bloquará el servicio, impidiendo que se creen actividades nuevas hasta que se finalice esta"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,especial_atencion:0
+#: help:acp_contrato.tarea,especial_atencion:0
+msgid "Si está marcado, esta actividad se mostrará en el cuadro 'Especial Atención' del contrato hasta que se finalice."
+msgstr "Si está marcado, esta actividad se mostrará en el cuadro 'Especial Atención' del contrato hasta que se finalice."
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,mostrar_en_resumen:0
+#: help:acp_contrato.tarea,mostrar_en_resumen:0
+msgid "Si está marcado, esta actividad se mostrará en el resumen de actividades"
+msgstr "Si está marcado, esta actividad se mostrará en el resumen de actividades"
+
+#. module: acp_contrato
+#: help:acp_contrato.programar_servicio,contratado:0
+msgid "Si no se marca esta opcion, se generará una oportunidad de negocio en vez de un servicio"
+msgstr "Si no se marca esta opcion, se generará una oportunidad de negocio en vez de un servicio"
+
+#. module: acp_contrato
+#: help:acp_contrato.actividad,tipo_servicio:0
+msgid "Si se configura un tipo de servicio, esta actividad estará solo disponible para este tipo de servicio."
+msgstr "Si se configura un tipo de servicio, esta actividad estará solo disponible para este tipo de servicio."
+
+#. module: acp_contrato
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_search
+msgid "Sin asignar"
+msgstr "Sin asignar"
+
+#. module: acp_contrato
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_search
+msgid "Sin leer"
+msgstr "Sin leer"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea_producto,subtotal:0
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,message_summary:0
+#: field:acp_contrato.mail_pop,message_summary:0
+#: field:acp_contrato.servicio,message_summary:0
+#: field:acp_contrato.tarea,message_summary:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: acp_contrato
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form
+#: field:acp_contrato.tarea_horas,tarea_id:0
+#: field:acp_contrato.tarea_producto,tarea_id:0
+msgid "Tarea"
+msgstr "Tarea"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: field:acp_contrato.contrato,tarea_lineas:0
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+#: field:acp_contrato.servicio,tarea_lineas:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_calendar
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_tree
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_tarea
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_tarea_portal
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_tareav
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tarea_portal_tree
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tarea_tree
+msgid "Tareas"
+msgstr "Tareas"
+
+#. module: acp_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tarea_mail
+msgid "Tareas Contratos"
+msgstr "Tareas Contratos"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_tarea
+msgid "Tareas de los servicios"
+msgstr "Tareas de los servicios"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,pricelist_id:0
+msgid "Tarifa"
+msgstr "Tarifa"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,pricelist_id:0
+msgid "Tarifa."
+msgstr "Tarifa."
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:266
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:709
+#: code:addons/acp_contrato/wizard/wizard_refactura.py:124
+#, python-format
+msgid "The value of Advance Amount must be positive."
+msgstr "The value of Advance Amount must be positive."
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/acp_contrato.py:1347
+#, python-format
+msgid "There is no default company for the current user!"
+msgstr "There is no default company for the current user!"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:256
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:698
+#: code:addons/acp_contrato/wizard/wizard_refactura.py:113
+#, python-format
+msgid "There is no income account defined as global property."
+msgstr "There is no income account defined as global property."
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:260
+#: code:addons/acp_contrato/wizard/wizard_genera_servicio.py:703
+#: code:addons/acp_contrato/wizard/wizard_refactura.py:118
+#, python-format
+msgid "There is no income account defined for this product: \"%s\" (id:%d)."
+msgstr "There is no income account defined for this product: \"%s\" (id:%d)."
+
+#. module: acp_contrato
+#: help:acp_contrato.mail_pop,email_cc:0
+msgid "These email addresses will be added to the CC field of all inbound and outbound emails for this record before being sent. Separate multiple email addresses with a comma"
+msgstr "These email addresses will be added to the CC field of all inbound and outbound emails for this record before being sent. Separate multiple email addresses with a comma"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+msgid "Tipo Contrato"
+msgstr "Tipo Contrato"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,tipo_servicio:0
+#: field:acp_contrato.servicio,tipo_servicio:0
+#: field:acp_contrato.tarea,tipo_servicio:0
+msgid "Tipo Servicio"
+msgstr "Tipo Servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.tipo_contrato:acp_contrato.view_acp_contrato_tipo_contrato_form
+msgid "Tipo de Contratos"
+msgstr "Tipo de Contratos"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato_producto,tipo_producto:0
+#: field:acp_contrato.servicio_producto,tipo_producto:0
+#: field:acp_contrato.tarea_producto,tipo_producto:0
+#: view:acp_contrato.tipo_producto:acp_contrato.view_acp_contrato_tipo_producto_form
+msgid "Tipo de Producto"
+msgstr "Tipo de Producto"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato_producto,tipo_producto_n:0
+#: field:acp_contrato.servicio_producto,tipo_producto_n:0
+#: field:acp_contrato.tarea_producto,tipo_producto_n:0
+msgid "Tipo de Producto Nombre"
+msgstr "Tipo de Producto Nombre"
+
+#. module: acp_contrato
+#: field:acp_contrato.programar_servicio,tipo_servicio_id:0
+#: view:acp_contrato.tipo_servicio:acp_contrato.view_acp_contrato_tipo_servicio_form
+msgid "Tipo de Servicio"
+msgstr "Tipo de Servicio"
+
+#. module: acp_contrato
+#: field:acp_contrato.actividad,tipo:0
+#: field:acp_contrato.tarea,tipo:0
+msgid "Tipo de actividad"
+msgstr "Tipo de actividad"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,tipo_contrato:0
+msgid "Tipo de contrato"
+msgstr "Tipo de contrato"
+
+#. module: acp_contrato
+#: sql_constraint:acp_contrato.tipo_producto:0
+msgid "Tipo de producto debe ser unico !"
+msgstr "Tipo de producto debe ser unico !"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_actividad
+msgid "Tipos de Actividades"
+msgstr "Tipos de Actividades"
+
+#. module: acp_contrato
+#: view:acp_contrato.tipo_contrato:acp_contrato.view_acp_contrato_tipo_contrato_tree
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_tipo_contrato
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tipo_contrato_tree
+msgid "Tipos de Contratos"
+msgstr "Tipos de Contratos"
+
+#. module: acp_contrato
+#: view:acp_contrato.tipo_producto:acp_contrato.view_acp_contrato_tipo_producto_tree
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_tipo_producto
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tipo_producto_tree
+msgid "Tipos de Producto"
+msgstr "Tipos de Producto"
+
+#. module: acp_contrato
+#: view:acp_contrato.tipo_servicio:acp_contrato.view_acp_contrato_tipo_servicio_tree
+#: model:ir.actions.act_window,name:acp_contrato.action_acp_contrato_tipo_servicio
+#: model:ir.ui.menu,name:acp_contrato.menu_acp_contrato_tipo_servicio_tree
+msgid "Tipos de Servicio"
+msgstr "Tipos de Servicio"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_tipo_contrato
+msgid "Tipos de contrato"
+msgstr "Tipos de contrato"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_motivo_anulacion
+msgid "Tipos de motivo de anulacion"
+msgstr "Tipos de motivo de anulacion"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_motivo_reclamacion
+msgid "Tipos de motivo reclamacion"
+msgstr "Tipos de motivo reclamacion"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_motivo_espera
+msgid "Tipos de motivo_espera"
+msgstr "Tipos de motivo_espera"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_tipo_operario
+msgid "Tipos de operario"
+msgstr "Tipos de operario"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_tipo_producto
+msgid "Tipos de producto"
+msgstr "Tipos de producto"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_resolucion
+msgid "Tipos de resolucion"
+msgstr "Tipos de resolucion"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_tipo_servicio
+msgid "Tipos de servicio"
+msgstr "Tipos de servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form
+msgid "Total"
+msgstr "Total"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,total_coste:0
+msgid "Total Coste"
+msgstr "Total Coste"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,total_facturado:0
+msgid "Total Facturado"
+msgstr "Total Facturado"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,total_trabajado:0
+msgid "Total Trabajado"
+msgstr "Total Trabajado"
+
+#. module: acp_contrato
+#: selection:acp_contrato.contrato,perioricidad:0
+#: selection:acp_contrato.programar_servicio,perioricidad:0
+msgid "Trimestral"
+msgstr "Trimestral"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_form_portal
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_tree_portal
+msgid "True"
+msgstr "True"
+
+#. module: acp_contrato
+#: field:acp_contrato.alarm,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato_producto,ubicacion:0
+#: field:acp_contrato.servicio_producto,ubicacion:0
+#: field:acp_contrato.tarea_producto,ubicacion:0
+msgid "Ubicación"
+msgstr "Ubicación"
+
+#. module: acp_contrato
+#: field:acp_contrato.alarm,interval:0
+msgid "Unit"
+msgstr "Unit"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_search
+#: field:acp_contrato.contrato,message_unread:0
+#: field:acp_contrato.mail_pop,message_unread:0
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+#: field:acp_contrato.servicio,message_unread:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: field:acp_contrato.tarea,message_unread:0
+#: view:acp_contrato.tarea_producto:acp_contrato.view_acp_contrato_tarea_factura_search
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: acp_contrato
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_search
+#: field:acp_contrato.servicio,user_id:0
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+#: field:acp_contrato.tarea,user_id:0
+msgid "Usuario"
+msgstr "Usuario"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,cliente_servicio:0
+msgid "Utilizar cliente de servicio"
+msgstr "Utilizar cliente de servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Ver Factura"
+msgstr "Ver Factura"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Ver Pedido"
+msgstr "Ver Pedido"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "Ver Servicio"
+msgstr "Ver Servicio"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.servicio:acp_contrato.view_acp_contrato_servicio_form
+msgid "Ver Tarea"
+msgstr "Ver Tarea"
+
+#. module: acp_contrato
+#: field:acp_contrato.tarea,mail_pop_id:0
+msgid "Ver email completo"
+msgstr "Ver email completo"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+msgid "Ver en formato para exportar a excel"
+msgstr "Ver en formato para exportar a excel"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,website_message_ids:0
+#: field:acp_contrato.mail_pop,website_message_ids:0
+#: field:acp_contrato.servicio,website_message_ids:0
+#: field:acp_contrato.tarea,website_message_ids:0
+msgid "Website Messages"
+msgstr "Website Messages"
+
+#. module: acp_contrato
+#: help:acp_contrato.contrato,website_message_ids:0
+#: help:acp_contrato.mail_pop,website_message_ids:0
+#: help:acp_contrato.servicio,website_message_ids:0
+#: help:acp_contrato.tarea,website_message_ids:0
+msgid "Website communication history"
+msgstr "Website communication history"
+
+#. module: acp_contrato
+#: code:addons/acp_contrato/sale_order.py:86
+#, python-format
+msgid "Ya se ha generado para este pedido."
+msgstr "Ya se ha generado para este pedido."
+
+#. module: acp_contrato
+#: view:acp_contrato.genera_servicio:acp_contrato.genera_servicio_view
+msgid "_Cancel"
+msgstr "_Cancel"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+#: view:acp_contrato.tarea:acp_contrato.view_acp_contrato_tarea_search
+msgid "contrato"
+msgstr "contrato"
+
+#. module: acp_contrato
+#: field:acp_contrato.alarm,duration_minutes:0
+msgid "duration_minutes"
+msgstr "duration_minutes"
+
+#. module: acp_contrato
+#: view:res.partner:acp_contrato.acp_contrato_view_partner_form_contrato1
+msgid "email"
+msgstr "email"
+
+#. module: acp_contrato
+#: selection:acp_contrato.actividad,tipo:0
+msgid "email recibido"
+msgstr "email recibido"
+
+#. module: acp_contrato
+#: view:acp_contrato.mail_pop:acp_contrato.view_acp_contrato_mail_pop_search
+msgid "emails"
+msgstr "emails"
+
+#. module: acp_contrato
+#: model:ir.model,name:acp_contrato.model_acp_contrato_mail_pop
+msgid "emails recibidos"
+msgstr "emails recibidos"
+
+#. module: acp_contrato
+#: field:acp_contrato.contrato,entiempo:0
+msgid "en tiempo"
+msgstr "en tiempo"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+msgid "false"
+msgstr "false"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form
+msgid "horas trabajadas de"
+msgstr "horas trabajadas de"
+
+#. module: acp_contrato
+#: view:acp_contrato.generar_factura_servicio:acp_contrato.view_acp_facturar_servicio
+#: view:acp_contrato.refacturar_gasto:acp_contrato.view_acp_refacturar_gasto
+msgid "or"
+msgstr "or"
+
+#. module: acp_contrato
+#: view:acp_contrato.contrato:acp_contrato.view_acp_contrato_contrato_form_portal
+msgid "{'no_open': True}"
+msgstr "{'no_open': True}"
+

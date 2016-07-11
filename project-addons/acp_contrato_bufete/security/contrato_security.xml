@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- Entrada Grupo de Seguridad   -->
+    <record model="res.groups" id="contratos_abogado">
+      <field name="name">Contratos / Abogado</field>
+    </record>
+    <!-- Regla para que los abogados solo vean sus expedientes  -->
+    <record model="ir.rule" id="acp_contrato_bufete_contrato_abogados">
+      <field name="name">Los abogados solo ven sus expedientes</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato" />
+      <field name="domain_force">[('abogado_ids.abogado_id.id', '=', user.partner_id.id)]</field>
+      <field name="groups" eval="[(4, ref('acp_contrato_bufete.contratos_abogado'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="True" />
+      <field name="perm_create" eval="False" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+    <!-- Regla para que los abogados puedan crear expedientes  -->
+    <record model="ir.rule" id="acp_contrato_bufete_contrato_abogados_create">
+      <field name="name">que los abogados puedan crear expedientes</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato" />
+      <field name="domain_force">[('contrato_plantilla', '=', False)]</field>
+      <field name="groups" eval="[(4, ref('acp_contrato_bufete.contratos_abogado'))]" />
+      <field name="perm_read" eval="False" />
+      <field name="perm_write" eval="False" />
+      <field name="perm_create" eval="True" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+    <!-- Regla para que Los abogados pueden leer las igualas  -->
+    <record model="ir.rule" id="acp_contrato_bufete_contrato_abogados_read_igualas">
+      <field name="name">Los abogados pueden leer las igualas</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato" />
+      <field name="domain_force">[('contrato_plantilla', '=', True)]</field>
+      <field name="groups" eval="[(4, ref('acp_contrato_bufete.contratos_abogado'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="False" />
+      <field name="perm_create" eval="False" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+    <!-- Regla para que los abogados solo vean los servicio de sus expedientes -->
+    <record model="ir.rule" id="acp_contrato_bufete_servicio_abogados">
+      <field name="name">Los abogados solo ven sus servicios</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_servicio" />
+      <field name="domain_force">['|',('contrato_id.abogado_ids.abogado_id.id', '=', user.partner_id.id),('contrato_id.contrato_plantilla', '=', True)]</field>
+      <field name="groups" eval="[(4, ref('acp_contrato_bufete.contratos_abogado'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="True" />
+      <field name="perm_create" eval="False" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+    <!-- Regla para que los abogados solo vean las tareas de sus expedientes  -->
+    <record model="ir.rule" id="acp_contrato_bufete_tarea_abogados">
+      <field name="name">Los abogados solo ven sus tareas</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_tarea" />
+      <field name="domain_force">['|',('servicio_id.contrato_id.abogado_ids.abogado_id.id', '=', user.partner_id.id),('servicio_id.contrato_id.contrato_plantilla', '=', True)]</field>
+      <field name="groups" eval="[(4, ref('acp_contrato_bufete.contratos_abogado'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="True" />
+      <field name="perm_create" eval="True" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+    <!-- Regla para que los clientes solo vean las tareas de sus expedientes y -->
+    <delete model="ir.rule" id="acp_contrato.acp_contrato_tarea_portal"/>
+    <record model="ir.rule" id="acp_contrato_bufete_tarea_portal">
+      <field name="name">Los clientes solo ven sus tareas</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_tarea" />
+      <field name="domain_force">[('contrato_id.partner_id.id', '=', user.commercial_partner_id.id),('servicio_id.tipo_servicio.id', '=', 2)]</field>
+      <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+      <field name="perm_read" eval="True" />
+      <field name="perm_write" eval="False" />
+      <field name="perm_create" eval="False" />
+      <field name="perm_unlink" eval="False" />
+    </record>
+
+  </data>
+</openerp>

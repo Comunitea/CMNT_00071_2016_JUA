@@ -1,0 +1,796 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* acp_contrato_bufete
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0-20150422\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-01 20:13+0000\n"
+"PO-Revision-Date: 2015-09-01 20:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: acp_contrato_bufete
+#: view:account.voucher:acp_contrato_bufete.view_purchase_receipt_form_expbu
+#: view:account.voucher:acp_contrato_bufete.view_sale_receipt_form_expbu
+msgid "\"{'journal_id':journal_id, 'type':type, 'partner_id':partner_id,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+msgstr "\"{'journal_id':journal_id, 'type':type, 'partner_id':partner_id,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}\""
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,abogado_id:0
+#: field:res.partner,abogado:0
+msgid "Abogado"
+msgstr "Abogado"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: field:acp_contrato.contrato,abogado_ids:0
+msgid "Abogados"
+msgstr "Abogados"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_contrato_abogado
+msgid "Abogados de los contratos"
+msgstr "Abogados de los expedientes"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_account_voucher
+msgid "Accounting Voucher"
+msgstr "Comprobantes contables"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.fase_judicial,active:0
+#: field:acp_contrato.materia,active:0
+#: field:acp_contrato.oficina,active:0
+#: field:acp_contrato.organo_legislativo,active:0
+msgid "Activo"
+msgstr "Activo"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,crm_tracking_campaign:0
+msgid "Campaign"
+msgstr "Campaign"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Campaña Marketing"
+msgstr "Campaña Marketing"
+
+#. module: acp_contrato_bufete
+#: help:acp_contrato.contrato,crm_tracking_campaign:0
+msgid "Campañas de Marketing"
+msgstr "Campañas de Marketing"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Comisionistas"
+msgstr "Comisionistas"
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/wizard/genera_ingreso.py:158
+#: code:addons/acp_contrato_bufete/wizard/genera_ingreso.py:162
+#, python-format
+msgid "Configuration Error!"
+msgstr "Configuration Error!"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: field:acp_contrato.contrato,contrario_ids:0
+msgid "Contrarios"
+msgstr "Contrarios"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_contrato_contrario
+msgid "Contrarios de los contratos"
+msgstr "Contrarios de los expedientes"
+
+#. module: acp_contrato_bufete
+#: field:account.voucher,dft_contrato_id:0
+#: field:account.voucher.line,contrato_id:0
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_contrato
+msgid "Contrato"
+msgstr "Expediente"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,parent_id:0
+msgid "Contrato relacionado"
+msgstr "Contrato relacionado"
+
+#. module: acp_contrato_bufete
+#: help:acp_contrato.contrato,contrato_plantilla:0
+msgid "Contrato tipo plantilla"
+msgstr "Contrato tipo plantilla"
+
+#. module: acp_contrato_bufete
+#: model:ir.actions.act_window,name:acp_contrato_bufete.action_acp_contrato_contrato_iguala
+msgid "Contratos"
+msgstr "Expedientes"
+
+#. module: acp_contrato_bufete
+#: model:res.groups,name:acp_contrato_bufete.contratos_abogado
+msgid "Contratos / Abogado"
+msgstr "Expedientes / Abogado"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_genera_factura
+msgid "Crea factura de ventas a partir de factura de compras"
+msgstr "Crea factura de ventas a partir de factura de compras"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_genera_recibo
+msgid "Crea recibo de ventas a partir de un recibo de compras"
+msgstr "Crea recibo de ventas a partir de un recibo de compras"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_expediente:acp_contrato_bufete.view_genera_expediente_bu
+msgid "Creación de Expedientes"
+msgstr "Creación de Expedientes"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_recibo:acp_contrato_bufete.view_genera_recibo_bu
+msgid "Creación de Recibo de Ventas"
+msgstr "Creación de Recibo de Ventas"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_factura:acp_contrato_bufete.view_genera_factura_bu
+msgid "Creación de Çactyra de Ventas"
+msgstr "Creación de Çactyra de Ventas"
+
+#. module: acp_contrato_bufete
+#: view:sale.order:acp_contrato_bufete.view_order_form_expbu
+msgid "Crear Contrato"
+msgstr "Crear Expediente"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: view:acp_contrato.genera_expediente:acp_contrato_bufete.view_genera_expediente_bu
+msgid "Crear Expediente"
+msgstr "Crear Expediente"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_factura:acp_contrato_bufete.view_genera_factura_bu
+msgid "Crear Factura"
+msgstr "Crear Factura"
+
+#. module: acp_contrato_bufete
+#: view:account.invoice:acp_contrato_bufete.view_invoice_supplier_form_expbu
+msgid "Crear Factura de Ventas"
+msgstr "Crear Factura de Ventas"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_recibo:acp_contrato_bufete.view_genera_recibo_bu
+msgid "Crear Recibo"
+msgstr "Crear Recibo"
+
+#. module: acp_contrato_bufete
+#: view:account.voucher:acp_contrato_bufete.view_purchase_receipt_form_expbu
+msgid "Crear Recibo de Ventas"
+msgstr "Crear Recibo de Ventas"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,create_uid:0
+#: field:acp_contrato.contrato_contrario,create_uid:0
+#: field:acp_contrato.contrato_materia,create_uid:0
+#: field:acp_contrato.contrato_procurador,create_uid:0
+#: field:acp_contrato.fase_judicial,create_uid:0
+#: field:acp_contrato.genera_expediente,create_uid:0
+#: field:acp_contrato.genera_factura,create_uid:0
+#: field:acp_contrato.genera_recibo,create_uid:0
+#: field:acp_contrato.materia,create_uid:0
+#: field:acp_contrato.oficina,create_uid:0
+#: field:acp_contrato.organo_legislativo,create_uid:0
+#: field:acp_contrato.partido_judicial,create_uid:0
+#: field:sale.order.line.materia,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,create_date:0
+#: field:acp_contrato.contrato_contrario,create_date:0
+#: field:acp_contrato.contrato_materia,create_date:0
+#: field:acp_contrato.contrato_procurador,create_date:0
+#: field:acp_contrato.fase_judicial,create_date:0
+#: field:acp_contrato.genera_expediente,create_date:0
+#: field:acp_contrato.genera_factura,create_date:0
+#: field:acp_contrato.genera_recibo,create_date:0
+#: field:acp_contrato.materia,create_date:0
+#: field:acp_contrato.oficina,create_date:0
+#: field:acp_contrato.organo_legislativo,create_date:0
+#: field:acp_contrato.partido_judicial,create_date:0
+#: field:sale.order.line.materia,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.genera_recibo,account_id:0
+msgid "Cuenta"
+msgstr "Cuenta"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.fase_judicial,descripcion:0
+#: field:acp_contrato.materia,descripcion:0
+#: field:acp_contrato.oficina,descripcion:0
+#: field:acp_contrato.organo_legislativo,descripcion:0
+#: field:acp_contrato.partido_judicial,descripcion:0
+msgid "Descripcion"
+msgstr "Descripcion"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Descripción"
+msgstr "Descripción"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,email:0
+#: field:acp_contrato.contrato_contrario,email:0
+#: field:acp_contrato.contrato_procurador,email:0
+msgid "Email"
+msgstr "Email"
+
+#. module: acp_contrato_bufete
+#: view:account.voucher:acp_contrato_bufete.view_purchase_receipt_form_expbu
+#: view:account.voucher:acp_contrato_bufete.view_sale_receipt_form_expbu
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: field:acp_contrato.contrato_abogado,contrato_id:0
+#: field:acp_contrato.contrato_contrario,contrato_id:0
+#: field:acp_contrato.contrato_materia,contrato_id:0
+#: field:acp_contrato.contrato_procurador,contrato_id:0
+#: field:acp_contrato.genera_expediente,contrato_id:0
+msgid "Expediente"
+msgstr "Expediente"
+
+#. module: acp_contrato_bufete
+#: model:ir.ui.menu,name:acp_contrato_bufete.menu_acp_contrato_contrato_tree_iguala
+msgid "Expedientes Iguala"
+msgstr "Expedientes Iguala"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.genera_factura,invoice_id:0
+msgid "Factura Compra"
+msgstr "Factura Compra"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_facturacion
+msgid "Facturacion de contratos"
+msgstr "Facturacion de expedientes"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.tarea:acp_contrato_bufete.view_acp_contrato_tarea_form_bu
+msgid "Facturar"
+msgstr "Facturar"
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/sale_order.py:56
+#: code:addons/acp_contrato_bufete/sale_order.py:61
+#, python-format
+msgid "Faltan datos"
+msgstr "Faltan datos"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,fase_judicial_id:0
+#: field:acp_contrato.genera_expediente,fase_judicial_id:0
+msgid "Fase Judicial"
+msgstr "Fase Judicial"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_fase_judicial
+msgid "Fases Judiciales de contratos"
+msgstr "Fases Judiciales de contratos"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,fax:0
+#: field:acp_contrato.contrato_contrario,fax:0
+#: field:acp_contrato.contrato_procurador,fax:0
+msgid "Fax"
+msgstr "Fax"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,fecha_cierre:0
+msgid "Fecha Cierre"
+msgstr "Fecha Cierre"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_expediente:acp_contrato_bufete.view_genera_expediente_bu
+msgid "Genera Expediente"
+msgstr "Genera Expediente"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_factura:acp_contrato_bufete.view_genera_factura_bu
+msgid "Genera Factura Ventas"
+msgstr "Genera Factura Ventas"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_recibo:acp_contrato_bufete.view_genera_recibo_bu
+msgid "Genera Recibo de Ventas"
+msgstr "Genera Recibo de Ventas"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_genera_expediente
+msgid "Genera expediente a partir de otro expediente"
+msgstr "Genera expediente a partir de otro expediente"
+
+#. module: acp_contrato_bufete
+#: model:ir.actions.act_window,name:acp_contrato_bufete.action_genera_expediente_bu
+msgid "Generar Expedientes"
+msgstr "Generar Expedientes"
+
+#. module: acp_contrato_bufete
+#: model:ir.actions.act_window,name:acp_contrato_bufete.action_genera_factura_bu
+msgid "Generar Factura Ventas"
+msgstr "Generar Factura Ventas"
+
+#. module: acp_contrato_bufete
+#: model:ir.actions.act_window,name:acp_contrato_bufete.action_genera_recibo_bu
+msgid "Generar Recibo Ventas"
+msgstr "Generar Recibo Ventas"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: field:acp_contrato.contrato_materia,horas:0
+#: field:sale.order.line.materia,horas:0
+msgid "Horas"
+msgstr "Horas"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,id:0
+#: field:acp_contrato.contrato_contrario,id:0
+#: field:acp_contrato.contrato_materia,id:0
+#: field:acp_contrato.contrato_procurador,id:0
+#: field:acp_contrato.fase_judicial,id:0
+#: field:acp_contrato.genera_expediente,id:0
+#: field:acp_contrato.genera_factura,id:0
+#: field:acp_contrato.genera_recibo,id:0
+#: field:acp_contrato.materia,id:0
+#: field:acp_contrato.oficina,id:0
+#: field:acp_contrato.organo_legislativo,id:0
+#: field:acp_contrato.partido_judicial,id:0
+#: field:sale.order.line.materia,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/wizard/genera_ingreso.py:170
+#, python-format
+msgid "Incorrect Data"
+msgstr "Incorrect Data"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.genera_factura,incremento:0
+#: field:acp_contrato.genera_recibo,incremento:0
+msgid "Incremento (%)"
+msgstr "Incremento (%)"
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/sale_order.py:62
+#, python-format
+msgid "Indique el tipo de contrato para poder crear el contrato."
+msgstr "Indique el tipo de contrato para poder crear el contrato."
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/sale_order.py:57
+#, python-format
+msgid "Indique la periodicidad para poder crear el contrato."
+msgstr "Indique la periodicidad para poder crear el contrato."
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.contrato,area:0
+#: selection:acp_contrato.genera_expediente,area:0
+msgid "Judicial"
+msgstr "Judicial"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,write_uid:0
+#: field:acp_contrato.contrato_contrario,write_uid:0
+#: field:acp_contrato.contrato_materia,write_uid:0
+#: field:acp_contrato.contrato_procurador,write_uid:0
+#: field:acp_contrato.fase_judicial,write_uid:0
+#: field:acp_contrato.genera_expediente,write_uid:0
+#: field:acp_contrato.genera_factura,write_uid:0
+#: field:acp_contrato.genera_recibo,write_uid:0
+#: field:acp_contrato.materia,write_uid:0
+#: field:acp_contrato.oficina,write_uid:0
+#: field:acp_contrato.organo_legislativo,write_uid:0
+#: field:acp_contrato.partido_judicial,write_uid:0
+#: field:sale.order.line.materia,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,write_date:0
+#: field:acp_contrato.contrato_contrario,write_date:0
+#: field:acp_contrato.contrato_materia,write_date:0
+#: field:acp_contrato.contrato_procurador,write_date:0
+#: field:acp_contrato.fase_judicial,write_date:0
+#: field:acp_contrato.genera_expediente,write_date:0
+#: field:acp_contrato.genera_factura,write_date:0
+#: field:acp_contrato.genera_recibo,write_date:0
+#: field:acp_contrato.materia,write_date:0
+#: field:acp_contrato.oficina,write_date:0
+#: field:acp_contrato.organo_legislativo,write_date:0
+#: field:acp_contrato.partido_judicial,write_date:0
+#: field:sale.order.line.materia,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: acp_contrato_bufete
+#: field:sale.order.line.materia,line_id:0
+msgid "Linea Pedido Venta"
+msgstr "Linea Pedido Venta"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: field:acp_contrato.contrato,materia_id:0
+#: field:acp_contrato.contrato_materia,materia_id:0
+#: field:acp_contrato.genera_expediente,materia_id:0
+#: field:sale.order.line.materia,materia_id:0
+msgid "Materia"
+msgstr "Materia"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: view:acp_contrato.servicio:acp_contrato_bufete.view_acp_contrato_servicio_form_bu
+msgid "Materiales"
+msgstr "Materiales"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.tarea:acp_contrato_bufete.view_acp_contrato_tarea_form_bu
+msgid "Materiales o Mano de Obrade la Tarea"
+msgstr "Materiales o Mano de Obrade la Tarea"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: field:acp_contrato.contrato,contrato_materia_ids:0
+#: view:sale.order:acp_contrato_bufete.view_order_form_expbu
+msgid "Materias"
+msgstr "Materias"
+
+#. module: acp_contrato_bufete
+#: field:sale.order.line,line_materia_ids:0
+msgid "Materias Pedidos Ventas"
+msgstr "Materias Pedidos Ventas"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_materia
+msgid "Materias de contratos"
+msgstr "Materias de expedientes"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_contrato_materia
+msgid "Materias de expedientes de iguala"
+msgstr "Materias de expedientes de iguala"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_sale_order_line_materia
+msgid "Materias lineas de pedidos de venta"
+msgstr "Materias lineas de pedidos de venta"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.contrato,area:0
+#: selection:acp_contrato.genera_expediente,area:0
+msgid "Mercantil"
+msgstr "Mercantil"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,mobile:0
+#: field:acp_contrato.contrato_contrario,mobile:0
+#: field:acp_contrato.contrato_procurador,mobile:0
+msgid "Movil"
+msgstr "Movil"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.tarea,seguimiento:0
+msgid "NA Minutada"
+msgstr "NA Minutada"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.tarea,seguimiento:0
+msgid "NA Tramitada"
+msgstr "NA Tramitada"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.tarea,seguimiento:0
+msgid "No Facturable"
+msgstr "No Facturable"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_contrario,name:0
+#: field:acp_contrato.fase_judicial,name:0
+#: field:acp_contrato.materia,name:0
+#: field:acp_contrato.oficina,name:0
+#: field:acp_contrato.organo_legislativo,name:0
+#: field:acp_contrato.partido_judicial,name:0
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,nota_interna:0
+msgid "Nota Interna"
+msgstr "Nota Interna"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Notas Internas"
+msgstr "Notas Internas"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Nuevo Recibo"
+msgstr "Nuevo Recibo"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,numero_auto:0
+msgid "Número Autos"
+msgstr "Número Autos"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,oficina_id:0
+#: field:acp_contrato.genera_expediente,oficina_id:0
+msgid "Oficina"
+msgstr "Oficina"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_oficina
+msgid "Oficinas de contratos"
+msgstr "Oficinas de expedientes"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,organo_legislativo_id:0
+#: field:acp_contrato.genera_expediente,organo_legislativo_id:0
+msgid "Organo Legislativo"
+msgstr "Organo Legislativo"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_organo_legislativo
+msgid "Organo Legislativo de contratos"
+msgstr "Organo Legislativo de expedientes"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_procurador,partidos_judiciales:0
+#: field:res.partner,partidos_judiciales:0
+msgid "Partidos Judiciales"
+msgstr "Partidos Judiciales"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_partido_judicial
+msgid "Partidos Judicials"
+msgstr "Partidos Judicials"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.tarea,seguimiento:0
+msgid "Pendiente"
+msgstr "Pendiente"
+
+#. module: acp_contrato_bufete
+#: help:acp_contrato.fase_judicial,active:0
+#: help:acp_contrato.materia,active:0
+#: help:acp_contrato.oficina,active:0
+#: help:acp_contrato.organo_legislativo,active:0
+msgid "Permite ocultar este registro sin eliminarlo."
+msgstr "Permite ocultar este registro sin eliminarlo."
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,contrato_plantilla:0
+msgid "Plantilla"
+msgstr "Plantilla"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.tarea:acp_contrato_bufete.view_acp_contrato_tarea_form_bu
+msgid "Precio"
+msgstr "Precio"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.tarea,seguimiento:0
+msgid "Presupuesto Desestimado"
+msgstr "Presupuesto Desestimado"
+
+#. module: acp_contrato_bufete
+#: selection:acp_contrato.tarea,seguimiento:0
+msgid "Presupuesto Estimado"
+msgstr "Presupuesto Estimado"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_procurador,procurador_id:0
+#: field:res.partner,procurador:0
+msgid "Procurador"
+msgstr "Procurador"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: field:acp_contrato.contrato,procurador_ids:0
+msgid "Procuradores"
+msgstr "Procuradores"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_contrato_procurador
+msgid "Procuradores de los contratos"
+msgstr "Procuradores de los contratos"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_contrato_producto
+msgid "Productos del contrato de mantenimientor"
+msgstr "Productos del contrato de mantenimientor"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_servicio_producto
+msgid "Productos del servicio"
+msgstr "Productos del servicio"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.partido_judicial,state_id:0
+msgid "Provincia"
+msgstr "Provincia"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.genera_recibo,voucher_id:0
+msgid "Recibo Compra"
+msgstr "Recibo Compra"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Recibos"
+msgstr "Recibos"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,voucher_line_purchase:0
+msgid "Recibos de Compras"
+msgstr "Recibos de Compras"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,voucher_line_sale:0
+msgid "Recibos de Ventas"
+msgstr "Recibos de Ventas"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.genera_recibo,reference:0
+msgid "Ref #"
+msgstr "Ref #"
+
+#. module: acp_contrato_bufete
+#: view:sale.order:acp_contrato_bufete.view_order_form_expbu
+msgid "Referencia Expediente"
+msgstr "Referencia Expediente"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_contrato_relacionado
+msgid "Relacion de contratos"
+msgstr "Relacion de expedientes"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.tarea,resultado:0
+msgid "Resultado"
+msgstr "Resultado"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.tarea,seguimiento:0
+msgid "Seguimiento"
+msgstr "Seguimiento"
+
+#. module: acp_contrato_bufete
+#: field:account.voucher,dft_servicio_id:0
+#: field:account.voucher.line,servicio_id:0
+msgid "Servicio"
+msgstr "Servicio"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_servicio
+msgid "Servicios de Contratos"
+msgstr "Servicios de Expediente"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_acp_contrato_tarea
+msgid "Tareas de los servicios"
+msgstr "Tareas de los servicios"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_contrario,phone:0
+msgid "Telefono"
+msgstr "Telefono"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato_abogado,phone:0
+#: field:acp_contrato.contrato_procurador,phone:0
+msgid "Teléfono"
+msgstr "Teléfono"
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/wizard/genera_ingreso.py:171
+#, python-format
+msgid "The value of Advance Amount must be positive."
+msgstr "The value of Advance Amount must be positive."
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/wizard/genera_ingreso.py:159
+#, python-format
+msgid "There is no income account defined as global property."
+msgstr "There is no income account defined as global property."
+
+#. module: acp_contrato_bufete
+#: code:addons/acp_contrato_bufete/wizard/genera_ingreso.py:163
+#, python-format
+msgid "There is no income account defined for this product: \"%s\" (id:%d)."
+msgstr "There is no income account defined for this product: \"%s\" (id:%d)."
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.tarea:acp_contrato_bufete.view_acp_contrato_tarea_form_bu
+msgid "Tiempo/Cantidad"
+msgstr "Tiempo/Cantidad"
+
+#. module: acp_contrato_bufete
+#: view:sale.order:acp_contrato_bufete.view_order_form_expbu
+msgid "Tipo Expediente"
+msgstr "Tipo Expediente"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.genera_expediente,tipo_contrato:0
+msgid "Tipo de contrato"
+msgstr "Tipo de expedientes"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+#: view:sale.order:acp_contrato_bufete.view_order_form_expbu
+msgid "Total"
+msgstr "Total"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Total Horas"
+msgstr "Total Horas"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.contrato:acp_contrato_bufete.view_acp_contrato_contrato_form_bu
+msgid "Ver Recibo"
+msgstr "Ver Recibo"
+
+#. module: acp_contrato_bufete
+#: model:ir.model,name:acp_contrato_bufete.model_account_voucher_line
+msgid "Voucher Lines"
+msgstr "Líneas de comprobante"
+
+#. module: acp_contrato_bufete
+#: field:account.voucher,website_message_ids:0
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: acp_contrato_bufete
+#: help:account.voucher,website_message_ids:0
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: acp_contrato_bufete
+#: view:acp_contrato.genera_expediente:acp_contrato_bufete.view_genera_expediente_bu
+#: view:acp_contrato.genera_factura:acp_contrato_bufete.view_genera_factura_bu
+#: view:acp_contrato.genera_recibo:acp_contrato_bufete.view_genera_recibo_bu
+msgid "_Cancel"
+msgstr "_Cancel"
+
+#. module: acp_contrato_bufete
+#: field:acp_contrato.contrato,area:0
+#: field:acp_contrato.genera_expediente,area:0
+msgid "Área"
+msgstr "Área"
+

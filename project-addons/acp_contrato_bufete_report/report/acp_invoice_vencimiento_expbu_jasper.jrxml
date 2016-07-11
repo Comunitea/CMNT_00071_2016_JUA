@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="acp_invoice_vencimiento_expbu_jasper" language="groovy" pageWidth="140" pageHeight="15" columnWidth="140" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="4.177248169415656"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;move_id/line_id&apos;]"/>
+	<parameter name="FACTURA" class="java.lang.String"/>
+	<parameter name="REWIND" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="Fecha_vencimiento-date_maturity" class="java.util.Date">
+		<fieldDescription><![CDATA[Asiento_contable-move_id/Asientos-line_id/Fecha_vencimiento-date_maturity]]></fieldDescription>
+	</field>
+	<field name="Debe-debit" class="java.lang.Double">
+		<fieldDescription><![CDATA[Asiento_contable-move_id/Asientos-line_id/Debe-debit]]></fieldDescription>
+	</field>
+	<field name="Simbolo-symbol" class="java.lang.String">
+		<fieldDescription><![CDATA[Divisa-currency_id/Simbolo-symbol]]></fieldDescription>
+	</field>
+	<sortField name="Fecha_vencimiento-date_maturity"/>
+	<filterExpression><![CDATA[$F{id} == $P{FACTURA} &&
+$F{Fecha_vencimiento-date_maturity} != null &&
+$F{Debe-debit} != null]]></filterExpression>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="73" y="0" width="65" height="15" backcolor="#FFFFFF"/>
+				<box topPadding="1" rightPadding="5">
+					<leftPen lineWidth="0.0" lineColor="#BFBFBF"/>
+					<rightPen lineWidth="0.25" lineColor="#BFBFBF"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Debe-debit} ? new DecimalFormat("0.00").format($F{Debe-debit}) + " " + $F{Simbolo-symbol} : $F{Debe-debit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="0" y="0" width="73" height="15" backcolor="#FFFFFF"/>
+				<box topPadding="1" leftPadding="0"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha_vencimiento-date_maturity}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

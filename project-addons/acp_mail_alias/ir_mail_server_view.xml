@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_mail_server_form_acp1">
+            <field name="name">view.base.ir_mail_server_form.acp1</field>
+            <field name="model">ir.mail_server</field>
+            <field name="inherit_id" ref="base.ir_mail_server_form"/>
+		        <field name="arch" type="xml">
+
+		
+		            <field name="name" position="after">
+		                 	<field name="company_id" widget="selection" groups="base.group_multi_company"/>
+		            </field>            
+		        </field>
+		    </record>
+
+  
+  </data>
+</openerp>
+
+

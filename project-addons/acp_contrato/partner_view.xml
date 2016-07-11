@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         Partners Extension
+    -->
+    <record id="acp_contrato_view_partner_form_contrato1" model="ir.ui.view">
+      <field name="name">acp_contrato.view.partner.form.contrato1</field>
+      <field name="model">res.partner</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/notebook/page/group/group/field[@name='supplier']" position="after">
+          <field name="operario"/>
+        </xpath> 
+        <field name="email" position="after">
+           <button icon="terp-mail-message-new" name="action_partner_send" string="email" type="object"  />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

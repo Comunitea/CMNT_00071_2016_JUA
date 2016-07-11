@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <!--Entrada en menu portal-->
+    <menuitem name="Contratos" id="menu_acp_contrato_contrato_portal" parent="portal.portal_menu" sequence="25" />
+    <!-- Accion llamada contratos portal-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_contrato_portal">
+      <field name="name">Contratos</field>
+      <field name="res_model">acp_contrato.contrato</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_contrato_tree" />
+      <field name="domain">[('tipo_contrato','!=','Iguala')]</field>
+      <!--<field name="context"></field>-->
+    </record>
+    <!--Entrada en menu contratos-->
+    <menuitem name="Contratos" id="menu_acp_contrato_contrato_portal_tree" action="action_acp_contrato_contrato_portal" parent="menu_acp_contrato_contrato_portal" sequence="10" />
+    <!-- Accion llamada contratos iguala portal-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_contrato_iguala_portal">
+      <field name="name">Igualas</field>
+      <field name="res_model">acp_contrato.contrato</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_contrato_tree" />
+      <field name="domain">[('tipo_contrato','=','Iguala')]</field>
+      <!--<field name="context"></field>-->
+    </record>
+    <!--Entrada en menu contratos-->
+    <menuitem name="Plantillas" id="menu_acp_contrato_contrato_iguala_portal_tree" action="action_acp_contrato_contrato_iguala_portal" parent="menu_acp_contrato_contrato_portal" sequence="20" />
+    <!-- Accion llamada tarea portal-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_tarea_portal">
+      <field name="name">Tareas</field>
+      <field name="res_model">acp_contrato.tarea</field>
+      <field name="view_type">form</field>
+      <field name="context">{}</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_tarea_tree" />
+    </record>
+    <!--Entrada en menu tarea-->
+    <menuitem name="Tareas" id="menu_acp_contrato_tarea_portal_tree" action="action_acp_contrato_tarea_portal" parent="menu_acp_contrato_contrato_portal" sequence="25" />
+    <!--restringir acceso a contratos para portal de clientes-->
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_form_portal">
+      <field name="name">acp_contrato.contrato.form.portal</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_contrato_form" />
+      <field name="type">form</field>
+      <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="attributes">
+          <attribute name="edit">false</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+        <button id="attachment_count_button" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </button>
+        <field name="total_trabajado" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="total_facturado" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="total_coste" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <group id="atencion" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </group>
+        <button name="action_contrato_send" position="replace">
+          <button name="action_contrato_send" string="Enviar por email" type="object" class="oe_highlight" invisible="1" />
+        </button>
+        <button name="wkf_start" position="replace">
+          <button name="wkf_start" string="Reabrir" type="object" states="cancel" invisible="1" />
+        </button>
+        <button name="wkf_set_confirmed" position="replace">
+          <button name="wkf_set_confirmed" string="Confirmar" type="object" invisible="1" />
+        </button>
+        <button name="wkf_set_done" position="replace">
+          <button name="wkf_set_done" string="Finalizar" type="object" class="oe_highlight" invisible="1" />
+        </button>
+        <button name="wkf_set_ignore_exception" position="replace">
+          <button name="wkf_set_ignore_exception" string="Ignorar Excepciones" type="object" class="oe_highlight" invisible="1" />
+        </button>
+        <button name="wkf_set_reopen_done" position="replace">
+          <button name="wkf_set_reopen_done" string="Reabrir" type="object" invisible="1" />
+        </button>
+        <button name="wkf_set_cancel" position="replace">
+          <button name="wkf_set_cancel" string="Anular" type="object" invisible="1" />
+        </button>
+        <page id="Servicios" position="replace">
+          <page string="Historico" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+            <button name="new_tarea_portal" string="Nuevo mensaje" type="object" icon="gtk-add" />
+            <group>
+              <field mode="tree" readonly="1" colspan="4" name="tarea_lineas" nolabel="1" select="1" context="{'default_servicio_id':id}">
+                <tree string="Tareas" colors="green:hours_to_act&gt;8;orange:hours_to_act&gt;0;red:hours_to_act&lt;=0">
+                  <field name="hours_to_act" invisible="1" />
+                  <field name="fecha" />
+                  <field name="actividad_id" />
+                  <field name="fecha_limite" />
+                  <field name="detalle" />
+                  <field name="user_seg_id" />
+                  <field name="state" />
+                </tree>
+              </field>
+            </group>
+            <group>
+              <button type="action" string="Ver en formato para exportar a excel" id="show_tareas_portal" name="%(acp_contrato.action_acp_contrato_tarea_portal)d" domain="[('contrato_id','=', active_id)]" context="{'search_default_contrato_id': active_id}" />
+            </group>
+          </page>
+        </page>
+        <page string="Gastos" position="replace" />
+        <page string="Ingresos" position="replace" />
+        <page string="Resumen" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </page>
+        <page string="Resumen" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </page>
+        <field name="partner_id" position="attributes">
+          <attribute name="options">{'no_open': True}</attribute>
+        </field>
+        <field name="partner_direccion_id" position="attributes">
+          <attribute name="options">{'no_open': True}</attribute>
+        </field>
+        <field name="partner_factura_id" position="attributes">
+          <attribute name="options">{'no_open': True}</attribute>
+        </field>
+        <field name="partner_factura_id" position="attributes">
+          <attribute name="options">{'no_open': True}</attribute>
+        </field>
+        <field name="materia_id" position="attributes">
+          <attribute name="options">{'no_open': True}</attribute>
+        </field>
+        <h2 id="horastrabajadas1" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </h2>
+        <h2 id="horastrabajadas2" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </h2>
+        <field name="user_id" position="attributes">
+          <attribute name="options">{'no_open': True}</attribute>
+        </field>
+        <div class="oe_chatter" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </div>
+      </field>
+    </record>
+    <!--restringir acceso a tareas para portal de clientes-->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_form_portal">
+      <field name="name">acp_contrato.tarea.form.portal</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_tarea_form" />
+      <field name="type">form</field>
+      <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="attributes">
+          <attribute name="edit">false</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+        <field name="nota_facturacion" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="servicio_id" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="nota_facturacion" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="mostrar_en_resumen" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="especial_atencion" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="enviar_mensaje" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <field name="create_note" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <div class="oe_chatter" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </div>
+        <button icon="gtk-apply" name="close_act" position="replace" />
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_tree_portal">
+      <field name="name">acp_contrato.tarea.tree.portal</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_tarea_tree" />
+      <field name="type">form</field>
+      <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="attributes">
+          <attribute name="edit">false</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+        <field name="user_seg_id" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </field>
+        <button icon="gtk-apply" name="close_act" position="replace" />
+      </field>
+    </record>
+  </data>
+</openerp>

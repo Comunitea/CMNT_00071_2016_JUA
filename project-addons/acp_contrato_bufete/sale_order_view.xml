@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_order_form_expbu">
+      <field name="name">sale.order.form.expbu</field>
+      <field name="model">sale.order</field>
+      <field name="priority">31</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='tipo_servicio']" position="replace"/>
+        <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='perioricidad_servicio']" position="replace"/>
+        <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/tree[@string='Sales Order Lines']/field[@name='tipo_servicio']" position="replace"/>
+        <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/tree[@string='Sales Order Lines']/field[@name='perioricidad_servicio']" position="replace"/>
+        <field name="referencia" position = "replace"/>
+        <field name="date_order" position = "after">
+          <field name="fecha_falidez" attrs="{'readonly': [('state','not in',['draft','sent'])]}"/>
+        </field>
+        <field name="tipo_contrato" position = "replace"/>
+        <field name="dft_contrato_id" position = "before">
+          <field name="tipo_contrato" attrs="{'readonly': [('state','not in',['draft','sent'])]}" widget="selection" string="Tipo Expediente" required="1" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>              
+          <field name="referencia" attrs="{'readonly': [('state','not in',['draft','sent'])]}" string="Referencia Expediente" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>              
+        </field>    
+        <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
+          <page string='Materias'>
+            <field name="line_materia_ids" attrs="{'readonly': [('state','not in',['draft','sent'])]}" colspan="4" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user">
+              <tree string="Materias" editable="top">
+                <field name="line_id" invisible="1"/>
+                <field name="materia_id" />
+                <field name="horas" sum="Total"/>
+              </tree>
+            </field>
+          </page>
+        </xpath>
+        <button name="crea_contrato" position = "replace">
+            <button name="crea_contrato_bufete" string="Crear Contrato" type="object" states="manual,progress" class="oe_highlight" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
+        </button>
+
+
+        <field name="perioricidad" position="replace"/>
+        <page string="Other Information" groups="base.group_user" position="after">
+            <page string="Información expediente general" groups="base.group_user">
+                <group>
+                    <field name="materia_id" />
+                    <field name="horas" />
+                    <field name="descripcion_lineas" colspan="4" />
+                </group>
+            </page>
+            <page string="Información expediente iguala" groups="base.group_user">
+                <group>
+                    <field name="riesgo_operacional" />
+                    <field name="meses_contratado" />
+                    <field name="perioricidad" string="Perioricidad de facturacion"/>
+                    <field name="descripcion_iguala" colspan="4" />
+                </group>
+            </page>            
+        </page>        
+        
+      </field>
+    </record>
+  </data>
+</openerp>
+
+
+
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="account_invoice_line_refactura_tree_view">
+      <field name="name">account.invoice.line.refactura.tree</field>
+      <field name="model">account.invoice.line</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Refacturar gastos" edit="1" create="0" delete="0" editable="bottom">
+          <field name="product_id" readonly="1" />
+          <field name="invoice_id" readonly="1" />
+          <field name="partner_id" readonly="1" string="Proveedor"/>
+          <field name="contrato_id" readonly="1" />
+          <field name="servicio_id" readonly="1" />
+          <field name="name" readonly="1" />
+          <field name="quantity" readonly="1" />
+          <field name="price_unit" readonly="1" />
+          <field name="discount" readonly="1" groups="sale.group_discount_per_so_line" />
+          <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+          <field name="price_subtotal" readonly="1" />
+          <field name="sale_invoice" />
+          <field name="sale_invoice_line_id" invisible="1" readonly="1" />
+        </tree>
+      </field>
+    </record>
+    <!-- accion -->
+    <record model="ir.actions.act_window" id="action_account_invoice_line_refactura_tree">
+      <field name="name">Refacturar gastos</field>
+      <field name="res_model">account.invoice.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="account_invoice_line_refactura_tree_view" />
+      <field name="domain">[('invoice_id.state','in',['open','paid']),('invoice_id.type','=','in_invoice'),('sale_invoice_line_id','=',False),('sale_invoice','=',True),('contrato_id','!=',False)]</field>
+      <!--<field name="context">{"search_default_encurso":1}</field>-->
+    </record>
+    <!-- Entrada en menu refacturar gastos  -->
+    <menuitem name="Refacturar gastos" id="menu_account_invoice_line_refactura_tree" action="action_account_invoice_line_refactura_tree" parent="contratos_fact" sequence="20" />
+ 
+    <!-- Wizard refacturar gastos-->
+    <record id="view_acp_refacturar_gasto" model="ir.ui.view">
+      <field name="name">Generar Facturas</field>
+      <field name="model">acp_contrato.refacturar_gasto</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Crear Facturas de Servicio">
+          <separator colspan="4" string="Do you really want to create the invoice(s)?" />
+          <group>
+            <field name="agrupar" />
+            <field name="diario_id" widget="selection" domain="[('type','=','sale')]"/>
+            <field name="fecha_factura" />
+          </group>
+          <footer>
+            <button name="action_create_invoice" string="Generar Facturas" type="object" class="oe_highlight" />
+            or
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+    <!-- Accion refacturar gastos-->
+    <record id="action_acp_refacturar_gasto" model="ir.actions.act_window">
+      <field name="name">Generar Facturas</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">acp_contrato.refacturar_gasto</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_acp_refacturar_gasto" />
+      <field name="target">new</field>
+      <field name="multi">True</field>
+    </record>
+    <record model="ir.values" id="acp_refacturar_gasto">
+      <field name="name">Generar Facturas</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' + str(ref('action_acp_refacturar_gasto'))" />
+      <field name="key">action</field>
+      <field name="model">account.invoice.line</field>
+    </record>
+ 
+ 
+ 
+  </data>
+</openerp>

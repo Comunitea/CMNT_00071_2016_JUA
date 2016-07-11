@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Purchase Extension
+        -->
+
+        <record id="view_purchase_order_line_tree_acp_exp1" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree.acp_exp1</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after" >
+                     <field name="contrato_id" />
+                     <field name="servicio_id" />
+                     <field name="date_order" />
+                     <field name="partner_ref" />
+                     
+                     
+                     
+                </field>
+            </field>
+        </record>
+ 
+        <record id="view_purchase_order_line_search_acp_exp1" model="ir.ui.view">
+            <field name="name">purchase.order.line.search.acp_exp1</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after" >
+                     <field name="contrato_id" />
+                     <field name="servicio_id" />
+                     <field name="date_order" />
+                     
+                </field>
+            </field>
+        </record> 
+	
+ 
+
+	 
+    </data>    
+</openerp>

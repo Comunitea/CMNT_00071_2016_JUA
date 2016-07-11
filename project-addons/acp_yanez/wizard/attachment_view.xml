@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_acp_yanez_import" model="ir.ui.view">
+            <field name="name">Importar Archivo</field>
+            <field name="model">acp_yanez.import</field>
+            <field name="arch" type="xml">
+                <form string="Import Translation">
+                    <group>
+                        <field name="tipo" invisible="1"/>
+                        <field name="name" />
+                            <field name="data" filename="data_fname" />
+                            <field name="data_fname" invisible="1" class="oe_inline oe_right"/>
+                    </group>
+                    <footer>
+                        <button name="upload_file" string="Finalizar y volver al pedido" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_acp_yanez_import" model="ir.actions.act_window">
+            <field name="name">Importar Archivo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">acp_yanez.import</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+    </data>
+</openerp>

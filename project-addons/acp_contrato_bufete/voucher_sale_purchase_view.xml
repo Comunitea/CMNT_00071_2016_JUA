@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_sale_receipt_form_expbu">
+            <field name="name">account.voucher.sale.form.expbu</field>
+            <field name="model">account.voucher</field>
+            <field name="priority">30</field>
+            <field name="inherit_id" ref="account_voucher.view_sale_receipt_form"/>
+            <field name="arch" type="xml">
+                <field name="line_cr_ids" position = "attributes">
+                    <attribute name = "context">"{'journal_id':journal_id, 'type':type, 'partner_id':partner_id,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
+                </field>
+                <xpath expr="//sheet/group/group/field[@name='name']" position="after">
+                    <field name="dft_contrato_id" invisible="0" string="Expediente"/>
+                    <field name="dft_servicio_id" invisible="0"/>
+                </xpath>
+                <xpath expr="//page[@string='Sales Information']/field/tree/field[@name='name']" position="after">
+                    <field  name="contrato_id"  string="Expediente"/>
+                    <field  name="servicio_id" domain="[('contrato_id','=',contrato_id)]" />
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_purchase_receipt_form_expbu">
+            <field name="name">account.voucher.purchase.form.expbu</field>
+            <field name="model">account.voucher</field>
+            <field name="priority">30</field>
+            <field name="inherit_id" ref="account_voucher.view_purchase_receipt_form"/>
+            <field name="arch" type="xml">
+                <button name="action_cancel_draft" position="after">
+                  <button name="action_genera_recibo" string="Crear Recibo de Ventas" type="object"/>
+                </button>           
+                <field name="line_dr_ids" position = "attributes">
+                    <attribute name = "context">"{'journal_id':journal_id, 'type':type, 'partner_id':partner_id,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
+                </field>
+                <xpath expr="//sheet/group/group/field[@name='journal_id']" position="after">
+                    <field name="dft_contrato_id" invisible="0" string="Expediente"/>
+                    <field name="dft_servicio_id" invisible="0" domain="[('contrato_id','=',dft_contrato_id)]"/>
+                </xpath>
+                <xpath expr="//page[@string='Bill Information']/field/tree/field[@name='name']" position="after">
+                    <field  name="contrato_id"  string="Expediente"/>
+                    <field  name="servicio_id" domain="[('contrato_id','=',contrato_id)]" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

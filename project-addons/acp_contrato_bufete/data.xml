@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+    <!-- 
+         TIPOS DE CONTRATOS BUFETE
+    -->
+    <record id="iguala" model="acp_contrato.tipo_contrato">
+      <field name="name">Iguala</field>
+      <field name="descripcion">Iguala</field>
+    </record>
+    <record id="general" model="acp_contrato.tipo_contrato">
+      <field name="name">General</field>
+      <field name="descripcion">General</field>
+    </record>
+    
+    <record id="subexpediente" model="acp_contrato.tipo_contrato">
+      <field name="name">Sub-expediente</field>
+      <field name="descripcion">Sub-expediente</field>
+    </record>
+        
+    <!-- 
+         TIPOS DE SERVICIOS BUFETE
+    -->
+    <record id="ges_admin_bufete" model="acp_contrato.tipo_servicio">
+      <field name="name">Gestiones Administrativas</field>
+      <field name="descripcion">Gestiones Administrativas</field>
+    </record>
+    <record id="act_prof_bufete" model="acp_contrato.tipo_servicio">
+      <field name="name">Actuaciones Profesionales</field>
+      <field name="descripcion">Actuaciones Profesionales</field>
+    </record>    
+    <!-- 
+         ACTIVIDADES BUFETE
+    -->
+    <record id="ACT_MENSAJE_DE_CLIENTE" model="acp_contrato.actividad">
+      <field name="code">ACT MENSAJE DE CLIENTE</field>
+      <field name="name">Mensaje recibido del cliente</field>
+      <field name="estado_inicial">open</field>
+      <field name="tipo">otro</field>
+      <field name="horas">0</field>
+      <field name="bloquear_servicio" eval="False" />
+      <field name="bloquear_contrato" eval="False" />
+      <field name="especial_atencion" eval="False" />
+      <field name="enviar_mensaje" eval="False" />
+      <field name="cerrar_automaticamente" eval="True" />
+      <field name="mostrar_en_resumen" eval="False" />
+      <field name="active" eval="True" />
+    </record>    
+    <record id="ACT_ACTUACION_FACTURABLE" model="acp_contrato.actividad">
+      <field name="code">ACTUACION FACTURABLE</field>
+      <field name="name">Actuación Facturable por Horas</field>
+      <field name="estado_inicial">open</field>
+      <field name="tipo">material</field>
+      <field name="horas">0</field>
+      <field name="bloquear_servicio" eval="False" />
+      <field name="bloquear_contrato" eval="False" />
+      <field name="especial_atencion" eval="False" />
+      <field name="enviar_mensaje" eval="False" />
+      <field name="cerrar_automaticamente" eval="False" />
+      <field name="mostrar_en_resumen" eval="True" />
+      <field name="active" eval="True" />
+    </record>
+    <record id="ACT_ACTUACION_LIBRE" model="acp_contrato.actividad">
+      <field name="code">ACTUACION LIBRE</field>
+      <field name="name">Actuación Libre</field>
+      <field name="estado_inicial">open</field>
+      <field name="tipo">material</field>
+      <field name="horas">0</field>
+      <field name="bloquear_servicio" eval="False" />
+      <field name="bloquear_contrato" eval="False" />
+      <field name="especial_atencion" eval="False" />
+      <field name="enviar_mensaje" eval="False" />
+      <field name="cerrar_automaticamente" eval="False" />
+      <field name="mostrar_en_resumen" eval="True" />
+      <field name="active" eval="True" />
+    </record>
+    <record id="ACT_ESCRITO_PROCESAL" model="acp_contrato.actividad">
+      <field name="code">ESCRITO PROCESAL</field>
+      <field name="name">Escrito Procesal</field>
+      <field name="estado_inicial">open</field>
+      <field name="tipo">material</field>
+      <field name="horas">0</field>
+      <field name="bloquear_servicio" eval="False" />
+      <field name="bloquear_contrato" eval="False" />
+      <field name="especial_atencion" eval="False" />
+      <field name="enviar_mensaje" eval="False" />
+      <field name="cerrar_automaticamente" eval="False" />
+      <field name="mostrar_en_resumen" eval="True" />
+      <field name="active" eval="True" />
+    </record>
+    <record id="ACT_NOTA_ADMINISTRACION" model="acp_contrato.actividad">
+      <field name="code">NOTA ADMINISTRACION</field>
+      <field name="name">Nota Administracion</field>
+      <field name="estado_inicial">open</field>
+      <field name="tipo">material</field>
+      <field name="horas">0</field>
+      <field name="bloquear_servicio" eval="False" />
+      <field name="bloquear_contrato" eval="False" />
+      <field name="especial_atencion" eval="False" />
+      <field name="enviar_mensaje" eval="False" />
+      <field name="cerrar_automaticamente" eval="False" />
+      <field name="mostrar_en_resumen" eval="True" />
+      <field name="active" eval="True" />
+    </record>
+    <record id="ACT_NOTIFICACION" model="acp_contrato.actividad">
+      <field name="code">NOTIFICACION</field>
+      <field name="name">Notificacion</field>
+      <field name="estado_inicial">open</field>
+      <field name="tipo">material</field>
+      <field name="horas">0</field>
+      <field name="bloquear_servicio" eval="False" />
+      <field name="bloquear_contrato" eval="False" />
+      <field name="especial_atencion" eval="False" />
+      <field name="enviar_mensaje" eval="False" />
+      <field name="cerrar_automaticamente" eval="False" />
+      <field name="mostrar_en_resumen" eval="True" />
+      <field name="active" eval="True" />
+    </record>
+    <record id="ACT_PRESUPUESTO" model="acp_contrato.actividad">
+      <field name="code">PRESUPUESTO</field>
+      <field name="name">Presupuesto</field>
+      <field name="estado_inicial">open</field>
+      <field name="tipo">material</field>
+      <field name="horas">0</field>
+      <field name="bloquear_servicio" eval="False" />
+      <field name="bloquear_contrato" eval="False" />
+      <field name="especial_atencion" eval="False" />
+      <field name="enviar_mensaje" eval="False" />
+      <field name="cerrar_automaticamente" eval="False" />
+      <field name="mostrar_en_resumen" eval="True" />
+      <field name="active" eval="True" />
+    </record>
+    <!-- 
+         MATERIA DE CONTRATOS
+    -->
+    <record id="mat_civil" model="acp_contrato.materia">
+      <field name="name">Civil</field>
+      <field name="descripcion">Civil</field>
+    </record>
+    <record id="mat_mercantil" model="acp_contrato.materia">
+      <field name="name">Mercantil</field>
+      <field name="descripcion">Mercantil</field>
+    </record>
+    <record id="mat_administrativo" model="acp_contrato.materia">
+      <field name="name">Administrativo</field>
+      <field name="descripcion">Administrativo</field>
+    </record>
+    <record id="mat_penal" model="acp_contrato.materia">
+      <field name="name">Penal</field>
+      <field name="descripcion">Penal</field>
+    </record>
+    <record id="mat_laboral" model="acp_contrato.materia">
+      <field name="name">Laboral</field>
+      <field name="descripcion">Laboral</field>
+    </record>
+    <record id="mat_fiscal" model="acp_contrato.materia">
+      <field name="name">Fiscal</field>
+      <field name="descripcion">Fiscal</field>
+    </record>
+    <record id="mat_concursal" model="acp_contrato.materia">
+      <field name="name">Concursal</field>
+      <field name="descripcion">Concursal</field>
+    </record>
+    <!-- 
+         PLANTILLAS DE ENVIO DE EMAIL DESDE partners -al procurador
+    -->
+    <record id="acp_email_template_procurador_intrucciones" model="email.template">
+      <field name="name">Notificar Instrucciones al procurador</field>
+      <field name="email_from">${(object.email or '')|safe}</field>
+      <field name="subject">${object.company_id.name|safe}</field>
+      <field name="partner_to">${object.partner_id.id}</field>
+      <field name="model_id" ref="base.model_res_partner" />
+      <field name="auto_delete" eval="True" />
+      <!--
+           <field name="report_template" ref="report_sale_order"/>
+           <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+      -->
+      <field name="lang">${object.lang}</field>
+      <field name="body_html">
+        <![CDATA[
+                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                 
+                 <p>${object.name},</p>
+                 
+                 <p></p>
+                 
+                 <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+                 <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+                 <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
+                 </div>
+                 <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+                 <span style="color: #222; margin-bottom: 5px; display: block; ">
+                 % if object.company_id.street:
+                 ${object.company_id.street}<br/>
+                 % endif
+                 % if object.company_id.street2:
+                 ${object.company_id.street2}<br/>
+                 % endif
+                 % if object.company_id.city or object.company_id.zip:
+                 ${object.company_id.zip} ${object.company_id.city}<br/>
+                 % endif
+                 % if object.company_id.country_id:
+                 ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
+                 % endif
+                 </span>
+                 % if object.company_id.phone:
+                 <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                 Phone:&nbsp; ${object.company_id.phone}
+                 </div>
+                 % endif
+                 % if object.company_id.website:
+                 <div>
+                 Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
+                 </div>
+                 %endif
+                 <p></p>
+                 </div>
+                 </div>
+        ]]>
+      </field>
+    </record>    
+    <!-- 
+         PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES -APERTURA EXPEDIENTE CLIENTE
+    -->
+    <record id="acp_email_template_aviso_cliente" model="email.template">
+      <field name="name">Notificar al cliente</field>
+      <field name="email_from">${(object.partner_id.email or '')|safe}</field>
+      <field name="subject">${object.company_id.name|safe} Nuevo expediente creado: ${object.name or 'n/a' }</field>
+      <field name="partner_to">${object.partner_id.id}</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato" />
+      <field name="auto_delete" eval="True" />
+      <!--
+           <field name="report_template" ref="report_sale_order"/>
+           <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+      -->
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="body_html">
+        <![CDATA[
+                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                 
+                 <p>${object.partner_id.name},</p>
+                 
+                 <p>Tiene un nuevo expediente: ${object.company_id.name}: </p>
+                 
+                 <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+                 <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+                 <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
+                 </div>
+                 <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+                 <span style="color: #222; margin-bottom: 5px; display: block; ">
+                 % if object.company_id.street:
+                 ${object.company_id.street}<br/>
+                 % endif
+                 % if object.company_id.street2:
+                 ${object.company_id.street2}<br/>
+                 % endif
+                 % if object.company_id.city or object.company_id.zip:
+                 ${object.company_id.zip} ${object.company_id.city}<br/>
+                 % endif
+                 % if object.company_id.country_id:
+                 ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
+                 % endif
+                 </span>
+                 % if object.company_id.phone:
+                 <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                 Phone:&nbsp; ${object.company_id.phone}
+                 </div>
+                 % endif
+                 % if object.company_id.website:
+                 <div>
+                 Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
+                 </div>
+                 %endif
+                 <p></p>
+                 </div>
+                 </div>
+        ]]>
+      </field>
+    </record>
+    <!-- 
+         PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES -CIERRE EXPEDIENTE CLIENTE
+    -->
+    <record id="acp_email_template_aviso_cierre_cliente" model="email.template">
+      <field name="name">Notificar cierre al cliente</field>
+      <field name="email_from">${(object.partner_id.email or '')|safe}</field>
+      <field name="subject">${object.company_id.name|safe} Expediente cerrado: ${object.name or 'n/a' }</field>
+      <field name="partner_to">${object.partner_id.id}</field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato" />
+      <field name="auto_delete" eval="True" />
+      <!--
+           <field name="report_template" ref="report_sale_order"/>
+           <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+      -->
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="body_html">
+        <![CDATA[
+                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                 
+                 <p>${object.partner_id.name},</p>
+                 
+                 <p>Cierre de expediente: ${object.company_id.name}: </p>
+                 
+                 <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+                 <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+                 <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
+                 </div>
+                 <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+                 <span style="color: #222; margin-bottom: 5px; display: block; ">
+                 % if object.company_id.street:
+                 ${object.company_id.street}<br/>
+                 % endif
+                 % if object.company_id.street2:
+                 ${object.company_id.street2}<br/>
+                 % endif
+                 % if object.company_id.city or object.company_id.zip:
+                 ${object.company_id.zip} ${object.company_id.city}<br/>
+                 % endif
+                 % if object.company_id.country_id:
+                 ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
+                 % endif
+                 </span>
+                 % if object.company_id.phone:
+                 <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                 Phone:&nbsp; ${object.company_id.phone}
+                 </div>
+                 % endif
+                 % if object.company_id.website:
+                 <div>
+                 Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
+                 </div>
+                 %endif
+                 <p></p>
+                 </div>
+                 </div>
+        ]]>
+      </field>
+    </record>
+    <!-- 
+         PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES -CIERRE EXPEDIENTE ADMINISTRACION
+    -->
+    <record id="acp_email_template_aviso_cierre_administracion" model="email.template">
+      <field name="name">Notificar cierre a administración</field>
+      <field name="email_from"></field>
+      <field name="subject">${object.company_id.name|safe} Expediente cerrado: ${object.name or 'n/a' }</field>
+      <field name="partner_to"></field>
+      <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato" />
+      <field name="auto_delete" eval="True" />
+      <!--
+           <field name="report_template" ref="report_sale_order"/>
+           <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+      -->
+      <field name="lang">${object.partner_id.lang}</field>
+      <field name="body_html">
+        <![CDATA[
+                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                 
+                 <p>${object.partner_id.name},</p>
+                 
+                 <p>Cierre de expediente: ${object.company_id.name}: </p>
+                 
+                 <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+                 <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+                 <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
+                 </div>
+                 <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+                 <span style="color: #222; margin-bottom: 5px; display: block; ">
+                 % if object.company_id.street:
+                 ${object.company_id.street}<br/>
+                 % endif
+                 % if object.company_id.street2:
+                 ${object.company_id.street2}<br/>
+                 % endif
+                 % if object.company_id.city or object.company_id.zip:
+                 ${object.company_id.zip} ${object.company_id.city}<br/>
+                 % endif
+                 % if object.company_id.country_id:
+                 ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
+                 % endif
+                 </span>
+                 % if object.company_id.phone:
+                 <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                 Phone:&nbsp; ${object.company_id.phone}
+                 </div>
+                 % endif
+                 % if object.company_id.website:
+                 <div>
+                 Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
+                 </div>
+                 %endif
+                 <p></p>
+                 </div>
+                 </div>
+        ]]>
+      </field>
+    </record>
+    
+    <!-- 
+         PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES-ABOGADOS
+    -->
+    <record id="acp_email_template_aviso_abogado" model="email.template">
+      <field name="name">Notificar al Abogado</field>
+      <field name="email_from">${(object.abogado_id.email or '')|safe}</field>
+      <field name="subject">${object.contrato_id.company_id.name|safe} Nuevo expediente Asignado: ${object.contrato_id.name or 'n/a' }</field>
+      <field name="partner_to">${object.abogado_id.id}</field>
+      <field name="model_id" ref="acp_contrato_bufete.model_acp_contrato_contrato_abogado" />
+      <field name="auto_delete" eval="True" />
+      <!--
+           <field name="report_template" ref="report_sale_order"/>
+           <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+      -->
+      <field name="lang">${object.abogado_id.lang}</field>
+      <field name="body_html">
+        <![CDATA[
+                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                 
+                 <p>${object.abogado_id.name},</p>
+                 
+                 <p>Tiene un nuevo expediente: ${object.contrato_id.name}</p>
+                 
+                <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+                 <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+                 <strong style="text-transform:uppercase;">${object.contrato_id.company_id.name}</strong></h3>
+                 </div>
+                 <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+                 <span style="color: #222; margin-bottom: 5px; display: block; ">
+                 % if object.contrato_id.company_id.street:
+                 ${object.contrato_id.company_id.street}<br/>
+                 % endif
+                 % if object.contrato_id.company_id.street2:
+                 ${object.contrato_id.company_id.street2}<br/>
+                 % endif
+                 % if object.contrato_id.company_id.city or object.contrato_id.company_id.zip:
+                 ${object.contrato_id.company_id.zip} ${object.contrato_id.company_id.city}<br/>
+                 % endif
+                 % if object.contrato_id.company_id.country_id:
+                 ${object.contrato_id.company_id.state_id and ('%s, ' % object.contrato_id.company_id.state_id.name) or ''} ${object.contrato_id.company_id.country_id.name or ''}<br/>
+                 % endif
+                 </span>
+                 % if object.contrato_id.company_id.phone:
+                 <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                 Phone:&nbsp; ${object.contrato_id.company_id.phone}
+                 </div>
+                 % endif
+                 % if object.contrato_id.company_id.website:
+                 <div>
+                 Web :&nbsp;<a href="${object.contrato_id.company_id.website}">${object.contrato_id.company_id.website}</a>
+                 </div>
+                 %endif
+                 <p></p>
+                 </div>
+                 </div>
+        ]]>
+      </field>
+    </record> 
+    <!-- 
+         PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES-PRODURADOR
+    -->
+    <record id="acp_email_template_aviso_procurador" model="email.template">
+      <field name="name">Notificar al Procurador</field>
+      <field name="email_from">${(object.procurador_id.email or '')|safe}</field>
+      <field name="subject">${object.contrato_id.company_id.name|safe} Nuevo expediente Asignado: ${object.contrato_id.name or 'n/a' }</field>
+      <field name="partner_to">${object.procurador_id.id}</field>
+      <field name="model_id" ref="acp_contrato_bufete.model_acp_contrato_contrato_procurador" />
+      <field name="auto_delete" eval="True" />
+      <!--
+           <field name="report_template" ref="report_sale_order"/>
+           <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+      -->
+      <field name="lang">${object.procurador_id.lang}</field>
+      <field name="body_html">
+        <![CDATA[
+                 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                 
+                 <p>${object.procurador_id.name},</p>
+                 
+                 <p>Tiene un nuevo expediente: ${object.contrato_id.name} </p>
+                 
+                <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+                 <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+                 <strong style="text-transform:uppercase;">${object.contrato_id.company_id.name}</strong></h3>
+                 </div>
+                 <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+                 <span style="color: #222; margin-bottom: 5px; display: block; ">
+                 % if object.contrato_id.company_id.street:
+                 ${object.contrato_id.company_id.street}<br/>
+                 % endif
+                 % if object.contrato_id.company_id.street2:
+                 ${object.contrato_id.company_id.street2}<br/>
+                 % endif
+                 % if object.contrato_id.company_id.city or object.contrato_id.company_id.zip:
+                 ${object.contrato_id.company_id.zip} ${object.contrato_id.company_id.city}<br/>
+                 % endif
+                 % if object.contrato_id.company_id.country_id:
+                 ${object.contrato_id.company_id.state_id and ('%s, ' % object.contrato_id.company_id.state_id.name) or ''} ${object.contrato_id.company_id.country_id.name or ''}<br/>
+                 % endif
+                 </span>
+                 % if object.contrato_id.company_id.phone:
+                 <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                 Phone:&nbsp; ${object.contrato_id.company_id.phone}
+                 </div>
+                 % endif
+                 % if object.contrato_id.company_id.website:
+                 <div>
+                 Web :&nbsp;<a href="${object.contrato_id.company_id.website}">${object.contrato_id.company_id.website}</a>
+                 </div>
+                 %endif
+                 <p></p>
+                 </div>
+                 </div>
+        ]]>
+      </field>
+    </record> 
+    <!-- 
+         PLANTILLAS DE NVIO DE EMAIL DESDE RES PARTNER
+    -->
+  </data>
+</openerp>

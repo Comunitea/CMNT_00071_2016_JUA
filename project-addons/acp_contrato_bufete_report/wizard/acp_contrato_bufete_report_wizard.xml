@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+        <!-- acp_contrato.bufete.report.wizard form view -->
+        <record model="ir.ui.view" id="acp_contrato_bufete_report_wizard_form_view">
+            <field name="name">acp_contrato.bufete.report.wizard.form</field>
+            <field name="model">acp_contrato.bufete.report.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Seleccione informe">
+                    <group>
+                        <field name="report_model" string="Informe"/>
+                        <group colspan="4" height="50">
+                            <label align="0.0" colspan="2" string="" />
+                            <button colspan="1" special="cancel" icon="gtk-cancel" string="Cancelar"/>
+                            <button colspan="1" type="object" name="action_next" icon="gtk-go-forward" string="Siguiente"/>
+                        </group>
+                    </group>                        
+                </form>
+            </field>
+        </record>
+        
+        <!-- acp_contrato.bufete.report.wizard form view action -->
+        <record id="acp_contrato_bufete_report_wizard_form_action" model="ir.actions.act_window" >
+            <field name="name">Informes Expedientes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">acp_contrato.bufete.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="acp_contrato_bufete_report_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- acp_contrato.bufete.report.wizard  form view action menuitem -->    
+        <menuitem action="acp_contrato_bufete_report_wizard_form_action" id="acp_contrato_bufete_report_wizard_menu" 
+        parent="acp_contrato.contratos" sequence="90" groups="acp_contrato.contratos_user,acp_contrato.contratos_manager"/>
+        
+        
+        
+        <!-- acp_contrato.bufete.horas_letrado.wizard form view -->
+        <record model="ir.ui.view" id="acp_contrato_bufete_horas_letrado_wizard_form_view">
+            <field name="name">acp_contrato.bufete.horas_letrado.wizard.form</field>
+            <field name="model">acp_contrato.bufete.horas_letrado.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Informe Horas Letrados">
+                    <group>
+                        <field name="abogado_id" string="Letrado" domain="[('abogado', '=', True)]"/>
+                        <field name="fecha_desde" string="Desde Fecha"/>
+                        <field name="fecha_hasta" string="Hasta Fecha"/>                
+                    </group>                        
+                    <group colspan="4">
+                        <button special="cancel" icon="gtk-cancel" string="Cancelar"/>
+                        <button type="object" name="action_print" icon="gtk-go-forward" string="Imprimir"/>
+                    </group>
+                </form>
+            </field>
+        </record>   
+                      
+        <!-- acp_contrato.bufete.horas_cliente.wizard form view -->
+        <record model="ir.ui.view" id="acp_contrato_bufete_horas_cliente_wizard_form_view">
+            <field name="name">acp_contrato.bufete.horas_cliente.wizard.form</field>
+            <field name="model">acp_contrato.bufete.horas_cliente.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Informe Horas Cliente">
+                    <group>
+                        <field name="partner_id" string="Clienete" domain="[('customer', '=', True)]"/>
+                        <field name="fecha_desde" string="Desde Fecha"/>
+                        <field name="fecha_hasta" string="Hasta Fecha"/>                
+                    </group>
+                    <group colspan="4">
+                        <button special="cancel" icon="gtk-cancel" string="Cancelar"/>
+                        <button type="object" name="action_print" icon="gtk-go-forward" string="Imprimir"/>
+                    </group>
+                </form>
+            </field>
+        </record>  
+        
+        <!-- acp_contrato.bufete.actuaciones.wizard form view -->
+        <record model="ir.ui.view" id="acp_contrato_bufete_actuaciones_wizard_form_view">
+            <field name="name">acp_contrato.bufete.actuaciones.wizard.form</field>
+            <field name="model">acp_contrato.bufete.actuaciones.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Actuaciones por Expediente">
+                    <group>
+                        <field name="contrato_id"/>
+                    </group>
+                    <group colspan="4">
+                        <button special="cancel" icon="gtk-cancel" string="Cancelar"/>
+                        <button type="object" name="action_print" icon="gtk-go-forward" string="Imprimir"/>
+                    </group>
+                </form>
+            </field>
+        </record>   
+        <!-- acp_contrato.bufete.igualas.wizard form view -->
+        <record model="ir.ui.view" id="acp_contrato_bufete_igualas_wizard_form_view">
+            <field name="name">acp_contrato.bufete.igualas.wizard.form</field>
+            <field name="model">acp_contrato.bufete.igualas.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Actuaciones por Iguala">
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="mes" on_change="onchange_mes_id(mes, ejercicio, context)" />
+                        <field name="ejercicio" on_change="onchange_mes_id(mes, ejercicio, context)" />
+                        <field name="fecha_desde" string="Desde Fecha" invisible="1"/>
+                        <field name="fecha_hasta" string="Hasta Fecha" invisible="1"/>   
+                    </group>
+                    <group colspan="4">
+                        <button special="cancel" icon="gtk-cancel" string="Cancelar"/>
+                        <button type="object" name="action_print" icon="gtk-go-forward" string="Imprimir"/>
+                    </group>
+                </form>
+            </field>
+        </record>        
+
+
+<!-- NO BORRAR, ES UN BUEN EJEMPLO, AUNQUE AQUÍ NO ME SIRVA -->
+<!--        <record id="action_show_report1" model="ir.actions.server"> -->
+<!--             <field name="name">Ventas por comercial y cliente</field> -->
+<!--             <field name="model_id" ref="model_resimol_invoice_report1"/> -->
+<!--             <field name="state">code</field> -->
+<!--             <field name="code">self.create_report(cr, uid, context.get('active_ids'), context=context)</field> -->
+<!--         </record> -->
+      
+<!--         <record id="action_value_show_report1" model="ir.values"> -->
+<!--             <field name="name">Imprimir informe</field> -->
+<!--            <field name="model_id" ref="model_resimol_invoice_report1"/> -->
+<!--            <field name="object" eval="1" />  -->
+<!--            <field name="key2">client_action_multi</field> -->
+<!--            <field name="action_id" ref="action_show_report1"/> -->
+<!--            <field name="value" eval="'ir.actions.server,' + str(ref('action_show_report1'))" /> -->
+<!--            <field name="key">action</field> -->
+<!--            <field name="model">resimol.invoice.report1</field> -->
+<!--         </record> -->
+        
+        
+    </data>
+</openerp>

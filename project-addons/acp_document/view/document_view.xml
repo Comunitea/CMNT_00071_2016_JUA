@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="assets_backend" name="google_drive assets" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <script type="text/javascript" src="/acp_document/static/src/js/document.js" />
+      </xpath>
+    </template>
+    <record id="view_attachment_form_acp" model="ir.ui.view">
+      <field name="model">ir.attachment</field>
+      <field name="arch" type="xml">
+        <form string="Attachments">
+          <sheet>
+            <group>
+              <group string="Data">
+                <field name="type" />
+                <field name="datas" filename="datas_fname" attrs="{'invisible':[('type','=','url')]}" />
+                <field name="datas_fname" invisible="1" attrs="{'invisible':[('type','=','url')]}" class="oe_inline oe_right" />
+                <field name="url" widget="url" attrs="{'invisible':[('type','=','binary')]}" />
+                <field name="name" attrs="{'invisible':[('type','=','binary')],'required':[('type','=','url')]}" />
+              </group>
+              <newline />
+              <group string="Clasificacion">
+                <group colspan="4">
+                  <field name="tipo_documento" colspan="4" widget="selection" />
+                  <field name="category_id" widget="many2many_tags" colspan="4" />
+                </group>
+                <group>
+                  <field name="fecha_recepcion" />
+                  <field name="devuelto" />
+                  <field name="fecha_devolucion" />
+                </group>
+                <group>
+                  <field name="original" />
+                  <field name="firmado" />
+                  <field name="definitivo" />
+                </group>
+                <group>
+                  <field name="ubicacion" />
+                </group>
+              </group>
+              <newline />
+              <group string="Attached To">
+                <field name="res_model" invisible="1" />
+                <field name="model_name" invisible="1" />
+                <field name="res_id" invisible="1" />
+                <field name="res_name" invisible="1" />
+                <field name="parent_id" />
+                <field name="company_id" groups="base.group_multi_company" widget="selection" />
+              </group>
+              <group name="description_group" string="Description" colspan="4">
+                <field name="description" nolabel="1" />
+              </group>
+            </group>
+            <footer>
+              <button name="write" type="object" string="Guardar" />
+              or
+              <button special="cancel" string="Cancelar" class="oe_link" />
+            </footer>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="view_acp_attachment_form" model="ir.ui.view">
+      <field name="name">view.acp_attachment.form</field>
+      <field name="model">ir.attachment</field>
+      <field name="inherit_id" ref="base.view_attachment_form" />
+      <field name="arch" type="xml">
+        <group string="Data" position="after">
+          <newline />
+          <group string="Clasificacion">
+            <group colspan="4">
+              <field name="tipo_documento" colspan="4" widget="selection" />
+              <field name="category_id" widget="many2many_tags" colspan="4" />
+            </group>
+            <group>
+              <field name="fecha_recepcion" />
+              <field name="devuelto" />
+              <field name="fecha_devolucion" />
+            </group>
+            <group>
+              <field name="original" />
+              <field name="firmado" />
+              <field name="definitivo" />
+            </group>
+            <group>
+              <field name="ubicacion" />
+            </group>
+          </group>
+          <newline />
+        </group>
+      </field>
+    </record>
+    <record id="view_acp_attachment_search" model="ir.ui.view">
+      <field name="name">view.acp_attachment.search</field>
+      <field name="model">ir.attachment</field>
+      <field name="inherit_id" ref="base.view_attachment_search" />
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="category_id" />
+          <field name="description" />
+          <field name="res_name" />
+          <field name="model_name" />
+          <field id="res_id" name="res_id" />
+          <field id="res_model" name="res_model" />
+          <field name="tipo_documento" />
+          <field name="fecha_recepcion" />
+          <field name="fecha_devolucion" />
+          <field name="original" />
+          <field name="devuelto" />
+          <field name="firmado" />
+          <field name="definitivo" />
+          <field name="ubicacion" />
+        </field>
+        <filter string="Owner" position="after">
+          <filter name="firmado" string="Firmado" domain="[('firmado','=',True)]" />
+          <filter name="devuelto" string="Devuelto" domain="[('devuelto','=',True)]" />
+          <filter name="definitivo" string="Definitivo" domain="[('definitivo','=',True)]" />
+          <filter name="original" string="Original" domain="[('original','=',True)]" />
+        </filter>
+        <filter string="Owner" position="after">
+          <filter string="Modelo" name="modelo" icon="terp-gtk-home" domain="[]" context="{'group_by':'model_name'}" />
+          <filter string="Tipo Documento" icon="terp-gtk-home" domain="[]" context="{'group_by':'tipo_documento'}" />
+          <filter string="Nombre del Recurso" icon="terp-gtk-home" domain="[]" context="{'group_by':'res_name'}" />
+        </filter>
+      </field>
+    </record>
+    <record id="action_ir_attachment_add_acp" model="ir.actions.act_window">
+      <field name="name">Attachments</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">ir.attachment</field>
+      <field name="view_type">form</field>
+      <field name="view_id" ref="view_attachment_form_acp" />
+      <field name='target'>new</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ir_attachment_add_acp2">
+      <field name="name">Attachments</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">ir.attachment</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name='target' />
+    </record>
+    <!-- Vista tree tipo documento   
+         <record model="ir.ui.view" id="view_acp_document_tipo_documento_tree">
+         <field name="name">acp_document.tipo_documento.tree</field>
+         <field name="model">acp_document.tipo_documento</field>
+         <field name="type">tree</field>
+         <field name="arch" type="xml">
+         <tree string=" Tipos de documentos" editable="bottom">
+         <field name="name" />
+         <field name="descripcion" />
+         <field name="active" />
+         </tree>
+         </field>
+         </record>
+    -->
+    <!-- Vista form tipo documento  
+         <record model="ir.ui.view" id="view_acp_document_tipo_documento_form">
+         <field name="name">acp_document.tipo_documento.form</field>
+         <field name="model">acp_document.tipo_documento</field>
+         <field name="type">form</field>
+         <field name="arch" type="xml">
+         <form string="Tipos de documentos" version="7.0">
+         <sheet>
+         <group>
+         <field name="name" />
+         <field name="descripcion" />
+         <field name="active" />
+         </group>
+         </sheet>
+         </form>
+         </field>
+         </record>
+    -->
+    <!--Vista busqueda tipo documento  
+         <record id="view_acp_document_tipo_documento_search" model="ir.ui.view">
+         <field name="name">acp_document.tipo_documento.search</field>
+         <field name="model">acp_document.tipo_documento</field>
+         <field name="arch" type="xml">
+         <search string="Busqueda de Tipos de documentos">
+         <field name="name" />
+         <field name="descripcion" />
+         <field name="active" />
+         </search>
+         </field>
+         </record>
+    -->
+    <!-- Accion llamada tipo documento  
+         <record model="ir.actions.act_window" id="action_acp_document_tipo_documento">
+         <field name="name">Tipos de documentos</field>
+         <field name="res_model">acp_document.tipo_documento</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+         <field name="view_id" ref="view_acp_document_tipo_documento_tree" />
+         </record>
+    -->
+    <!-- Vista tree category  -->
+    <record model="ir.ui.view" id="view_acp_document_category_tree">
+      <field name="name">acp_document.category.tree</field>
+      <field name="model">acp_document.category</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Categorias" editable="bottom">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form category -->
+    <record model="ir.ui.view" id="view_acp_document_category_form">
+      <field name="name">acp_document.category.form</field>
+      <field name="model">acp_document.category</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Categorias" version="7.0">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="descripcion" />
+              <field name="active" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda category -->
+    <record id="view_acp_document_category_search" model="ir.ui.view">
+      <field name="name">acp_document.category.search</field>
+      <field name="model">acp_document.category</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Categorias">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada category -->
+    <record model="ir.actions.act_window" id="action_acp_document_category">
+      <field name="name">Categorias</field>
+      <field name="res_model">acp_document.category</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_document_category_tree" />
+    </record>
+    <menuitem action="action_ir_attachment_add_acp2" name="Attachments" id="menu_action_attachment_acp" parent="document.menu_document_management_configuration" />
+    <menuitem parent="base.menu_custom" name="Conocimiento" id="acp_document_menu" />
+    <!--<menuitem parent="acp_document_menu" action="action_acp_document_tipo_documento" id="acp_document_tipo_documento_menu" sequence="1" />-->
+    <menuitem parent="acp_document_menu" action="action_acp_document_category" id="acp_document_category_menu" sequence="1" />
+  </data>
+</openerp>

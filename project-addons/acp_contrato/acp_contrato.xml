@@ -1,0 +1,1712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <!-- Top menu item -->
+    <menuitem name="Contratos" id="contratos_base" groups="contratos_user_accounting,contratos_user,contratos_manager" sequence="20" />
+    <menuitem id="contratos" name="Contratos" parent="contratos_base" sequence="10" groups="contratos_user_accounting,contratos_user,contratos_manager" />
+    <menuitem id="contratos_mail" name="Email" parent="contratos_base" sequence="12" groups="contratos_user_accounting,contratos_user,contratos_manager" />
+    <menuitem id="contratos_fact" name="Control de facturas" parent="contratos_base" sequence="14" groups="contratos_user_accounting,contratos_manager" />
+    <menuitem id="contratos_conf" name="Configuración" parent="contratos_base" sequence="20" groups="contratos_manager" />
+    <!-- Vista tree contratos   -->
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_tree">
+      <field name="name">acp_contrato.contrato.tree</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Contratos" colors="black:state=='open';red:state=='exception';gray:state=='cancel';green:hours_next_act&gt;8;orange:hours_next_act&gt;0;red:hours_next_act&lt;=0">
+          <field name="fecha" />
+          <field name="hours_next_act" invisible="1" />
+          <field name="state" />
+          <field name="tipo_contrato" />
+          <field name="name" />
+          <field name="referencia" />
+          <field name="partner_id" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form contrato -->
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_form">
+      <field name="name">acp_contrato.contrato.form</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="contrato">
+          <header>
+            <field name="state" widget="statusbar" statusbar_visible="open,confirmed,done" statusbar_colors="{&quot;exception&quot;:&quot;red&quot;}" />
+            <button name="wkf_start" string="Reabrir" type="object" states="cancel" />
+            <button name="wkf_set_confirmed" string="Confirmar" type="object" class="oe_highlight" attrs="{'invisible': ['|',('id','=',False),('state','not in',['open'])]}" />
+            <button name="wkf_set_done" string="Finalizar" type="object" class="oe_highlight" attrs="{'invisible': ['|',('id','=',False),('state','not in',['confirmed'])]}" />
+            <button name="wkf_set_ignore_exception" string="Ignorar Excepciones" type="object" states="exception" class="oe_highlight" />
+            <button name="wkf_set_reopen_done" string="Reabrir" type="object" attrs="{'invisible': [('state','not in',['done'])]}" />
+            <button name="wkf_set_cancel" string="Anular" type="object" attrs="{'invisible': ['|',('id','=',False),('state','not in',['confirmed','exception'])]}" />
+            <button name="action_contrato_send" string="Enviar por email" type="object" class="oe_highlight" attrs="{'invisible': ['|',('id','=',False),('state','not in',['confirmed'])]}" />
+          </header>
+          <sheet>
+            <field name="entiempo" invisible="1" />
+            <h1>
+              <label string="Contrato " />
+              <field name="name_referencia" class="oe_inline" readonly="1" />
+            </h1>
+            <h2 id="horastrabajadas1" style="color:blue;" attrs="{'invisible': [('entiempo','=',0)]}">
+              <field name="total_horas_hoy" class="oe_inline" readonly="1" widget="float_time" />
+              <label string="horas trabajadas de " />
+              <field name="total_horas_objetivo" class="oe_inline" readonly="1" widget="float_time" />
+            </h2>
+            <h2 id="horastrabajadas2" style="color:red;" attrs="{'invisible': [('entiempo','=',1)]}">
+              <field name="total_horas_hoy2" class="oe_inline" readonly="1" widget="float_time" />
+              <label string="horas trabajadas de " />
+              <field name="total_horas_objetivo2" class="oe_inline" readonly="1" widget="float_time" />
+            </h2>
+            <div class="oe_right oe_button_box" name="buttons">
+              <button type="action" class="oe_stat_button" id="attachment_count_button" name="%(base.action_attachment)d" icon="fa-envelope-o" domain="[('contrato_id','=', active_id)]" context="{'search_default_contrato_id': active_id,'search_default_modelo': 1}">
+                <field string="Documentos" name="attachment_count" widget="statinfo" />
+              </button>
+              <newline />
+              <h4>
+                <group />
+              </h4>
+            </div>
+            <notebook colspan="4">
+              <page string="Contrato">
+                <notebook colspan="4">
+                  <page string="Información General">
+                    <group colspan="4" col="4">
+                      <group id="atencion" colspan="4" attrs="{'invisible': [('state','!=','exception')]}">
+                        <group colspan="4">
+                          <h1 style="color:red;">
+                            <label string="Existen tareas que requieren su atención " />
+                          </h1>
+                        </group>
+                        <group>
+                          <p style="color:red;">
+                            <field mode="tree" name="especial_atencion_lineas" readonly="0" nolabel="1" />
+                          </p>
+                        </group>
+                      </group>
+                      <group colspan="2" col="2">
+                        <separator string="Información General" colspan="4" />
+                        <field name="fecha" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="referencia" />
+                        <field name="user_id" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="tipo_contrato" widget="selection" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="contrato_plantilla" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="id" invisible="1" />
+                        <field name="perioricidad" />
+                      </group>
+                      <group colspan="2" col="2">
+                        <separator string="Cliente" colspan="4" />
+                        <field name="partner_id" attrs="{'readonly': [('state','!=','open')]}" on_change="onchange_partner_id(partner_id)" domain="[('customer','=',True)]" context="{'search_default_customer':1}" />
+                        <field name="partner_direccion_id" attrs="{'readonly': [('state','!=','open')]}" domain="[('parent_id','=',partner_id)]" />
+                        <field name="partner_factura_id" attrs="{'readonly': [('state','!=','open')]}" domain="[('parent_id','=',partner_id)]" />
+                        <field name="pricelist_id" attrs="{'readonly': [('state','!=','open')]}" domain="[('type','=','sale')]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+                        <field name="currency_id" invisible="1" required="0" />
+                        <field name="parent_id" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="horas_acumuladas" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" widget="float_time" />
+                        <field name="saldo_acumulado" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+                        <field name="cliente_servicio" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="baja" />
+                      </group>
+                      <group colspan="4" attrs="{'invisible': [('baja','=',False)]}">
+                        <separator string="Motivo de Baja" colspan="4" />
+                        <field name="fecha_baja" />
+                        <field name="motivo_baja" colspan="4" />
+                      </group>
+                      <group colspan="4">
+                        <separator string="Observaciones" colspan="4" />
+                        <field name="observaciones" colspan="4" />
+                      </group>
+                    </group>
+                  </page>
+                  <page string="Programar Facturación" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager">
+                    <field mode="tree" name="facturacion_lineas" nolabel="1">
+                      <tree>
+                        <field name="name" />
+                        <field name="autofactura" />
+                      </tree>
+                      <form>
+                        <group>
+                          <field name="name" />
+                          <field name="autofactura" />
+                        </group>
+                        <notebook colspan="4">
+                          <page string="Conceptos">
+                            <field mode="tree" name="conceptos_lineas">
+                              <tree editable="bottom">
+                                <field name="product_id" />
+                                <field name="name" />
+                                <field name="cantidad" />
+                                <field name="importe" />
+                              </tree>
+                            </field>
+                            <group col="3" string="En la descripción del concepto puede usar la siguiente nomenclatura:">
+                              <group>
+                                <label colspan="2" string="Año Actual Con Centuria: %%(year)s" />
+                                <label colspan="2" string="Año Actual Sin Centuria: %%(y)s" />
+                                <label colspan="2" string="Mes: %%(month)s" />
+                                <label colspan="2" string="Dia: %%(day)s" />
+                              </group>
+                              <group>
+                                <label colspan="2" string="Dia del Año: %%(doy)s" />
+                                <label colspan="2" string="Semana del Año: %%(woy)s" />
+                                <label colspan="2" string="Dia de la Semana (0:Lunes): %%(weekday)s" />
+                              </group>
+                              <group>
+                                <label colspan="2" string="Hora 00-&gt;24: %%(h24)s" />
+                                <label colspan="2" string="Hora 00-&gt;12: %%(h12)s" />
+                                <label colspan="2" string="Minuto: %%(min)s" />
+                                <label colspan="2" string="Segundo: %%(sec)s" />
+                              </group>
+                            </group>
+                          </page>
+                          <page string="Fechas" attrs="{'invisible':[('autofactura','!=',True)]}">
+                            <field mode="tree" name="fechas_lineas">
+                              <tree editable="bottom">
+                                <field name="mes" />
+                                <field name="dia" />
+                              </tree>
+                            </field>
+                          </page>
+                        </notebook>
+                      </form>
+                    </field>
+                  </page>
+                  <page string="Programar Servicios" groups="acp_contrato.contratos_user,acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager">
+                    <field mode="tree" name="programar_servicio_lineas" nolabel="1">
+                      <tree>
+                        <field name="name" />
+                        <field name="tipo_servicio_id" />
+                        <field name="invoice_state" />
+                        <field name="contratado" />
+                      </tree>
+                      <form>
+                        <group>
+                          <field name="name" />
+                          <field name="tipo_servicio_id" widget="selection" />
+                          <field name="invoice_state" invisible="1" />
+                          <field name="contratado" />
+                        </group>
+                        <field mode="tree" name="fechas_lineas">
+                          <tree editable="bottom">
+                            <field name="mes" />
+                            <field name="dia" />
+                          </tree>
+                        </field>
+                      </form>
+                    </field>
+                  </page>
+                  <page string="Inventario">
+                    <field mode="tree" name="producto_lineas" nolabel="1">
+                      <tree>
+                        <field name="product_id" on_change="onchange_product_id(product_id)" />
+                        <field name="tipo_producto" />
+                        <field name="tipo_producto_n" invisible="1" />
+                        <field name="prodlot_id" />
+                        <field name="ubicacion" />
+                        <field name="estado" />
+                        <field name="observaciones" />
+                      </tree>
+                    </field>
+                  </page>
+                </notebook>
+              </page>
+              <page id="Servicios" string="Servicios" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+                <notebook colspan="4">
+                  <page string="Servicios">
+                    <button name="new_servicio" states="confirmed" string="Nuevo Servicio" type="object" icon="gtk-add" context="{'default_contrato_id':id}" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" />
+                    <field mode="tree" name="contrato_lineas" readonly="1" nolabel="1">
+                      <tree colors="gray:state=='cancel';green:hours_next_act&gt;8;orange:hours_next_act&gt;0;red:hours_next_act&lt;=0">
+                        <button name="open_servicio" string="Ver Servicio" type="object" icon="gtk-edit" />
+                        <field name="hours_next_act" invisible="1" />
+                        <field name="numero_servicio" />
+                        <field name="fecha" />
+                        <field name="user_id" />
+                        <field name="tipo_servicio" />
+                        <field name="horas_estimadas" widget="float_time" sum="Horas estimadas" />
+                        <field name="horas_reales" widget="float_time" sum="Horas reales" />
+                        <field name="progreso" widget="progressbar" />
+                        <field name="observaciones" />
+                        <field name="state" />
+                      </tree>
+                    </field>
+                  </page>
+                  <page string="Historico">
+                    <field mode="tree" readonly="1" colspan="4" name="tarea_lineas" nolabel="1" select="1" context="{'default_servicio_id':id}">
+                      <tree string="Tareas" colors="green:hours_to_act&gt;8;orange:hours_to_act&gt;0;red:hours_to_act&lt;=0">
+                        <button name="open_tarea" string="Ver Tarea" type="object" icon="gtk-edit" />
+                        <field name="hours_to_act" invisible="1" />
+                        <field name="servicio_id" />
+                        <field name="numero_tarea" />
+                        <field name="fecha" />
+                        <field name="actividad_id" />
+                        <field name="fecha_limite" />
+                        <field name="detalle" />
+                        <field name="user_seg_id" />
+                        <button icon="gtk-apply" name="close_act" string="Finalizar Actividad" type="object" states="open" class="oe_highlight" />
+                        <field name="state" />
+                      </tree>
+                    </field>
+                  </page>
+                </notebook>
+              </page>
+              <page string="Resumen" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+                <field colspan="4" mode="tree" name="resumen_lineas" nolabel="1">
+                  <tree string="Resumen">
+                    <field name="fecha" />
+                    <field name="actividad_id" />
+                    <field name="detalle" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Documentos adjuntos">
+                <Group>
+                  <field mode="tree" readonly="1" colspan="4" name="attachment_ids" nolabel="1" select="1">
+                    <tree string="Tareas">
+                      <field name="name" />
+                    </tree>
+                    <form string="Tareas">
+                      <field name="name" />
+                      <field name="model_name" />
+                      <field name="type" invisible="1" />
+                      <field name="datas" filename="datas_fname" attrs="{'invisible':[('type','=','url')]}" />
+                      <field name="datas_fname" invisible="1" attrs="{'invisible':[('type','=','url')]}" class="oe_inline oe_right" />
+                    </form>
+                  </field>
+                </Group>
+              </page>
+              <page string="Buzón de entrada" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+                <field mode="tree" name="emails" readonly="1">
+                  <tree string="Emails">
+                    <field name="name" />
+                    <field name="email_from" />
+                    <field name="create_date" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Recursos">
+                <group>
+                  <field name="recurso_ids" widget="many2many_tags" />
+                </group>
+              </page>
+              <page string="Gastos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+                <h3>Facturas</h3>
+                <button states="done,confirmed" name="new_inv_in" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
+                <field mode="tree" name="invoice_line_in" readonly="1" domain="[('invoice_type','in',('in_invoice','in_refund'))]">
+                  <tree string="Facturas">
+                    <button name="open_inv_in" string="Ver Factura" type="object" icon="gtk-edit" />
+                    <field name="invoice_id" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="quantity" />
+                    <field name="uos_id" />
+                    <field name="invoice_line_tax_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                  <form string="Facturas">
+                    <field name="invoice_id" readonly="1" />
+                    <field name="product_id" readonly="1" />
+                    <field name="servicio_id" readonly="1" />
+                    <field name="name" readonly="1" />
+                    <field name="quantity" readonly="1" />
+                    <field name="uos_id" readonly="1" />
+                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                    <field name="price_unit" readonly="1" />
+                    <field name="price_subtotal" readonly="1" />
+                  </form>
+                </field>
+                <h3>Presupuestos</h3>
+                <button states="confirmed,done" name="new_po" string="Nuevo Presupuesto" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
+                <field mode="tree" name="purchase_order_lineas" readonly="1">
+                  <tree string="Presupuestos">
+                    <button name="open_po" string="Ver Pedido" type="object" icon="gtk-edit" />
+                    <field name="order_id" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="product_qty" />
+                    <field name="product_uom" />
+                    <field name="taxes_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Ingresos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+                <h3>Facturas</h3>
+                <button states="confirmed,done" name="new_inv_out" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':id}" />
+                <field mode="tree" name="invoice_line_out" readonly="1">
+                  <tree string="Facturas">
+                    <button name="open_inv_out" string="Ver Factura" type="object" icon="gtk-edit" />
+                    <field name="invoice_id" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="quantity" />
+                    <field name="uos_id" />
+                    <field name="invoice_line_tax_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                  <form string="Facturas">
+                    <field name="invoice_id" readonly="1" />
+                    <field name="product_id" readonly="1" />
+                    <field name="servicio_id" readonly="1" />
+                    <field name="name" readonly="1" />
+                    <field name="quantity" readonly="1" />
+                    <field name="uos_id" readonly="1" />
+                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                    <field name="price_unit" readonly="1" />
+                    <field name="price_subtotal" readonly="1" />
+                  </form>
+                </field>
+                <h3>Presupuestos</h3>
+                <button states="confirmed,done,invoiced" name="new_so" string="Nuevo Presupuesto" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':id} " />
+                <field mode="tree" name="sale_order_line" readonly="1">
+                  <tree string="Presupuestos">
+                    <button name="open_so" string="Ver Pedido" type="object" icon="gtk-edit" />
+                    <field name="order_id" />
+                    <field name="state" invisible="1" />
+                    <field name="order_state" invisible="0" />
+                    <field name="th_weight" invisible="1" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="product_uom_qty" />
+                    <field name="product_uom" />
+                    <field name="tax_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Contratos relacionados" attrs="{'invisible': [('contrato_plantilla','=',False)]}">
+                <field mode="tree" name="child_ids" readonly="1" attrs="{'invisible': [('contrato_plantilla','=',False)]}">
+                  <tree string="Contratos relacionados">
+                    <field name="name" />
+                    <field name="partner_id" />
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+            <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda contratos -->
+    <record id="view_acp_contrato_contrato_search" model="ir.ui.view">
+      <field name="name">acp_contrato.contrato.search</field>
+      <field name="model">acp_contrato.contrato</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de contratos">
+          <field name="name" />
+          <field name="referencia" />
+          <field name="state" />
+          <field name="fecha" />
+          <field name="tipo_contrato" />
+          <field name="user_id" />
+          <field name="partner_id" />
+          <field name="partner_direccion_id" />
+          <field name="partner_factura_id" />
+          <field name="observaciones" />
+          <separator />
+          <filter icon="terp-mail-message-new" string="Unread Messages" name="message_unread" domain="[('message_unread','=',True)]" />
+          <separator />
+          <filter icon="terp-document-new" string="En Curso" name="encurso" domain="[('state','in',['open','exception','confirmed'])]" />
+          <filter icon="terp-document-new" string="Finalizados" name="finalizado" domain="[('state','=','done')]" />
+          <filter icon="terp-document-new" string="Borrador" name="abierto" domain="[('state','=','open')]" />
+          <filter icon="terp-document-new" string="Confirmados" name="abierto" domain="[('state','=','confirmed')]" />
+          <filter icon="terp-document-new" string="Anulados" name="excepcion" domain="[('state','=','cancel')]" />
+          <filter icon="terp-document-new" string="Excepcion" name="excepcion" domain="[('state','=','exception')]" />
+          <separator />
+          <group expand="0" string="Group By...">
+            <filter string="Cliente" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'partner_id'}" />
+            <filter string="Tipo Contrato" icon="terp-go-month" domain="[]" context="{'group_by':'tipo_contrato'}" />
+            <filter string="Estado" icon="terp-go-month" domain="[]" context="{'group_by':'state'}" />
+            <filter string="Responsable" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada contratos-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_contrato">
+      <field name="name">Contratos</field>
+      <field name="res_model">acp_contrato.contrato</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_contrato_tree" />
+      <field name="domain">[('tipo_contrato','!=','Iguala')]</field>
+      <field name="context">{"search_default_encurso":1}</field>
+    </record>
+    <!--Entrada en menu contratos-->
+    <menuitem name="Contratos" id="menu_acp_contrato_contrato_tree" action="action_acp_contrato_contrato" parent="contratos" sequence="10" />
+    <!-- Vista tree Servicios   -->
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_tree">
+      <field name="name">acp_contrato.servicio.tree</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Contratos" colors="gray:state=='cancel';green:hours_next_act&gt;8;orange:hours_next_act&gt;0;red:hours_next_act&lt;=0">
+          <field name="hours_next_act" invisible="1" />
+          <field name="contrato_id" />
+          <field name="partner_id" />
+          <field name="numero_servicio" />
+          <field name="referencia" />
+          <field name="invoice_state" />
+          <field name="afacturar" groups="acp_contrato.contratos_manager,acp_contrato.contratos_user_accounting" />
+          <field name="fecha" />
+          <field name="tipo_servicio" widget="selection" />
+          <field name="horas_estimadas" widget="float_time" sum="Total horas estimadas" />
+          <field name="horas_reales" widget="float_time" sum="Total horas reales" />
+          <field name="progreso" widget="progressbar" />
+          <field name="horas_facturables" widget="float_time" groups="acp_contrato.contratos_manager,acp_contrato.contratos_user_accounting" sum="Total horas facturables" />
+          <field name="observaciones" />
+          <field name="state" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form Servicio -->
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_form">
+      <field name="name">acp_contrato_servicio.form</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Servicios" version="7.0">
+          <header>
+            <field name="state" widget="statusbar" statusbar_visible="open,done" />
+          </header>
+          <sheet>
+            <h1>
+              <label string="Servicio " />
+              <field name="name" class="oe_inline" readonly="1" />
+            </h1>
+            <group>
+              <group>
+                <field name="contrato_id" on_change="get_default_partner_id(contrato_id,partner_id,partner_direccion_id,partner_factura_id)" />
+                <field name="id" invisible="1" />
+                <field name="tipo_servicio" widget="selection" />
+                <field name="numero_servicio" />
+                <field name="referencia" />
+                <field name="recibir_mail" readonly="1" />
+              </group>
+              <group>
+                <field name="fecha" />
+                <field name="cliente_servicio" readonly="1" />
+                <field name="partner_id" on_change="onchange_partner_id(partner_id)" domain="[('customer','=',True)]" context="{'search_default_customer':1}" attrs="{'required': [('cliente_servicio', '=', True)],'readonly': [('cliente_servicio','=',False)]}" />
+                <field name="partner_direccion_id" domain="[ '|' ,('parent_id','=',partner_id),('id','=',partner_id)]" attrs="{'required': [('cliente_servicio','=',True)],'readonly': [('cliente_servicio','=',False)]}" />
+                <field name="partner_factura_id" domain="[ '|' ,('parent_id','=',partner_id),('id','=',partner_id)]" attrs="{'required': [('cliente_servicio','=',True)],'readonly': [('cliente_servicio','=',False)]}" />
+                <field name="invoice_state" readonly="0" invisible="1" />
+                <field name="servicio_prog_id" readonly="1" />
+              </group>
+              <group>
+                <field name="horas_estimadas" readonly="1" widget="float_time" />
+                <field name="horas_reales" widget="float_time" />
+                <field name="horas_facturables" widget="float_time" groups="acp_contrato.contratos_manager,acp_contrato.contratos_user_accounting" />
+              </group>
+              <group colspan="4">
+                <field name="observaciones" colspan="4" />
+              </group>
+              <group>
+                <field name="afacturar" groups="acp_contrato.contratos_manager,acp_contrato.contratos_user_accounting" readonly="True" />
+              </group>
+            </group>
+            <notebook>
+              <page string="Tareas">
+                <button name="new_tarea" string="Nueva Tarea" type="object" icon="gtk-add" context="{'default_servicio_id':id}" />
+                <field mode="tree" readonly="1" colspan="4" name="tarea_lineas" nolabel="1" select="1" context="{'default_servicio_id':id}">
+                  <tree string="Tareas" colors="green:hours_to_act&gt;8;orange:hours_to_act&gt;0;red:hours_to_act&lt;=0">
+                    <button name="open_tarea" string="Ver Tarea" type="object" icon="gtk-edit" />
+                    <field name="hours_to_act" invisible="1" />
+                    <field name="numero_tarea" />
+                    <field name="fecha" />
+                    <field name="actividad_id" />
+                    <field name="fecha_limite" />
+                    <field name="detalle" />
+                    <field name="user_seg_id" />
+                    <field name="tota_horas" widget="float_time" sum="Total Horas" />
+                    <button icon="gtk-apply" name="close_act" string="Finalizar Actividad" type="object" states="open" class="oe_highlight" />
+                    <field name="state" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Recursos">
+                <field mode="tree" name="recurso_ids" nolabel="1">
+                  <tree editable="bottom">
+                    <field name="recurso_id" domain="[('share','=',False)]" />
+                    <field name="inicial" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Inventario">
+                <field mode="tree" name="producto_lineas" nolabel="1">
+                  <tree create="false" delete="false">
+                    <!--Los materiales deben agregarse por una tarea-->
+                    <field name="product_id" on_change="onchange_product_id(product_id)" />
+                    <field name="tipo_producto" />
+                    <field name="tipo_producto_n" invisible="1" />
+                    <field name="prodlot_id" />
+                    <field name="ubicacion" />
+                    <field name="satisfactorio" />
+                    <field name="estado" />
+                    <field name="observaciones" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Conceptos a Facturar">
+                <field mode="tree" name="producto_tarea_lineas" nolabel="1">
+                  <tree>
+                    <field name="tarea_id" />
+                    <field name="product_id" />
+                    <field name="tipo_producto" />
+                    <field name="tipo_producto_n" invisible="1" />
+                    <field name="prodlot_id" />
+                    <field name="cantidad" />
+                    <field name="importe" />
+                    <field name="tax_id" />
+                    <field name="subtotal" />
+                    <field name="ubicacion" />
+                    <field name="incluir" />
+                    <field name="invoice_state" invisible="False" />
+                    <field name="observaciones" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Gastos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager">
+                <h3>Facturas</h3>
+                <button states="open,done" name="new_inv_in" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_dft_contrato_id':contrato_id,'default_dft_servicio_id':id}" />
+                <field mode="tree" name="invoice_line_in" readonly="1">
+                  <tree string="Facturas">
+                    <button name="open_inv_in" string="Ver Factura" type="object" icon="gtk-edit" />
+                    <field name="invoice_id" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="quantity" />
+                    <field name="uos_id" />
+                    <field name="invoice_line_tax_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                  <form string="Facturas">
+                    <field name="invoice_id" readonly="1" />
+                    <field name="product_id" readonly="1" />
+                    <field name="servicio_id" readonly="1" />
+                    <field name="name" readonly="1" />
+                    <field name="quantity" readonly="1" />
+                    <field name="uos_id" readonly="1" />
+                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                    <field name="price_unit" readonly="1" />
+                    <field name="price_subtotal" readonly="1" />
+                  </form>
+                </field>
+                <h3>Presupuestos</h3>
+                <button states="open,done" name="new_po" string="Nuevo Presupuesto" type="object" icon="gtk-add" context="{'default_dft_contrato_id':contrato_id,'default_dft_servicio_id':id}" />
+                <field mode="tree" name="purchase_order_line" readonly="1">
+                  <tree string="Presupuestos">
+                    <button name="open_po" string="Ver Pedido" type="object" icon="gtk-edit" />
+                    <field name="order_id" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="product_qty" />
+                    <field name="product_uom" />
+                    <field name="taxes_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Ingresos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager">
+                <h3>Facturas</h3>
+                <button states="open,done" name="new_inv_out" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':contrato_id,'default_dft_servicio_id':id}" />
+                <field mode="tree" name="invoice_line_out" readonly="1">
+                  <tree string="Facturas">
+                    <button name="open_inv_out" string="Ver Factura" type="object" icon="gtk-edit" />
+                    <field name="invoice_id" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="quantity" />
+                    <field name="uos_id" />
+                    <field name="invoice_line_tax_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                  <form string="Facturas">
+                    <field name="invoice_id" readonly="1" />
+                    <field name="product_id" readonly="1" />
+                    <field name="servicio_id" readonly="1" />
+                    <field name="name" readonly="1" />
+                    <field name="quantity" readonly="1" />
+                    <field name="uos_id" readonly="1" />
+                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                    <field name="price_unit" readonly="1" />
+                    <field name="price_subtotal" readonly="1" />
+                  </form>
+                </field>
+                <h3>Presupuestos</h3>
+                <button states="open,done" name="new_so" string="Nuevo Presupuesto" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':contrato_id,'default_dft_servicio_id':id}" />
+                <field mode="tree" name="sale_order_line" readonly="1">
+                  <tree string="Presupuestos">
+                    <button name="open_so" string="Ver Pedido" type="object" icon="gtk-edit" />
+                    <field name="order_id" />
+                    <field name="state" invisible="1" />
+                    <field name="order_state" invisible="0" />
+                    <field name="th_weight" invisible="1" />
+                    <field name="product_id" />
+                    <field name="servicio_id" />
+                    <field name="name" />
+                    <field name="product_uom_qty" />
+                    <field name="product_uom" />
+                    <field name="tax_id" widget="many2many_tags" />
+                    <field name="price_unit" />
+                    <field name="price_subtotal" sum="Total" />
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+            <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+    <!--Vista form Servicios para managers-->
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_form_manager">
+      <field name="name">acp_contrato_servicio.manager</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="inherit_id" ref="acp_contrato.view_acp_contrato_servicio_form" />
+      <field name="groups_id" eval="[(6, 0, [ref('acp_contrato.contratos_manager')])]" />
+      <field name="arch" type="xml">
+        <field name="horas_estimadas" position="replace">
+          <field name="horas_estimadas" readonly="0" position="replace" />
+        </field>
+      </field>
+    </record>
+    <!--Vista busqueda Servicios -->
+    <record id="view_acp_contrato_servicio_search" model="ir.ui.view">
+      <field name="name">acp_contrato.servicio.search</field>
+      <field name="model">acp_contrato.servicio</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Servicios">
+          <filter icon="terp-mail-message-new" string="Unread Messages" name="message_unread" domain="[('message_unread','=',True)]" />
+          <separator />
+          <filter icon="terp-document-new" string="Abiertos" name="abierto" domain="[('state','=','open')]" />
+          <filter icon="terp-document-new" string="Finalizados" name="finalizado" domain="[('state','=','done')]" />
+          <filter icon="terp-document-new" string="Anulados" name="anulados" domain="[('state','=','cancel')]" />
+          <filter icon="terp-document-new" string="Servicios a facturar" name="facturar" domain="[('state','=','done'),('invoice_state','=','parafacturar')]" />
+          <separator />
+          <field name="contrato_id" />
+          <field name="numero_servicio" />
+          <field name="partner_id" />
+          <field name="fecha" />
+          <field name="tipo_servicio" widget="selection" />
+          <field name="observaciones" />
+          <group expand="0" string="Group By...">
+            <filter string="Contrato" icon="terp-personal" domain="[]" context="{'group_by':'contrato_id'}" />
+            <filter string="Cliente" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}" />
+            <filter string="Usuario" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}" />
+            <filter string="Estado" icon="terp-go-month" domain="[]" context="{'group_by':'estado'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada Servicios-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_servicio">
+      <field name="name">Servicios</field>
+      <field name="res_model">acp_contrato.servicio</field>
+      <field name="view_type">form</field>
+      <field name="context">{"search_default_abierto":1}</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_servicio_tree" />
+    </record>
+    <!--Entrada en menu Servicio-->
+    <menuitem name="Servicios" id="menu_acp_contrato_servicio_tree" action="action_acp_contrato_servicio" parent="contratos" sequence="20" />
+    <!--  Servicios a facturar: Vista  -->
+    <!--
+         <record model="ir.ui.view" id="view_acp_contrato_servicio_factura_tree">
+         <field name="name">acp_contrato.servicio_factura.tree</field>
+         <field name="model">acp_contrato.servicio_producto_extra</field>
+         <field name="type">tree</field>
+         <field name="arch" type="xml">
+         <tree string="Servicios">
+         <field name="contrato_id" />
+         <field name="servicio_id" />
+         <field name="partner_id" />
+         <field name="servicio_fecha" />
+         <field name="ubicacion" />
+         <field name="tipo_producto" />
+         <field name="product_id" />
+         <field name="prodlot_id" />
+         <field name="cantidad" invisible="1" />
+         <field name="importe" invisible="1" />
+         <field name="tax_id" invisible="1" />
+         <field name="subtotal" />
+         <field name="observaciones" />
+         <field name="invoice_state" />
+         </tree>
+         </field>
+         </record>
+    -->
+    <!-- Servicios a facturar: Busqueda-->
+    <!--
+         <record id="view_acp_contrato_servicio_factura_search" model="ir.ui.view">
+         <field name="name">acp_contrato.servicio_factura.search</field>
+         <field name="model">acp_contrato.servicio_producto_extra</field>
+         <field name="arch" type="xml">
+         <search string="Busqueda de Servicios Pendientes de Facturar">
+         <filter icon="terp-mail-message-new" string="Unread Messages" name="message_unread" domain="[('message_unread','=',True)]" />
+         <separator />
+         <field name="contrato_id" />
+         <field name="servicio_id" />
+         <field name="partner_id" />
+         <field name="servicio_fecha" />
+         <separator />
+         <group expand="0" string="Group By...">
+         <filter string="Contrato" icon="terp-personal" domain="[]" context="{'group_by':'contrato_id'}" />
+         <filter string="Servicio" icon="terp-personal" domain="[]" context="{'group_by':'servicio_id'}" />
+         <filter string="Cliente" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}" />
+         </group>
+         </search>
+         </field>
+         </record>
+    -->
+    <!--  Servicios a facturar: Accion  -->
+    <!--
+         <record model="ir.actions.act_window" id="action_acp_contrato_servicio_factura">
+         <field name="name">Servicios Pendientes Facturar</field>
+         <field name="res_model">acp_contrato.servicio_producto_extra</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form,tree</field>
+         <field name="view_id" ref="view_acp_contrato_servicio_factura_tree" />
+         <field name="domain">[('invoice_state','=',"parafacturar")]</field>
+         <field name="context">{"search_invoice_state":"parafacturar"}</field>
+         </record>
+    -->
+    <!--  Servicios a facturar: Menu  -->
+    <!--
+         <menuitem name="Facturar desde servicios" id="menu_acp_contrato_servicio_inv_tree" action="action_acp_contrato_servicio_factura" parent="contratos_fact" sequence="10" />
+    -->
+    <!--  Tareas de Servicios a facturar: Vista  -->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_factura_tree">
+      <field name="name">acp_contrato.tarea_factura.tree</field>
+      <field name="model">acp_contrato.tarea_producto</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Servicios a Facturar" edit="1" create="0" delete="0" editable="bottom">
+          <field name="contrato_id" readonly="1" />
+          <field name="servicio_id" readonly="1" />
+          <field name="tarea_id" readonly="1" />
+          <field name="partner_id" readonly="1" />
+          <field name="servicio_fecha" readonly="1" />
+          <field name="ubicacion" readonly="1" />
+          <field name="tipo_producto" readonly="1" />
+          <field name="product_id" readonly="1" />
+          <field name="prodlot_id" readonly="1" />
+          <field name="importe" />
+          <field name="cantidad" />
+          <field name="tax_id" readonly="1" />
+          <field name="subtotal" readonly="1" />
+          <field name="observaciones" readonly="1" />
+          <field name="invoice_state" />
+        </tree>
+      </field>
+    </record>
+    <!-- Tareas de Servicios a facturar: Busqueda-->
+    <record id="view_acp_contrato_tarea_factura_search" model="ir.ui.view">
+      <field name="name">acp_contrato.tarea_factura.search</field>
+      <field name="model">acp_contrato.tarea_producto</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Servicios Pendientes de Facturar">
+          <filter icon="terp-mail-message-new" string="Unread Messages" name="message_unread" domain="[('message_unread','=',True)]" />
+          <separator />
+          <field name="contrato_id" />
+          <field name="servicio_id" />
+          <field name="partner_id" />
+          <field name="servicio_fecha" />
+          <separator />
+          <group expand="0" string="Group By...">
+            <filter string="Contrato" icon="terp-personal" domain="[]" context="{'group_by':'contrato_id'}" />
+            <filter string="Servicio" icon="terp-personal" domain="[]" context="{'group_by':'servicio_id'}" />
+            <filter string="Cliente" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <!--  Tareas de Servicios a facturar: Accion  -->
+    <record model="ir.actions.act_window" id="action_acp_contrato_tarea_factura">
+      <field name="name">Servicios Pendientes Facturar</field>
+      <field name="res_model">acp_contrato.tarea_producto</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form,tree</field>
+      <field name="view_id" ref="view_acp_contrato_tarea_factura_tree" />
+      <field name="domain">[('invoice_state','=',"parafacturar")]</field>
+      <field name="context">{"search_invoice_state":"parafacturar"}</field>
+    </record>
+    <!--  Tareas de Servicios a facturar: Menu  -->
+    <menuitem name="Facturar Servicios" id="menu_acp_contrato_tarea_factura" action="action_acp_contrato_tarea_factura" parent="contratos_fact" sequence="10" />
+    <!-- Vista tree tarea   -->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_tree">
+      <field name="name">acp_contrato.tarea.tree</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Tareas" colors="green:hours_to_act&gt;8;orange:hours_to_act&gt;0;red:hours_to_act&lt;=0">
+          <field name="hours_to_act" invisible="1" />
+          <field name="contrato_id" />
+          <field name="servicio_id" />
+          <field name="fecha" />
+          <field name="partner_id" />
+          <field name="actividad_id" />
+          <field name="fecha_limite" />
+          <field name="prioridad" />
+          <field name="detalle" />
+          <field name="user_id" />
+          <field name="user_seg_id" />
+          <field name="tota_horas" widget="float_time" sum="Total Horas" />
+          <button icon="gtk-apply" name="close_act" string="Finalizar Actividad" type="object" states="open" class="oe_highlight" />
+          <field name="state" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form tarea -->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_form">
+      <field name="name">acp_contrato.tarea.form</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Tareas" version="7.0">
+          <header>
+            <field name="state" widget="statusbar" statusbar_visible="open,done" />
+            <button icon="gtk-apply" name="close_act" string="Finalizar Actividad" type="object" class="oe_highlight" attrs="{'invisible': ['|',('id','=',False),('state','not in',['open'])]}" />
+            <button name="new_tarea" string="Nueva Tarea" type="object" icon="gtk-add" />
+          </header>
+          <sheet>
+            <h1>
+              <label string="Tarea " />
+              <label string="(" />
+              <field name="numero_tarea" class="oe_inline" readonly="1" />
+              <label string=")" />
+            </h1>
+            <notebook>
+              <page string="Tarea">
+                <group>
+                  <group>
+                    <field name="id" invisible="1" />
+                    <field name="servicio_id" attrs="{'readonly': [('is_created','=',True)]}" on_change="onchange_servicio_id(servicio_id, context)" />
+                    <label for="parent_id" />
+                    <div>
+                      <field name="parent_id" class="oe_inline" readonly="1" />
+                      -
+                      <field name="parent_actividad_id" class="oe_inline" readonly="1" options="{'no_open': True}"/>
+                    </div>
+                    <field name="partner_id" readonly="1" />
+                    <field name="contrato_id" invisible="1" />
+                    <field name="tipo_servicio" invisible="1" />
+                    <!--<field name="user_id" widget="selection" readonly="1" domain="[('share','=',False)]" />-->
+                    <field name="user_id" widget="selection" readonly="1" />
+                    <field name="fecha" attrs="{'readonly': [('is_created','=',True)]}" />
+                    <field name="fecha_fin" readonly="1" />
+                    <field name="is_created" invisible="True" />
+                    <field name="actividad_id" widget="selection" on_change="onchange_actividad_id(actividad_id, fecha, servicio_id, context)" attrs="{'readonly': [('is_created','=',True)]}" domain="['|',('tipo_servicio','=',tipo_servicio),('tipo_servicio','=',False)]" />
+                    <field name="tipo" invisible="True" />
+                    <field name="user_seg_id" widget="selection" attrs="{'readonly': [('is_created','=',True)]}" domain="[('share','=',False)]" />
+                    <field name="fecha_limite" />
+                    <field name="prioridad" />
+                    <field name="alarm_ids" widget="many2many_tags" states="open" />
+                    <field name="motivo_espera_id" widget="selection" attrs="{'invisible': [('tipo', 'not in', ['espera']) ],'required': [('tipo','=','espera')]}" on_change="onchange_motivo_espera_id(motivo_espera_id, fecha, context)" />
+                    <field name="motivo_anulacion_id" widget="selection" attrs="{'invisible': [('tipo', 'not in', ['anular']) ],'required': [('tipo','=','anular')]}" />
+                    <field name="motivo_reclamacion_id" widget="selection" attrs="{'invisible': [('tipo', 'not in', ['reclamacion']) ],'required': [('tipo','=','reclamacion')]}" />
+                    <field name="reclamacion_fundada" attrs="{'invisible': [('tipo', 'not in', ['reclamacion']) ],'required': [('tipo','=','reclamacion')]}" />
+                    <newline />
+                    <field name="observaciones" string="Descripcion tarea" />
+                    <newline />
+                    <newline />
+                    <field name="mail_pop_id" attrs="{'invisible': [('tipo', 'not in', ['mail_recibido']) ]}" />
+                    <newline />
+                    <group colspan="4" string="Horas">
+                      <field mode="tree" name="horas_lineas" nolabel="1" editable="bottom">
+                        <tree editable="bottom">
+                          <field name="contrato_id" invisible="1" required="0" />
+                          <field name="tarea_id" invisible="1" required="0" />
+                          <field name="parent_id" invisible="1" required="0" />
+                          <field name="fecha" />
+                          <field name="descripcion" />
+                          <field name="horas" widget="float_time" sum="Total" />
+                        </tree>
+                      </field>
+                    </group>
+                    <newline />
+                    <group colspan="4" string="Productos" attrs="{'invisible': [('tipo', 'not in', ['material']) ]}">
+                      <field mode="tree" name="producto_lineas" nolabel="1">
+                        <tree>
+                          <field name="product_id" on_change="onchange_product_id(product_id)" />
+                          <field name="tipo_producto" />
+                          <field name="tipo_producto_n" invisible="1" />
+                          <field name="prodlot_id" />
+                          <field name="cantidad" />
+                          <field name="importe" />
+                          <field name="tax_id" />
+                          <field name="subtotal" />
+                          <field name="ubicacion" />
+                          <field name="incluir" />
+                          <field name="invoice_state" invisible="False" />
+                          <field name="observaciones" />
+                        </tree>
+                      </field>
+                    </group>
+                    <newline />
+                    <field name="nota_facturacion" />
+                    <field name="mostrar_en_resumen" />
+                    <field name="especial_atencion" attrs="{'readonly': [('is_created','=',True)]}" />
+                    <field name="enviar_mensaje" attrs="{'readonly': [('state','not in',['open'])]}" />
+                    <field name="create_note" attrs="{'readonly': [('is_created','=',True)]}" />
+                  </group>
+                </group>
+              </page>
+              <page string="Tareas generadas">
+                <group>
+                <field mode="tree" readonly="1" colspan="4" name="child_ids" nolabel="1" select="1" context="{'default_servicio_id':id}">
+                  <tree string="Tareas" colors="green:hours_to_act&gt;8;orange:hours_to_act&gt;0;red:hours_to_act&lt;=0">
+                    <button name="open_tarea" string="Ver Tarea" type="object" icon="gtk-edit" />
+                    <field name="hours_to_act" invisible="1" />
+                    <field name="numero_tarea" />
+                    <field name="fecha" />
+                    <field name="actividad_id" />
+                    <field name="fecha_limite" />
+                    <field name="detalle" />
+                    <field name="user_seg_id" />
+                    <field name="tota_horas" widget="float_time" sum="Total Horas" />
+                    <button icon="gtk-apply" name="close_act" string="Finalizar Actividad" type="object" states="open" class="oe_highlight" />
+                    <field name="state" />
+                  </tree>
+                </field>                    
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+            <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+    <!--Vista calendario tareas -->
+    <record id="view_acp_contrato_tarea_calendar" model="ir.ui.view">
+      <field name="name">acp_contrato.tarea.calendar</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="arch" type="xml">
+        <calendar string="Tareas" color="user_seg_id" date_start="fecha_limite">
+          <field name="actividad_id" />
+          <field name="partner_name" />
+          <field name="detalle" />
+          <field name="contrato_id" />
+          <field name="servicio_id" />
+        </calendar>
+      </field>
+    </record>
+    <!--Vista busqueda tareas -->
+    <record id="view_acp_contrato_tarea_search" model="ir.ui.view">
+      <field name="name">acp_contrato.tarea.search</field>
+      <field name="model">acp_contrato.tarea</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Tareas">
+          <filter icon="terp-mail-message-new" string="Unread Messages" name="message_unread" domain="[('message_unread','=',True)]" />
+          <separator />
+          <filter name="mis_actividades" string="Mis Tareas" domain="[('user_seg_id','=',uid)]" />
+          <filter name="mis_act_abiertas" string="Mis Tareas Abiertas" domain="[('user_seg_id','=',uid),('state','=','open')]" />
+          <filter icon="terp-document-new" string="Abiertos" name="abiertos" domain="[('state','=','open')]" />
+          <filter icon="terp-document-new" string="Cerrados" name="finalizado" domain="[('state','=','done')]" />
+          <separator />
+          <field name="contrato_id" />
+          <field name="servicio_id" />
+          <field name="partner_id" />
+          <field name="fecha" />
+          <field name="actividad_id" />
+          <field name="fecha_limite" />
+          <field name="motivo_espera_id" />
+          <field name="prioridad" />
+          <field name="motivo_anulacion_id" />
+          <field name="observaciones" />
+          <field name="nota_facturacion" />
+          <field name="user_id" />
+          <field name="user_seg_id" />
+          <field name="informado" />
+          <field name="tipo" />
+          <group expand="0" string="Group By...">
+            <filter string="contrato" icon="terp-personal" domain="[]" context="{'group_by':'contrato_id'}" />
+            <filter string="Servicio" icon="terp-personal" domain="[]" context="{'group_by':'servicio_id'}" />
+            <filter string="Usuario" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}" />
+            <filter string="Estado" icon="terp-personal" domain="[]" context="{'group_by':'state'}" />
+            <filter string="Asignado a" icon="terp-personal" domain="[]" context="{'group_by':'user_seg_id'}" />
+            <filter string="Prioridad" icon="terp-personal" domain="[]" context="{'group_by':'prioridad'}" />
+            <filter string="Cliente" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada Tareas-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_tarea">
+      <field name="name">Tareas</field>
+      <field name="res_model">acp_contrato.tarea</field>
+      <field name="view_type">form</field>
+      <field name="context">{"search_default_mis_act_abiertas":1}</field>
+      <field name="view_mode">calendar,tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_tarea_calendar" />
+    </record>
+    <!-- Accion llamada Tareas Visitas solo-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_tareav">
+      <field name="name">Tareas</field>
+      <field name="res_model">acp_contrato.tarea</field>
+      <field name="view_type">form</field>
+      <field name="context">{"search_default_tipo":'cita',"search_default_mis_act_abiertas":1}</field>
+      <field name="domain">[('tipo','=','cita')]</field>
+      <field name="view_mode">calendar,tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_tarea_calendar" />
+    </record>
+    <!--Entrada en menu Tareas-->
+    <menuitem name="Tareas" id="menu_acp_contrato_tarea_tree" action="action_acp_contrato_tarea" parent="contratos" sequence="30" />
+    <menuitem name="Calendário visitas" id="menu_acp_contrato_tareav_tree" action="action_acp_contrato_tareav" parent="contratos" sequence="35" />
+    <menuitem name="Tareas Contratos" id="menu_acp_contrato_tarea_mail" parent="mail.mail_my_stuff" sequence="20" action="action_acp_contrato_tarea" />
+    <!--Vista form productos contrato-->
+    <record model="ir.ui.view" id="view_acp_contrato_contrato_producto_form">
+      <field name="name">acp_contrato.contrato_producto.form</field>
+      <field name="model">acp_contrato.contrato_producto</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Producto">
+          <sheet>
+            <group string="Información  Gerneral">
+              <group>
+                <field name="product_id" on_change="onchange_product_id(product_id)" />
+                <field name="tipo_producto" />
+                <field name="tipo_producto_n" invisible="1" />
+                <field name="prodlot_id" domain="[('product_id','=',product_id)]" context="{'default_product_id':product_id}" />
+              </group>
+              <group>
+                <field name="ubicacion" />
+                <field name="estado" />
+                <field name="programar_servicio_id" />
+              </group>
+              <group colspan="4">
+                <field name="observaciones" />
+              </group>
+            </group>
+            <group string="Información  Adicional" colspan="4" />
+            <group string="Historico" colspan="4" />
+            <field name="historico_ids" readonly="1">
+              <tree>
+                <field name="servicio_id" />
+                <field name="fecha" />
+                <field name="product_id" />
+                <field name="prodlot_id" />
+                <field name="ubicacion" />
+                <field name="estado" />
+                <field name="satisfactorio" />
+                <field name="observaciones" />
+              </tree>
+            </field>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista form productos servicios-->
+    <record model="ir.ui.view" id="view_acp_contrato_servicio_producto_form">
+      <field name="name">acp_contrato.servicio_producto.form</field>
+      <field name="model">acp_contrato.servicio_producto</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Producto">
+          <sheet>
+            <group string="Información  Gerneral">
+              <group>
+                <field name="contrato_producto_id" invisible="1" />
+                <field name="product_id" on_change="onchange_product_id(product_id)" />
+                <field name="tipo_producto" />
+                <field name="tipo_producto_n" invisible="1" />
+                <field name="prodlot_id" domain="[('product_id','=',product_id)]" context="{'default_product_id':product_id}" />
+              </group>
+              <group>
+                <field name="ubicacion" />
+                <field name="estado" />
+                <field name="satisfactorio" />
+              </group>
+              <group colspan="4">
+                <field name="observaciones" />
+              </group>
+            </group>
+            <group string="Información  Adicional" colspan="4" />
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista form productos servicios extra 
+         <record model="ir.ui.view" id="view_acp_contrato_servicio_producto_extra_form">
+         <field name="name">acp_contrato.servicio_producto_extra.form</field>
+         <field name="model">acp_contrato.servicio_producto_extra</field>
+         <field name="type">form</field>
+         <field name="arch" type="xml">
+         <form string="Producto">
+         <sheet>
+         <group string="Información  Gerneral">
+         <group>
+         <field name="product_id" on_change="onchange_product_id(product_id)" />
+         <field name="tipo_producto" />
+         <field name="tipo_producto_n" invisible="1" />
+         <field name="prodlot_id" />
+         </group>
+         <group>
+         <field name="ubicacion" />
+         <field name="incluir" />
+         </group>
+         <group>
+         <field name="cantidad" />
+         <field name="importe" />
+         </group>
+         <group>
+         <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" />
+         <field name="subtotal" readonly="True" />
+         <field name="invoice_state" invisible="False" />
+         </group>
+         <group string="Información  Adicional" colspan="4" />
+         <group colspan="4">
+         <field name="observaciones" />
+         </group>
+         </group>
+         </sheet>
+         </form>
+         </field>
+         </record>-->
+    <!--Vista form productos tarea extra-->
+    <record model="ir.ui.view" id="view_acp_contrato_tarea_producto_form">
+      <field name="name">acp_contrato.tarea_producto.form</field>
+      <field name="model">acp_contrato.tarea_producto</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Producto">
+          <sheet>
+            <group string="Información  Gerneral7">
+              <group>
+                <field name="tipo_producto_n" invisible="1" />
+                <field name="product_id" on_change="onchange_product_id(product_id)" />
+                <field name="tipo_producto" />
+                <field name="tipo_producto_n" invisible="1" />
+                <field name="prodlot_id" domain="[('product_id','=',product_id)]" context="{'default_product_id':product_id}" />
+              </group>
+              <group>
+                <field name="ubicacion" />
+                <field name="incluir" />
+                <field name="invoice_state" />
+              </group>
+              <group attrs="{'invisible':[('invoice_state','=','noaplicable')]}">
+                <field name="cantidad" />
+                <field name="importe" />
+              </group>
+              <group attrs="{'invisible':[('invoice_state','=','noaplicable')]}">
+                <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" />
+                <field name="subtotal" readonly="True" />
+              </group>
+              <group string="Información  Adicional" colspan="4" />
+              <group colspan="4">
+                <field name="observaciones" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- Vista tree email   -->
+    <record model="ir.ui.view" id="view_acp_contrato_mail_pop_tree">
+      <field name="name">acp_contrato.mail_pop.tree</field>
+      <field name="model">acp_contrato.mail_pop</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Email" delete="false" create="false">
+          <field name="name" />
+          <field name="email_from" />
+          <field name="create_date" />
+          <field name="partner_id" />
+          <field name="contrato_id" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form email -->
+    <record model="ir.ui.view" id="view_acp_contrato_mail_pop_form">
+      <field name="name">acp_contrato.mail_pop.form</field>
+      <field name="model">acp_contrato.mail_pop</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Mail" delete="false" create="true">
+          <sheet>
+            <group>
+              <field name="email_from" colspan="2" />
+              <field name="email_cc" colspan="2" />
+              <field name="name" colspan="2" />
+              <field name="partner_id" />
+              <field name="create_date" />
+              <field name="description" wiget="html" />
+              <field name="contrato_id" />
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+            <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda email -->
+    <record id="view_acp_contrato_mail_pop_search" model="ir.ui.view">
+      <field name="name">acp_contrato.mail_pop.search</field>
+      <field name="model">acp_contrato.mail_pop</field>
+      <field name="arch" type="xml">
+        <search string="emails">
+          <field name="name" />
+          <field name="email_from" />
+          <field name="create_date" />
+          <field name="partner_id" />
+          <field name="email_cc" />
+          <field name="description" />
+          <field name="contrato_id" />
+          <filter string="Sin asignar" icon="terp-go-month" domain="[('contrato_id','=',False)]" />
+          <filter string="Sin leer" name="message_unread" help="Show messages to read" domain="[('message_unread', '=', True)]" />
+          <group expand="0" string="Group By...">
+            <filter string="Remitente" icon="terp-go-month" domain="[]" context="{'group_by':'email_from'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada email-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_mail_pop">
+      <field name="name">Buzón de entrada</field>
+      <field name="res_model">acp_contrato.mail_pop</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_mail_pop_tree" />
+    </record>
+    <!--Entrada en menu email-->
+    <menuitem name="Buzon de entrada" id="menu_acp_contrato_mail_pop_tree" action="action_acp_contrato_mail_pop" parent="contratos_mail" sequence="5" />
+    <!-- Vista tree tipo contrato   -->
+    <record model="ir.ui.view" id="view_acp_contrato_tipo_contrato_tree">
+      <field name="name">acp_contrato.tipo_contrato.tree</field>
+      <field name="model">acp_contrato.tipo_contrato</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Tipos de Contratos" delete="false" create="true">
+          <field name="name" readonly="False" />
+          <field name="descripcion" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form tipo_contrato -->
+    <record model="ir.ui.view" id="view_acp_contrato_tipo_contrato_form">
+      <field name="name">acp_contrato.tipo_contrato.form</field>
+      <field name="model">acp_contrato.tipo_contrato</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Tipo de Contratos" delete="false" create="true">
+          <sheet>
+            <group>
+              <field name="name" readonly="False" />
+              <field name="descripcion" />
+              <field name="active" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda tipo contrato -->
+    <record id="view_acp_contrato_tipo_contrato_search" model="ir.ui.view">
+      <field name="name">acp_contrato.tipo_contrato.search</field>
+      <field name="model">acp_contrato.tipo_contrato</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Tipoos de Contratos">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada tipo_contrato-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_tipo_contrato">
+      <field name="name">Tipos de Contratos</field>
+      <field name="res_model">acp_contrato.tipo_contrato</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_tipo_contrato_tree" />
+    </record>
+    <!--Entrada en menu tipo_contrato-->
+    <menuitem name="Tipos de Contratos" id="menu_acp_contrato_tipo_contrato_tree" action="action_acp_contrato_tipo_contrato" parent="contratos_conf" sequence="5" />
+    <!-- Vista tree tipo servicio   -->
+    <record model="ir.ui.view" id="view_acp_contrato_tipo_servicio_tree">
+      <field name="name">acp_contrato.tipo_servicio.tree</field>
+      <field name="model">acp_contrato.tipo_servicio</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Tipos de Servicio" delete="false" create="true">
+          <field name="name" readonly="False" />
+          <field name="descripcion" />
+          <field name="copia_materiales" />
+          <field name="recibir_mail" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form tipo_servicio -->
+    <record model="ir.ui.view" id="view_acp_contrato_tipo_servicio_form">
+      <field name="name">acp_contrato.tipo_servicio.form</field>
+      <field name="model">acp_contrato.tipo_servicio</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Tipo de Servicio" delete="false" create="true">
+          <sheet>
+            <group>
+              <field name="name" readonly="False" />
+              <field name="descripcion" />
+              <field name="copia_materiales" />
+              <field name="recibir_mail" />
+              <field name="actividad_inicial_id" />
+              <field name="user_seg_id" attrs="{'invisible':[('actividad_inicial_id','=',False)]}" />
+              <field name="copiar_descripcion" attrs="{'invisible':[('actividad_inicial_id','=',False)]}" />
+              <field name="active" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda tipo servicio -->
+    <record id="view_acp_contrato_tipo_servicio_search" model="ir.ui.view">
+      <field name="name">acp_contrato.tipo_servicio.search</field>
+      <field name="model">acp_contrato.tipo_servicio</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Tipoos de Servicio">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada tipo_servicio-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_tipo_servicio">
+      <field name="name">Tipos de Servicio</field>
+      <field name="res_model">acp_contrato.tipo_servicio</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_tipo_servicio_tree" />
+    </record>
+    <!--Entrada en menu tipo_servicio-->
+    <menuitem name="Tipos de Servicio" id="menu_acp_contrato_tipo_servicio_tree" action="action_acp_contrato_tipo_servicio" parent="contratos_conf" sequence="5" />
+    <!-- Vista tree tipo producto   -->
+    <record model="ir.ui.view" id="view_acp_contrato_tipo_producto_tree">
+      <field name="name">acp_contrato.tipo_producto.tree</field>
+      <field name="model">acp_contrato.tipo_producto</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Tipos de Producto" delete="false" create="true">
+          <field name="name" readonly="False" />
+          <field name="descripcion" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form tipo_producto -->
+    <record model="ir.ui.view" id="view_acp_contrato_tipo_producto_form">
+      <field name="name">acp_contrato.tipo_producto.form</field>
+      <field name="model">acp_contrato.tipo_producto</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Tipo de Producto" delete="false" create="true">
+          <sheet>
+            <group>
+              <field name="name" readonly="False" />
+              <field name="descripcion" />
+              <field name="active" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda tipo producto -->
+    <record id="view_acp_contrato_tipo_producto_search" model="ir.ui.view">
+      <field name="name">acp_contrato.tipo_producto.search</field>
+      <field name="model">acp_contrato.tipo_producto</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Tipoos de Producto">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada tipo_producto-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_tipo_producto">
+      <field name="name">Tipos de Producto</field>
+      <field name="res_model">acp_contrato.tipo_producto</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_tipo_producto_tree" />
+    </record>
+    <!--Entrada en menu tipo_producto-->
+    <menuitem name="Tipos de Producto" id="menu_acp_contrato_tipo_producto_tree" action="action_acp_contrato_tipo_producto" parent="contratos_conf" sequence="5" />
+    <!-- Vista tree tipo actividades   -->
+    <record model="ir.ui.view" id="view_acp_contrato_actividad_tree">
+      <field name="name">acp_contrato.actividad.tree</field>
+      <field name="model">acp_contrato.actividad</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Oficios" delete="false" create="true">
+          <field name="id" invisible="1" />
+          <field name="code" attrs="{'readonly':[('id','!=',False)]}" />
+          <field name="name" />
+          <field name="estado_inicial" />
+          <field name="tipo" />
+          <field name="tipo_servicio" />
+          <field name="horas" />
+          <field name="alarm_ids" widget="many2many_tags" />
+          <field name="bloquear_servicio" />
+          <field name="bloquear_contrato" />
+          <field name="especial_atencion" />
+          <field name="enviar_mensaje" />
+          <field name="cerrar_automaticamente" />
+          <field name="mostrar_en_resumen" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form Actividades -->
+    <record model="ir.ui.view" id="view_acp_contrato_actividad_form">
+      <field name="name">acp_contrato.actividad.form</field>
+      <field name="model">acp_contrato.actividad</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Actividades" delete="false" create="true">
+          <sheet>
+            <group>
+              <field name="code" />
+              <field name="name" />
+              <field name="estado_inicial" />
+              <field name="tipo" />
+              <field name="tipo_servicio" />
+              <field name="horas" />
+              <field name="alarm_ids" widget="many2many_tags" />
+              <field name="bloquear_servicio" />
+              <field name="bloquear_contrato" />
+              <field name="enviar_mensaje" />
+              <field name="cerrar_automaticamente" />
+              <field name="mostrar_en_resumen" />
+              <field name="prioridad" />
+              <field name="active" />
+            </group>
+            <group colspan="4" string="Productos a cargar por defecto con esta actividad">
+              <field name="producto_lineas" nolabel="1">
+                <tree editable="bottom">
+                  <field name="product_id" />
+                  <field name="cantidad" />
+                  <field name="invoice_state" />
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda actividades -->
+    <record id="view_acp_contrato_actividad_search" model="ir.ui.view">
+      <field name="name">acp_contrato.actividad.search</field>
+      <field name="model">acp_contrato.actividad</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Actividades">
+          <field name="code" />
+          <field name="name" />
+          <field name="estado_inicial" />
+          <field name="tipo" />
+          <field name="horas" />
+          <field name="bloquear_servicio" />
+          <field name="bloquear_contrato" />
+          <field name="enviar_mensaje" />
+          <field name="cerrar_automaticamente" />
+          <field name="mostrar_en_resumen" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada actividades-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_actividad">
+      <field name="name">Actividades</field>
+      <field name="res_model">acp_contrato.actividad</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_actividad_tree" />
+    </record>
+    <!--Entrada en menu tarea-->
+    <menuitem name="Actividades" id="menu_acp_contrato_actividad_tree" action="action_acp_contrato_actividad" parent="contratos_conf" sequence="30" />
+    <!-- Vista tree tipo motivo   -->
+    <record model="ir.ui.view" id="view_acp_contrato_motivo_anulacion_tree">
+      <field name="name">acp_contrato.motivo_anulacion.tree</field>
+      <field name="model">acp_contrato.motivo_anulacion</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Motivos de Anulación" editable="bottom">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form motivo anulacion-->
+    <record model="ir.ui.view" id="view_acp_contrato_motivo_anulacion_form">
+      <field name="name">acp_contrato.motivo_anulacion.form</field>
+      <field name="model">acp_contrato.motivo_anulacion</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Motivos de Anulación" version="7.0">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="descripcion" />
+              <field name="active" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda motivo anulacion-->
+    <record id="view_acp_contrato_motivo__anulacionsearch" model="ir.ui.view">
+      <field name="name">acp_contrato.motivo_anulacion.search</field>
+      <field name="model">acp_contrato.motivo_anulacion</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Motivos de Anulación">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada motivo anulacion-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_motivo_anulacion">
+      <field name="name">Motivos de Anulación</field>
+      <field name="res_model">acp_contrato.motivo_anulacion</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_motivo_anulacion_tree" />
+    </record>
+    <!--Entrada en menu motivo anulacion-->
+    <menuitem name="Motivos de Anulación" id="menu_acp_contrato_motivo__anulaciontree" action="action_acp_contrato_motivo_anulacion" parent="contratos_conf" sequence="30" />
+    <!-- Vista tree tipo motivo_espera   -->
+    <record model="ir.ui.view" id="view_acp_contrato_motivo_espera_tree">
+      <field name="name">acp_contrato.motivo_espera.tree</field>
+      <field name="model">acp_contrato.motivo_espera</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Motivo de Espera" editable="bottom">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="fecha_limite" />
+          <field name="horas" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form motivo_espera -->
+    <record model="ir.ui.view" id="view_acp_contrato_motivo_espera_form">
+      <field name="name">acp_contrato.motivo_espera.form</field>
+      <field name="model">acp_contrato.motivo_espera</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Motivos de Esperas" version="7.0">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="descripcion" />
+              <field name="fecha_limite" />
+              <field name="horas" />
+              <field name="active" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda motivo_espera -->
+    <record id="view_acp_contrato_motivo_espera_search" model="ir.ui.view">
+      <field name="name">acp_contrato.motivo_espera.search</field>
+      <field name="model">acp_contrato.motivo_espera</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Motivos de Espera">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada motivo_espera-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_motivo_espera">
+      <field name="name">Motivos de Espera</field>
+      <field name="res_model">acp_contrato.motivo_espera</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_motivo_espera_tree" />
+    </record>
+    <!--Entrada en menu motivo_espera-->
+    <menuitem name="Motivos de Espera" id="menu_acp_contrato_motivo_espera_tree" action="action_acp_contrato_motivo_espera" parent="contratos_conf" sequence="40" />
+    <!-- Vista tree tipo motivo_reclamacion   -->
+    <record model="ir.ui.view" id="view_acp_contrato_motivo_reclamacion_tree">
+      <field name="name">acp_contrato.motivo_reclamacion.tree</field>
+      <field name="model">acp_contrato.motivo_reclamacion</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Motivos de Reclamaciones" editable="bottom">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </tree>
+      </field>
+    </record>
+    <!-- Vista form motivo_reclamacion -->
+    <record model="ir.ui.view" id="view_acp_contrato_motivo_reclamacion_form">
+      <field name="name">acp_contrato.motivo_reclamacion.form</field>
+      <field name="model">acp_contrato.motivo_reclamacion</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Motivos de Reclamaciones" version="7.0">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="descripcion" />
+              <field name="active" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!--Vista busqueda motivo_reclamacion -->
+    <record id="view_acp_contrato_motivo_reclamacion_search" model="ir.ui.view">
+      <field name="name">acp_contrato.motivo_reclamacion.search</field>
+      <field name="model">acp_contrato.motivo_reclamacion</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda de Motivos de Reclamacion">
+          <field name="name" />
+          <field name="descripcion" />
+          <field name="active" />
+        </search>
+      </field>
+    </record>
+    <!-- Accion llamada motivo_reclamacion-->
+    <record model="ir.actions.act_window" id="action_acp_contrato_motivo_reclamacion">
+      <field name="name">Motivos de Reclamaciones</field>
+      <field name="res_model">acp_contrato.motivo_reclamacion</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_acp_contrato_motivo_reclamacion_tree" />
+    </record>
+    <!--Entrada en menu motivo_reclamacion-->
+    <menuitem name="Motivos de Reclamacion" id="menu_acp_contrato_motivo_reclamacion_tree" action="action_acp_contrato_motivo_reclamacion" parent="contratos_conf" sequence="50" />
+  </data>
+</openerp>

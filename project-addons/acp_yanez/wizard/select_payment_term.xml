@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="acp_yanez_view_select_payment_term" model="ir.ui.view">
+      <field name="name">Select Payment</field>
+      <field name="model">acp_yanez.select_payment_term</field>
+      <field name="arch" type="xml">
+        <form string="Select Payment">
+          <!--<field name="sale_id" />-->
+          <field name="term_ids" readonly="1">
+            <tree string="Sales Order Lines" editable="bottom" readonly="1">
+              <field name="term_id" readonly="1"/>
+              <button name="select" string="⇒ Seleccionar" type="object" class="oe_link"/>
+            </tree>
+          </field>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>

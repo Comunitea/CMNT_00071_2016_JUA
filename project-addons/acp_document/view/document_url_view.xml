@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="assets_backend" name="google_drive assets" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <script type="text/javascript" src="/acp_document/static/src/js/url.js" />
+      </xpath>
+    </template>
+    <!-- <record model='ir.actions.act_window' id='action_ir_attachment_add_url'>
+         <field name='name'>Add URL</field>
+         <field name='res_model'>ir.attachment.add_url</field>
+         <field name='type'>ir.actions.act_window</field>
+         <field name='target'>new</field>
+         <field name='view_type'>form</field>
+         <field name='view_mode'>form</field>
+         </record>
+    -->
+
+    <!-- Attachment -->
+    <record id="view_attachment_form_acp" model="ir.ui.view">
+      <field name="model">ir.attachment</field>
+      <field name="arch" type="xml">
+        <form string="Attachments">
+          <sheet>
+            <group>
+              <group string="Data">
+                <field name="type" />
+                <field name="datas" filename="datas_fname" attrs="{'invisible':[('type','=','url')]}" />
+                <field name="datas_fname" invisible="1" attrs="{'invisible':[('type','=','url')]}" class="oe_inline oe_right" />
+                <field name="url" widget="url" attrs="{'invisible':[('type','=','binary')]}" />
+                <field name="name" attrs="{'invisible':[('type','=','binary')],'required':[('type','=','url')]}" />
+              </group>
+              <newline />
+              <group string="Clasificacion">
+                <field name="tipo_documento"  />
+                <field name="category_id" widget="many2many_tags" />
+              </group>
+              <newline />
+              <group string="Attached To">
+                <field name="res_model" />
+                <field name="model_name" />
+                <field name="res_id" />
+                <field name="res_name" />
+                <field name="parent_id" />
+                <field name="company_id" groups="base.group_multi_company" widget="selection" />
+              </group>
+              <group name="description_group" string="Description" colspan="4">
+                <field name="description" nolabel="1" />
+              </group>
+            </group>
+            <footer>
+              <button name="write" type="object" string="Guardar" />
+              or
+              <button special="cancel" string="Cancelar" class="oe_link" />
+            </footer>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="view_acp_attachment_form" model="ir.ui.view">
+      <field name="name">view.acp_attachment.form</field>
+      <field name="model">ir.attachment</field>
+      <field name="inherit_id" ref="base.view_attachment_form" />
+      <field name="arch" type="xml">
+        <group string="Data" position="after">
+          <newline />
+          <group string="Clasificacion">
+            <field name="category_id" widget="many2many_tags" />
+            <field name="model_name" />
+          </group>
+          <newline />
+        </group>
+      </field>
+    </record>
+    <record id="view_acp_attachment_search" model="ir.ui.view">
+      <field name="name">view.acp_attachment.search</field>
+      <field name="model">ir.attachment</field>
+      <field name="inherit_id" ref="base.view_attachment_search" />
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="category_id" />
+          <field name="description" />
+          <field name="res_name" />
+          <field name="model_name" />
+          <field id="res_id" name="res_id" />
+          <field id="res_model" name="res_model" />
+        </field>
+        <filter string="Owner" position="after">
+          <filter string="Modelo" icon="terp-gtk-home" domain="[]" context="{'group_by':'model_name'}" />
+          <filter string="Nombre del Recurso" icon="terp-gtk-home" domain="[]" context="{'group_by':'res_name'}" />
+        </filter>
+      </field>
+    </record>
+    <record id="action_ir_attachment_add_url" model="ir.actions.act_window">
+      <field name="name">Attachments Plus</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">ir.attachment</field>
+      <field name="view_type">form</field>
+      <field name="view_id" ref="view_attachment_form_acp" />
+      <field name='target'>new</field>
+    </record>
+    <menuitem action="base.action_attachment" id="menu_action_attachment_acp" parent="document.menu_document_management_configuration" />
+  </data>
+</openerp>

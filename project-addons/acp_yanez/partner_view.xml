@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         Pantalla de Clientes
+    
+    <record id="acp_yanez_view_partner_form" model="ir.ui.view">
+      <field name="name">acp_yanez.view.partner.form</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml" />
+    </record>-->
+    <!--
+         Botones en clientes
+     -->
+    <record model="ir.ui.view" id="acp_yanez_partner_view_buttons">
+      <field name="name">acp_yanez.partner.view.buttons</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+		 <!-- 
+        <xpath expr="/form/sheet/notebook/page/group/group/field[@name='customer']" position="before">
+          <field name="lead" />
+        </xpath>
+        -->
+        <page name="sales_purchases" position="after">
+          <!--<page name="Mandato" string="Mandato">
+            <field name="mandato_text" />
+          </page>
+          -->
+          <page name="condiciones_especiales" string="Condiciones Especiales">
+            <field name="condiciones_especiales" />
+          </page>
+        </page>
+            <field name="date" position="after">
+          <field name="origen_cliente_id" string="Origen de Cliente" />
+          <field name="crm_tracking_campaign" string="Campaña Marketing" />
+        
+          <group string="Suscripciones">
+            <field name="suscrito_revistaonline" />
+            <field name="suscrito_revistafisica" />
+            <field name="suscrito_conferencia" string="Conferencia" />
+            <field name="suscrito_curso" string="Curso" />
+          </group>
+        </field> 
+        <field name="function" position="after">
+          <field name="department" string="Departamento" />
+        </field>
+        <xpath expr="//div[@name='buttons']" position="inside">
+            <button type="action" class="oe_stat_button" id="attachment_count_button" name="%(base.action_attachment)d" icon="fa-envelope-o" context="{'search_default_res_id': active_id,'search_default_res_model': 'res.partner'}">
+              <field string="Documentos" name="attachment_count" widget="statinfo" />
+            </button> 
+            <newline />
+          <button type="action" class="oe_stat_button" id="event_registration_button" name="%(event.action_registration)d" attrs="{'invisible': [('customer', '=', False)]}" icon="fa-github" context="{'search_default_partner_id': active_id}">
+            <field string="Asistencia" name="event_registration_count" widget="statinfo" />
+          </button>
+          <button type="action" class="oe_stat_button" id="mail_message_button" name="%(acp_yanez.acp_yanez_action_view_mail_message)d" attrs="{'invisible': [('customer', '=', False)]}" icon="fa-envelope-o" context="{'search_default_partner_ids': active_id}">
+            <field string="Mensajes" name="mail_message_count" widget="statinfo" />
+            <button type="action" class="oe_stat_button" id="mail_mass_mail_button" name="%(acp_yanez.acp_yanez_action_view_mass_mail)d" icon="fa-envelope-o" context="{'search_default_res_id': active_id,'search_default_envio_masivo': True}">
+              <field string="Envios Masivos" name="mass_mail_count" widget="statinfo" />
+            </button>
+          </button>
+        </xpath>
+      </field>
+    </record>  
+    <!--
+         Añadido filtro de cliente potencial
+    
+    <record id="acp_yanez_view_res_partner_filter" model="ir.ui.view">
+      <field name="name">acp_yanez.res.partner.select</field>
+      <field name="model">res.partner</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="base.view_res_partner_filter" />
+      <field name="arch" type="xml">
+        <filter string="Customers" name="customer" position="after">
+          <filter string="Cliente Potencial" name="lead" domain="[('lead','=',1)]" help="Clientes Potenciales" />
+        </filter>
+      </field>
+    </record>
+    -->
+    <!--
+         Accion para nueva busqueda por cliente y cliente potencial
+     -->
+    <record id="acp_yanez_action_partner_form" model="ir.actions.act_window">
+      <field name="name">Clientes</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="context">{'default_customer':1, 'search_default_customer':1}</field>
+      <!--<field name="search_view_id" ref="acp_yanez_view_res_partner_filter" />-->
+      <field name="limit">80</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Click to add a contact in your address book.</p>
+        <p>
+          Odoo helps you easily track all activities related to
+          a customer; discussions, history of business opportunities,
+          documents, etc.
+        </p>
+      </field>
+    </record>-->
+    <!--
+         Modificacion kanban de clientes
+     
+    <record id="acp_yanez_res_partner_kanban_view" model="ir.ui.view">
+      <field name="name">acp_yanez.res.partner.kanban</field>
+      <field name="model">res.partner</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="base.res_partner_kanban_view" />
+      <field name="arch" type="xml">
+        <field name="category_id" position="after">
+          <field name="lead" />
+        </field>
+        <xpath expr="//div[@class='oe_kanban_partner_links']" position="after">
+          <li t-if="record.lead.raw_value">POTENCIAL</li>
+          <li t-if="!record.lead.raw_value">CLIENTE</li>
+        </xpath>
+      </field>
+    </record>-->
+    <!--
+         Nuevo acceso a clientes incluyendo en el filtro clientes potenciales
+    -->
+    <menuitem id="base.menu_partner_form" parent="base.menu_sales" action="acp_yanez_action_partner_form" sequence="2" />
+       
+  </data>
+</openerp>

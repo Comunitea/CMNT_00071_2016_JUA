@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale_order_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="60" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;order_line&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="company-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Logo-logo]]></fieldDescription>
+	</field>
+	<field name="company-nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Nombre_de_la_compania-name]]></fieldDescription>
+	</field>
+	<field name="company-calle1" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="company-ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="company-pais" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Pais-country_id/Nombre_del_pais-name]]></fieldDescription>
+	</field>
+	<field name="company-calle2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Calle2-street2]]></fieldDescription>
+	</field>
+	<field name="company-provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="company-cp" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="company-nif" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Empresa-partner_id/NIF-vat]]></fieldDescription>
+	</field>
+	<field name="company-email" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="company-phone" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Telefono-phone]]></fieldDescription>
+	</field>
+	<field name="company-website" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Sitio_web-website]]></fieldDescription>
+	</field>
+	<field name="customer-nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Nombre-display_name]]></fieldDescription>
+	</field>
+	<field name="customer-calle1" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="customer-calle2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Calle2-street2]]></fieldDescription>
+	</field>
+	<field name="customer-nif" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/NIF-vat]]></fieldDescription>
+	</field>
+	<field name="customer-provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="customer-cp" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="pedido-numero" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Referencia_del_pedido-name]]></fieldDescription>
+	</field>
+	<field name="pedido-fecha" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Fecha-date_order]]></fieldDescription>
+	</field>
+	<field name="pedido_referencia" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Referencia___Descripcion-client_order_ref]]></fieldDescription>
+	</field>
+	<field name="pedido-vendedor" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="customer-ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="lineapedido-referencia_interna" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Producto-product_id/Referencia_interna-default_code]]></fieldDescription>
+	</field>
+	<field name="lineapedido-descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Descripcion-name]]></fieldDescription>
+	</field>
+	<field name="lineapedido-cantidad" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Cantidad-product_uom_qty]]></fieldDescription>
+	</field>
+	<field name="lineapedido-precio_unidad" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Precio_unidad-price_unit]]></fieldDescription>
+	</field>
+	<field name="lineapedido-descuento" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Descuento-discount]]></fieldDescription>
+	</field>
+	<field name="lineapedido-precio_reducido" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Price_Reduce-price_reduce]]></fieldDescription>
+	</field>
+	<field name="lineapedido-subtotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Subtotal-price_subtotal]]></fieldDescription>
+	</field>
+	<field name="lineapedido-codigo_impuesto" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Impuestos-tax_id/Codigo_impuesto-description]]></fieldDescription>
+	</field>
+	<field name="lineapedido-nombre_impuesto" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Impuestos-tax_id/Nombre_impuesto-name]]></fieldDescription>
+	</field>
+	<field name="simbolo_moneda" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Moneda-currency_id/Simbolo-symbol]]></fieldDescription>
+	</field>
+	<field name="Impuestos-amount_tax" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Impuestos-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Base_imponible-amount_untaxed" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Base_imponible-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Desc._P.P.-early_payment_discount" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Desc._P.P.-early_payment_discount]]></fieldDescription>
+	</field>
+	<field name="Plazo_de_pago-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Plazo_de_pago-payment_term/Plazo_de_pago-name]]></fieldDescription>
+	</field>
+	<field name="Nombre_del_banco-bank_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Cuentas_bancarias-bank_ids/Nombre_del_banco-bank_name]]></fieldDescription>
+	</field>
+	<field name="IBAN-iban" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Cuentas_bancarias-bank_ids/IBAN-iban]]></fieldDescription>
+	</field>
+	<field name="company-cif" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/ID_de_impuesto-vat]]></fieldDescription>
+	</field>
+	<field name="Terminos_y_condiciones-note" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Terminos_y_condiciones-note]]></fieldDescription>
+	</field>
+	<field name="Validez-validez" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Validez-validez]]></fieldDescription>
+	</field>
+	<field name="Titulo-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Titulo-title/Titulo-name]]></fieldDescription>
+	</field>
+	<field name="Email-email" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Pie_de_pagina-footer_image" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Pie_de_pagina-footer_image]]></fieldDescription>
+	</field>
+	<field name="Tipo_Expediente-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tipo_de_Expediente-tipo_contrato/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="pedido-fecha_confirmacion" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Fecha_COnfirmación-fecha_confirmacion]]></fieldDescription>
+	</field>
+	<field name="company-marca_agua" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Marca_de_agua-marca_agua]]></fieldDescription>
+	</field>
+	<variable name="impuesto" class="java.lang.String" calculation="First">
+		<variableExpression><![CDATA[$F{lineapedido-nombre_impuesto}]]></variableExpression>
+	</variable>
+	<variable name="EXISTE_DPP" class="java.lang.String" calculation="Lowest">
+		<variableExpression><![CDATA[$F{Desc._P.P.-early_payment_discount} ? "SI" : "NO"]]></variableExpression>
+	</variable>
+	<variable name="total_descuento" class="java.lang.Double" resetType="None" calculation="Sum">
+		<variableExpression><![CDATA[$F{lineapedido-descuento}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="92" y="221" width="340" height="340"/>
+				<imageExpression class="java.lang.String"><![CDATA[$F{company-marca_agua}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="250" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="148" width="327" height="22"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Presupuesto Nº " + $F{pedido-numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="176" width="38" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="74" width="301" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Titulo-name}+" "+$F{customer-nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="88" width="301" height="47"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customer-calle1}.toUpperCase() + "\r" +
+$F{customer-cp} + " " + $F{customer-ciudad}.toUpperCase() + "\r" +
+$F{customer-provincia}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="40" y="176" width="123" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{pedido-fecha}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Right">
+				<reportElement x="327" y="0" width="188" height="64"/>
+				<imageExpression class="java.lang.String"><![CDATA[$F{company-logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="192" width="117" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Persona de Contacto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="117" y="192" width="295" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pedido-vendedor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="137" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="51" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="0" width="65" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="0" width="65" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Precio U]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="65" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="0" width="40" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%Desc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="0" width="80" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Impuesto]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="17" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="137" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lineapedido-descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-subtotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="222" y="0" width="50" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[new Double(String.valueOf($F{lineapedido-cantidad}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="274" y="0" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-precio_unidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="382" y="0" width="65" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-precio_reducido}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %" isBlankWhenNull="true">
+				<reportElement x="341" y="0" width="40" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-descuento} * 0.01]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="80" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lineapedido-nombre_impuesto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="172" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="282" y="8" width="150" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total sin Impuestos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="36" width="150" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
+				<reportElement x="442" y="36" width="73" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Total-amount_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="133" width="406" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Forma de pago:  " + $F{Plazo_de_pago-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="282" y="22" width="150" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Impuesto]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
+				<reportElement x="442" y="22" width="73" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Impuestos-amount_tax}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
+				<reportElement x="442" y="8" width="73" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Base_imponible-amount_untaxed}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="50" width="150" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[% D.P.P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="64" width="150" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Importe con D.P.P.]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 %" isBlankWhenNull="true">
+				<reportElement x="442" y="50" width="73" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Desc._P.P.-early_payment_discount} * 0.01]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
+				<reportElement x="442" y="64" width="73" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Total-amount_total} * ( 1 -($F{Desc._P.P.-early_payment_discount} * 0.01))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="116" width="276" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Tipo de Contrato  " + $F{Tipo_Expediente-name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="173" y="99" width="117" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{pedido-fecha_confirmacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="99" width="173" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Fecha de confirmación del cliente:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="53" splitType="Stretch">
+			<textField>
+				<reportElement x="417" y="1" width="80" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="489" y="1" width="21" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="3" width="282" height="15" forecolor="#808080"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="20" width="513" height="29" forecolor="#C0C0C0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-calle1}+ ", " + $F{company-cp} + " - " + $F{company-provincia} + " - Tel. " + $F{company-phone}+ "\r" +
+$F{company-website} + "  -  " +$F{company-email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

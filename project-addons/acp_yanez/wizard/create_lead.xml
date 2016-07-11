@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- wizard crear oportunidad-->
+    <record id="acp_yanez.wizard_create_lead" model="ir.ui.view">
+      <field name="name">acp_yanez.wizard.create.lead</field>
+      <field name="model">acp_yanez.wizard_create_lead</field>
+      <field name="arch" type="xml">
+        <form string="Crear oportunidad">
+          <group string="Seleccione la compañia en la que quiere crear la oportunidad">
+            <group>
+              <field name="company_id" />
+            </group>
+          </group>
+          <footer>
+            <button name="create_lead" string="Crear oportunidad" type="object" class="oe_highlight" />
+            or
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+    <!--llamada  wizard crear oportunidad-->
+    <record id="acp_yanez.action_wizard_create_lead" model="ir.actions.act_window">
+      <field name="name">acp_yanez.action.wizard.create.lead</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">acp_yanez.wizard_create_lead</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="acp_yanez.wizard_create_lead" />
+      <field name="target">new</field>
+    </record>
+    <!--boton llamada  wizard crear oportunidad -->
+    <record id="acp_yanez.view_event_registrtion_form_wizard_create_lead" model="ir.ui.view">
+      <field name="name">acp_yanez.view.event.registration.form.wizard.create.lead</field>
+      <field name="model">event.registration</field>
+      <field name="inherit_id" ref="event.view_event_registration_form" />
+      <field name="arch" type="xml">
+        <button name="button_reg_cancel" position="after">
+          <button name="create_lead_wizard" string="Crear oportunidad" type="object" attrs="{'invisible':[('crm_lead_id','!=',False)]}" class="oe_highlight" />
+        </button>
+      </field>
+    </record>
+  </data>
+</openerp>

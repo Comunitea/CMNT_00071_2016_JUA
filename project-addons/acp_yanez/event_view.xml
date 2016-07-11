@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <!--Vista  eventos -->
+    <record id="acp_yanez.view_event_form" model="ir.ui.view">
+      <field name="name">acp_yanez.view.event.form</field>
+      <field name="model">event.event</field>
+      <field name="inherit_id" ref="event.view_event_form" />
+      <field name="arch" type="xml">
+        <button string="Cancel Event" name="button_cancel" states="draft,confirm" position="after">
+          <button string="Envio masivo" name="envio_masivo" type="object" groups="base.group_user" />
+          <button string="Enviar encuesta" name="envio_encuesta" type="object" groups="base.group_user" />
+        </button>
+        <page string="Event Details" position="after">
+          <page string="Envios masivos" groups="base.group_no_one">
+            <group colspan="4" >
+              <field name="mass_mail_ids" nolabel="1"/>
+            </group>
+          </page>
+          <page string="Encuestas" groups="base.group_no_one">
+            <group colspan="4" >
+              <field name="survey_ids" nolabel="1"/>
+            </group>
+          </page>          
+        </page>
+        <field name="address_id" position="after">
+          <field name="ubicacion2" />
+        </field>
+        <field name="type" position="after">
+          <field name="type" required="1" />
+        </field>
+        <field name="date_end" position="after">
+          <field name="duracion" />
+        </field>
+        <page string="Registrations" position="after">
+          <page string="Conferenciantes">
+            <group>
+              <field name="conferenciantes_ids" nolabel="1" />
+            </group>
+          </page>
+          <page string="Materia">
+            <group>
+              <field name="materia" nolabel="1" />
+            </group>
+          </page>
+        </page>
+        <div class="oe_title" position="before">
+          <field name="image_medium" widget='image' class="oe_avatar oe_left" />
+        </div>
+        <field name="user_id" position="after">
+          <field name="colaborador" />
+        </field>
+        <field name="type" position="after">
+          <field name="curso_type" />
+        </field>
+        <xpath expr="//tree[@string='Registration']/field[@name='state']" position="before">
+          <field name="muestra_interes" />
+          <field name="solicita_presupuesto" />
+          <field name="partner_id" invisible="1" />
+          <button name="new_so" string="Nuevo Presupuesto" type="object" icon="gtk-add" context="{'default_partner_id':partner_id} " />
+        </xpath>
+      </field>
+    </record>
+    <!--Vista registro de eventos -->
+    <record id="acp_yanez.view_event_registrtion_form" model="ir.ui.view">
+      <field name="name">acp_yanez.view.event.registration.form</field>
+      <field name="model">event.registration</field>
+      <field name="inherit_id" ref="event.view_event_registration_form" />
+      <field name="arch" type="xml">
+        <field name="user_id" position="after">
+          <field name="crm_lead_id" readonly="1" />
+          <field name="crm_lead_company_name" readonly="1" />
+          
+        </field>
+      </field>
+    </record>
+    <!--Vista busqueda registro de eventos -->
+    <record id="acp_yanez.view_registration_search" model="ir.ui.view">
+      <field name="name">acp_yanez.event.view.registration.search</field>
+      <field name="model">event.registration</field>
+      <field name="inherit_id" ref="event.view_registration_search" />
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="crm_lead_id" />
+        </field>
+        <filter string="My Registrations" help="My Registrations" domain="[('user_id','=',uid)]" position="after">
+          <filter string="Muestra Interes" domain="[('muestra_interes','=',True)]" />
+          <filter string="Solicita Presupuesto" domain="[('solicita_presupuesto','=',True)]" />
+        </filter>
+      </field>
+    </record>
+    <record id="acp_yanez.view_event_type_form" model="ir.ui.view">
+      <field name="name">acp_yanez.view.event.type.form</field>
+      <field name="model">event.type</field>
+      <field name="inherit_id" ref="event.view_event_type_form" />
+      <field name="arch" type="xml">
+        <field name="default_reply_to" position="after">
+          <field name="user_id" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

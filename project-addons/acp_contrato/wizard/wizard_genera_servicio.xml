@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <!-- Top menu item -->
+    <menuitem id="contratos_wiz" name="Procesamiento periodico" parent="contratos_base" sequence="16" groups="contratos_user_accounting,contratos_manager" />
+    <record model="ir.ui.view" id="genera_servicio_view">
+      <field name="name">acp_contrato.genera_servicio.form</field>
+      <field name="model">acp_contrato.genera_servicio</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Generar Servicios y Facturas">
+          <sheet>
+            <group>
+              <separator colspan="4" string="Este asistente generará los servicios y facturas para el Año/Mes seleccionado" />
+              <group>
+                <field name="generar_facturas" string="Generar Facturas Programadas" />
+                <field name="facturar_servicios" string="Generar Facturas de Servicios" invisible="1" />
+                <field name="generar_servicios" string="Generar Servicios" />
+              </group>
+              <group>
+                <field name="ano" />
+                <field name="mes" />
+                <field name="diario_id" widget="selection" domain="[('type','=','sale')]" attrs="{'invisible':[('generar_facturas', '=', False)],'required': [('generar_facturas','=',True)]}" />
+              </group>
+              <footer>
+                <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
+                <button name="action_genera" type="object" string="Generar" icon="gtk-go-forward" />
+              </footer>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- accion -->
+    <record model="ir.actions.act_window" id="genera_servicio_act">
+      <field name="name">Generar servicios y facturas</field>
+      <field name="res_model">acp_contrato.genera_servicio</field>
+      <field name="src_model">acp_contrato.servicio</field>
+      <field name="key2">client_action_multi</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="genera_servicio_view" />
+      <field name="target">new</field>
+    </record>
+    <!-- Entrada en menu generar servicios y facturas  -->
+    <menuitem name="Generar servicios y facturas" id="menu_wizard_genera_servicio" action="genera_servicio_act" parent="contratos_wiz" sequence="10" />
+    <!-- Wizard Facturación de Servicios-->
+    <record id="view_acp_facturar_servicio" model="ir.ui.view">
+      <field name="name">Genera Factura Servicios</field>
+      <field name="model">acp_contrato.generar_factura_servicio</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Crear Facturas de Servicio">
+          <separator colspan="4" string="Do you really want to create the invoice(s)?" />
+          <group>
+            <field name="agrupar" />
+            <field name="diario_id" widget="selection" domain="[('type','=','sale')]"/>
+            <field name="fecha_factura" />
+          </group>
+          <footer>
+            <button name="action_create_invoice" string="Generar Facturas" type="object" class="oe_highlight" />
+            or
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+    <!-- Accion Facturación de Servicios-->
+    <record id="action_acp_facturar_servicio" model="ir.actions.act_window">
+      <field name="name">Genera Factura Servicios</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">acp_contrato.generar_factura_servicio</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_acp_facturar_servicio" />
+      <field name="target">new</field>
+      <field name="multi">True</field>
+    </record>
+    <record model="ir.values" id="acp_facturar_servicio">
+      <field name="name">Genera Factura Servicios</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' + str(ref('action_acp_facturar_servicio'))" />
+      <field name="key">action</field>
+      <field name="model">acp_contrato.tarea_producto</field>
+    </record>
+  </data>
+</openerp>

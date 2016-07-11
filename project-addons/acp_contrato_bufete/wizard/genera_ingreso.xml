@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_genera_recibo_bu">
+      <field name="name">acp_contrato.genera_recibo.form</field>
+      <field name="model">acp_contrato.genera_recibo</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Genera Recibo de Ventas">
+            <group>
+              <separator colspan="4" string="Creación de Recibo de Ventas" />
+              <group>
+                <field name="voucher_id" readonly="1"/>
+                <field name="incremento" />
+                <field name="account_id"/>                
+                <field name="reference"/>
+              </group>              
+              <footer>
+                <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
+                <button name="action_genera_recibo" type="object" string="Crear Recibo" icon="gtk-go-forward" />
+              </footer>
+            </group>
+        </form>
+      </field>
+    </record>
+    <!-- accion -->
+    <record model="ir.actions.act_window" id="action_genera_recibo_bu">
+      <field name="name">Generar Recibo Ventas</field>
+      <field name="res_model">acp_contrato.genera_recibo</field>
+      <field name="src_model">account.voucher</field>
+      <field name="key2">client_action_multi</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_genera_recibo_bu" />
+      <field name="target">new</field>
+    </record>
+    <!-- view_genera_factura_bu -->    
+    <record model="ir.ui.view" id="view_genera_factura_bu">
+      <field name="name">acp_contrato.genera_factura.form</field>
+      <field name="model">acp_contrato.genera_factura</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Genera Factura Ventas">
+            <group>
+              <separator colspan="4" string="Creación de Çactyra de Ventas" />
+              <group>
+                <field name="invoice_id" readonly="1"/>
+                <field name="incremento" />
+              </group>              
+              <footer>
+                <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
+                <button name="action_genera_factura" type="object" string="Crear Factura" icon="gtk-go-forward" />
+              </footer>
+            </group>
+        </form>
+      </field>
+    </record>
+    <!-- accion -->
+    <record model="ir.actions.act_window" id="action_genera_factura_bu">
+      <field name="name">Generar Factura Ventas</field>
+      <field name="res_model">acp_contrato.genera_factura</field>
+      <field name="src_model">account.invoice</field>
+      <field name="key2">client_action_multi</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_genera_factura_bu" />
+      <field name="target">new</field>
+    </record>    
+  </data>     
+</openerp>

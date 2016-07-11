@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         Payment Mode View
+    -->
+    <record id="acp_yanez.view_payment_term_form" model="ir.ui.view">
+      <field name="name">acp_yanez.view.payment.term.form</field>
+      <field name="model">account.payment.term</field>
+      <field name="inherit_id" ref="account.view_payment_term_form" />
+      <field name="arch" type="xml">
+        <field name="active" position="after">
+            <field name="importe_minimo" />
+        </field>
+        <field name="line_ids" position="after">
+          <group col="4" position="after">
+            <separator string="Productos" />
+            <group colspan="4">
+              <field name="payment_term_product_ids" nolabel="1">
+                <tree editable="bottom">
+                  <field name="product_id" />
+                  <field name="tipo" />
+                  <field name="valor" />
+                  
+                </tree>
+              </field>
+            </group>
+          </group>
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         Comapnias
+    -->
+    <record id="view_company_acp_contrato" model="ir.ui.view">
+      <field name="name">view.company.acp_contrato.form</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form" />
+      <field name="arch" type="xml">
+        <field name="company_registry" position="after">
+          <field name="empresa_instaladora" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

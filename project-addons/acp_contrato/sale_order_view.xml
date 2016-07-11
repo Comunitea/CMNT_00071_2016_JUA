@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="view_order_form_exp1">
+      <field name="name">sale.order.form.exp1</field>
+      <field name="model">sale.order</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <field name="order_line" position = "attributes">
+  <attribute name = "context">"{'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
+  </field>
+  
+  
+        <button name="invoice_cancel" states="invoice_except" string="Cancel Order" groups="base.group_user" position="after">
+          <button name="crea_contrato" string="Crear Contrato" type="object" states="manual,progress" class="oe_highlight" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </button>
+        <field name="date_order" position="after">
+          <field name="dft_contrato_id" attrs="{'readonly': [('state','not in',['draft','sent'])]}" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="dft_servicio_id" attrs="{'readonly': [('state','not in',['draft','sent'])]}" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </field>
+        <page string="Other Information" groups="base.group_user" position="inside">
+          <group>
+            <field name="perioricidad"  string="Perioricidad Facturación" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+            <field name="referencia" attrs="{'readonly': [('state','not in',['draft','sent'])]}" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+            <field name="tipo_contrato" attrs="{'readonly': [('state','not in',['draft','sent'])]}" widget="selection" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          </group>
+        </page>
+        <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="after">
+          <field name="contrato_id" domain="[('partner_id','=',parent.partner_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="servicio_id" domain="[('partner_id','=',parent.partner_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="tipo_servicio" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="perioricidad_servicio" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </xpath>
+        <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/tree[@string='Sales Order Lines']/field[@name='product_id']" position="after">
+          <field name="contrato_id" domain="[('partner_id','=',parent.partner_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="servicio_id" domain="[('contrato_id','=',contrato_id),('partner_id','=',parent.partner_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="tipo_servicio" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+          <field name="perioricidad_servicio" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>

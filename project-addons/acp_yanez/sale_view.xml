@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         Modificaciones de la vista account.invoice.form para el usuario portal
+    -->
+    <record id="acp_yanez_view_invoice_portal" model="ir.ui.view">
+      <field name="name">acp_yanez.view.order.form.remove_edit</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_form" />
+      <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]" />
+      <field name="arch" type="xml">
+        <field name="invoice_line" position="attributes">
+           <attribute name="invisible">1</attribute>
+        </field>
+        <field name="invoice_line" position="after">
+            <field name="line_group_ids">
+              <tree string="Sales Order Lines">
+                <field name="template_id" />
+                <field name="name" />
+                <field name="tax_ids" widget="many2many_tags" />
+                <field name="total" />
+              
+                
+              </tree>
+              <form>
+                <field name="template_id" options="{'no_open': True}"/>
+                <field name="name" options="{'no_open': True}"/>
+                <field name="tax_ids" widget="many2many_tags" options="{'no_open': True}"/>                  
+                <field name="total" options="{'no_open': True}"/>
+              </form>
+            </field>              
+        </field>
+      </field>
+    </record>
+    <!--
+         Modificaciones de la vista sale.order.form para el usuario portal
+    -->
+    <record id="acp_yanez_view_order_form_remove_edit" model="ir.ui.view">
+      <field name="name">acp_yanez.view.order.form.remove_edit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]" />
+      <field name="arch" type="xml">
+        <field name="order_line" position="attributes">
+           <attribute name="invisible">1</attribute>
+        </field>
+        <field name="order_line" position="after">
+            <field name="line_group_ids">
+              <tree string="Sales Order Lines">
+                <field name="template_id" />
+                <field name="name" />
+                <field name="tax_ids" widget="many2many_tags"/>  
+                <field name="total" />
+                
+              </tree>
+              <form>
+                <field name="template_id" options="{'no_open': True}"/>
+                <field name="name" options="{'no_open': True}"/>
+                <field name="tax_ids" widget="many2many_tags" options="{'no_open': True}"/>                  
+                <field name="total" options="{'no_open': True}"/>
+              </form>
+            </field>              
+        </field>
+        <xpath expr="//form" position="attributes">
+          <attribute name="edit">false</attribute>
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+        <div class="oe_chatter" position="replace" />
+      </field>
+    </record>
+    <record id="acp_yanez_view_order_form_inherit1" model="ir.ui.view">
+      <field name="name">acp_yanez.sale_stock.view.order.form.inherit1</field>
+      <field name="model">sale.order</field>
+      <field name="priority">30</field>
+      <field name="inherit_id" ref="sale_stock.view_order_form_inherit" />
+      <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]" />
+      <field name="arch" type="xml">
+        <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+          <field name="product_id" invisible="1" />
+          <field name="product_template_name" readonly="1" />
+        </xpath>
+      </field>
+    </record>
+    <!--
+         Modificaciones de la vista sale.order.form 
+    -->
+    <record id="acp_yanez_view_order_form" model="ir.ui.view">
+      <field name="name">acp_yanez.view.order.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <field name="th_weight" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </field>
+        <page string="Other Information" groups="base.group_user" position="inside">
+          <group colspan="4">
+            <field name="comment" string="Notas Internas" />
+            <field name="department_user_id" string="Resp. Departamento" />
+          </group>
+        </page>
+        <field name="date_order" position="after">
+          <field name="fecha_confirmacion" readonly="1" />
+        </field>
+        <field name="note" position="after">
+          <div>
+            <field name="dummy_mostrar_adjuntos" invisible="1" />
+            <field name="dummy_mostrar_desglose" invisible="1" />
+            <field name="etapa" invisible="1" />
+            <field name="ready_to_pay" invisible="1" />
+            <field name="payment_acquirer_id" invisible="1" />
+            <field name="tipo_documento" invisible="1" />
+          </div>
+          <group groups="base.group_portal">
+            <group colspan="4" attrs="{'invisible': [('etapa', '!=', 1)]}">
+              <h2 align="center" style="color:#7C7BAD">Siga los pasos indicados a continuación para aceptar el presupuesto</h2>
+            </group>
+            <newline />
+            <newline />
+            <newline />
+            <group colspan="4" attrs="{'invisible': [('etapa', '!=', 1)]}">
+              <h1>1º Seleccione Modo de Pago</h1>
+              <newline />
+              <group>
+                <button name="open_wizard_payment_mode" string="⇒ Seleccionar Modo de Pago" type="object" class="oe_link" />
+              </group>
+              <group>
+                <field name="payment_mode_id2" string="Modo de pago seleccionado:" class="oe_inline" readonly="1" options="{'no_open': True}" attrs="{'invisible': [('payment_mode_id2', '=', False)]}" />
+              </group>
+              <group>
+                <group>
+                  <button name="etapa1_siguiente" string="Ir al paso Siguiente" type="object" class="oe_highlight" attrs="{'invisible': [('payment_mode_id2', '=', False)]}" />
+                  <button name="action_button_cancel_portal" states="sent,draft" string="Desestimar Presupuesto" type="object" />
+                </group>
+              </group>
+            </group>
+            <group colspan="4" attrs="{'invisible': [('etapa', '!=', 2)]}">
+              <h1>2º Seleccione Plazo de Pago</h1>
+              <newline />
+              <group>
+                <button name="open_wizard_payment_term" string="⇒ Seleccionar Plazo de Pago" type="object" class="oe_link" />
+              </group>
+              <group>
+                <field name="payment_term2" string="Plazo de pago seleccionado:" class="oe_inline" readonly="1" options="{'no_open': True}" attrs="{'invisible': [('payment_term2', '=', False)]}" />
+              </group>
+              <group colspan="4">
+                <group colspan="4" attrs="{'invisible': [('dummy_mostrar_desglose', '=', False)]}">
+                  <group colspan="4">
+                    <h3 align="center" style="color:#7C7BAD">A continuación se muestra el calendario de pagos.</h3>
+                    <newline />
+                    <h3 align="center" style="color:#7C7BAD">Tenga en cuenta que se pueden aplicar cargos adicionales dependiendo del plazo de pago seleccionado.</h3>
+                  </group>
+                  <newline />
+                  <group colspan="4">
+                    <field name="desglose_id" nolabel="1" readonly="1">
+                      <tree editable="bottom">
+                        <field name="date" readonly="1" />
+                        <field name="importe" readonly="1" sum="Total" />
+                      </tree>
+                    </field>
+                  </group>
+                </group>
+                <group>
+                  <button name="etapa2_anterior" string="Ir al paso Anterior" type="object" />
+                </group>
+                <group>
+                  <button name="etapa2_siguiente" string="Ir al paso Siguiente" type="object" class="oe_highlight" attrs="{'invisible': [('payment_term2', '=', False)]}" />
+                  <button name="action_button_cancel_portal" states="sent,draft" string="Desestimar Presupuesto" type="object" />
+                </group>
+              </group>
+            </group>
+            <group colspan="4" attrs="{'invisible': [('etapa', '!=', 3)]}">
+              <h1>3º Adjuntar documentos</h1>
+              <group colspan="4" attrs="{'invisible': [('dummy_mostrar_adjuntos', '=', False)]}">
+                <group colspan="4" attrs="{'invisible': [('tipo_documento', '=', 'justificante')]}">
+                  <h3 align="center" style="color:#7C7BAD">Es necesario que adjunte la Orden de Domiciliación o Mandato.</h3>
+                  <newline />
+                  <h3 align="center" style="color:#7C7BAD">Puede descargar este documento en el siguiente enlace.</h3>
+                  <newline />
+                  <group colspan="4">
+                    <field name="mandato" filename="mandato_n" nolabel="1" attrs="{'invisible': [('is_company','=',True)]}" />
+                    <field name="mandato_n" invisible="1" />
+                    <field name="mandato_empresa" filename="mandato_empresa_n" nolabel="1" attrs="{'invisible': [('is_company','=',False)]}" />
+                    <field name="mandato_empresa_n" invisible="1" />
+                  </group>
+                  <newline />
+                  <h3 align="center" style="color:#7C7BAD">Si ya adjuntó este documento en un presupuesto anterior puede saltarse este paso.</h3>
+                  <newline />
+                  <h3 align="center" style="color:#7C7BAD">Pulse en el boton "Adjuntar Documentos" para adjuntar los documentos solicitados.</h3>
+                  <newline />
+                </group>
+                <group colspan="4" attrs="{'invisible': [('tipo_documento', '=', 'mandato')]}">
+                  <h3 align="center" style="color:#7C7BAD">Es necesario que adjunte el justificante de la transferencia.</h3>
+                  <newline />
+                  <h3 align="center" style="color:#7C7BAD">No se podrá confirmar el presupuesto sin este documento.</h3>
+                  <newline />
+                  <h3 align="center" style="color:#7C7BAD">Pulse en el boton "Adjuntar Documentos" para adjuntar los documentos solicitados.</h3>
+                  <newline />
+                </group>
+              </group>
+              <group colspan="4" attrs="{'invisible': [('dummy_mostrar_adjuntos', '=', True)]}">
+                <h3 align="center" style="color:#7C7BAD">No necesita adjuntar ninguna documentacion.</h3>
+                <newline />
+                <h3 align="center" style="color:#7C7BAD">Vaya al siguiente paso.</h3>
+              </group>
+              <group colspan="4" attrs="{'invisible': [('dummy_mostrar_adjuntos', '=', False)]}">
+                <button name="open_wizard_import" string="Adjuntar Documentos" type="object" icon="terp-folder-orange" context="{'default_tipo':tipo_documento}" />
+              </group>
+              <group string="Documentos Adjuntos" colspan="4" attrs="{'invisible': [('dummy_mostrar_adjuntos', '=', False)]}">
+                <field name="adjunto_id" nolabel="1" readonly="1">
+                  <tree editable="bottom">
+                    <field name="name" readonly="1" />
+                    <field name="tipo" readonly="1" />
+                    <field name="data" filename="data_fname" invisible="1" />
+                    <field name="data_fname" class="oe_inline oe_right" />
+                    <button name="borrar" string="Eliminar" type="object" icon="gtk-cancel" />
+                  </tree>
+                </field>
+              </group>
+              <group>
+                <button name="etapa3_anterior" string="Ir al paso Anterior" type="object" />
+              </group>
+              <group>
+                <button name="etapa3_siguiente" string="Ir al paso Siguiente" type="object" class="oe_highlight" />
+                <button name="action_button_cancel_portal" states="sent,draft" string="Desestimar Presupuesto" type="object" />
+              </group>
+            </group>
+            <group colspan="4" attrs="{'invisible': [('etapa', '!=', 4)]}">
+              <h1>4º Aceptar Terminos y condiciones</h1>
+              <newline />
+              <group colspan="4">
+                <div>
+                  <field name="ok_terms_conditions" class="oe_inline" invisible="1" options="{'no_open': True}" />
+                  <button name="ok_terms" string="Pulse aqui para Aceptar los términos y condiciones generales" type="object" class="oe_link" attrs="{'invisible': [('ok_terms_conditions', '=', True)]}" />
+                </div>
+              </group>
+              <field name="condiciones_generales" filename="condiciones_generales_n" nolabel="1" />
+              <field name="condiciones_generales_n" invisible="1" />
+              <field name="normas_internas" filename="normas_internas_n" nolabel="1" />
+              <field name="normas_internas_n" invisible="1" />
+              <field name="is_company" invisible="1" />
+              <group>
+                <group>
+                  <button name="etapa4_anterior" string="Ir al paso Anterior" type="object" />
+                </group>
+                <group>
+                  <button name="etapa4_siguiente" string="Ir al paso Siguiente" type="object" class="oe_highlight" attrs="{'invisible': [('ok_terms_conditions', '=', False)]}" />
+                  <button name="action_button_cancel_portal" states="sent,draft" string="Desestimar Presupuesto" type="object" />
+                </group>
+              </group>
+            </group>
+            <group colspan="4" attrs="{'invisible': [('etapa', '!=', 5)]}">
+              <h1>5º Confirmar el presupuesto</h1>
+              <newline />
+              <group colspan="4">
+                <field nolabel="1" attrs="{'invisible': [('ready_to_pay', '=', False)]}" name="portal_payment_options" groups="portal_sale.group_payment_options" class="view_portal_payment_options" />
+              </group>
+              <group>
+                <group attrs="{'invisible': [('payment_acquirer_id', '=', False)]}" colspan="4" col="3">
+                  <button name="etapa5_anterior" string="Ir al paso Anterior" type="object" />
+                  <group attrs="{'invisible': [('ready_to_pay', '=', True)]}">
+                    <button name="action_button_confirm_portal_pay" states="sent,draft" string="Confirmar y Pagar Presupuesto" class="oe_highlight" type="object" />
+                  </group>
+                  <button name="action_button_cancel_portal" states="sent,draft" string="Desestimar Presupuesto" type="object" />
+                </group>
+                <group attrs="{'invisible': [('payment_acquirer_id', '!=', False)]}" colspan="4" col="3">
+                  <button name="etapa5_anterior" string="Ir al paso Anterior" type="object" />
+                  <button name="action_button_confirm_portal" states="sent,draft" string="Confirmar Presupuesto" class="oe_highlight" type="object" />
+                  <button name="action_button_cancel_portal" states="sent,draft" string="Desestimar Presupuesto" type="object" />
+                </group>
+              </group>
+            </group>
+          </group>
+        </field>
+        <xpath expr="/form/sheet/group/group/field[@name='partner_id']" position="attributes">
+          <attribute name="domain">['|',('customer','=',True),('lead','=',True)]</attribute>
+          <field name="lead" />
+        </xpath>
+        <xpath expr="/form/sheet/h1" position="replace">
+          <h1>
+            <label string="Quotation " attrs="{'invisible': [('state','not in',('draft','sent'))]}" />
+            <label string="Sales Order " attrs="{'invisible': [('state','in',('draft','sent','cancel'))]}" />
+            <label string="Quotation  " attrs="{'invisible': [('state','not in',('cancel'))]}" />
+            <field name="name" class="oe_inline" readonly="1" />
+          </h1>
+          <div class="oe_right oe_button_box" name="buttons">
+            <button class="oe_inline oe_stat_button" groups="base.group_user" type="object" name="action_make_meeting" icon="fa-calendar" context="{'default_sale_order_id': active_id}">
+              <field string="Agenda" name="meeting_count" widget="statinfo" />
+            </button>
+          </div>
+        </xpath>
+      </field>
+    </record>
+    <record id="acp_yanez_sale_order_form_payment" model="ir.ui.view">
+      <field name="name">acp_yanez.sale.order.form.payment</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="portal_sale.sale_order_form_payment" />
+      <field name="arch" type="xml">
+        <field name="portal_payment_options" groups="portal_sale.group_payment_options" class="view_portal_payment_options" position="replace" />
+      </field>
+    </record>
+  </data>
+</openerp>

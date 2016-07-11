@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="acp_yanez_email_template_opportunity_mail" model="email.template">
+      <field name="name">Email Oportunidad</field>
+      <field name="model_id" ref="crm.model_crm_lead" />
+      <field name="auto_delete" eval="True" />
+      <field name="partner_to">${object.partner_id != False and object.partner_id.id}</field>
+      <field name="email_to">${(not object.partner_id and object.email_from)|safe}</field>
+      <field name="body_html" />
+    </record>
+    <record id="acp_yanez_action_view_mail" model="ir.actions.act_window">
+      <field name="name">Emails</field>
+      <field name="res_model">mail.message</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <!--<field name="search_view_id" ref="mass_mailing.view_mail_mail_statistics_search"/>-->
+    </record>
+    <record id="acp_yanez.crm_case_form_view_oppor" model="ir.ui.view">
+      <field name="name">acp_yanez.crm.case.form.view.oppor</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+      <field name="arch" type="xml">
+        <button name="case_mark_lost" position="after">
+          <button name="action_mail_send" string="Enviar email" type="object" class="oe_highlight" groups="base.group_user" />
+        </button>
+        <xpath expr="//div[@class='oe_right oe_button_box']" position="inside">
+          <button type="action" class="oe_stat_button" id="mail_mail_button" name="%(acp_yanez.acp_yanez_action_view_mail)d" icon="fa-envelope-o" context="{'search_default_res_id': active_id,'search_default_model': 'crm.lead'}">
+            <field string="Emails" name="mail_count" widget="statinfo" />
+          </button>
+        </xpath>
+        <field name="categ_ids" position="after">
+          <field name="mass_mailing_id" />
+          <field name="contact_id" />
+          <field name="event_id" readonly="0" />
+          <field name="event_registration_id" readonly="0" domain="[('event_id','=',event_id)]"/>
+        </field>
+      </field>
+    </record>
+    <record id="acp_yanez.crm_case_form_view_filter" model="ir.ui.view">
+      <field name="name">acp_yanez.crm.case.form.view.filter</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
+      <field name="arch" type="xml">
+        <field name="categ_ids" position="after">
+          <field name="mass_mailing_id" />
+          <field name="contact_id" />
+          <field name="event_id" />
+          <field name="event_registration_id" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

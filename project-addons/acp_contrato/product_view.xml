@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="product_template_form_view_contrato1">
+      <field name="name">acp_contrato.product.template.form.contrato1</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view" />
+      <field name="arch" type="xml">
+        <page string="Sales" position="after">
+          <page string="Contratos">
+            <group colspan="2" col="2">
+              <separator string="Contratos" colspan="2" />
+              <field name="tipo_producto" />
+              <field name="mantenimiento_product_id" />
+              <field name="tipo_servicio" />
+              <field name="perioricidad_servicio" />
+            </group>
+          </page>
+        </page>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="stock_production_lot_form_contrato1">
+      <field name="name">acp_contrato.stock.production.lot.form.contrato1</field>
+      <field name="model">stock.production.lot</field>
+      <field name="inherit_id" ref="stock.view_production_lot_form" />
+      <field name="arch" type="xml">
+        <field name="product_id" position="replace">
+          <field name="product_id" on_change="onchange_product_id(product_id)" />
+        </field>
+        <field name="product_id" position="after">
+              <field name="tipo_producto" />
+              <field name="tipo_producto_n" invisible="1" />
+              <field name="fecha_garantia" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

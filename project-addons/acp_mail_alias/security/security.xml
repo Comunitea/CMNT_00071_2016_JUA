@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+    <!-- Multi - Company Rules -->
+    <record id="model_email_template_rule" model="ir.rule">
+      <field name="name">Email Template</field>
+      <field name="model_id" ref="model_email_template" />
+      <field name="global" eval="True" />
+      <!--
+           Same as res_partner above.
+      -->
+      <field name="domain_force">['|',('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+    </record>
+    <record id="mail_server_rule" model="ir.rule">
+      <field name="name">Mail Server</field>
+      <field name="model_id" ref="model_ir_mail_server" />
+      <field name="global" eval="True" />
+      <field name="domain_force">['|',('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+    </record>
+  </data>
+</openerp>

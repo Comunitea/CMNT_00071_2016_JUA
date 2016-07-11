@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <!--  MAIL MAIL STATISTICS !-->
+    
+        <record id="acp_yanez_action_view_mass_mail" model="ir.actions.act_window">
+            <field name="name">Envios Masivos</field>
+            <field name="res_model">mail.mail.statistics</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="mass_mailing.view_mail_mail_statistics_search"/>
+        </record>
+            
+    <record model="ir.ui.view" id="acp_yanez_view_mail_mail_statistics_search">
+      <field name="name">acp_yanez.mail.mail.statistics.search</field>
+      <field name="model">mail.mail.statistics</field>
+      <field name="inherit_id" ref="mass_mailing.view_mail_mail_statistics_search" />
+      <field name="priority" eval="30" />
+      <field name="arch" type="xml">
+        <field name="message_id" position="after">
+          <field name="mass_mailing_id" />
+          <field name="mass_mailing_campaign_id" />          
+          <field name="res_id" /> 
+          <filter string="Envios Masivos" name="envio_masivo" domain="[('mass_mailing_id','!=',False)]"/>  
+        </field>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="acp_yanez_view_mail_mail_statistics_tree">
+      <field name="name">acp_yanez.mail.mail.statistics.tree</field>
+      <field name="model">mail.mail.statistics</field>
+      <field name="inherit_id" ref="mass_mailing.view_mail_mail_statistics_tree" />
+      <field name="priority" eval="30" />
+      <field name="arch" type="xml">
+        <field name="message_id" position="after">
+          <field name="mass_mailing_id" />
+          <field name="mass_mailing_campaign_id" />          
+        </field>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="acp_yanez_view_mail_mass_mailing_tree    ">
+      <field name="name">acp_yanez.mail_mass_mailing.tree</field>
+      <field name="model">mail.mass_mailing</field>
+      <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_tree" />
+      <field name="priority" eval="30" />
+      <field name="arch" type="xml">
+        <field name="replied" position="after">
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+
+        </field>
+        <field name="mass_mailing_campaign_id" position="after">
+           <field name="event_id" readonly="1"/>
+        </field>
+      </field>
+    </record>    
+
+    <record model="ir.ui.view" id="acp_yanez_view_mail_mass_mailing_form">
+      <field name="name">acp_yanez.mail_mass_mailing.form</field>
+      <field name="model">mail.mass_mailing</field>
+      <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_form" />
+      <field name="priority" eval="30" />
+      <field name="arch" type="xml">
+        <field name="mass_mailing_campaign_id" position="after">
+           <field name="event_id" readonly="1"/>
+        </field>
+      </field>
+    </record>     
+  </data>
+</openerp>

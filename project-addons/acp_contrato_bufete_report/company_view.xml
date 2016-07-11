@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="view_company_form_expbu" model="ir.ui.view">
+            <field name="name">res.company._expbu</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Marca de agua">                     
+                        <group>
+                            <field name="marca_agua" widget='image' options='{"size": [150, 140]}'/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+       </record>    
+    </data>
+</openerp>
