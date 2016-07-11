@@ -1,0 +1,12 @@
+diff --git a/addons/mass_mailing/models/mass_mailing.py b/addons/mass_mailing/models/mass_mailing.py
+index 8b6bb15..b781d4c 100644
+--- a/addons/mass_mailing/models/mass_mailing.py
++++ b/addons/mass_mailing/models/mass_mailing.py
+@@ -565,6 +565,7 @@ class MassMailing(osv.Model):
+     def get_recipients(self, cr, uid, mailing, context=None):
+         if mailing.mailing_domain:
+             domain = eval(mailing.mailing_domain)
++            domain.append(('opt_out', '!=', True))
+             res_ids = self.pool[mailing.mailing_model].search(cr, uid, domain, context=context)
+         else:
+             res_ids = []

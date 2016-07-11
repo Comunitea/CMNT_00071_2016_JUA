@@ -1,0 +1,15 @@
+diff --git a/addons/product/pricelist.py b/addons/product/pricelist.py
+index b6e34d2..a74c600 100644
+--- a/addons/product/pricelist.py
++++ b/addons/product/pricelist.py
+@@ -306,8 +306,8 @@ class product_pricelist(osv.osv):
+                         if (not partner) or (seller_id.name.id != partner):
+                             continue
+                         seller = seller_id
+-                    if not seller:
+-                        continue
++                    if not seller and product.seller_ids:
++                        seller = product.seller_ids[0]
+                     if seller:
+                         qty_in_seller_uom = qty
+                         seller_uom = seller.product_uom.id
