@@ -20,7 +20,7 @@
 
 from openerp.osv import fields, osv
 
-from mx import DateTime
+from datetime import datetime
 #import netsvc
 import time
 from openerp.tools.translate import _
