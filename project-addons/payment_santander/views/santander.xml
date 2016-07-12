@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+    <template id="santander_acquirer_button">
+      <form t-if="acquirer" t-att-action="tx_url" method="post" target="_self">
+        <input type="hidden" name="MERCHANT_ID" t-att-value="tx_values['MERCHANT_ID']" />
+        <input type="hidden" name="ORDER_ID" t-att-value="tx_values['ORDER_ID']" />
+        <input type="hidden" name="ACCOUNT" t-att-value="tx_values['ACCOUNT']" />
+        <input type="hidden" name="AMOUNT" t-att-value="tx_values['AMOUNT']" />
+        <input type="hidden" name="CURRENCY" t-att-value="tx_values['CURRENCY']" />
+        <input type="hidden" name="TIMESTAMP" t-att-value="tx_values['TIMESTAMP']" />
+        <input type="hidden" name="SHA1HASH" t-att-value="tx_values['SHA1HASH']" />
+        <input type="hidden" name="MERCHANT_RESPONSE_URL" t-att-value="tx_values['MERCHANT_RESPONSE_URL']" />
+        <input type="hidden" name="AUTO_SETTLE_FLAG" t-att-value="tx_values['AUTO_SETTLE_FLAG']" />
+        <!--				
+             
+        -->
+        <a href="/payment_santander/static/src/img/terminosycondiciones.pdf" target="_blank" class="payment_header">Terminos y Condiciones</a>
+        <br />
+        <!-- submit -->
+        <button type="submit" width="100px" t-att-class="submit_class">
+          <img t-if="not submit_txt" src="/payment_santander/static/src/img/pagosantander.png" />
+          <span t-if="submit_txt">
+            <t t-esc="submit_txt" />
+            <span class="fa fa-long-arrow-right" />
+          </span>
+        </button>
+        <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>
+        <img height="55px" src="/payment_santander/static/src/img/pagosantander1.png" />
+      </form>
+    </template>
+  </data>
+</openerp>

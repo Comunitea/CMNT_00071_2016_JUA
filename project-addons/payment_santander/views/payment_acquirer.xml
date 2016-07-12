@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="acquirer_form_santander" model="ir.ui.view">
+            <field name="name">acquirer.form.santander</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="acquirer_display"]' position='after'>
+                    <group attrs="{'invisible': [('provider', '!=', 'santander')]}">
+                        <field name="santander_account" attrs="{'required': [('provider', '=', 'santander')]}"/>
+                        <field name="santander_currency" attrs="{'required': [('provider', '=', 'santander')]}"/>
+                        <field name="santander_merchant_id" attrs="{'required': [('provider', '=', 'santander')]}"/>
+                        <field name="santander_auto_settle_flag" attrs="{'required': [('provider', '=', 'santander')]}"/>
+                        <field name="santander_secret_key" attrs="{'required': [('provider', '=', 'santander')]}"/>                        
+                        <field name="santander_url_ok" attrs="{'required': [('provider', '=', 'santander')]}"/>
+                        <field name="santander_url_ko" attrs="{'required': [('provider', '=', 'santander')]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="transaction_form_santander" model="ir.ui.view">
+            <field name="name">acquirer.transaction.form.santander</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//notebook' position='inside'>
+                    <page string="Santander TX Details">
+                        <group>
+                            <field name="santander_txnid"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
