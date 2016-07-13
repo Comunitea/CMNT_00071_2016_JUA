@@ -29,16 +29,19 @@
                                 where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
                                 and acp_contrato_tarea1.id = act.id)) as tiempo_tarea,
 
-       sum((select trunc((sum(horas) * 3600)/3600)
+       trunc(sum((select sum(horas)
                                 from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
                                 where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id)) as horas,
+                                and acp_contrato_tarea1.id = act.id))) as horas,
 
-       sum((select (((sum(horas) * 3600)/3600) - trunc((sum(horas) * 3600)/3600)) * 60
+       round((sum((select sum(horas)
                                 from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
                                 where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id)) as minutos
-
+                                and acp_contrato_tarea1.id = act.id)) -
+       trunc(sum((select sum(horas)
+                                from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
+                                where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
+                                and acp_contrato_tarea1.id = act.id))))*60) as minutos
 from acp_contrato_contrato acc,
      acp_contrato_tipo_contrato actc,
      acp_contrato_tarea act,
@@ -322,3 +325,4 @@ group by
 		</band>
 	</summary>
 </jasperReport>
+

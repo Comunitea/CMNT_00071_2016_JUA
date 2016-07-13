@@ -7,18 +7,16 @@
 	<parameter name="FECHA_DESDE" class="java.lang.String"/>
 	<parameter name="FECHA_HASTA" class="java.lang.String"/>
 	<parameter name="ABOGADO_ID" class="java.lang.Integer"/>
-	<parameter name="WHERE_FECHA" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{FECHA_DESDE}=="" || $P{FECHA_HASTA} == ""? " and 0=0" : " and act.fecha between to_date('"+$P{FECHA_DESDE}+" 00:00:00','yyyy/mm/dd hh24:mi:ss') and to_date('"+$P{FECHA_HASTA}+" 23:59:59','yyyy/mm/dd hh24:mi:ss')"]]></defaultValueExpression>
-	</parameter>
 	<parameter name="LOGO" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select
+
        acc.id expediente_id,
        acc.company_id,
        acc.name expediente_numero,
        acc.partner_id cliente_id,
        rp.name cliente_nombre,
-       acc.fecha expediente_fecha,
+       acth.fecha ,
        acc.numero_auto expediente_auto,
        rp_ru_con.name expediente_responsable,
        actc.name  expediente_tipo_contrato,
@@ -26,54 +24,34 @@
        rc.logo_web,
        rp_tar_con.abogado,
        acp_contrato_materia.name expediente_materia,
-
-       sum((select sum(horas)
-                                from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
-                                where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id)) as tiempo_tarea,
-
-       sum((select trunc((sum(horas) * 3600)/3600)
-                                from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
-                                where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id)) as horas,
-
-       sum((select (((sum(horas) * 3600)/3600) - trunc((sum(horas) * 3600)/3600)) * 60
-                                from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
-                                where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id)) as minutos
-
+       sum(acth.horas) as tiempo_tarea,
+       trunc(sum(acth.horas)) as horas,
+       round((sum(acth.horas) - trunc(sum(acth.horas)))*60) as minutos
 from acp_contrato_contrato acc
-        LEFT OUTER JOIN acp_contrato_materia on ( acc.materia_id = acp_contrato_materia.id),
-     acp_contrato_tipo_contrato actc,
-     acp_contrato_tarea act,
-     acp_contrato_actividad aca,
-     res_company rc,
-     res_partner rp,
-     res_users ru_con,
-     res_partner rp_ru_con,
-     res_users ru_tar,
-     res_partner rp_tar_con,
-     res_partner company_partner
-where act.contrato_id = acc.id
-  and actc.id = acc.tipo_contrato
-  and rc.id = acc.company_id
-  and company_partner.id = rc.partner_id
-  and rp.id = acc.partner_id
-  and ru_con.id = acc.user_id
-  and rp_ru_con.id = ru_con.partner_id
-  and  ru_tar.id = act.user_seg_id
-  and rp_tar_con.id = ru_tar.partner_id
-  and aca.id = act.actividad_id
-  and rp_tar_con.abogado  = True
-  and rp_tar_con.id = COALESCE($P{ABOGADO_ID}, rp_tar_con.id )
- $P!{WHERE_FECHA}
+        LEFT OUTER JOIN acp_contrato_materia on ( acc.materia_id = acp_contrato_materia.id)
+        LEFT OUTER JOIN acp_contrato_tipo_contrato actc on ( actc.id = acc.tipo_contrato)
+        LEFT OUTER JOIN acp_contrato_servicio acs on ( acc.id = acs.contrato_id)
+        LEFT OUTER JOIN acp_contrato_tarea act on ( acs.id =  act.servicio_id)
+        LEFT OUTER JOIN acp_contrato_tarea_horas acth on (  act.id =  acth.tarea_id)
+        LEFT OUTER JOIN acp_contrato_actividad aca on ( aca.id = act.actividad_id)
+        LEFT OUTER JOIN res_company rc  on ( rc.id = acc.company_id)
+        LEFT OUTER JOIN res_partner rp  on ( rp.id = acc.partner_id)
+        LEFT OUTER JOIN res_users ru_con  on ( ru_con.id = acc.user_id)
+        LEFT OUTER JOIN res_partner rp_ru_con  on ( rp_ru_con.id = ru_con.partner_id)
+        LEFT OUTER JOIN res_users ru_tar  on ( ru_tar.id = act.user_seg_id)
+        LEFT OUTER JOIN res_partner rp_tar_con  on ( rp_tar_con.id = ru_tar.partner_id and rp_tar_con.abogado  = True)
+        LEFT OUTER JOIN res_partner company_partner  on ( company_partner.id = rc.partner_id)
+where
+          rp_tar_con.id = COALESCE($P{ABOGADO_ID}, rp_tar_con.id )
+          and date_trunc('day', acth.fecha) between to_date($P{FECHA_DESDE}, 'YYYY/MM/DD') and to_date($P{FECHA_HASTA}, 'YYYY/MM/DD')
+
 group by
        acc.id ,
        acc.company_id,
        acc.name ,
        acc.partner_id ,
        rp.name ,
-       acc.fecha ,
+       acth.fecha ,
        acc.numero_auto ,
        rp_ru_con.name ,
        actc.name  ,
@@ -81,19 +59,19 @@ group by
        rc.logo_web,
        rp_tar_con.abogado,
        acp_contrato_materia.name
-order by  rp_tar_con.name, rp.name ]]>
+order by  rp_tar_con.name,acth.fecha]]>
 	</queryString>
 	<field name="expediente_id" class="java.lang.Integer"/>
 	<field name="company_id" class="java.lang.Integer"/>
 	<field name="expediente_numero" class="java.lang.String"/>
 	<field name="cliente_id" class="java.lang.Integer"/>
 	<field name="cliente_nombre" class="java.lang.String"/>
-	<field name="expediente_fecha" class="java.sql.Timestamp"/>
+	<field name="fecha" class="java.sql.Date"/>
 	<field name="expediente_auto" class="java.lang.String"/>
 	<field name="expediente_responsable" class="java.lang.String"/>
 	<field name="expediente_tipo_contrato" class="java.lang.String"/>
 	<field name="tarea_asignado" class="java.lang.String"/>
-	<field name="logo_web" class="java.lang.String"/>
+	<field name="logo_web" class="java.lang.Object"/>
 	<field name="abogado" class="java.lang.Boolean"/>
 	<field name="expediente_materia" class="java.lang.String"/>
 	<field name="tiempo_tarea" class="java.lang.Double"/>
@@ -108,7 +86,7 @@ order by  rp_tar_con.name, rp.name ]]>
 	<variable name="minutos_letrado" class="java.lang.Double" resetType="Group" resetGroup="tarea_asignado">
 		<variableExpression><![CDATA[((($V{total_tiempo_letrado} * 3600)/3600) - $V{horas_letrado})*60]]></variableExpression>
 	</variable>
-	<variable name="total_tiempo" class="java.lang.Double" resetType="Page" calculation="Sum">
+	<variable name="total_tiempo" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{tiempo_tarea}]]></variableExpression>
 	</variable>
 	<variable name="total_horas" class="java.lang.Integer">
@@ -127,7 +105,7 @@ order by  rp_tar_con.name, rp.name ]]>
 	<variable name="LOGO" class="java.io.InputStream">
 		<variableExpression><![CDATA[new ByteArrayInputStream(new Base64().decodeBase64($P{LOGO}.getBytes("UTF-8")))]]></variableExpression>
 	</variable>
-	<group name="tarea_asignado">
+	<group name="tarea_asignado" isStartNewPage="true">
 		<groupExpression><![CDATA[$F{tarea_asignado}]]></groupExpression>
 		<groupHeader>
 			<band height="46">
@@ -201,7 +179,7 @@ order by  rp_tar_con.name, rp.name ]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="50" splitType="Stretch">
+		<band height="92" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="30" width="422" height="20"/>
 				<textElement>
@@ -213,40 +191,36 @@ order by  rp_tar_con.name, rp.name ]]>
 				<reportElement x="432" y="0" width="100" height="50"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$V{LOGO}]]></imageExpression>
 			</image>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="53" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="75" y="4" width="100" height="20"/>
+				<reportElement x="78" y="49" width="100" height="20"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$V{p_fecha_desde}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="75" y="23" width="100" height="20"/>
+				<reportElement x="78" y="68" width="100" height="20"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$V{p_fecha_hasta}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="4" width="76" height="20"/>
+				<reportElement x="3" y="49" width="76" height="20"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Desde Fecha:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="23" width="76" height="20"/>
+				<reportElement x="3" y="68" width="76" height="20"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Hasta Fecha:]]></text>
 			</staticText>
 		</band>
-	</pageHeader>
+	</title>
 	<detail>
 		<band height="18" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
@@ -268,7 +242,7 @@ order by  rp_tar_con.name, rp.name ]]>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{expediente_fecha}]]></textFieldExpression>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="360" y="0" width="100" height="17"/>
@@ -287,7 +261,7 @@ order by  rp_tar_con.name, rp.name ]]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="58" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<textField>
 				<reportElement x="403" y="12" width="129" height="15"/>
 				<textElement textAlignment="Right">
@@ -308,20 +282,20 @@ order by  rp_tar_con.name, rp.name ]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement x="467" y="12" width="65" height="20"/>
+				<reportElement x="467" y="9" width="65" height="20"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("##00").format($V{total_horas})+":"+new DecimalFormat("00").format($V{total_minutos})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="367" y="12" width="100" height="20"/>
+				<reportElement x="367" y="9" width="100" height="20"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total:]]></text>
+				<text><![CDATA[Total informe:]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="4" width="532" height="1"/>

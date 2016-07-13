@@ -2,8 +2,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale_order_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="60" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<property name="OPENERP_RELATIONS" value="[&apos;order_line&apos;]"/>
+	<property name="ireport.y" value="48"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;line_group_ids&apos;]"/>
 	<queryString language="xPath">
 		<![CDATA[]]>
 	</queryString>
@@ -154,6 +154,40 @@
 	<field name="company-marca_agua" class="java.lang.String">
 		<fieldDescription><![CDATA[/data/record/Compania-company_id/Marca_de_agua-marca_agua]]></fieldDescription>
 	</field>
+	<field name="Producto-product_template_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Producto-product_template_name]]></fieldDescription>
+	</field>
+	<field name="Descripcion-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Descripcion-name]]></fieldDescription>
+	</field>
+	<field name="Subtotal-price_subtotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Subtotal-price_subtotal]]></fieldDescription>
+	</field>
+	<field name="Precio_unidad-price_unit" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Precio_unidad-price_unit]]></fieldDescription>
+	</field>
+	<field name="Cantidad-product_uom_qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Cantidad-product_uom_qty]]></fieldDescription>
+	</field>
+	<field name="Descuento-discount" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Descuento-discount]]></fieldDescription>
+	</field>
+	<field name="Descripcion-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas-line_group_ids/Descripcion-name]]></fieldDescription>
+	</field>
+	<field name="Subtotal-total" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas-line_group_ids/Subtotal-total]]></fieldDescription>
+	</field>
+	<field name="Nombre-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas-line_group_ids/Producto-template_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Nombre_impuesto-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas-line_group_ids/Impuestos-tax_ids/Nombre_impuesto-name]]></fieldDescription>
+	</field>
+	<field name="Impuestos-tax_print" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas-line_group_ids/Impuestos-tax_print]]></fieldDescription>
+	</field>
+	<sortField name="pedido-numero"/>
 	<variable name="impuesto" class="java.lang.String" calculation="First">
 		<variableExpression><![CDATA[$F{lineapedido-nombre_impuesto}]]></variableExpression>
 	</variable>
@@ -233,32 +267,11 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="137" height="20"/>
+				<reportElement x="101" y="0" width="210" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Descripción]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="222" y="0" width="51" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[Cantidad]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="274" y="0" width="65" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[Precio]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="382" y="0" width="65" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[Precio U]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="450" y="0" width="65" height="20"/>
@@ -267,78 +280,57 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[Importe]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="341" y="0" width="40" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[%Desc]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="142" y="0" width="80" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Impuesto]]></text>
-			</staticText>
 			<line>
 				<reportElement x="0" y="17" width="515" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="3" y="0" width="98" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="0" width="65" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Impuestos]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="137" height="15"/>
+				<reportElement x="101" y="0" width="271" height="15"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{lineapedido-descripcion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Descripcion-name2}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
 				<reportElement x="450" y="0" width="65" height="15"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-subtotal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Subtotal-total}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="222" y="0" width="50" height="15"/>
-				<textElement textAlignment="Right">
-					<font fontName="DejaVu Sans" size="9" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[new Double(String.valueOf($F{lineapedido-cantidad}))]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="274" y="0" width="65" height="15"/>
-				<textElement textAlignment="Right">
-					<font fontName="DejaVu Sans" size="9" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-precio_unidad}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="382" y="0" width="65" height="15"/>
-				<textElement textAlignment="Right">
-					<font fontName="DejaVu Sans" size="9" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-precio_reducido}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00 %" isBlankWhenNull="true">
-				<reportElement x="341" y="0" width="40" height="15"/>
-				<textElement textAlignment="Right">
-					<font fontName="DejaVu Sans" size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineapedido-descuento} * 0.01]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="142" y="0" width="80" height="15"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="3" y="1" width="98" height="15"/>
 				<textElement>
-					<font fontName="DejaVu Sans" size="9"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{lineapedido-nombre_impuesto}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="372" y="0" width="70" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Impuestos-tax_print}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

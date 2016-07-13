@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale_order_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;order_line&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="company-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Logo-logo]]></fieldDescription>
+	</field>
+	<field name="company-nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Nombre_de_la_compania-name]]></fieldDescription>
+	</field>
+	<field name="company-calle1" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="company-ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="company-pais" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Pais-country_id/Nombre_del_pais-name]]></fieldDescription>
+	</field>
+	<field name="company-calle2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Calle2-street2]]></fieldDescription>
+	</field>
+	<field name="company-provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="company-cp" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="company-nif" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Empresa-partner_id/NIF-vat]]></fieldDescription>
+	</field>
+	<field name="company-email" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="company-phone" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Telefono-phone]]></fieldDescription>
+	</field>
+	<field name="company-website" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Sitio_web-website]]></fieldDescription>
+	</field>
+	<field name="customer-nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Nombre-display_name]]></fieldDescription>
+	</field>
+	<field name="customer-calle1" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="customer-calle2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Calle2-street2]]></fieldDescription>
+	</field>
+	<field name="customer-nif" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/NIF-vat]]></fieldDescription>
+	</field>
+	<field name="customer-provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="customer-cp" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="pedido-numero" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Referencia_del_pedido-name]]></fieldDescription>
+	</field>
+	<field name="pedido-fecha" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Fecha-date_order]]></fieldDescription>
+	</field>
+	<field name="pedido_referencia" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Referencia___Descripcion-client_order_ref]]></fieldDescription>
+	</field>
+	<field name="pedido-vendedor" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="customer-ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="lineapedido-referencia_interna" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Producto-product_id/Referencia_interna-default_code]]></fieldDescription>
+	</field>
+	<field name="lineapedido-descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Descripcion-name]]></fieldDescription>
+	</field>
+	<field name="lineapedido-cantidad" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Cantidad-product_uom_qty]]></fieldDescription>
+	</field>
+	<field name="lineapedido-precio_unidad" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Precio_unidad-price_unit]]></fieldDescription>
+	</field>
+	<field name="lineapedido-descuento" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Descuento-discount]]></fieldDescription>
+	</field>
+	<field name="lineapedido-precio_reducido" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Price_Reduce-price_reduce]]></fieldDescription>
+	</field>
+	<field name="lineapedido-subtotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Subtotal-price_subtotal]]></fieldDescription>
+	</field>
+	<field name="lineapedido-codigo_impuesto" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Impuestos-tax_id/Codigo_impuesto-description]]></fieldDescription>
+	</field>
+	<field name="lineapedido-nombre_impuesto" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas_del_pedido-order_line/Impuestos-tax_id/Nombre_impuesto-name]]></fieldDescription>
+	</field>
+	<field name="simbolo_moneda" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Moneda-currency_id/Simbolo-symbol]]></fieldDescription>
+	</field>
+	<field name="Impuestos-amount_tax" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Impuestos-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Base_imponible-amount_untaxed" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Base_imponible-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Plazo_de_pago-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Plazo_de_pago-payment_term/Plazo_de_pago-name]]></fieldDescription>
+	</field>
+	<field name="Nombre_del_banco-bank_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Cuentas_bancarias-bank_ids/Nombre_del_banco-bank_name]]></fieldDescription>
+	</field>
+	<field name="IBAN-iban" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Cuentas_bancarias-bank_ids/IBAN-iban]]></fieldDescription>
+	</field>
+	<field name="company-cif" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/ID_de_impuesto-vat]]></fieldDescription>
+	</field>
+	<variable name="impuesto" class="java.lang.String" calculation="First">
+		<variableExpression><![CDATA[$F{lineapedido-nombre_impuesto}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="414" y="0" width="141" height="54"/>
+				<imageExpression class="java.lang.String"><![CDATA[$F{company-logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="0" width="282" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="15" width="337" height="39"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-calle1}.toUpperCase() + "\r" +
+$F{company-cp} + " " + $F{company-ciudad}.toUpperCase() + "\r" +
+$F{company-provincia}.toUpperCase() + "\r" +
+$F{company-cif}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="54" width="211" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Presupuesto]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="680" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="553" height="134" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<text><![CDATA[De una parte, D. XXXXXXXXXXXX, mayor de edad, con NIF XXXXXXXX-X interviene en nombre y representación de TU MAYOR AMIGO SL con CIF B87221503 y domicilio en CALLE FUERTEVENTURA, nº 4 SAN SEBASTIAN DE LOS REYES. En adelante, TU MAYOR AMIGO ó EL PROVEEDOR.
+
+De otra parte, D. XXXXXXXXXXXXXXXX mayor de edad, con NIF XXXXXXXXX-X y domicilio en la calle XXXXXXXX, de Madrid. En adelante, EL CLIENTE.
+
+TU MAYOR AMIGO se reconoce plena capacidad para contratar y obligarse en los términos previstos en el presente contrato de SERVICIOS DE AYUDA A DOMICILIO, como Atención Doméstica y/o Atención Personal, con sujeción a los términos y condiciones establecidos en las siguientes estipulaciones.
+
+MANIFIESTAN
+
+I.- TU MAYOR AMIGO es una empresa de servicios de asistencia y ayuda a domicilio. Entre sus áreas de negocio se encuentran la prestación de una serie de servicios que faciliten el cuidado y la atención de personas en situación de dependencia, bien sea por edad (menores o mayores), discapacidad, o enfermedad (crónica o puntual), incluyendo aquellos que atiendan a sus necesidades domésticas.
+
+II.- El CLIENTE es está interesado en contratar a TU MAYOR AMIGO los servicios de Atención Doméstica y/o Atención Personal.
+
+III.- Los trabajos se realizarán en  la calle XXXXXXXXXXX de Madrid.
+
+IV.- Los trabajos tendrán lugar desde el día XX de XX de 2015 en horario de XX a XX, los lunes, martes, jueves y viernes, no festivos.
+A tal fin, formalizan el presente CONTRATO DE SERVICIOS que se regirá con sujeción a las siguientes:
+
+ESTIPULACIONES
+
+I. OBJETO DEL CONTRATO
+Constituye el objeto del presente contrato la prestación por parte de TU MAYOR AMIGO los  SERVICIOS DE AYUDA A DOMICILIO, como Atención Doméstica y/o Atención Personal, en la duración y fecha marcadas anteriormente y en la ubicación estipulada previamente.
+TU MAYOR AMIGO realizará sus servicios contra el pago de la contraprestación establecida en la estipulación siguiente, en los términos y condiciones que se recogen.
+
+II. FORMA DE PRESTACIÓN DE LOS SERVICIOS
+Para la realización de los servicios, TU MAYOR AMIGO realizará las siguientes tareas:
+☐Aseo e higiene.
+☐Apoyo en la movilidad.
+☐Ayuda para vestir.
+☐Limpieza del hogar.
+☐Preparación de alimentos  y Cocina.
+☐Lavado y planchado.
+☐Control de la medicación.
+☐Compra.
+☐Acompañamiento visitas médicas.
+☐Acompañamiento en ingresos hospitalarios.
+☐Servicios personales (gestiones bancarias, trámites, etc...)
+☐Compañía (TU AMIGO).
+☐Ofertas Culturales.
+☐Paseos con fines sociales y terapéuticos.
+☐Compras (shopping).
+
+
+
+
+
+
+III. INFORMACIÓN CONFIDENCIAL
+Para facilitar la prestación del servicio contratado a TU MAYOR AMIGO, EL CLIENTE puede revelarle cierta información confidencial y secretos comerciales, así como información relativa a investigaciones presentes y futuras, información económica, datos de clientes, marketing, ideas de negocio, proyectos, bases de datos, desarrollos y actividades relativas al negocio ("Información confidencial"). La "Información Confidencial" será suministrada bien por escrito bien oralmente en el curso de las reuniones que se mantengan respecto de la cooperación con causa en el presente contrato.
+
+TU MAYOR AMIGO se compromete a mantener la más estricta confidencialidad y a no revelar, difundir, publicar o utilizar la información de carácter técnico, comercial, estratégico, financiero, y/o de cualquier otro tipo que le sea suministrada por EL CLIENTE en cualquier forma por razón de la prestación de servicios sin la autorización expresa de EL CLIENTE y con excepción en los siguientes supuestos:
+
+• Aquellos casos en los que lo requieran las obligaciones asumidas por el presente contrato.
+• Cuando la "Información Confidencial" se convierta de dominio público sin que para ello haya tenido intervención alguna TU MAYOR AMIGO y/o sus administradores o empleados.
+
+A menos que lo requiera la Ley, EL CLIENTE no permitirá que se revele información alguna a ninguna persona o entidad aparte de aquellos de sus empleados o agentes que hayan de tener acceso a dicha información con el fin de que TU MAYOR AMIGO cumpla sus obligaciones según este contrato y que se comprometan a mantener dicha información confidencial tal como se exige en este apartado.
+
+
+
+
+IV. PROTECCION DE DATOS PERSONALES
+En ningún caso podrá TU MAYOR AMIGO utilizar los datos y ficheros personales titularidad de EL CLIENTE y entregados por éste para ser tratados, o los que resulten de la prestación del servicio, para fines diferentes a los previstos en el presente contrato. Tampoco podrá cederlos a terceros, ni siquiera para su conservación.
+
+TU MAYOR AMIGO tomará cuantas medidas técnicas y organizativas sean necesarias para garantizar la protección de los datos y ficheros personales cuya titularidad sea de EL CLIENTE, frente a la destrucción, pérdida, alteraciones indebidas, cesiones y accesos no autorizados por éste.
+
+De acuerdo con lo expresado en el artículo 12 de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, no será considerado comunicación ni cesión de datos al acceso por TU MAYOR AMIGO a los datos de carácter personal de EL CLIENTE («responsable del tratamiento») ya que dicho acceso, y el correspondiente tratamiento, es necesario para realizar la prestación del Servicio contratado.
+
+Por ello y a los efectos de normativa de protección de datos, TU MAYOR AMIGO únicamente tratará los datos conforme a las instrucciones de EL CLIENTE, expresadas en el presente Contrato, que no los aplicará o utilizará con fin distinto al que figura en lo pactado entre las Partes, ni los comunicará, ni siquiera para su conservación, a otras personas.
+
+Una vez cumplida la prestación de servicios pactada, y cuando ya no sean necesarios para continuar con el encargo realizado, los datos de carácter personal serán destruidos o devueltos por TU MAYOR AMIGO al responsable del tratamiento, al igual que cualquier soporte o documentos en que conste algún dato de carácter personal objeto del tratamiento.
+
+
+V. COMPROMISOS
+TU MAYOR AMIGO informará puntualmente de cualquier circunstancia adicional ó relevante al cliente fruto del trabajo realizado.
+Nos comprometemos a realizar el mejor servicio y un trato humano personalizado de calidad.
+
+VI. PRECIO
+El importe de la remuneración por los servicios prestados durante este contrato es de XXXXX € (XX% IVA incluido) al mes, abonados por EL CLIENTE a TU MAYOR AMIGO mediante TRANSFERENCIA BANCARIA a la cuenta ES2085 9735 81 0330304575.
+
+
+VII. DURACIÓN DEL CONTRATO
+La duración del presente contrato es de 1 mes desde el XX de XX hasta el XX de XXXX de XXXX.
+El contrato será renovable mes a mes a la finalización del mismo de manera automática, salvo comunicación expresa por las partes con quince días de antelación.
+
+
+VIII. RESOLUCIÓN
+Conforme al artículo 1124 del Código Civil, cualquiera de las Partes, en caso de incumplimiento por la contraparte de una o más obligaciones bajo este contrato, podrá requerir su cumplimiento o dar por resuelto el contrato, con el abono de la indemnización de daños y perjuicios que, en su caso, proceda.
+
+
+
+
+
+IX. FUERO Y LEY APLICABLE
+Para cualquier cuestión derivada de la interpretación o aplicación del presente contrato las partes contratantes, con renuncia expresa a su fuero propio, se someten a la legislación española y jurisdicción de los Juzgados y Tribunales de Madrid.
+Y en prueba de conformidad, las partes firman el presente contrato por duplicado en el lugar y fecha del encabezamiento.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="43" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

@@ -15,7 +15,7 @@
 	</style>
 	<parameter name="CONTRATO_ID" class="java.lang.Integer"/>
 	<parameter name="LOGO" class="java.lang.String"/>
-	<parameter name="REPORT_ID" class="java.lang.Integer">
+	<parameter name="REPORT_ID" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -68,7 +68,7 @@ group by
         iguala_id
 order by iguala_id,dia_tarea]]>
 	</queryString>
-	<field name="report_id" class="java.lang.Integer"/>
+	<field name="report_id" class="java.lang.String"/>
 	<field name="partner_name" class="java.lang.String"/>
 	<field name="iguala" class="java.lang.String"/>
 	<field name="iguala_id" class="java.lang.Integer"/>

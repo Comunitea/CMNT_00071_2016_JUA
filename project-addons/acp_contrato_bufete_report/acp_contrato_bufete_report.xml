@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <openerp>
-    <data noupdate="1">
+    <data noupdate="0">
         <record id="acp_sale_order_expbu_jasper" model="ir.actions.report.xml">
             <field name="string">Presupuesto/Pedido Venta (Expedientes)</field>
             <field name="auto">True</field>
@@ -8,15 +8,23 @@
             <field name="jasper_model_id" ref="sale.model_sale_order"/>
             <field name="name">Presupuesto/Pedido Venta (Expedientes)</field>
             <field name="report_name">acp_sale_order_expbu_jasper</field>
-            <field name="rml">acp_contrato_bufete/report/acp_sale_order_expbu_jasper.jrxml</field>
-            <field name="report_rml">acp_contrato_bufete/report/acp_sale_order_expbu_jasper.jrxml</field>
+            <field name="rml">acp_contrato_bufete_report/report/acp_sale_order_expbu_jasper.jrxml</field>
+            <field name="report_rml">acp_contrato_bufete_report/report/acp_sale_order_expbu_jasper.jrxml</field>
             <field name="menu">True</field>
             <field name="header">False</field>
             <field name="jasper_report">True</field>
             <field name="jasper_output">pdf</field>
         </record>
-    </data> 
-    <data noupdate="1">       
+
+        <record id="acp_sale_order_expbu_jasper_values" model="ir.values">
+            <field name="name">Presupuesto/Pedido Venta (Expedientes)</field>
+            <field name="model">sale.order</field>
+            <field name="key2" eval="'client_print_multi'" />
+            <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(acp_sale_order_expbu_jasper)" />
+        </record>
+    
+
+       
         <record id="acp_invoice_expbu_jasper" model="ir.actions.report.xml">
             <field name="string">Factura Venta (Expedientes)</field>
             <field name="auto">True</field>
@@ -24,15 +32,22 @@
             <field name="jasper_model_id" ref="account.model_account_invoice"/>
             <field name="name">Factura Venta (Expedientes)</field>
             <field name="report_name">acp_invoice_expbu_jasper</field>
-            <field name="rml">acp_contrato_bufete/report/acp_invoice_expbu_jasper.jrxml</field>
-            <field name="report_rml">acp_contrato_bufete/report/acp_invoice_expbu_jasper.jrxml</field>
+            <field name="rml">acp_contrato_bufete_report/report/acp_invoice_expbu_jasper.jrxml</field>
+            <field name="report_rml">acp_contrato_bufete_report/report/acp_invoice_expbu_jasper.jrxml</field>
             <field name="menu">True</field>
             <field name="header">False</field>
             <field name="jasper_report">True</field>
             <field name="jasper_output">pdf</field>
-        </record> 
-    </data> 
-    <data noupdate="1">         
+        </record>
+
+        <record id="acp_invoice_expbu_jasper_values" model="ir.values">
+            <field name="name">Factura Venta (Expedientes)</field>
+            <field name="model">account.invoice</field>
+            <field name="key2" eval="'client_print_multi'" />
+            <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(acp_invoice_expbu_jasper)" />
+        </record>
+
+  
         <record id="acp_contrato_bu_horas_letrado_jasper" model="ir.actions.report.xml">
             <field name="string">Horas Letrado</field>
             <field name="auto">True</field>
@@ -40,15 +55,22 @@
             <field name="jasper_model_id" ref="acp_contrato_bufete_report.model_acp_contrato_bufete_horas_letrado_wizard"/>
             <field name="name">Horas Letrado</field>
             <field name="report_name">acp_contrato_bu_horas_letrado_jasper</field>
-            <field name="rml">acp_contrato_bufete/report/acp_contrato_bu_horas_letrado_jasper.jrxml</field>
-            <field name="report_rml">acp_contrato_bufete/report/acp_contrato_bu_horas_letrado_jasper.jrxml</field>
+            <field name="rml">acp_contrato_bufete_report/report/acp_contrato_bu_horas_letrado_jasper.jrxml</field>
+            <field name="report_rml">acp_contrato_bufete_report/report/acp_contrato_bu_horas_letrado_jasper.jrxml</field>
             <field name="menu">False</field>
             <field name="header">False</field>
             <field name="jasper_report">True</field>
             <field name="jasper_output">pdf</field>
-        </record>   
-    </data> 
-    <data noupdate="1">          
+        </record> 
+
+        <record id="acp_contrato_bu_horas_letrado_jasper_values" model="ir.values">
+            <field name="name">Horas Letrado</field>
+            <field name="model">acp_contrato.bufete.horas_letrado.wizard</field>
+            <field name="key2" eval="'client_print_multi'" />
+            <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(acp_invoice_expbu_jasper)" />
+        </record>  
+
+          
         <record id="acp_contrato_bu_horas_cliente_jasper" model="ir.actions.report.xml">
             <field name="string">Horas Cliente</field>
             <field name="auto">True</field>
@@ -56,15 +78,22 @@
             <field name="jasper_model_id" ref="acp_contrato.model_acp_contrato_contrato"/>
             <field name="name">Horas Cliente</field>
             <field name="report_name">acp_contrato_bu_horas_cliente_jasper</field>
-            <field name="rml">acp_contrato_bufete/report/acp_contrato_bu_horas_cliente_jasper.jrxml</field>
-            <field name="report_rml">acp_contrato_bufete/report/acp_contrato_bu_horas_cliente_jasper.jrxml</field>
+            <field name="rml">acp_contrato_bufete_report/report/acp_contrato_bu_horas_cliente_jasper.jrxml</field>
+            <field name="report_rml">acp_contrato_bufete_report/report/acp_contrato_bu_horas_cliente_jasper.jrxml</field>
             <field name="menu">False</field>
             <field name="header">False</field>
             <field name="jasper_report">True</field>
             <field name="jasper_output">pdf</field>
-        </record>                                
-    </data>
-    <data noupdate="1">          
+        </record>
+
+        <record id="acp_contrato_bu_horas_cliente_jasper_values" model="ir.values">
+            <field name="name">Horas Cliente</field>
+            <field name="model">acp_contrato.contrato</field>
+            <field name="key2" eval="'client_print_multi'" />
+            <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(acp_contrato_bu_horas_cliente_jasper)" />
+        </record>                                 
+    
+           
         <record id="acp_contrato_bu_tareas_jasper" model="ir.actions.report.xml">
             <field name="string">Actuaciones por Expediente</field>
             <field name="auto">True</field>
@@ -72,15 +101,22 @@
             <field name="jasper_model_id" ref="acp_contrato.model_acp_contrato_contrato"/>
             <field name="name">Actuaciones por Expediente</field>
             <field name="report_name">acp_contrato_bu_tareas_jasper</field>
-            <field name="rml">acp_contrato_bufete/report/acp_contrato_bu_tareas_jasper.jrxml</field>
-            <field name="report_rml">acp_contrato_bufete/report/acp_contrato_bu_tareas_jasper.jrxml</field>
+            <field name="rml">acp_contrato_bufete_report/report/acp_contrato_bu_tareas_jasper.jrxml</field>
+            <field name="report_rml">acp_contrato_bufete_report/report/acp_contrato_bu_tareas_jasper.jrxml</field>
             <field name="menu">False</field>
             <field name="header">False</field>
             <field name="jasper_report">True</field>
             <field name="jasper_output">pdf</field>
-        </record>                                
-    </data>
-    <data noupdate="1">          
+        </record> 
+
+        <record id="acp_contrato_bu_tareas_jasper_values" model="ir.values">
+            <field name="name">Actuaciones por Expediente</field>
+            <field name="model">acp_contrato.contrato</field>
+            <field name="key2" eval="'client_print_multi'" />
+            <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(acp_contrato_bu_tareas_jasper)" />
+        </record>                                      
+ 
+          
         <record id="acp_contrato_bu_igualas_jasper" model="ir.actions.report.xml">
             <field name="string">Actuaciones por Iguala</field>
             <field name="auto">True</field>
@@ -88,13 +124,20 @@
             <field name="jasper_model_id" ref="acp_contrato_bufete_report.model_acp_contrato_bufete_igualas_report"/>
             <field name="name">Actuaciones por Iguala</field>
             <field name="report_name">acp_contrato_bu_igualas_jasper</field>
-            <field name="rml">acp_contrato_bufete/report/acp_contrato_bu_igualas_jasper.jrxml</field>
-            <field name="report_rml">acp_contrato_bufete/report/acp_contrato_bu_igualas_jasper.jrxml</field>
+            <field name="rml">acp_contrato_bufete_report/report/acp_contrato_bu_igualas_jasper.jrxml</field>
+            <field name="report_rml">acp_contrato_bufete_report/report/acp_contrato_bu_igualas_jasper.jrxml</field>
             <field name="menu">False</field>
             <field name="header">False</field>
             <field name="jasper_report">True</field>
             <field name="jasper_output">pdf</field>
-        </record>                                
+        </record>
+
+        <record id="acp_contrato_bu_igualas_jasper_values" model="ir.values">
+            <field name="name">Actuaciones por Iguala</field>
+            <field name="model">acp_contrato.bufete.igualas.report</field>
+            <field name="key2" eval="'client_print_multi'" />
+            <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(acp_contrato_bu_igualas_jasper)" />
+        </record>                                            
     </data>  
 </openerp>
 
