@@ -237,7 +237,7 @@
             </tree>
           </field>
         </xpath>
-        <xpath expr="//page[@string='Ingresos']/field[@name='invoice_line_out']" position="after">
+        <xpath expr="//page[@string='Ingresos']/field[@name='invoice_line_out_refund']" position="after">
           <h3>Recibos</h3>
           <button states="confirmed,done" name="new_voucher_sale" string="Nuevo Recibo" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':id}" />
           <field mode="tree" name="voucher_line_sale" readonly="1" domain="[('type','in',('sale','sale_refund'))]">

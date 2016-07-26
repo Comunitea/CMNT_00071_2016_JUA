@@ -426,7 +426,19 @@ class acp_contrato_contrato(osv.osv):
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
-                   and account_invoice.type in ('out_invoice','out_refund')
+                   and account_invoice.type in ('out_invoice')
+                   and account_invoice_line.contrato_id=%s'''%(record.id)
+            
+            cr.execute(sql)    
+            
+            x[record.id] =  map(lambda x: x[0], cr.fetchall())       
+        return x  
+    def _get_inv_lines_out_refund(self,cr, uid,ids,fields,arg,context):
+        x={}      
+        for record in self.browse(cr, uid, ids):
+            sql='''select account_invoice_line.id from account_invoice_line,account_invoice
+                   where account_invoice.id =account_invoice_line.invoice_id
+                   and account_invoice.type in ('out_refund')
                    and account_invoice_line.contrato_id=%s'''%(record.id)
             
             cr.execute(sql)    
@@ -438,13 +450,45 @@ class acp_contrato_contrato(osv.osv):
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
-                   and account_invoice.type in ('in_invoice','in_refund')
+                   and account_invoice.type in ('in_invoice')
                    and account_invoice_line.contrato_id=%s'''%(record.id)
             
             cr.execute(sql)    
             
             x[record.id] =  map(lambda x: x[0], cr.fetchall())       
         return x 
+    def _get_inv_lines_in_refund(self,cr, uid,ids,fields,arg,context):
+        x={}      
+        for record in self.browse(cr, uid, ids):
+            sql='''select account_invoice_line.id from account_invoice_line,account_invoice
+                   where account_invoice.id =account_invoice_line.invoice_id
+                   and account_invoice.type in ('in_refund')
+                   and account_invoice_line.contrato_id=%s'''%(record.id)
+            
+            cr.execute(sql)    
+            
+            x[record.id] =  map(lambda x: x[0], cr.fetchall())       
+        return x 
+    def  _get_total_out_refund(self,cr, uid,ids,fields,arg,context):
+        res = {}
+        for record in self.browse(cr, uid, ids, context):
+            total = 0.0
+            for l in record.invoice_line_out:
+                total += l.price_subtotal
+            for l in record.invoice_line_out_refund:
+                total -= l.price_subtotal
+            res[record.id] = total
+        return res
+    def  _get_total_in_refund(self,cr, uid,ids,fields,arg,context):
+        res = {}
+        for record in self.browse(cr, uid, ids, context):
+            total = 0.0
+            for l in record.invoice_line_in:
+                total += l.price_subtotal
+            for l in record.invoice_line_in_refund:
+                total -= l.price_subtotal
+            res[record.id] = total
+        return res
     def _get_resumen_lineas(self,cr, uid,ids,fields,arg,context):
         x={}      
         for record in self.browse(cr, uid, ids):
@@ -592,7 +636,11 @@ class acp_contrato_contrato(osv.osv):
         'resumen_lineas': fields.function(_get_resumen_lineas,method=True,type='one2many',relation='acp_contrato.tarea', string="Resumen",copy=False),         
         'especial_atencion_lineas': fields.function(_get_especial_atencion_lineas,method=True,type='one2many',relation='acp_contrato.tarea', string="Resumen",copy=False),         
         'invoice_line_out': fields.function(_get_inv_lines_out,method=True,type='one2many',relation='account.invoice.line', string="Facturas de Salida",copy=False),
+        'invoice_line_out_refund': fields.function(_get_inv_lines_out_refund,method=True,type='one2many',relation='account.invoice.line', string="Facturas Rectificativas",copy=False),
         'invoice_line_in': fields.function(_get_inv_lines_in,method=True,type='one2many',relation='account.invoice.line', string="Facturas de Entrada",copy=False),    
+        'invoice_line_in_refund': fields.function(_get_inv_lines_in_refund,method=True,type='one2many',relation='account.invoice.line', string="Facturas Rectificativas",copy=False),    
+        'total_out_refund': fields.function(_get_total_out_refund,method=True,type='float', string="Total Ingreso"),
+        'total_in_refund': fields.function(_get_total_in_refund,method=True,type='float', string="Total Gasto"),
         'sale_order_line': fields.one2many('sale.order.line', 'contrato_id', 'Presupuestos Venta',copy=False),             
         'purchase_order_lineas': fields.one2many('purchase.order.line', 'contrato_id', 'Presupuestos Compra',copy=False),                  
         'hours_next_act': fields.function(_get_hours_next_act,method=True,type='integer', string="Horas Proxima Tarea"),
@@ -707,6 +755,23 @@ class acp_contrato_contrato(osv.osv):
             'target':'current', 
             'view_id': [res_id],                
             }  
+    def new_inv_out_refund(self,cr,uid,ids,context=None):
+        mod_obj = self.pool.get('ir.model.data')
+        if context is None:
+            context = {}
+        res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_form')
+        res_id = res and res[1] or False,        
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Facturas de Cliente',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'context': "{'type':'out_refund'}",
+            'res_model': 'account.invoice',
+            'nodestroy': True,
+            'target':'current', 
+            'view_id': [res_id],                
+            }  
     def new_inv_in(self,cr,uid,ids,context=None):
         mod_obj = self.pool.get('ir.model.data')
         if context is None:
@@ -719,6 +784,23 @@ class acp_contrato_contrato(osv.osv):
             'view_type': 'form',
             'view_mode': 'form',
             'context': "{'type':'in_invoice'}",
+            'res_model': 'account.invoice',
+            'nodestroy': True,
+            'target':'current', 
+            'view_id': [res_id],                
+            }
+    def new_inv_in_refund(self,cr,uid,ids,context=None):
+        mod_obj = self.pool.get('ir.model.data')
+        if context is None:
+            context = {}
+        res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_supplier_form')
+        res_id = res and res[1] or False,        
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Facturas Rectificativa',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'context': "{'type':'in_refund'}",
             'res_model': 'account.invoice',
             'nodestroy': True,
             'target':'current', 
@@ -872,7 +954,19 @@ class acp_contrato_servicio(osv.osv):
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
-                   and account_invoice.type in ('out_invoice','out_refund')
+                   and account_invoice.type in ('out_invoice')
+                   and account_invoice_line.servicio_id=%s'''%(record.id)
+            
+            cr.execute(sql)    
+            
+            x[record.id] =  map(lambda x: x[0], cr.fetchall())       
+        return x  
+    def _get_inv_lines_out_refund(self,cr, uid,ids,fields,arg,context):
+        x={}      
+        for record in self.browse(cr, uid, ids):
+            sql='''select account_invoice_line.id from account_invoice_line,account_invoice
+                   where account_invoice.id =account_invoice_line.invoice_id
+                   and account_invoice.type in ('out_refund')
                    and account_invoice_line.servicio_id=%s'''%(record.id)
             
             cr.execute(sql)    
@@ -884,13 +978,45 @@ class acp_contrato_servicio(osv.osv):
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
-                   and account_invoice.type in ('in_invoice','in_refund')
+                   and account_invoice.type in ('in_invoice')
                    and account_invoice_line.servicio_id=%s'''%(record.id)
             
             cr.execute(sql)    
             
             x[record.id] =  map(lambda x: x[0], cr.fetchall())       
-        return x  
+        return x
+    def _get_inv_lines_in_refund(self,cr, uid,ids,fields,arg,context):
+        x={}      
+        for record in self.browse(cr, uid, ids):
+            sql='''select account_invoice_line.id from account_invoice_line,account_invoice
+                   where account_invoice.id =account_invoice_line.invoice_id
+                   and account_invoice.type in ('in_refund')
+                   and account_invoice_line.servicio_id=%s'''%(record.id)
+            
+            cr.execute(sql)    
+            
+            x[record.id] =  map(lambda x: x[0], cr.fetchall())       
+        return x
+    def  _get_total_out_refund(self,cr, uid,ids,fields,arg,context):
+        res = {}
+        for record in self.browse(cr, uid, ids, context):
+            total = 0.0
+            for l in record.invoice_line_out:
+                total += l.price_subtotal
+            for l in record.invoice_line_out_refund:
+                total -= l.price_subtotal
+            res[record.id] = total
+        return res
+    def  _get_total_in_refund(self,cr, uid,ids,fields,arg,context):
+        res = {}
+        for record in self.browse(cr, uid, ids, context):
+            total = 0.0
+            for l in record.invoice_line_in:
+                total += l.price_subtotal
+            for l in record.invoice_line_in_refund:
+                total -= l.price_subtotal
+            res[record.id] = total
+        return res  
 
     def open_servicio(self,cr,uid,ids,context=None):
        
@@ -924,6 +1050,23 @@ class acp_contrato_servicio(osv.osv):
             'target':'current', 
             'view_id': [res_id],                
             }  
+    def new_inv_out_refund(self,cr,uid,ids,context=None):
+        mod_obj = self.pool.get('ir.model.data')
+        if context is None:
+            context = {}
+        res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_form')
+        res_id = res and res[1] or False,        
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Facturas Rectificativa',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'context': "{'type':'out_refund'}",
+            'res_model': 'account.invoice',
+            'nodestroy': True,
+            'target':'current', 
+            'view_id': [res_id],                
+            }  
     def new_inv_in(self,cr,uid,ids,context=None):
         mod_obj = self.pool.get('ir.model.data')
         if context is None:
@@ -936,6 +1079,23 @@ class acp_contrato_servicio(osv.osv):
             'view_type': 'form',
             'view_mode': 'form',
             'context': "{'type':'in_invoice'}",
+            'res_model': 'account.invoice',
+            'nodestroy': True,
+            'target':'current', 
+            'view_id': [res_id],                
+            } 
+    def new_inv_in_refund(self,cr,uid,ids,context=None):
+        mod_obj = self.pool.get('ir.model.data')
+        if context is None:
+            context = {}
+        res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_supplier_form')
+        res_id = res and res[1] or False,        
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Facturas Rectificativa',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'context': "{'type':'in_refund'}",
             'res_model': 'account.invoice',
             'nodestroy': True,
             'target':'current', 
@@ -1091,7 +1251,11 @@ class acp_contrato_servicio(osv.osv):
         'partner_factura_id': fields.many2one('res.partner', 'Dirección de factura', select=True, required=True),                                                                                                  
         'name': fields.function(get_name_, method=True, string='Name',type='char' ),                     
         'invoice_line_out': fields.function(_get_inv_lines_out,method=True,type='one2many',relation='account.invoice.line', string="Facturas de Salida"),
+        'invoice_line_out_refund': fields.function(_get_inv_lines_out_refund,method=True,type='one2many',relation='account.invoice.line', string="Facturas Rectificativas"),
         'invoice_line_in': fields.function(_get_inv_lines_in,method=True,type='one2many',relation='account.invoice.line', string="Facturas de Entrada"),    
+        'invoice_line_in_refund': fields.function(_get_inv_lines_in_refund,method=True,type='one2many',relation='account.invoice.line', string="Facturas Rectificativas"),    
+        'total_out_refund': fields.function(_get_total_out_refund,method=True,type='float', string="Total Ingreso"),
+        'total_in_refund': fields.function(_get_total_in_refund,method=True,type='float', string="Total Gasto"),
         'sale_order_line': fields.one2many('sale.order.line', 'servicio_id', 'Presupuestos Venta'),             
         'purchase_order_line': fields.one2many('purchase.order.line', 'servicio_id', 'Presupuestos Compra'),                
         'hours_next_act': fields.function(_get_hours_next_act,method=True,type='integer', string="Horas Proxima Actividad"),            
