@@ -319,7 +319,7 @@
                   </form>
                 </field>
                 <h3>Facturas Rectificativas</h3>
-                <button states="done,confirmed" name="new_inv_in_refund" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
+                <button states="done,confirmed" name="new_inv_in_refund" string="Nueva Factura Rectificativa" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
                 <field mode="tree" name="invoice_line_in_refund" readonly="1" domain="[('invoice_type','in',(in_refund'))]">
                   <tree string="Facturas Rectificativas">
                     <button name="open_inv_in" string="Ver Factura" type="object" icon="gtk-edit" />
