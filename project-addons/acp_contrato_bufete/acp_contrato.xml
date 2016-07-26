@@ -224,7 +224,7 @@
         <xpath expr="//sheet/h1/label[@string='Contrato ']" position="replace">
           <label string="Expediente " />
         </xpath>
-        <xpath expr="//page[@string='Gastos']/field[@name='invoice_line_in']" position="after">
+        <xpath expr="//page[@string='Gastos']/field[@name='invoice_line_in_refund']" position="after">
           <h3>Recibos</h3>
           <button states="confirmed,done" name="new_voucher_purchase" string="Nuevo Recibo" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
           <field mode="tree" name="voucher_line_purchase" readonly="1" domain="[('type','in',('purchase','puchase_refund'))]">
