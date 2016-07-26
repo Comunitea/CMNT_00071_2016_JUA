@@ -45,7 +45,7 @@ Una vez instalado el modulo, hay que cargar manualmente el archivo jrxml de cada
     """,
     'author': 'InfoAcp',
     'website': 'http://www.infoacp.es',
-    'depends': ['jasper_reports','acp_contrato_bufete'],
+    'depends': ['jasper_reports','acp_contrato_bufete', 'account_refund_original'],
     'init_xml': [],
     'data': [
         'acp_contrato_bufete_report.xml',
