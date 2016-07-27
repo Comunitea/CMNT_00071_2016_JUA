@@ -12,6 +12,7 @@
         'base',
         'account',
         'sale',
+        'account_banking_sepa_direct_debit',
     ],
     'contributors': [
         "Comunitea ",
