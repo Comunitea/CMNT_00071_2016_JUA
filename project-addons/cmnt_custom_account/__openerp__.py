@@ -12,6 +12,7 @@
         'base',
         'account',
         'sale',
+        'account_payment_partner,'
         'account_banking_sepa_direct_debit',
     ],
     'contributors': [

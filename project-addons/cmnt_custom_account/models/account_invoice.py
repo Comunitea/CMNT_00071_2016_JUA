@@ -10,7 +10,7 @@ class AccountInvoice(models.Model):
 
     _inherit = 'account.invoice'
 
-    payment_term = fields.Many2one(required=True)
+    payment_term = fields.Many2one(required=True, readonly=False)
     payment_mode_id = fields.Many2one(required=True)
 
     @api.multi
