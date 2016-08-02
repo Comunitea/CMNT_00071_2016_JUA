@@ -73,7 +73,8 @@ Desde un expediente o servicio puede generar presupuesto de compras / Ventas, as
     'init_xml': [],
     'data': [
         'data/acp_contrato_sequence.xml',     
-        'security/contrato_security.xml',         
+        'security/contrato_security.xml',
+        'wizard/repercute_cost_wzd_view.xml',        
         'acp_contrato.xml',
         'product_view.xml',        
         'partner_view.xml',            

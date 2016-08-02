@@ -292,7 +292,7 @@
                     <field name="total_in_refund"/>
                 </group>
                 <h3>Facturas</h3>
-                <button states="done,confirmed" name="new_inv_in" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
+                <button states="done,confirmed" name="new_inv_in" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id, 'default_partner_id': partner_id}"/>
                 <field mode="tree" name="invoice_line_in" readonly="1" domain="[('invoice_type','in',('in_invoice'))]">
                   <tree string="Facturas">
                     <button name="open_inv_in" string="Ver Factura" type="object" icon="gtk-edit" />
@@ -305,21 +305,27 @@
                     <field name="invoice_line_tax_id" widget="many2many_tags" />
                     <field name="price_unit" />
                     <field name="price_subtotal" sum="Total" />
+                    <field name="repercuted_invoice" attrs= "{'invisible': [('repercuted_invoice', '=', False)]}"/>
+                    <button name="%(action_repercute_cost_wzd)d" string="Repercutir Coste"  type="action" icon="gtk-add"/>
                   </tree>
                   <form string="Facturas">
-                    <field name="invoice_id" readonly="1" />
-                    <field name="product_id" readonly="1" />
-                    <field name="servicio_id" readonly="1" />
-                    <field name="name" readonly="1" />
-                    <field name="quantity" readonly="1" />
-                    <field name="uos_id" readonly="1" />
-                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
-                    <field name="price_unit" readonly="1" />
-                    <field name="price_subtotal" readonly="1" />
+                    <group>
+                      <field name="invoice_id" readonly="1" />
+                      <field name="product_id" readonly="1" />
+                      <field name="servicio_id" readonly="1" />
+                      <field name="name" readonly="1" />
+                      <field name="quantity" readonly="1" />
+                      <field name="uos_id" readonly="1" />
+                      <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                      <field name="price_unit" readonly="1" />
+                      <field name="price_subtotal" readonly="1" />
+                      <field name="repercuted_invoice" attrs= "{'invisible': [('repercuted_invoice', '=', False)]}"/>
+                      <button name="%(action_repercute_cost_wzd)d" string="Repercutir Coste"  type="action" icon="gtk-add"/>
+                    </group>
                   </form>
                 </field>
                 <h3>Facturas Rectificativas</h3>
-                <button states="done,confirmed" name="new_inv_in_refund" string="Nueva Factura Rectificativa" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
+                <button states="done,confirmed" name="new_inv_in_refund" string="Nueva Factura Rectificativa" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id, 'default_partner_id': partner_id}"/>
                 <field mode="tree" name="invoice_line_in_refund" readonly="1" domain="[('invoice_type','in',(in_refund'))]">
                   <tree string="Facturas Rectificativas">
                     <button name="open_inv_in" string="Ver Factura" type="object" icon="gtk-edit" />
@@ -334,19 +340,21 @@
                     <field name="price_subtotal" sum="Total" />
                   </tree>
                   <form string="Facturas Rectificativas">
-                    <field name="invoice_id" readonly="1" />
-                    <field name="product_id" readonly="1" />
-                    <field name="servicio_id" readonly="1" />
-                    <field name="name" readonly="1" />
-                    <field name="quantity" readonly="1" />
-                    <field name="uos_id" readonly="1" />
-                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
-                    <field name="price_unit" readonly="1" />
-                    <field name="price_subtotal" readonly="1" />
+                    <group>
+                      <field name="invoice_id" readonly="1" />
+                      <field name="product_id" readonly="1" />
+                      <field name="servicio_id" readonly="1" />
+                      <field name="name" readonly="1" />
+                      <field name="quantity" readonly="1" />
+                      <field name="uos_id" readonly="1" />
+                      <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                      <field name="price_unit" readonly="1" />
+                      <field name="price_subtotal" readonly="1" />
+                    </group>
                   </form>
                 </field>
                 <h3>Presupuestos</h3>
-                <button states="confirmed,done" name="new_po" string="Nuevo Presupuesto" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id}" />
+                <button states="confirmed,done" name="new_po" string="Nuevo Presupuesto" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id, 'default_partner_id': partner_id}" />
                 <field mode="tree" name="purchase_order_lineas" readonly="1">
                   <tree string="Presupuestos">
                     <button name="open_po" string="Ver Pedido" type="object" icon="gtk-edit" />
@@ -367,7 +375,7 @@
                     <field name="total_out_refund"/>
                 </group>
                 <h3>Facturas</h3>
-                <button states="confirmed,done" name="new_inv_out" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':id}" />
+                <button states="confirmed,done" name="new_inv_out" string="Nueva Factura" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id, 'default_partner_id': partner_id}" />
                 <field mode="tree" name="invoice_line_out" readonly="1">
                   <tree string="Facturas">
                     <button name="open_inv_out" string="Ver Factura" type="object" icon="gtk-edit" />
@@ -382,21 +390,23 @@
                     <field name="price_subtotal" sum="Total" />
                   </tree>
                   <form string="Facturas">
-                    <field name="invoice_id" readonly="1" />
-                    <field name="product_id" readonly="1" />
-                    <field name="servicio_id" readonly="1" />
-                    <field name="name" readonly="1" />
-                    <field name="quantity" readonly="1" />
-                    <field name="uos_id" readonly="1" />
-                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
-                    <field name="price_unit" readonly="1" />
-                    <field name="price_subtotal" readonly="1" />
+                    <group>
+                      <field name="invoice_id" readonly="1" />
+                      <field name="product_id" readonly="1" />
+                      <field name="servicio_id" readonly="1" />
+                      <field name="name" readonly="1" />
+                      <field name="quantity" readonly="1" />
+                      <field name="uos_id" readonly="1" />
+                      <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                      <field name="price_unit" readonly="1" />
+                      <field name="price_subtotal" readonly="1" />
+                  </group>
                   </form>
                 </field>
 
 
                 <h3>Facturas Rectificativas</h3>
-                <button states="confirmed,done" name="new_inv_out_refund" string="Nueva Factura Rectificativa" type="object" icon="gtk-add" context="{'default_partner_id':partner_id,'default_dft_contrato_id':id}" />
+                <button states="confirmed,done" name="new_inv_out_refund" string="Nueva Factura Rectificativa" type="object" icon="gtk-add" context="{'default_dft_contrato_id':id, 'default_partner_id': partner_id}" />
                 <field mode="tree" name="invoice_line_out_refund" readonly="1">
                   <tree string="Facturas Rectificativas">
                     <button name="open_inv_out" string="Ver Factura" type="object" icon="gtk-edit" />
@@ -411,15 +421,17 @@
                     <field name="price_subtotal" sum="Total" />
                   </tree>
                   <form string="Facturas Rectificativas">
-                    <field name="invoice_id" readonly="1" />
-                    <field name="product_id" readonly="1" />
-                    <field name="servicio_id" readonly="1" />
-                    <field name="name" readonly="1" />
-                    <field name="quantity" readonly="1" />
-                    <field name="uos_id" readonly="1" />
-                    <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
-                    <field name="price_unit" readonly="1" />
-                    <field name="price_subtotal" readonly="1" />
+                    <group>
+                      <field name="invoice_id" readonly="1" />
+                      <field name="product_id" readonly="1" />
+                      <field name="servicio_id" readonly="1" />
+                      <field name="name" readonly="1" />
+                      <field name="quantity" readonly="1" />
+                      <field name="uos_id" readonly="1" />
+                      <field name="invoice_line_tax_id" readonly="1" widget="many2many_tags" />
+                      <field name="price_unit" readonly="1" />
+                      <field name="price_subtotal" readonly="1" />
+                  </group>
                   </form>
                 </field>
 

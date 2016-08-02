@@ -49,7 +49,8 @@ class account_invoice_line(osv.osv):
         'tarea_id': fields.many2one('acp_contrato.tarea', 'Tarea', readonly=False,required=False), 
         'tarea_producto_id': fields.many2one('acp_contrato.tarea_producto', 'Tarea Producto', readonly=False,required=False),                   
         'sale_invoice_line_id': fields.many2one('account.invoice.line', 'Linea de factura relacionada', readonly=False,required=False),             
-        'sale_invoice': fields.boolean('Refacturar', readonly=False,required=False),             
+        'sale_invoice': fields.boolean('Refacturar', readonly=False,required=False),
+        'repercuted_invoice': fields.many2one('account.invoice', 'Repercutido en', readonly=True),             
         
         
        }  

@@ -743,13 +743,14 @@ class acp_contrato_contrato(osv.osv):
         if context is None:
             context = {}
         res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_form')
-        res_id = res and res[1] or False,        
+        res_id = res and res[1] or False,
+        context.update({'type': 'out_invoice'})  
         return {
             'type': 'ir.actions.act_window',
             'name': 'Facturas de Cliente',
             'view_type': 'form',
             'view_mode': 'form',
-            'context': "{'type':'out_invoice'}",
+            'context': context,
             'res_model': 'account.invoice',
             'nodestroy': True,
             'target':'current', 
@@ -760,13 +761,14 @@ class acp_contrato_contrato(osv.osv):
         if context is None:
             context = {}
         res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_form')
-        res_id = res and res[1] or False,        
+        res_id = res and res[1] or False,
+        context.update({'type': 'out_refund'})        
         return {
             'type': 'ir.actions.act_window',
             'name': 'Facturas de Cliente',
             'view_type': 'form',
             'view_mode': 'form',
-            'context': "{'type':'out_refund'}",
+            'context': context,
             'res_model': 'account.invoice',
             'nodestroy': True,
             'target':'current', 
@@ -777,13 +779,14 @@ class acp_contrato_contrato(osv.osv):
         if context is None:
             context = {}
         res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_supplier_form')
-        res_id = res and res[1] or False,        
+        res_id = res and res[1] or False,
+        context.update({'type':'in_invoice'})
         return {
             'type': 'ir.actions.act_window',
             'name': 'Facturas de Proveedores',
             'view_type': 'form',
             'view_mode': 'form',
-            'context': "{'type':'in_invoice'}",
+            'context': context,
             'res_model': 'account.invoice',
             'nodestroy': True,
             'target':'current', 
@@ -794,13 +797,14 @@ class acp_contrato_contrato(osv.osv):
         if context is None:
             context = {}
         res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_supplier_form')
-        res_id = res and res[1] or False,        
+        res_id = res and res[1] or False,
+        context.update({'type':'in_refund'})
         return {
             'type': 'ir.actions.act_window',
             'name': 'Facturas Rectificativa',
             'view_type': 'form',
             'view_mode': 'form',
-            'context': "{'type':'in_refund'}",
+            'context': context,
             'res_model': 'account.invoice',
             'nodestroy': True,
             'target':'current', 
