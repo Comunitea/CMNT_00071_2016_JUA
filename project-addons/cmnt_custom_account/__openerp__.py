@@ -20,6 +20,7 @@
         "Javier Colmenero <javier@comunitea.com>"
     ],
     "data": [
+        'data/mail_templates.xml',
         'views/payment_order_view.xml'
     ],
     "demo": [
