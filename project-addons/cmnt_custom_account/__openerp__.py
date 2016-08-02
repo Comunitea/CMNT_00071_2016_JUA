@@ -13,12 +13,14 @@
         'account',
         'sale',
         'account_banking_sepa_direct_debit',
+        'account_payment',
     ],
     'contributors': [
         "Comunitea ",
         "Javier Colmenero <javier@comunitea.com>"
     ],
     "data": [
+        'views/payment_order_view.xml'
     ],
     "demo": [
     ],
