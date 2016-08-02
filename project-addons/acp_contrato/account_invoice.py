@@ -36,6 +36,7 @@ class account_invoice(osv.osv):
         'dft_contrato_id': fields.many2one('acp_contrato.contrato', 'Contrato', readonly=False,required=False),         
         'dft_servicio_id': fields.many2one('acp_contrato.servicio', 'Servicio', readonly=False,required=False),
         'dft_factprog_id': fields.many2one('acp_contrato.facturacion', 'Facturacion Programada', readonly=False,required=False),            
+        'return_id': fields.many2one('payment.order', 'De la devolución'),
        }
 account_invoice()
 
@@ -49,8 +50,9 @@ class account_invoice_line(osv.osv):
         'tarea_id': fields.many2one('acp_contrato.tarea', 'Tarea', readonly=False,required=False), 
         'tarea_producto_id': fields.many2one('acp_contrato.tarea_producto', 'Tarea Producto', readonly=False,required=False),                   
         'sale_invoice_line_id': fields.many2one('account.invoice.line', 'Linea de factura relacionada', readonly=False,required=False),             
-        'sale_invoice': fields.boolean('Refacturar', readonly=False,required=False),
-        'repercuted_invoice': fields.many2one('account.invoice', 'Repercutido en', readonly=True),             
+        'sale_invoice': fields.boolean('Refacturar', readonly=False, required=False),
+        'repercuted_invoice': fields.many2one('account.invoice', 'Repercutido en', readonly=True),
+        'return_id': fields.related('invoice_id', 'return_id', type='many2one', relation='payment.order', string='De la devolución')
         
         
        }  

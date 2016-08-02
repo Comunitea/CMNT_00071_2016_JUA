@@ -305,6 +305,7 @@
                     <field name="invoice_line_tax_id" widget="many2many_tags" />
                     <field name="price_unit" />
                     <field name="price_subtotal" sum="Total" />
+                    <field name="return_id"/>
                     <field name="repercuted_invoice" attrs= "{'invisible': [('repercuted_invoice', '=', False)]}"/>
                     <button name="%(action_repercute_cost_wzd)d" string="Repercutir Coste"  type="action" icon="gtk-add"/>
                   </tree>

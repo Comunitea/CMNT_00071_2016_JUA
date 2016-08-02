@@ -45,6 +45,7 @@
   <attribute name = "context">"{'partner_id':  partner_id, 'price_type': context.get('price_type') or False, 'type': type,'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
         </field>
           <field name="date_invoice" position="after">
+          <field name="return_id"/>
           <field name="dft_contrato_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
           <field name="dft_servicio_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
         </field>
