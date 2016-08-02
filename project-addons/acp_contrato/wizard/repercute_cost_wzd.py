@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api
+from openerp.exceptions import except_orm
 
 
 class RepercuteCostWzd(models.TransientModel):
@@ -20,6 +21,10 @@ class RepercuteCostWzd(models.TransientModel):
             return res
         active_id = self._context['active_id']
         line = self.env['account.invoice.line'].browse(active_id)
+        if line.repercuted_invoice:
+            raise except_orm("Error!",
+                             "La linea de gasto ya está repercutida en una "
+                             "factura")
         res.update(partner_id=line.invoice_id.partner_id.id)
         return res
 
@@ -40,6 +45,7 @@ class RepercuteCostWzd(models.TransientModel):
             'company_id': company_id,
             'currency_id': line.invoice_id.currency_id.id,
             'journal_id': journal.id,
+            'dft_contrato_id': line.contrato_id.id or False
         }
 
     @api.multi
