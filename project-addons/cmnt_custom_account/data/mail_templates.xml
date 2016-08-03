@@ -33,7 +33,7 @@
        &nbsp;&nbsp;Su contacto: <a href="mailto:${object.user_id.email or ''}?subject=Invoice%20${object.number}">${object.user_id.name}</a>
        % endif
        <br /><br />&nbsp;&nbsp;<strong>Forma de pago:</strong><br />
-       &nbsp;&nbsp;${object.expiration_dates_str}<br />
+       &nbsp;&nbsp;${object.expiration_dates_str.replace('\n','<br>&nbsp;&nbsp;')|safe}<br />
     </p>  
     <br/>
     <br/>
