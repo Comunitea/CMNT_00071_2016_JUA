@@ -25,3 +25,13 @@ class AccountInvoice(models.Model):
                         ' debit mandate for this customer')
                 raise except_orm(_('Error!'), err)
         return super(AccountInvoice, self).action_move_create()
+
+    def action_number(self, cr, uid, ids, context=None):
+        res = super(AccountInvoice, self).action_number(cr, uid, ids, context)
+        for invoice in self.browse(cr, uid, ids, context):
+            if invoice.move_id:
+                new_ref = invoice.supplier_invoice_number or invoice.number
+                invoice.move_id.write({'ref': new_ref})
+                for l in invoice.move_id.line_id:
+                    l.write({'ref': new_ref})
+        return res

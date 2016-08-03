@@ -11,3 +11,4 @@ class SaleOrder(models.Model):
 
     payment_term = fields.Many2one(required=True)
     payment_mode_id = fields.Many2one(required=True)
+    section_id = fields.Many2one(required=True)

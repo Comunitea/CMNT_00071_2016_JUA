@@ -11,7 +11,7 @@
             <field name="partner_to">${object.partner_id.id}</field>
             <field name="model_id" ref="account.model_account_invoice"/>
             <field name="auto_delete" eval="True"/>
-            <field name="report_template" ref="account.account_invoices"/>
+            <field name="report_template" ref="acp_contrato_bufete_report.acp_invoice_expbu_jasper"/>
             <field name="report_name">factura_${(object.number or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
@@ -19,7 +19,13 @@
 
     <p>Hola ${object.partner_id.name},</p>
 
+    % if object.dft_contrato_id:
     <p>Tiene una nueva factura disponible correspondiente al expediente Nº <strong>${object.dft_contrato_id.name}</strong>: </p>
+    % endif
+
+    % if not object.dft_contrato_id:
+    <p>Tiene una nueva factura disponible.</p>
+    % endif
     
     <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
        &nbsp;&nbsp;<strong>REFERENCIAS</strong><br />

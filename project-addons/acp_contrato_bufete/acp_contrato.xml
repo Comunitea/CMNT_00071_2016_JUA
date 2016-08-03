@@ -144,7 +144,7 @@
           <field name="numero_auto" attrs="{'invisible': [('area','!=','Judicial')]}" />
           <field name="materia_id" attrs="{'readonly': [('state','!=','open')]}" />
           <field name="horas_estimadas" attrs="{'readonly': [('state','!=','open')]}" />
-          <field name="oficina_id" attrs="{'readonly': [('state','!=','open')]}" />
+          <field name="oficina_id" required="True"/>
           <field name="organo_legislativo_id" />
           <field name="riesgo_operacional" />
           <field name="riesgo" />
