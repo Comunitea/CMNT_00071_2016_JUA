@@ -31,7 +31,7 @@
        &nbsp;&nbsp;<strong>REFERENCIAS</strong><br />
        &nbsp;&nbsp;Nº de factura: <strong>${object.number}</strong><br />
        &nbsp;&nbsp;Total de la factura: <strong>${object.amount_total} ${object.currency_id.name}</strong><br />
-       &nbsp;&nbsp;Fecha de la factura: ${object.date_invoice}<br />
+       &nbsp;&nbsp;Fecha de la factura: ${object.date_invoice.format('DD-MM-YYYY')}<br />
        % if object.origin:
        &nbsp;&nbsp;Referencia del pedido: ${object.origin}<br />
        % endif
@@ -47,7 +47,7 @@
     <% set signup_url = object.get_signup_url() %>
     % if signup_url:
     <p>Puede acceder a la misma y pagarla en l&iacute;nea v&iacute;a nuestro portal de cliente:</p>
-    <a href="${signup_url}" style="display:block; width: 150px; height:20px; margin-left: 120px; color: #DDD; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; text-align: center; text-decoration: none !important; line-height: 1; padding: 5px 0px 0px 0px; background-color: #8E0000; border-radius: 5px 5px; background-repeat: repeat no-repeat;">View Invoice</a>
+    <a href="${signup_url}" style="display:block; width: 150px; height:20px; margin-left: 120px; color: #DDD; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; text-align: center; text-decoration: none !important; line-height: 1; padding: 5px 0px 0px 0px; background-color: #8E0000; border-radius: 5px 5px; background-repeat: repeat no-repeat;">Ver Factura</a>
     % endif
 
     <p>Gracias por elegir ${object.company_id.name or 'us'}!</p>
@@ -336,7 +336,7 @@
 <!-- AVISO PRÓXIMA REMESA (Juarez)  -->
 <!-- ************************************************************************************************************  -->
         <record id="cmnt_aviso_proxima_remesa" model="email.template">
-            <field name="name">Aviso Próxima Remesa (Júarez)</field>
+            <field name="name">Aviso Próxima Remesa (Juárez)</field>
             <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
             <field name="subject">Aviso próxima remesa</field>
             <field name="partner_to">${object.partner_id.id}</field>
