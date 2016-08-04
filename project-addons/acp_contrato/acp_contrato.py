@@ -422,24 +422,28 @@ class acp_contrato_contrato(osv.osv):
     
     
     def _get_inv_lines_out(self,cr, uid,ids,fields,arg,context):
-        x={}      
+        x={}
+        company_id = self.pool.get('res.users').browse(cr, uid, uid).company_id.id      
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
                    and account_invoice.type in ('out_invoice')
-                   and account_invoice_line.contrato_id=%s'''%(record.id)
+                   and account_invoice_line.contrato_id=%s
+                   and account_invoice.company_id=%s''' % (record.id, company_id)
             
             cr.execute(sql)    
             
             x[record.id] =  map(lambda x: x[0], cr.fetchall())       
         return x  
     def _get_inv_lines_out_refund(self,cr, uid,ids,fields,arg,context):
-        x={}      
+        x={}
+        company_id = self.pool.get('res.users').browse(cr, uid, uid).company_id.id            
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
                    and account_invoice.type in ('out_refund')
-                   and account_invoice_line.contrato_id=%s'''%(record.id)
+                   and account_invoice_line.contrato_id=%s
+                   and account_invoice.company_id=%s''' % (record.id, company_id)
             
             cr.execute(sql)    
             
@@ -447,23 +451,26 @@ class acp_contrato_contrato(osv.osv):
         return x  
     def _get_inv_lines_in(self,cr, uid,ids,fields,arg,context):
         x={}      
+        company_id = self.pool.get('res.users').browse(cr, uid, uid).company_id.id            
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
                    and account_invoice.type in ('in_invoice')
-                   and account_invoice_line.contrato_id=%s'''%(record.id)
-            
+                   and account_invoice_line.contrato_id=%s
+                   and account_invoice.company_id=%s''' % (record.id, company_id)
             cr.execute(sql)    
             
             x[record.id] =  map(lambda x: x[0], cr.fetchall())       
         return x 
     def _get_inv_lines_in_refund(self,cr, uid,ids,fields,arg,context):
-        x={}      
+        x={}
+        company_id = self.pool.get('res.users').browse(cr, uid, uid).company_id.id                  
         for record in self.browse(cr, uid, ids):
             sql='''select account_invoice_line.id from account_invoice_line,account_invoice
                    where account_invoice.id =account_invoice_line.invoice_id
                    and account_invoice.type in ('in_refund')
-                   and account_invoice_line.contrato_id=%s'''%(record.id)
+                   and account_invoice_line.contrato_id=%s
+                   and account_invoice.company_id=%s''' % (record.id, company_id)
             
             cr.execute(sql)    
             
@@ -474,6 +481,7 @@ class acp_contrato_contrato(osv.osv):
         for record in self.browse(cr, uid, ids, context):
             total = 0.0
             for l in record.invoice_line_out:
+
                 total += l.price_subtotal
             for l in record.invoice_line_out_refund:
                 total -= l.price_subtotal

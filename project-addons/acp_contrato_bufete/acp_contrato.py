@@ -21,7 +21,7 @@
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import time
-from openerp.osv import fields, osv
+from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID,api
 import openerp.addons.decimal_precision as dp
@@ -206,10 +206,13 @@ class acp_contrato_contrato(osv.osv):
                 if employee_id:
                     employee = employee_obj.browse(cr, uid, employee_id[0], context=context) 
                     if employee.product_rel_id:
-
                         ctx=dict(context)
                         ctx.update({'pricelist': record.pricelist_id.id})
                         product = product_obj.browse(cr,uid,employee.product_rel_id.id,context=ctx)
+                        try:
+                            product.product_tmpl_id.check_access_rules("read")
+                        except (osv.except_osv, orm.except_orm):
+                            continue
                         price = product.price
                         #taxes = product.taxes_id
                         #taxes = tax_obj.compute_all(cr, uid, taxes, price, tarea_hora.horas, employee.product_rel_id, record.partner_id)
@@ -243,6 +246,10 @@ class acp_contrato_contrato(osv.osv):
                         #ctx=dict(context)
                         #ctx.update({'pricelist': record.pricelist_id.id})
                         product = product_obj.browse(cr,uid,employee.product_rel_id.id,context=context)
+                        try:
+                            product.product_tmpl_id.check_access_rules("read")
+                        except (osv.except_osv, orm.except_orm):
+                            continue
                         price = product.standard_price
                         #taxes = product.supplier_taxes_id
                         #taxes = tax_obj.compute_all(cr, uid, taxes, price, tarea_hora.horas, employee.product_rel_id, record.partner_id)
