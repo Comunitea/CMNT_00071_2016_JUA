@@ -210,7 +210,7 @@ class acp_contrato_contrato(osv.osv):
                         ctx.update({'pricelist': record.pricelist_id.id})
                         product = product_obj.browse(cr,uid,employee.product_rel_id.id,context=ctx)
                         try:
-                            product.product_tmpl_id.check_access_rules("read")
+                            product.product_tmpl_id.check_access_rule("read")
                         except (osv.except_osv, orm.except_orm):
                             continue
                         price = product.price
@@ -247,7 +247,7 @@ class acp_contrato_contrato(osv.osv):
                         #ctx.update({'pricelist': record.pricelist_id.id})
                         product = product_obj.browse(cr,uid,employee.product_rel_id.id,context=context)
                         try:
-                            product.product_tmpl_id.check_access_rules("read")
+                            product.product_tmpl_id.check_access_rule("read")
                         except (osv.except_osv, orm.except_orm):
                             continue
                         price = product.standard_price
