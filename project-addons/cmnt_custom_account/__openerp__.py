@@ -15,7 +15,8 @@
         'account_banking_sepa_direct_debit',
         'account_payment',
         'account_due_dates_str',
-        'acp_contrato_bufete_report'
+        'acp_contrato_bufete_report',
+        'account_followup'
     ],
     'contributors': [
         "Comunitea ",

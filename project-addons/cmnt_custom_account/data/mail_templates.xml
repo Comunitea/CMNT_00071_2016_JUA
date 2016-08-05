@@ -172,21 +172,24 @@
 <!-- FACTURA PENDIENTE DE PAGO  -->
 <!-- ************************************************************************************************************  -->
         <record id="cmnt_factura_pendiente_de_pago" model="email.template">
-            <field name="name">Factura Pendiente de pago (Juárez)</field>
-            <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
-            <field name="subject">FACTURA PENDIENTE DE PAGO</field>
-            <field name="partner_to">${object.partner_id.id}</field>
-            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="name">Aviso factura pendiente de pago (Juárez)</field>
+            <field name="email_from">${(object.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">Aviso factura pendiente de pago </field>
+            <field name="partner_to">${object.id}</field>
+            <field name="model_id" ref="base.model_res_partner"/>
             <field name="auto_delete" eval="True"/>
-            <field name="report_template" ref="account.account_invoices"/>
-            <field name="report_name">factura_pendiente_de_pago_${(object.number or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
-            <field name="lang">${object.partner_id.lang}</field>
+            <field name="report_name">aviso_pendiente_pago</field>
+            <field name="lang">${object.lang}</field>
             <field name="body_html"><![CDATA[
 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
 
     <p>Estimado cliente,</p>
 
-    <p>Por la presente le informamos de que, salvo error u omisi&oacute;n, no hemos recibido el pago correspondiente a la factura de referencia <strong>${object.number}</strong> Por importe <strong>${object.amount_total}</strong> en la fecha acordada <strong>${object.date_due}</strong></p>
+    <p>Por la presente le informamos de que, salvo error u omisi&oacute;n, no hemos recibido el pago correspondiente a los siguientes efectos:</p>
+
+    <br />
+    ${object.get_juarez_followup_table_html() | safe}</div>
+    <br />
 
     <p>Por favor, conteste al presente mail indicando la fecha de pago prevista en el plazo m&aacute;ximo de 3 dias h&aacute;biles.</p>
 
@@ -212,40 +215,6 @@
     <p>Ju&aacute;rez y Asociados Bufete internacional de abogados y economistas</p>
 
     <p>contabilidad@jbi.es&nbsp;</p>
-    <br/>
-    <br/>
-    <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
-        <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
-            <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
-    </div>
-    <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
-        <span style="color: #222; margin-bottom: 5px; display: block; ">
-        % if object.company_id.street:
-            ${object.company_id.street}<br/>
-        % endif
-        % if object.company_id.street2:
-            ${object.company_id.street2}<br/>
-        % endif
-        % if object.company_id.city or object.company_id.zip:
-            ${object.company_id.zip} ${object.company_id.city}<br/>
-        % endif
-        % if object.company_id.country_id:
-            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
-        % endif
-        </span>
-        % if object.company_id.phone:
-            <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
-                Phone:&nbsp; ${object.company_id.phone}
-            </div>
-        % endif
-        % if object.company_id.website:
-            <div>
-                Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
-            </div>
-        %endif
-        <p></p>
-    </div>
-
 </div>
             ]]></field>
         </record>
@@ -336,31 +305,31 @@
 <!-- AVISO PRÓXIMA REMESA (Juarez)  -->
 <!-- ************************************************************************************************************  -->
         <record id="cmnt_aviso_proxima_remesa" model="email.template">
-            <field name="name">Aviso Próxima Remesa (Juárez)</field>
-            <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
-            <field name="subject">Aviso próxima remesa</field>
-            <field name="partner_to">${object.partner_id.id}</field>
-            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="name">Aviso próximo pago (Juárez)</field>
+            <field name="email_from">${(object.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">Aviso próximo pago</field>
+            <field name="partner_to">${object.id}</field>
+            <field name="model_id" ref="base.model_res_partner"/>
             <field name="auto_delete" eval="True"/>
-            <field name="report_template" ref="account.account_invoices"/>
-            <field name="report_name">aviso_proxima_remesa_${(object.number or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
-            <field name="lang">${object.partner_id.lang}</field>
+            <field name="report_name">aviso_proximo_pago</field>
+            <field name="lang">${object.lang}</field>
             <field name="body_html"><![CDATA[
 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
 
-    <p><strong>Aviso pr&oacute;xima remesa</strong></p>
-
     <p>Estimado cliente,</p>
 
-    <p>En los pr&oacute;ximos dias recibir&aacute; el cargo domicilado correspondiente a los servicios contratados.</p>
+    <p>En los pr&oacute;ximos dias se efectuará el cobro de los servicios contratados mediante el modo de pago seleccionado.</p>
 
-    <p>Dia: &nbsp; &nbsp; Importe: &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;correspondiente a la factura &lt;strong&gt;${object.number}&lt;/strong&gt;&nbsp;Y expediente&nbsp;&lt;strong&gt;${object.dft_contrato_id.name}&lt;/strong&gt;</p>
 
     <p>El departamento de administraci&oacute;n de esta firma est&aacute; a su disposici&oacute;n para resolver cualquier duda o contratiempo que pueda surgir.&nbsp;</p>
 
     <p>Le&nbsp;recordamos que en caso de no atenderlo se cancelar&aacute; el fraccionamiento del pago en el caso de haberlo solicitado y/o la paralizaci&oacute;n del expediente.</p>
 
     <p>Si tiene dudas con respecto al cargo que ha recibido, se le solucionar&aacute;n, y en el caso de corresponder a un error de esta firma se practicar&aacute; la correspondiente devoluci&oacute;n del dinero de manera inmediata. &nbsp;</p>
+
+    <br />
+    ${object.get_juarez_followup_table_html() | safe}</div>
+    <br />
 
     <p>&nbsp;</p>
 
@@ -373,38 +342,6 @@
     <p>Ju&aacute;rez y Asociados Grupo empresarial</p>
 
     <p>www.juarezabogados.es</p>
-    <br/>
-    <br/>
-    <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
-        <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
-            <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
-    </div>
-    <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
-        <span style="color: #222; margin-bottom: 5px; display: block; ">
-        % if object.company_id.street:
-            ${object.company_id.street}<br/>
-        % endif
-        % if object.company_id.street2:
-            ${object.company_id.street2}<br/>
-        % endif
-        % if object.company_id.city or object.company_id.zip:
-            ${object.company_id.zip} ${object.company_id.city}<br/>
-        % endif
-        % if object.company_id.country_id:
-            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
-        % endif
-        </span>
-        % if object.company_id.phone:
-            <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
-                Phone:&nbsp; ${object.company_id.phone}
-            </div>
-        % endif
-        % if object.company_id.website:
-            <div>
-                Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
-            </div>
-        %endif
-        <p></p>
     </div>
 </div>
             ]]></field>
