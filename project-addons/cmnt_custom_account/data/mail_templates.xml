@@ -10,7 +10,7 @@
             <field name="subject">${object.company_id.name|safe} Factura (Ref ${object.number or 'n/a' })</field>
             <field name="partner_to">${object.partner_id.id}</field>
             <field name="model_id" ref="account.model_account_invoice"/>
-            <field name="auto_delete" eval="True"/>
+            <field name="auto_delete" eval="False"/>
             <field name="report_template" ref="acp_contrato_bufete_report.acp_invoice_expbu_jasper"/>
             <field name="report_name">factura_${(object.number or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
             <field name="lang">${object.partner_id.lang}</field>
@@ -95,33 +95,28 @@
 <!-- ************************************************************************************************************  -->
         <record id="cmnt_notificacion_devolucion_bancaria" model="email.template">
             <field name="name">Notificación devolución bancaria (Juárez)</field>
-            <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
-            <field name="subject">${object.company_id.name|safe} Notificación de devolución bancaria</field>
-            <field name="partner_to">${object.partner_id.id}</field>
-            <field name="model_id" ref="account.model_account_invoice"/>
-            <field name="auto_delete" eval="True"/>
-            <field name="report_template" ref="account.account_invoices"/>
-            <field name="report_name">Dev_bancaria_factura_${(object.number or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
-            <field name="lang">${object.partner_id.lang}</field>
+            <field name="email_from">${(object.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">Notificación devolución bancaria </field>
+            <field name="partner_to">${object.id}</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="report_name">notificación_devolución_bancaria</field>
+            <field name="lang">${object.lang}</field>
             <field name="body_html"><![CDATA[
 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
 
     <p>Estimado cliente,</p>
 
-    <p>Hemos recibido por parte de su banco la devoluci&oacute;n&nbsp;del recibo correspondiente a la presente factura Nº <strong>${object.number}</strong> por importe de <strong>${object.amount_total} ${object.currency_id.name}</strong>
+    <p>Hemos recibido por parte de su banco la devoluci&oacute;n&nbsp;del recibo correspondiente a las facturas emitidas por importe de <strong>${ctx['amount']}</strong>
     </p>
 
-    <p>La devolución ha motivado la emisión de la siguiente factura Nª………..correspondiente a los gastos y honorarios administrativos de la devolución, según nuestras condiciones generales que puede usted consultar en erp.jbi.es.  
+    <p>La devolución ha motivado la emisión de una nueva factura correspondiente a los gastos y honorarios administrativos de la devolución, según nuestras condiciones generales que puede usted consultar en erp.jbi.es.  
     </p>
+
+    <p>Por medio de la presente y con el fin de que los letrados puedan seguir ofreciendole el servicio sin incidencias <span style="color:#000080"><strong>debe proceder a la transferencia del importe total de manera inmediata en la siguiente cuenta bancaria:</p>
 
     <p>
-    Fra nº………. Importe total:…………..
-    </p>
-
-    <p>Por medio de la presente y con el fin de que los letrados puedan seguir ofreciendole el servicio sin incidencias <span style="color:#000080"><strong>debe proceder a la transferencia del importe total de ${object.amount_total} + ${object.amount_total} ${object.currency_id.name} de manera inmediata en la siguiente cuenta bancaria:</p>
-
-    <p>
-    CCC: <strong>............CUENTA BANCARIA DE LA REMESA</strong>
+    </strong>${ctx['ccc']}</strong>
     </p>
 
 
@@ -130,39 +125,7 @@
     <p>Recuerde que puede consultar todas sus facturas y comunicaciones con este departamento en la intranet que se encuentra a su disposici&oacute;n.</p>
 
     <p>Reciba un cordial saludo,</p>
-    <br/>
-    <br/>
-    <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
-        <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
-            <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
-    </div>
-    <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
-        <span style="color: #222; margin-bottom: 5px; display: block; ">
-        % if object.company_id.street:
-            ${object.company_id.street}<br/>
-        % endif
-        % if object.company_id.street2:
-            ${object.company_id.street2}<br/>
-        % endif
-        % if object.company_id.city or object.company_id.zip:
-            ${object.company_id.zip} ${object.company_id.city}<br/>
-        % endif
-        % if object.company_id.country_id:
-            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
-        % endif
-        </span>
-        % if object.company_id.phone:
-            <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
-                Phone:&nbsp; ${object.company_id.phone}
-            </div>
-        % endif
-        % if object.company_id.website:
-            <div>
-                Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
-            </div>
-        %endif
-        <p></p>
-    </div>
+    
 </div>
             ]]></field>
         </record>
@@ -177,7 +140,7 @@
             <field name="subject">Aviso factura pendiente de pago </field>
             <field name="partner_to">${object.id}</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="auto_delete" eval="True"/>
+            <field name="auto_delete" eval="False"/>
             <field name="report_name">aviso_pendiente_pago</field>
             <field name="lang">${object.lang}</field>
             <field name="body_html"><![CDATA[
@@ -224,25 +187,23 @@
 <!-- ************************************************************************************************************  -->
         <record id="cmnt_incidencia_administrativa" model="email.template">
             <field name="name">Incidencia Administrativa (Juárez)</field>
-            <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
-            <field name="subject">ASUNTO: URGENTE: INCIDENCIA ADMINISTRATIVA</field>
-            <field name="partner_to">${object.partner_id.id}</field>
-            <field name="model_id" ref="account.model_account_invoice"/>
-            <field name="auto_delete" eval="True"/>
-            <field name="report_template" ref="account.account_invoices"/>
-            <field name="report_name">incidencia_administrativa_${(object.number or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
-            <field name="lang">${object.partner_id.lang}</field>
+            <field name="email_from">${(object.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">Incidencia Administrativa </field>
+            <field name="partner_to">${object.id}</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="report_name">incidencia_administrativa</field>
+            <field name="lang">${object.lang}</field>
             <field name="body_html"><![CDATA[
 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
 
     <p>Estimado cliente,</p>
 
-    <p>&nbsp;</p>
+    <p>Debido a una incidencia administrativa con respecto al pago de los siguientes efectos se han paralizado los expedientes a ella asociados.</p>
 
-    <p>Debido a una incidencia administrativa con respecto a esta factura&nbsp;&lt;strong&gt;${object.number}&lt;/strong&gt; se han paralizado los expedientes a ella asociados.</p>
-
-    <p><br />
-    &nbsp;</p>
+    <br />
+    ${object.get_juarez_followup_table_html() | safe}</div>
+    <br />
 
     <p>Para evitarle mayores inconvenientes y con el fin de que los profesionales puedan seguir trabajando en sus expedientes&nbsp;<strong>le rogamos se ponga en contacto de manera urgente con nuestro personal administrativo</strong>.</p>
 
@@ -262,41 +223,6 @@
     <p>Dpto administraci&oacute;n</p>
 
     <p>J&amp;A Ju&aacute;rez Bufete internacional de Abogados y Economistas</p>
-    <br/>
-    <br/>
-    <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
-        <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
-            <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
-    </div>
-    <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
-        <span style="color: #222; margin-bottom: 5px; display: block; ">
-        % if object.company_id.street:
-            ${object.company_id.street}<br/>
-        % endif
-        % if object.company_id.street2:
-            ${object.company_id.street2}<br/>
-        % endif
-        % if object.company_id.city or object.company_id.zip:
-            ${object.company_id.zip} ${object.company_id.city}<br/>
-        % endif
-        % if object.company_id.country_id:
-            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
-        % endif
-        </span>
-        % if object.company_id.phone:
-            <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
-                Phone:&nbsp; ${object.company_id.phone}
-            </div>
-        % endif
-        % if object.company_id.website:
-            <div>
-                Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
-            </div>
-        %endif
-        <p></p>
-    </div>
-
-
 </div>
             ]]></field>
         </record>
@@ -310,7 +236,7 @@
             <field name="subject">Aviso próximo pago</field>
             <field name="partner_to">${object.id}</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="auto_delete" eval="True"/>
+            <field name="auto_delete" eval="False"/>
             <field name="report_name">aviso_proximo_pago</field>
             <field name="lang">${object.lang}</field>
             <field name="body_html"><![CDATA[
@@ -328,7 +254,7 @@
     <p>Si tiene dudas con respecto al cargo que ha recibido, se le solucionar&aacute;n, y en el caso de corresponder a un error de esta firma se practicar&aacute; la correspondiente devoluci&oacute;n del dinero de manera inmediata. &nbsp;</p>
 
     <br />
-    ${object.get_juarez_followup_table_html() | safe}</div>
+    ${object.get_days_before_followup_table_html() | safe}</div>
     <br />
 
     <p>&nbsp;</p>

@@ -14,7 +14,6 @@ class ResPArtner(osv.osv):
     _inherit = 'res.partner'
 
     def _lines_get_with_partner(self, cr, uid, ids, partner, company_id, mode):
-        #import ipdb; ipdb.set_trace()
         moveline_obj = self.pool['account.move.line']
         date = datetime.now().strftime('%Y-%m-%d')
         if mode == 'before':
@@ -52,13 +51,7 @@ class ResPArtner(osv.osv):
 
 
     def get_juarez_followup_table_html(self, cr, uid, ids, context=None):
-        """ Build the html tables to be included in emails send to partners,
-            when reminding them their overdue invoices.
-            :param ids: [id] of the partner for whom we are building the tables
-            :rtype: string
-        """
-        
-        #import ipdb; ipdb.set_trace()
+
         assert len(ids) == 1
         if context is None:
             context = {}
@@ -107,13 +100,7 @@ class ResPArtner(osv.osv):
         return followup_table
 
     def get_days_before_followup_table_html(self, cr, uid, ids, context=None):
-        """ Build the html tables to be included in emails send to partners,
-            when reminding them their overdue invoices.
-            :param ids: [id] of the partner for whom we are building the tables
-            :rtype: string
-        """
-        
-        #import ipdb; ipdb.set_trace()
+
         assert len(ids) == 1
         if context is None:
             context = {}
