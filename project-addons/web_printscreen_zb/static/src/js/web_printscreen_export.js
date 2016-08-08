@@ -1,16 +1,16 @@
 openerp.web_printscreen_zb = function(instance, m) {
-    
+
     var _t = instance.web._t;
     var QWeb = instance.web.qweb;
-    
+
     instance.web.ListView.include({
         load_list: function () {
             var self = this;
             this._super.apply(this, arguments);
-            self.$pager.find(".oe_list_button_import_excel").unbind('click').click(function(event){self.export_to_excel("excel")})
-            self.$pager.find(".oe_list_button_import_pdf").unbind('click').click(function(event){self.export_to_excel("pdf")})
+            self.$pager.find(".oe_list_button_import_excel").unbind('click').click(function(event){self.export_to_excel__2("excel")})
+            self.$pager.find(".oe_list_button_import_pdf").unbind('click').click(function(event){self.export_to_excel__2("pdf")})
         },
-        export_to_excel: function(export_type) {
+        export_to_excel__2: function(export_type) {
             var self = this
             var export_type = export_type
             view = this.getParent()
@@ -31,7 +31,7 @@ openerp.web_printscreen_zb = function(instance, m) {
                    // }
                 });
             });
-            
+
             //Find Data Element
             data_eles = self.$el.find('.oe_list_content > tbody > tr')
             export_data = []
@@ -41,32 +41,32 @@ openerp.web_printscreen_zb = function(instance, m) {
                 is_analysis = false
                 if ($data_ele.text().trim()){
                 //Find group name
-	                group_th_eles = $data_ele.find('th')
-	                $.each(group_th_eles,function(){
-	                    $group_th_ele = $(this)
-	                    text = $group_th_ele.text().trim() || ""
-	                    is_analysis = true
-	                    data.push({'data': text, 'bold': true})
-	                });
-	                data_td_eles = $data_ele.find('td')
-	                $.each(data_td_eles,function(){
-	                    $data_td_ele = $(this)
-	                    text = $data_td_ele.text().trim() || ""
-	                    if ($data_td_ele && $data_td_ele[0].classList.contains('oe_number') && !$data_td_ele[0].classList.contains('oe_list_field_float_time')){
-	                        text = text.replace('%', '')
-	                        text = instance.web.parse_value(text, { type:"float" })
-	                        data.push({'data': text || "", 'number': true})
-	                    }
-	                    else{
-	                        data.push({'data': text})
-	                    }
-	                });
-	                export_data.push(data)
+                    group_th_eles = $data_ele.find('th')
+                    $.each(group_th_eles,function(){
+                        $group_th_ele = $(this)
+                        text = $group_th_ele.text().trim() || ""
+                        is_analysis = true
+                        data.push({'data': text, 'bold': true})
+                    });
+                    data_td_eles = $data_ele.find('td')
+                    $.each(data_td_eles,function(){
+                        $data_td_ele = $(this)
+                        text = $data_td_ele.text().trim() || ""
+                        if ($data_td_ele && $data_td_ele[0].classList.contains('oe_number') && !$data_td_ele[0].classList.contains('oe_list_field_float_time')){
+                            text = text.replace('%', '')
+                            text = instance.web.parse_value(text, { type:"float" })
+                            data.push({'data': text || "", 'number': true})
+                        }
+                        else{
+                            data.push({'data': text})
+                        }
+                    });
+                    export_data.push(data)
                 }
             });
-            
+
             //Find Footer Element
-            
+
             footer_eles = self.$el.find('.oe_list_content > tfoot> tr')
             $.each(footer_eles,function(){
                 data = []
@@ -85,7 +85,7 @@ openerp.web_printscreen_zb = function(instance, m) {
                 });
                 export_data.push(data)
             });
-            
+
             //Export to excel
             $.blockUI();
             if (export_type === 'excel'){

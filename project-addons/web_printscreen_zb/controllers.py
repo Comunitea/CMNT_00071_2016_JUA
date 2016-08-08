@@ -20,13 +20,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
+import functools
+import logging
+import werkzeug.utils
+import werkzeug.wrappers
+import simplejson
 try:
     import json
 except ImportError:
     import simplejson as json
+from openerp import http
 import openerp.addons.web.http as openerpweb
-from openerp.addons.web.controllers.main import ExcelExport
+from openerp.http import request, serialize_exception as _serialize_exception
+from openerp.addons.web.controllers.main import ExportFormat
 from openerp.addons.web.controllers.main import Export
 import re
 from cStringIO import StringIO
@@ -35,13 +41,38 @@ import trml2pdf
 import time, os
 import locale
 import openerp.tools as tools
+
+_logger = logging.getLogger(__name__)
 try:
     import xlwt
 except ImportError:
     xlwt = None
 
-class ZbExcelExport(ExcelExport):
-    _cp_path = '/web/export/zb_excel_export'
+def serialize_exception(f):
+    @functools.wraps(f)
+    def wrap(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except Exception, e:
+            _logger.exception("An exception occured during an http request")
+            se = _serialize_exception(e)
+            error = {
+                'code': 200,
+                'message': "Odoo Server Error",
+                'data': se
+            }
+            return werkzeug.exceptions.InternalServerError(simplejson.dumps(error))
+    return wrap
+
+
+class ZbExcelExport(ExportFormat, http.Controller):
+
+    @property
+    def content_type(self):
+        return 'application/vnd.ms-excel'
+
+    def filename(self, base):
+        return base + '.xls'
 
     def from_data(self, fields, rows):
         workbook = xlwt.Workbook()
@@ -87,11 +118,13 @@ class ZbExcelExport(ExcelExport):
         data = fp.read()
         fp.close()
         return data
-    
-    @openerpweb.httprequest
-    def index(self, req, data, token):
+
+    @http.route('/web/export/zb_excel_export', type='http', auth="user")
+    @serialize_exception
+    def index(self, data, token):
+        import ipdb; ipdb.set_trace()
         data = json.loads(data)
-        return req.make_response(
+        return request.make_response(
             self.from_data(data.get('headers', []), data.get('rows', [])),
                            headers=[
                                     ('Content-Disposition', 'attachment; filename="%s"'
@@ -105,17 +138,17 @@ class ExportPdf(Export):
     _cp_path = '/web/export/zb_pdf'
     fmt = {
         'tag': 'pdf',
-        'label': 'PDF',
+        'label': 'PDF.pdf',
         'error': None
     }
-    
+
     @property
     def content_type(self):
         return 'application/pdf'
-    
+
     def filename(self, base):
         return base + '.pdf'
-    
+
     def from_data(self, uid, fields, rows, company_name):
         pageSize=[210.0,297.0]
         new_doc = etree.Element("report")
@@ -170,16 +203,15 @@ class ExportPdf(Export):
 
 class ZbPdfExport(ExportPdf):
     _cp_path = '/web/export/zb_pdf_export'
-    
+
     @openerpweb.httprequest
     def index(self, req, data, token):
         data = json.loads(data)
         uid = data.get('uid', False)
+        filename = "PDF_Export_" + time.strftime("%d%b%Hh%Mm") + ".pdf"
         return req.make_response(self.from_data(uid, data.get('headers', []), data.get('rows', []),
                                                 data.get('company_name','')),
                                  headers=[('Content-Disposition',
-                                           'attachment; filename=PDF Export'),
+                                           'attachment; filename=%s'%filename),
                                           ('Content-Type', self.content_type)],
-                                 cookies={'fileToken': int(token)})
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+                                 cookies={'fileToken': token})
