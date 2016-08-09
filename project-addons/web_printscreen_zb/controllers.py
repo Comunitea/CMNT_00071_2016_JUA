@@ -122,7 +122,6 @@ class ZbExcelExport(ExportFormat, http.Controller):
     @http.route('/web/export/zb_excel_export', type='http', auth="user")
     @serialize_exception
     def index(self, data, token):
-        import ipdb; ipdb.set_trace()
         data = json.loads(data)
         return request.make_response(
             self.from_data(data.get('headers', []), data.get('rows', [])),
