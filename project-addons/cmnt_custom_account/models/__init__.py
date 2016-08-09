@@ -5,3 +5,5 @@ from . import sale
 from . import account_invoice
 from . import res_partner
 from . import payment_return
+from . import mail
+from . import followup

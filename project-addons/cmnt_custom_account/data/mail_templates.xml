@@ -26,12 +26,12 @@
     % if not object.dft_contrato_id:
     <p>Tiene una nueva factura disponible.</p>
     % endif
-    
+
     <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
        &nbsp;&nbsp;<strong>REFERENCIAS</strong><br />
        &nbsp;&nbsp;Nº de factura: <strong>${object.number}</strong><br />
        &nbsp;&nbsp;Total de la factura: <strong>${object.amount_total} ${object.currency_id.name}</strong><br />
-       &nbsp;&nbsp;Fecha de la factura: ${object.date_invoice.format('DD-MM-YYYY')}<br />
+       &nbsp;&nbsp;Fecha de la factura: ${object.date_invoice|format_date()}<br />
        % if object.origin:
        &nbsp;&nbsp;Referencia del pedido: ${object.origin}<br />
        % endif
@@ -40,7 +40,7 @@
        % endif
        <br /><br />&nbsp;&nbsp;<strong>Forma de pago:</strong><br />
        &nbsp;&nbsp;${object.expiration_dates_str.replace('\n','<br>&nbsp;&nbsp;')|safe}<br />
-    </p>  
+    </p>
     <br/>
     <br/>
 
@@ -110,7 +110,7 @@
     <p>Hemos recibido por parte de su banco la devoluci&oacute;n&nbsp;del recibo correspondiente a las facturas emitidas por importe de <strong>${ctx['amount']}</strong>
     </p>
 
-    <p>La devolución ha motivado la emisión de una nueva factura correspondiente a los gastos y honorarios administrativos de la devolución, según nuestras condiciones generales que puede usted consultar en erp.jbi.es.  
+    <p>La devolución ha motivado la emisión de una nueva factura correspondiente a los gastos y honorarios administrativos de la devolución, según nuestras condiciones generales que puede usted consultar en erp.jbi.es.
     </p>
 
     <p>Por medio de la presente y con el fin de que los letrados puedan seguir ofreciendole el servicio sin incidencias <span style="color:#000080"><strong>debe proceder a la transferencia del importe total de manera inmediata en la siguiente cuenta bancaria:</p>
@@ -125,7 +125,7 @@
     <p>Recuerde que puede consultar todas sus facturas y comunicaciones con este departamento en la intranet que se encuentra a su disposici&oacute;n.</p>
 
     <p>Reciba un cordial saludo,</p>
-    
+
 </div>
             ]]></field>
         </record>
@@ -230,46 +230,35 @@
 <!-- ************************************************************************************************************  -->
 <!-- AVISO PRÓXIMA REMESA (Juarez)  -->
 <!-- ************************************************************************************************************  -->
-        <record id="cmnt_aviso_proxima_remesa" model="email.template">
-            <field name="name">Aviso próximo pago (Juárez)</field>
-            <field name="email_from">${(object.email or 'noreply@localhost')|safe}</field>
-            <field name="subject">Aviso próximo pago</field>
-            <field name="partner_to">${object.id}</field>
-            <field name="model_id" ref="base.model_res_partner"/>
+        <delete id="account_banking_sepadd_groupby_partner.payment_order_advise_partner" model="email.template"/>
+        <record id="account_banking_sepadd_groupby_partner.payment_order_advise_partner" model="email.template">
+            <field name="name">Aviso próxima remesa (Juárez)</field>
+            <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">Aviso próxima remesa</field>
+            <field name="model_id" ref="account_payment.model_payment_order"/>
+            <field name="email_to" >${(ctx.get('partner_email') or '')|safe}</field>
+            <field name="partner_to">${ctx.get('partner_id') or ''}</field>
             <field name="auto_delete" eval="False"/>
-            <field name="report_name">aviso_proximo_pago</field>
-            <field name="lang">${object.lang}</field>
             <field name="body_html"><![CDATA[
-<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-
-    <p>Estimado cliente,</p>
-
-    <p>En los pr&oacute;ximos dias se efectuará el cobro de los servicios contratados mediante el modo de pago seleccionado.</p>
-
-
-    <p>El departamento de administraci&oacute;n de esta firma est&aacute; a su disposici&oacute;n para resolver cualquier duda o contratiempo que pueda surgir.&nbsp;</p>
-
-    <p>Le&nbsp;recordamos que en caso de no atenderlo se cancelar&aacute; el fraccionamiento del pago en el caso de haberlo solicitado y/o la paralizaci&oacute;n del expediente.</p>
-
-    <p>Si tiene dudas con respecto al cargo que ha recibido, se le solucionar&aacute;n, y en el caso de corresponder a un error de esta firma se practicar&aacute; la correspondiente devoluci&oacute;n del dinero de manera inmediata. &nbsp;</p>
-
-    <br />
-    ${object.get_days_before_followup_table_html() | safe}</div>
-    <br />
-
-    <p>&nbsp;</p>
-
-    <p>Atentamente,</p>
-
-    <p>&nbsp;</p>
-
-    <p>Departamento de contabilidad y Administraci&oacute;n</p>
-
-    <p>Ju&aacute;rez y Asociados Grupo empresarial</p>
-
-    <p>www.juarezabogados.es</p>
-    </div>
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">&nbsp;
+<p>Estimado cliente,</p>
+<p>En los pr&oacute;ximos d&iacute;as recibir&aacute; el cargo domiciliado correspondiente a los servicios contratados.</p>
+<div>
+% for line in ctx['lines']:
+<p>- ${line.amount_currency} ${line.currency.name} a fecha ${line.date|format_date()} con referencia ${line.communication}. La cuenta bancaria de destino es: ${line.bank_id.acc_number}</p>
+% endfor
 </div>
+
+<p>El departamento de administraci&oacute;n de esta firma est&aacute; a su disposici&oacute;n para resolver cualquier duda o contratiempo que pueda surgir.</p>
+<p>Le recordamos que en caso de no atenderlo se cancelar&aacute; el fraccionamiento del pago en el caso de haberlo soliciatod y/o la paralizaci&oacute;n del expediente.</p>
+<p>Si tiene dudas con respecto al cargo que ha recibido, se le solucionar&aacute;n, y en el caso de corresponder a un error de esta firma se practicar&aacute; la correspondiente devoluci&oacute;n del dinero de manera inmediata.</p>
+<p>&nbsp;</p>
+<p>Atentamente,</p>
+<p>Departamento de contabilidad y Administraci&oacute;n</p>
+<p>Ju&aacute;rez y Asociados Grupo empresarial</p>
+<p>www.juarezabogados.es</p>
+</div>
+
             ]]></field>
         </record>
     </data>

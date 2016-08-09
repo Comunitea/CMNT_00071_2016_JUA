@@ -16,7 +16,9 @@
         'account_payment',
         'account_due_dates_str',
         'acp_contrato_bufete_report',
-        'account_followup'
+        'account_followup',
+        'mail',
+        'account_banking_sepadd_groupby_partner'
     ],
     'contributors': [
         "Comunitea ",
@@ -24,6 +26,7 @@
     ],
     "data": [
         'data/mail_templates.xml',
+        'data/ir_cron.xml',
         'views/payment_order_view.xml'
     ],
     "demo": [
