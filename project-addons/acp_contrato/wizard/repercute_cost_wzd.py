@@ -25,7 +25,7 @@ class RepercuteCostWzd(models.TransientModel):
             raise except_orm("Error!",
                              "La linea de gasto ya está repercutida en una "
                              "factura")
-        res.update(partner_id=line.invoice_id.partner_id.id)
+        res.update(partner_id=line.contrato_id.partner_factura_id.id)
         return res
 
     def _get_invoice_vals(self, line):
