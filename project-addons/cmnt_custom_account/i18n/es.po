@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* cmnt_custom_account
+#   * cmnt_custom_account
 #
 msgid ""
 msgstr ""
@@ -37,8 +37,13 @@ msgid "Scheduled date"
 msgstr "Fecha Planificada"
 
 #. module: cmnt_custom_account
+#: view:payment.return:cmnt_custom_account.payment_return_invoices_button
+#: field:payment.return,invoice_ids:0
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: cmnt_custom_account
 #: code:addons/cmnt_custom_account/models/account_invoice.py:24
 #, python-format
 msgid "You selected a payment mode thar requires a direct debit mandate for this customer"
 msgstr "Has seleccionado un modo de pago que requiere establecer un mandato de adeudo directo para este cliente"
-

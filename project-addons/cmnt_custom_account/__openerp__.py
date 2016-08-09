@@ -27,7 +27,8 @@
     "data": [
         'data/mail_templates.xml',
         'data/ir_cron.xml',
-        'views/payment_order_view.xml'
+        'views/payment_order_view.xml',
+        'views/payment_return.xml'
     ],
     "demo": [
     ],

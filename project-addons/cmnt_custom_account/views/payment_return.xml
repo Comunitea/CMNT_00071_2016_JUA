@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data>
+
+        <record id="payment_return_invoices_button" model="ir.ui.view">
+            <field name="name">payment.return.form</field>
+            <field name="model">payment.return</field>
+            <field name="inherit_id" ref="account_payment_return.payment_return_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[1]" position="before">
+                    <div class="oe_right oe_button_box" style="width: 300px;" name="buttons">
+                        <button class="oe_inline oe_stat_button" name="action_view_invoices" type="object" icon="fa-strikethrough">
+                            <field string="Invoices" name="invoices_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

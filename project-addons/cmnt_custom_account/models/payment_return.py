@@ -2,12 +2,29 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, api
+from openerp import models, fields, api
 
 
 class PaymentReturn(models.Model):
 
     _inherit = 'payment.return'
+
+    invoice_ids = fields.One2many('account.invoice', 'return_id', 'Invoices')
+    invoices_count = fields.Integer(compute='_get_invoices_count')
+
+    @api.multi
+    def _get_invoices_count(self):
+        for payment_return in self:
+            payment_return.invoices_count = len(payment_return.invoice_ids)
+
+    @api.multi
+    def action_view_invoices(self):
+        action = self.env.ref('account.action_invoice_tree2').read()
+        action = action[0]
+        domain = eval(action['domain'])
+        domain += [('id', 'in', self.invoice_ids.ids)]
+        action['domain'] = str(domain)
+        return action
 
     @api.multi
     def action_confirm(self):
