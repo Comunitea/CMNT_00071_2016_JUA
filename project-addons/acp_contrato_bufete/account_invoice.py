@@ -27,7 +27,7 @@ import time
 from openerp.tools.translate import _
 
 #----------------------------------------------------------
-# 
+#
 #----------------------------------------------------------
 
 class account_invoice(osv.osv):
@@ -41,14 +41,14 @@ class account_invoice(osv.osv):
                               relation="acp_contrato.tipo_contrato",
                               string="Tipo expediente",
                               required=False,
-                              store=False) ,   
+                              store=False) ,
          }
     def action_genera_factura(self,cr,uid,ids,context=None):
         ctx = dict()
         ctx.update({
             'default_invoice_id': self.browse(cr, uid, ids).id,
         })
-        
+
         mod_obj = self.pool.get('ir.model.data')
         res = mod_obj.get_object_reference(cr, uid, 'acp_contrato_bufete', 'view_genera_factura_bu')
         res_id = res and res[1] or False,
@@ -61,11 +61,11 @@ class account_invoice(osv.osv):
             'res_model': 'acp_contrato.genera_factura',
             'target':'new',
             'view_id': [res_id],
-            }      
+            }
 account_invoice()
 
 
- 
+
 
 
 

@@ -12,6 +12,6 @@
     <record model="res.groups" id="contratos_user_accounting">
       <field name="name">Contratos / Contable</field>
     </record>
-    
+
   </data>
 </openerp>

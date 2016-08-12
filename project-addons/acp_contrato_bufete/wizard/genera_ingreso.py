@@ -48,10 +48,10 @@ class acp_contrato_genera_recibo(osv.osv_memory):
     def action_cancel(self, cr, uid, ids, context=None):
         return {'type':'ir.actions.act_window_close'}
 
-    def action_genera_recibo(self, cr, uid, ids, context=None):        
+    def action_genera_recibo(self, cr, uid, ids, context=None):
         mod_obj = self.pool.get('ir.model.data')
         data = self.read(cr, uid, ids, [], context=context)[0]
-        
+
         voucher_id = data['voucher_id'][0]
         incremento = data['incremento']
         account_id = data['account_id'][0]
@@ -171,7 +171,7 @@ class acp_contrato_genera_factura(osv.osv_memory):
                             _('The value of Advance Amount must be positive.'))
 
                     inv_amount = (quantity * price_unit)
-                    
+
                     if not res.get('name'):
                         #TODO: should find a way to call formatLang() from rml_parse
                         symbol = self.pool.get('res.partner').browse(cr, uid, cliente_id).property_product_pricelist.currency_id.symbol
@@ -207,7 +207,7 @@ class acp_contrato_genera_factura(osv.osv_memory):
                         'servicio_id': fact_lin.servicio_id.id,
                     }
                     inv_line.append((0,0,inv_line_values))
-                    
+
                 # campos de la factura
                 inv_values = {
                     'name': invoice.name,
@@ -238,7 +238,7 @@ class acp_contrato_genera_factura(osv.osv_memory):
         inv_obj.button_reset_taxes(cr, uid, [inv_id], context=context)
         return inv_id
 
-    def action_genera_factura(self, cr, uid, ids, context=None):        
+    def action_genera_factura(self, cr, uid, ids, context=None):
         mod_obj = self.pool.get('ir.model.data')
         data = self.read(cr, uid, ids, [], context=context)[0]
         invoice_id = data['invoice_id'][0]

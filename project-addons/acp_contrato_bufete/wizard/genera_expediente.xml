@@ -15,12 +15,12 @@
                 <field name="partner_id" options='{"no_open": True}' readonly="1"/>
                 <field name="solicitante" domain="[('parent_id','=',partner_id)]" context="{'default_parent_id':partner_id}" />
                 <!--options='{"create":false,"create_edit": false,"no_open": True}'/>-->
-                <field name="materia_id"  options="{'create': false, 'create_edit': false,'no_open': True}"/>                
+                <field name="materia_id"  options="{'create': false, 'create_edit': false,'no_open': True}"/>
                 <field name="area" />
                 <field name="oficina_id"/>
                 <field name="organo_legislativo_id"/>
                 <field name="fase_judicial_id"/>
-              </group>              
+              </group>
               <footer>
                 <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
                 <button name="action_genera_expediente" type="object" string="Crear Expediente" icon="gtk-go-forward" />
@@ -40,5 +40,5 @@
       <field name="view_id" ref="view_genera_expediente_bu" />
       <field name="target">new</field>
     </record>
-  </data>     
+  </data>
 </openerp>

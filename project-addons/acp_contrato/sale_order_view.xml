@@ -10,8 +10,8 @@
         <field name="order_line" position = "attributes">
   <attribute name = "context">"{'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
   </field>
-  
-  
+
+
         <button name="invoice_cancel" states="invoice_except" string="Cancel Order" groups="base.group_user" position="after">
           <button name="crea_contrato" string="Crear Contrato" type="object" states="manual,progress" class="oe_highlight" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user" />
         </button>

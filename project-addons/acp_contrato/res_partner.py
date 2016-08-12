@@ -30,13 +30,13 @@ class res_partner(osv.osv):
     _inherit = 'res.partner'
 
     _columns = {
-        'contrato_ids' : fields.one2many('acp_contrato.contrato', 'partner_id', 'Contratos'),   	    
+        'contrato_ids' : fields.one2many('acp_contrato.contrato', 'partner_id', 'Contratos'),
         'operario' : fields.boolean('Operario'),
-        
 
-     
-     }    
-  
+
+
+     }
+
     def action_partner_send(self, cr, uid, ids, context=None):
         '''
         This function opens a window to compose an email, with the edi sale template message loaded by default
@@ -48,11 +48,11 @@ class res_partner(osv.osv):
             template_id = ir_model_data.get_object_reference(cr, uid, 'acp_contrato', 'xxxx')[1]
         except ValueError:
             template_id = False
-            
+
         try:
             compose_form_id = ir_model_data.get_object_reference(cr, uid, 'mail', 'email_compose_message_wizard_form')[1]
         except ValueError:
-            compose_form_id = False 
+            compose_form_id = False
 
         ctx = dict()
         ctx.update({
@@ -73,11 +73,10 @@ class res_partner(osv.osv):
             'target': 'new',
             'context': ctx,
         }
-     
+
 res_partner()
 
 
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

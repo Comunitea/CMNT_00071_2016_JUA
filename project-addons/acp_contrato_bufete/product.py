@@ -40,10 +40,10 @@ class product_template(osv.osv):
 
     _columns = {
         'computar_en_expedientes': fields.boolean('Computa en expedientes', required=False,help="Si esta marcado este producto computará para el cáculo 'Total Facturado' en contratos"),
-              }  
+              }
     _defaults = {
         'computar_en_expedientes': True
-    } 
+    }
 
 
 

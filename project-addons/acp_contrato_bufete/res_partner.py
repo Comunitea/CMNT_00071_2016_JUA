@@ -31,10 +31,10 @@ class res_partner(osv.osv):
 
     _columns = {
         'procurador' : fields.boolean('Procurador'),
-        'abogado' : fields.boolean('Abogado'),          
+        'abogado' : fields.boolean('Abogado'),
         'partidos_judiciales' : fields.many2many('acp_contrato.partido_judicial', 'res_partner_partido_judicial_rel', 'partner_id', 'partido_id','Partidos Judiciales'),
-     }    
-  
+     }
+
 
     def action_partner_send(self, cr, uid, ids, context=None):
         '''
@@ -52,7 +52,7 @@ class res_partner(osv.osv):
         try:
             compose_form_id = ir_model_data.get_object_reference(cr, uid, 'mail', 'email_compose_message_wizard_form')[1]
         except ValueError:
-            compose_form_id = False 
+            compose_form_id = False
 
         ctx = dict()
         ctx.update({
@@ -73,11 +73,10 @@ class res_partner(osv.osv):
             'target': 'new',
             'context': ctx,
         }
-   
+
 res_partner()
 
 
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

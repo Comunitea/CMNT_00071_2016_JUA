@@ -119,7 +119,7 @@
             </group>
           </h4>
         </xpath>
-        <!--        
+        <!--
              <xpath expr="//page[@string='Información General']/group/group/field[@name='name']" position="replace" />
              <xpath expr="//page[@string='Programar Facturación']" position="replace">
              <page string="Programar Facturación" invisible="1" />

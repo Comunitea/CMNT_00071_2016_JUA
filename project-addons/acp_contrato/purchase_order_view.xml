@@ -3,31 +3,29 @@
     <data>
 
 
-		<record model="ir.ui.view" id="view_purchase_order_form_exp1">
-			<field name="name">purchase.order.form.exp1</field>
-			<field name="model">purchase.order</field>
-			<field name="priority">30</field>			
-			<field name="inherit_id" ref="purchase.purchase_order_form"/>
-			<field name="arch" type="xml">	
- 
+        <record model="ir.ui.view" id="view_purchase_order_form_exp1">
+            <field name="name">purchase.order.form.exp1</field>
+            <field name="model">purchase.order</field>
+            <field name="priority">30</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
         <field name="order_line" position = "attributes">
             <attribute name = "context">"{'contrato_id':dft_contrato_id,'servicio_id':dft_servicio_id}"</attribute>
         </field>
-				<field name="date_order"  position="after">
-					<field name="dft_contrato_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>	
-					<field name="dft_servicio_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>	
-				</field>	                            
-				<field name="product_id"  position="after">
-				    <field  name="contrato_id"  groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>	
-				    <field  name="servicio_id" domain="[('contrato_id','=',contrato_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>												    
-				</field> 		 
-				
-			</field>
-		</record>	
+                <field name="date_order"  position="after">
+                    <field name="dft_contrato_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
+                    <field name="dft_servicio_id" invisible="0" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
+                </field>
+                <field name="product_id"  position="after">
+                    <field  name="contrato_id"  groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
+                    <field  name="servicio_id" domain="[('contrato_id','=',contrato_id)]" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
+                </field>
 
-		 
-			
+            </field>
+        </record>
+
+
+
   </data>
 </openerp>
-
-

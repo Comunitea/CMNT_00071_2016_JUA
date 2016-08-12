@@ -12,9 +12,9 @@
               <group>
                 <field name="voucher_id" readonly="1"/>
                 <field name="incremento" />
-                <field name="account_id"/>                
+                <field name="account_id"/>
                 <field name="reference"/>
-              </group>              
+              </group>
               <footer>
                 <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
                 <button name="action_genera_recibo" type="object" string="Crear Recibo" icon="gtk-go-forward" />
@@ -34,7 +34,7 @@
       <field name="view_id" ref="view_genera_recibo_bu" />
       <field name="target">new</field>
     </record>
-    <!-- view_genera_factura_bu -->    
+    <!-- view_genera_factura_bu -->
     <record model="ir.ui.view" id="view_genera_factura_bu">
       <field name="name">acp_contrato.genera_factura.form</field>
       <field name="model">acp_contrato.genera_factura</field>
@@ -46,7 +46,7 @@
               <group>
                 <field name="invoice_id" readonly="1"/>
                 <field name="incremento" />
-              </group>              
+              </group>
               <footer>
                 <button name="action_cancel" string="_Cancel" icon="gtk-cancel" special="cancel" />
                 <button name="action_genera_factura" type="object" string="Crear Factura" icon="gtk-go-forward" />
@@ -65,6 +65,6 @@
       <field name="view_mode">form</field>
       <field name="view_id" ref="view_genera_factura_bu" />
       <field name="target">new</field>
-    </record>    
-  </data>     
+    </record>
+  </data>
 </openerp>

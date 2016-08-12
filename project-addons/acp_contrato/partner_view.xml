@@ -12,7 +12,7 @@
       <field name="arch" type="xml">
         <xpath expr="/form/sheet/notebook/page/group/group/field[@name='supplier']" position="after">
           <field name="operario"/>
-        </xpath> 
+        </xpath>
         <field name="email" position="after">
            <button icon="terp-mail-message-new" name="action_partner_send" string="email" type="object"  />
         </field>

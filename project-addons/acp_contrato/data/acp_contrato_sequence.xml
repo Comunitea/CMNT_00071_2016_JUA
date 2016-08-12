@@ -31,7 +31,7 @@
             <field name="company_id" eval="False"/>
         </record>
 
-        <!-- Sequences for tarea 
+        <!-- Sequences for tarea
         <record id="seq_type_acp_contrato_tarea" model="ir.sequence.type">
             <field name="name">Acp Contrato tarea</field>
             <field name="code">acp_contrato.contrato_tarea</field>

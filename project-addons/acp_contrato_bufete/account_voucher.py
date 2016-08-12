@@ -36,14 +36,14 @@ class account_voucher(osv.osv):
         'dft_contrato_id': fields.many2one('acp_contrato.contrato', 'Contrato', readonly=False,required=False),
         'dft_servicio_id': fields.many2one('acp_contrato.servicio', 'Servicio', readonly=False,required=False),
        }
-       
+
     def action_genera_recibo(self,cr,uid,ids,context=None):
         ctx = dict()
         ctx.update({
             'default_voucher_id': self.browse(cr, uid, ids).id,
             'default_reference': self.browse(cr, uid, ids).reference,
         })
-        
+
         mod_obj = self.pool.get('ir.model.data')
         res = mod_obj.get_object_reference(cr, uid, 'acp_contrato_bufete', 'view_genera_recibo_bu')
         res_id = res and res[1] or False,
@@ -56,7 +56,7 @@ class account_voucher(osv.osv):
             'res_model': 'acp_contrato.genera_recibo',
             'target':'new',
             'view_id': [res_id],
-            }        
+            }
 
 class account_voucher_line(osv.osv):
     _inherit = 'account.voucher.line'
@@ -109,7 +109,7 @@ class account_voucher_line(osv.osv):
             'target':'current',
             'view_id': [res_id],
             }
-            
-        
+
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

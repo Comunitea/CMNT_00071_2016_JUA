@@ -128,4 +128,3 @@ account_invoice_line_contratos_user_portal,account_invoice_line_contratos_user_p
 
 acp_contrato_tarea_portal1,acp_contrato_tarea_portal1,model_acp_contrato_tarea,base.group_portal,1,1,1,0
 acp_contrato_tarea_servicio,acp_contrato_tarea_servicio,model_acp_contrato_servicio,base.group_portal,1,1,0,0
-

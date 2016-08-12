@@ -21,7 +21,7 @@
         </form>
       </field>
     </record>
-    <!-- accion 
+    <!-- accion
          <record model="ir.actions.act_window" id="action_genera_expediente_bu">
          <field name="name">Generar Expedientes</field>
          <field name="res_model">acp_contrato.genera_expediente</field>

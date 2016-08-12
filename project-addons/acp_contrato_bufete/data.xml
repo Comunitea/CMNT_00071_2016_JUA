@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
   <data noupdate="1">
-    <!-- 
+    <!--
          TIPOS DE CONTRATOS BUFETE
     -->
     <record id="iguala" model="acp_contrato.tipo_contrato">
@@ -12,13 +12,13 @@
       <field name="name">General</field>
       <field name="descripcion">General</field>
     </record>
-    
+
     <record id="subexpediente" model="acp_contrato.tipo_contrato">
       <field name="name">Sub-expediente</field>
       <field name="descripcion">Sub-expediente</field>
     </record>
-        
-    <!-- 
+
+    <!--
          TIPOS DE SERVICIOS BUFETE
     -->
     <record id="ges_admin_bufete" model="acp_contrato.tipo_servicio">
@@ -28,8 +28,8 @@
     <record id="act_prof_bufete" model="acp_contrato.tipo_servicio">
       <field name="name">Actuaciones Profesionales</field>
       <field name="descripcion">Actuaciones Profesionales</field>
-    </record>    
-    <!-- 
+    </record>
+    <!--
          ACTIVIDADES BUFETE
     -->
     <record id="ACT_MENSAJE_DE_CLIENTE" model="acp_contrato.actividad">
@@ -45,7 +45,7 @@
       <field name="cerrar_automaticamente" eval="True" />
       <field name="mostrar_en_resumen" eval="False" />
       <field name="active" eval="True" />
-    </record>    
+    </record>
     <record id="ACT_ACTUACION_FACTURABLE" model="acp_contrato.actividad">
       <field name="code">ACTUACION FACTURABLE</field>
       <field name="name">Actuación Facturable por Horas</field>
@@ -130,7 +130,7 @@
       <field name="mostrar_en_resumen" eval="True" />
       <field name="active" eval="True" />
     </record>
-    <!-- 
+    <!--
          MATERIA DE CONTRATOS
     -->
     <record id="mat_civil" model="acp_contrato.materia">
@@ -161,7 +161,7 @@
       <field name="name">Concursal</field>
       <field name="descripcion">Concursal</field>
     </record>
-    <!-- 
+    <!--
          PLANTILLAS DE ENVIO DE EMAIL DESDE partners -al procurador
     -->
     <record id="acp_email_template_procurador_intrucciones" model="email.template">
@@ -179,11 +179,11 @@
       <field name="body_html">
         <![CDATA[
                  <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                 
+
                  <p>${object.name},</p>
-                 
+
                  <p></p>
-                 
+
                  <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
                  <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
                  <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
@@ -218,8 +218,8 @@
                  </div>
         ]]>
       </field>
-    </record>    
-    <!-- 
+    </record>
+    <!--
          PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES -APERTURA EXPEDIENTE CLIENTE
     -->
     <record id="acp_email_template_aviso_cliente" model="email.template">
@@ -237,11 +237,11 @@
       <field name="body_html">
         <![CDATA[
                  <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                 
+
                  <p>${object.partner_id.name},</p>
-                 
+
                  <p>Tiene un nuevo expediente: ${object.company_id.name}: </p>
-                 
+
                  <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
                  <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
                  <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
@@ -277,7 +277,7 @@
         ]]>
       </field>
     </record>
-    <!-- 
+    <!--
          PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES -CIERRE EXPEDIENTE CLIENTE
     -->
     <record id="acp_email_template_aviso_cierre_cliente" model="email.template">
@@ -295,11 +295,11 @@
       <field name="body_html">
         <![CDATA[
                  <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                 
+
                  <p>${object.partner_id.name},</p>
-                 
+
                  <p>Cierre de expediente: ${object.company_id.name}: </p>
-                 
+
                  <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
                  <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
                  <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
@@ -335,7 +335,7 @@
         ]]>
       </field>
     </record>
-    <!-- 
+    <!--
          PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES -CIERRE EXPEDIENTE ADMINISTRACION
     -->
     <record id="acp_email_template_aviso_cierre_administracion" model="email.template">
@@ -353,11 +353,11 @@
       <field name="body_html">
         <![CDATA[
                  <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                 
+
                  <p>${object.partner_id.name},</p>
-                 
+
                  <p>Cierre de expediente: ${object.company_id.name}: </p>
-                 
+
                  <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
                  <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
                  <strong style="text-transform:uppercase;">${object.company_id.name}</strong></h3>
@@ -393,8 +393,8 @@
         ]]>
       </field>
     </record>
-    
-    <!-- 
+
+    <!--
          PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES-ABOGADOS
     -->
     <record id="acp_email_template_aviso_abogado" model="email.template">
@@ -412,11 +412,11 @@
       <field name="body_html">
         <![CDATA[
                  <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                 
+
                  <p>${object.abogado_id.name},</p>
-                 
+
                  <p>Tiene un nuevo expediente: ${object.contrato_id.name}</p>
-                 
+
                 <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
                  <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
                  <strong style="text-transform:uppercase;">${object.contrato_id.company_id.name}</strong></h3>
@@ -451,8 +451,8 @@
                  </div>
         ]]>
       </field>
-    </record> 
-    <!-- 
+    </record>
+    <!--
          PLANTILLAS DE ENVIO DE EMAIL DESDE ESPEDIENTES-PRODURADOR
     -->
     <record id="acp_email_template_aviso_procurador" model="email.template">
@@ -470,11 +470,11 @@
       <field name="body_html">
         <![CDATA[
                  <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                 
+
                  <p>${object.procurador_id.name},</p>
-                 
+
                  <p>Tiene un nuevo expediente: ${object.contrato_id.name} </p>
-                 
+
                 <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
                  <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
                  <strong style="text-transform:uppercase;">${object.contrato_id.company_id.name}</strong></h3>
@@ -509,8 +509,8 @@
                  </div>
         ]]>
       </field>
-    </record> 
-    <!-- 
+    </record>
+    <!--
          PLANTILLAS DE NVIO DE EMAIL DESDE RES PARTNER
     -->
   </data>

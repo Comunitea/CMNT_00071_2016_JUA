@@ -31,12 +31,12 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 class acp_contrato_bufete_nuevo_mensaje(osv.osv_memory):
- 
+
     _name = 'acp_contrato_bufete.nuevo_mensaje'
     _description = 'Nuevo mensaje desde portal'
-    
+
     def _get_users(self,cr,uid,context):
-        contrato = self.pool.get('acp_contrato.contrato').browse(cr, uid, context.get('active_id'), context=context) 
+        contrato = self.pool.get('acp_contrato.contrato').browse(cr, uid, context.get('active_id'), context=context)
 
         L=[]
         for c in contrato.abogado_ids:
@@ -44,7 +44,7 @@ class acp_contrato_bufete_nuevo_mensaje(osv.osv_memory):
             user = self.pool.get('res.users').browse(cr, uid, user_id[0], context=context)
             L.append((user.id,user.name))
         return L
-        
+
 
     _columns = {
         'msg': fields.text('Texto', required=True),
@@ -54,15 +54,15 @@ class acp_contrato_bufete_nuevo_mensaje(osv.osv_memory):
 
 
     def send_msg(self, cr, uid, ids, context=None):
-        
-        msg = self.pool.get('acp_contrato_bufete.nuevo_mensaje').browse(cr, uid, ids[0], context=context) 
+
+        msg = self.pool.get('acp_contrato_bufete.nuevo_mensaje').browse(cr, uid, ids[0], context=context)
         servicio_ids = self.pool.get('acp_contrato.servicio').search(cr, uid, [('contrato_id','=',context.get('active_id')),('tipo_servicio','=',2)], context=context)
         servicio=self.pool.get('acp_contrato.servicio').browse(cr, uid, servicio_ids[0], context=context)
-        actividad_id = self.pool.get('acp_contrato.actividad').browse(cr, uid, 1, context=context) 
+        actividad_id = self.pool.get('acp_contrato.actividad').browse(cr, uid, 1, context=context)
         ir_model_data = self.pool.get('ir.model.data')
         try:
             actividad_id = ir_model_data.get_object_reference(cr, uid, 'acp_contrato_bufete', 'ACT_MENSAJE_DE_CLIENTE')[1]
-            actividad = self.pool.get('acp_contrato.actividad').browse(cr, uid, actividad_id, context=context) 
+            actividad = self.pool.get('acp_contrato.actividad').browse(cr, uid, actividad_id, context=context)
         except ValueError:
             actividad_id = False
 
@@ -71,21 +71,21 @@ class acp_contrato_bufete_nuevo_mensaje(osv.osv_memory):
 
             tarea={
                       'servicio_id': servicio.id,
-                      'tipo_servicio': 2,            
+                      'tipo_servicio': 2,
                       'contrato_id': context.get('active_id'),
                       'partner_id':servicio.partner_id.id,
-                      'user_id': uid,                
-                      'fecha': time.strftime('%Y-%m-%d %H:%M:%S'),                
-                      'actividad_id': actividad.id,        
+                      'user_id': uid,
+                      'fecha': time.strftime('%Y-%m-%d %H:%M:%S'),
+                      'actividad_id': actividad.id,
                       'tipo': actividad.tipo,
                       'fecha_limite': time.strftime('%Y-%m-%d %H:%M:%S'),
                       'observaciones': msg.msg,
-                      'user_seg_id': msg.user_seg_id,      
-                      'prioridad': '2',   
+                      'user_seg_id': msg.user_seg_id,
+                      'prioridad': '2',
                       'state': 'open',
                       'create_note':False
                              }
-            tarea_id = self.pool.get('acp_contrato.tarea').create(cr, SUPERUSER_ID, tarea, context=context) 
+            tarea_id = self.pool.get('acp_contrato.tarea').create(cr, SUPERUSER_ID, tarea, context=context)
         return True
 acp_contrato_bufete_nuevo_mensaje()
 

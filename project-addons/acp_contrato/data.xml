@@ -2,7 +2,7 @@
 <openerp>
   <data noupdate="1">
 
-<!-- 
+<!--
         TIPOS DE ACTIVIDAD
 -->
 
@@ -18,9 +18,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
+          <field name="active" eval="True"/>
         </record>
- 
+
         <record id="ANULAR_SERVICIO" model="acp_contrato.actividad">
           <field name="code">ANULAR SERVICIO</field>
           <field name="name" >Anular Servicio</field>
@@ -33,7 +33,7 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
+          <field name="active" eval="True"/>
         </record>
 
 
@@ -49,9 +49,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record> 
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="ATENCION" model="acp_contrato.actividad">
           <field name="code">ATENCION</field>
           <field name="name" >Especial Atención</field>
@@ -64,10 +64,10 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="False"/>
           <field name="mostrar_en_resumen" eval="True"/>
-          <field name="active" eval="True"/>      
-        </record>        
-        
-        
+          <field name="active" eval="True"/>
+        </record>
+
+
         <record id="BLOQUEAR_CONTRATO" model="acp_contrato.actividad">
           <field name="code">BLOQUEAR CONTRATO</field>
           <field name="name" >Bloquear Contrato</field>
@@ -80,9 +80,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="False"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record>  
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="BLOQUEAR_SERVICIO" model="acp_contrato.actividad">
           <field name="code">BLOQUEAR SERVICIO</field>
           <field name="name" >Bloquear Servicio</field>
@@ -95,9 +95,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="False"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record> 
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="EN_ESPERA" model="acp_contrato.actividad">
           <field name="code">EN ESPERA</field>
           <field name="name" >En Espera</field>
@@ -110,9 +110,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record>  
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="FINALIZAR_SERVICIO" model="acp_contrato.actividad">
           <field name="code">FINALIZAR SERVICIO</field>
           <field name="name" >Finalizar Servicio</field>
@@ -125,9 +125,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record> 
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="FINALIZAR_SERVICIO" model="acp_contrato.actividad">
           <field name="code">FINALIZAR SERVICIO</field>
           <field name="name" >Finalizar Servicio</field>
@@ -140,9 +140,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record>   
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="VISITA" model="acp_contrato.actividad">
           <field name="code">VISITA</field>
           <field name="name" >Visita</field>
@@ -155,9 +155,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="False"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record> 
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="RE-ABRIR" model="acp_contrato.actividad">
           <field name="code">RE-ABRIR</field>
           <field name="name" >Re-Abrir Servicio</field>
@@ -170,9 +170,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
+          <field name="active" eval="True"/>
         </record>
-        
+
         <record id="RECLAMACION" model="acp_contrato.actividad">
           <field name="code">RECLAMACION</field>
           <field name="name" >Reclamación</field>
@@ -185,9 +185,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="False"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record>    
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="NOTA INTERNA" model="acp_contrato.actividad">
           <field name="code">NOTA INTERNA</field>
           <field name="name" >Nota Interna</field>
@@ -200,9 +200,9 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="True"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record>  
-        
+          <field name="active" eval="True"/>
+        </record>
+
         <record id="MATERIAL" model="acp_contrato.actividad">
           <field name="code">MATERIAL</field>
           <field name="name" >Agregar Material o Mano de Obra</field>
@@ -215,8 +215,8 @@
           <field name="enviar_mensaje" eval="False"/>
           <field name="cerrar_automaticamente" eval="False"/>
           <field name="mostrar_en_resumen" eval="False"/>
-          <field name="active" eval="True"/>      
-        </record>                                                                                 
+          <field name="active" eval="True"/>
+        </record>
 <!--
 estado_inicial
                      ('open','Abierto'),
@@ -228,14 +228,14 @@ tipo
                      ('reclamacion','Reclamacion'),
                      ('asignarrecurso','Asignar Recurso'),
                      ('espera','Espera'),
-                     ('cita','Cita'),                                                                                                         
-                     ('contacto','Contacto'),                      
-                     ('otro','Otro'), 
---> 
-    
-<!-- 
+                     ('cita','Cita'),
+                     ('contacto','Contacto'),
+                     ('otro','Otro'),
+-->
+
+<!--
         MOTIVOS DE ANULACION
--->    
+-->
         <record id="anulado" model="acp_contrato.motivo_anulacion">
             <field name="name">Anulado</field>
             <field name="descripcion">Anulado</field>
@@ -259,42 +259,42 @@ tipo
         <record id="impago" model="acp_contrato.motivo_anulacion">
             <field name="name">Impago</field>
             <field name="descripcion">Impago</field>
-        </record>        
+        </record>
 
-<!-- 
+<!--
         MOTIVOS DE ESPERA
--->    
+-->
         <record id="material" model="acp_contrato.motivo_espera">
               <field name="name" >En espera de Material</field>
               <field name="descripcion" >En espera de Material</field>
-              <field name="fecha_limite" eval="True"/> 
+              <field name="fecha_limite" eval="True"/>
               <field name="horas" >8</field>
-        </record>        
+        </record>
         <record id="autorizacion" model="acp_contrato.motivo_espera">
               <field name="name" >En espera de Autorizacion</field>
               <field name="descripcion" >En espera de Autorizacion</field>
-              <field name="fecha_limite" eval="True"/> 
+              <field name="fecha_limite" eval="True"/>
               <field name="horas" >8</field>
-        </record>        
+        </record>
         <record id="otros" model="acp_contrato.motivo_espera">
               <field name="name" >Otros</field>
               <field name="descripcion" >Otros</field>
-              <field name="fecha_limite" eval="True"/> 
+              <field name="fecha_limite" eval="True"/>
               <field name="horas" >8</field>
-        </record> 
+        </record>
 
-<!-- 
+<!--
         MOTIVOS DE RECLAMACION
--->    
+-->
         <record id="defectuoso" model="acp_contrato.motivo_reclamacion">
               <field name="name" >Servicio Completado con Defectos</field>
               <field name="descripcion" >Servicio Completado con Defectos</field>
         </record>
-        
+
         <record id="retraso" model="acp_contrato.motivo_reclamacion">
               <field name="name" >Retraso</field>
               <field name="descripcion" >Retraso</field>
-        </record>     
+        </record>
         <record id="incumpl_tiempo" model="acp_contrato.motivo_reclamacion">
               <field name="name">Incumplimiento de tiempo</field>
               <field name="descripcion">Incumplimiento de tiempo</field>
@@ -306,11 +306,11 @@ tipo
         <record id="mala_ejecucion" model="acp_contrato.motivo_reclamacion">
               <field name="name">Mala ejecucion</field>
               <field name="descripcion">Mala ejecución</field>
-        </record>           
-  
-<!-- 
+        </record>
+
+<!--
         EMAIL CONTATO
--->  
+-->
 
  <record id="acp_contrato_email_template" model="email.template">
             <field name="name">Expediente/Contrato</field>
@@ -330,18 +330,18 @@ tipo
     <p>Hola ${object.partner_id.name},</p>
 
     <p>Tiene Un nuevo contrato: </p>
-    
+
     <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
        &nbsp;&nbsp;<strong>REFERECIA</strong><br />
-       &nbsp;&nbsp;Numero: <strong>${object.name}</strong><br />              
+       &nbsp;&nbsp;Numero: <strong>${object.name}</strong><br />
        &nbsp;&nbsp;Referencia: <strong>${object.referencia}</strong><br />
        % if object.user_id:
        &nbsp;&nbsp;Su contacto: <a href="mailto:${object.user_id.email or ''}?subject=Contrato%20${object.referencia}">${object.user_id.name}</a>
        % endif
-    </p>  
-    
+    </p>
 
-    
+
+
     <br/>
     <p>Si tiene cualquier pregunta, no dude en contactarnos</p>
     <p>Gracias por elegir ${object.company_id.name or 'us'}!</p>
@@ -381,6 +381,6 @@ tipo
 </div>
             ]]></field>
         </record>
-  
+
   </data>
 </openerp>

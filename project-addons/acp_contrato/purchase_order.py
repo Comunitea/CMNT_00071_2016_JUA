@@ -31,32 +31,32 @@ from openerp.tools.translate import _
 #----------------------------------------------------------
 class purchase_order(osv.osv):
     _inherit = 'purchase.order'
-    
+
     _columns = {
-        'dft_contrato_id': fields.many2one('acp_contrato.contrato', 'Contrato', readonly=False,required=False),        	
-        'dft_servicio_id': fields.many2one('acp_contrato.servicio', 'Servicio', readonly=False,required=False),        	
-        
-              }     
-  
+        'dft_contrato_id': fields.many2one('acp_contrato.contrato', 'Contrato', readonly=False,required=False),
+        'dft_servicio_id': fields.many2one('acp_contrato.servicio', 'Servicio', readonly=False,required=False),
+
+              }
+
 purchase_order()
 class purchase_order_line(osv.osv):
     _inherit = 'purchase.order.line'
-    
+
     _columns = {
-        'contrato_id': fields.many2one('acp_contrato.contrato', 'Contrato', readonly=False,required=False),        	
-        'servicio_id': fields.many2one('acp_contrato.servicio', 'Servicio', readonly=False,required=False),        	
-        'partner_ref': fields.related('order_id', 'partner_ref', string="Referencia", type='char', size=64, store=False),	
-        
-              }     
+        'contrato_id': fields.many2one('acp_contrato.contrato', 'Contrato', readonly=False,required=False),
+        'servicio_id': fields.many2one('acp_contrato.servicio', 'Servicio', readonly=False,required=False),
+        'partner_ref': fields.related('order_id', 'partner_ref', string="Referencia", type='char', size=64, store=False),
+
+              }
     _defaults = {
       'contrato_id' : lambda self, cr, uid, context : context['contrato_id'] if context and 'contrato_id' in context else None,
-      'servicio_id' : lambda self, cr, uid, context : context['servicio_id'] if context and 'servicio_id' in context else None      	
-   }  
+      'servicio_id' : lambda self, cr, uid, context : context['servicio_id'] if context and 'servicio_id' in context else None
+   }
     def open_po(self,cr,uid,ids,context=None):
-       
+
         if context is None:
             context = {}
-        order_id = self.browse(cr, uid, ids, context=context)[0].order_id.id    
+        order_id = self.browse(cr, uid, ids, context=context)[0].order_id.id
         return {
             'type': 'ir.actions.act_window',
             'name': 'Pedido de Compra',
@@ -65,9 +65,9 @@ class purchase_order_line(osv.osv):
             'context': context,
             'res_model': 'purchase.order',
             'nodestroy': True,
-            'res_id': order_id,	
-            'target':'current',	
-            }  
+            'res_id': order_id,
+            'target':'current',
+            }
 purchase_order_line()
 
 #----------------------------------------------------------
@@ -83,12 +83,12 @@ class purchase_order(osv.osv):
         res['servicio_id'] = order_line.servicio_id and order_line.servicio_id.id or False
         res['contrato_id'] = order_line.contrato_id and order_line.contrato_id.id or False
         return res
- 
+
 purchase_order()
 
 
 
- 
+
 
 
 

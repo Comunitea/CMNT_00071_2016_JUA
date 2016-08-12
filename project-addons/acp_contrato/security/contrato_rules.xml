@@ -32,7 +32,7 @@
       <field name="perm_create" eval="False" />
       <field name="perm_unlink" eval="False" />
     </record>
-    
+
     <!-- Regla para que los clientes solo vean las tareas de sus expedientes y -->
     <record model="ir.rule" id="acp_contrato_tarea_portal">
       <field name="name">Los clientes solo ven sus tareas</field>

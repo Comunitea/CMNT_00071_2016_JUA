@@ -1122,7 +1122,7 @@
                     <button icon="gtk-apply" name="close_act" string="Finalizar Actividad" type="object" states="open" class="oe_highlight" />
                     <field name="state" />
                   </tree>
-                </field>                    
+                </field>
                 </group>
               </page>
             </notebook>
@@ -1283,7 +1283,7 @@
         </form>
       </field>
     </record>
-    <!--Vista form productos servicios extra 
+    <!--Vista form productos servicios extra
          <record model="ir.ui.view" id="view_acp_contrato_servicio_producto_extra_form">
          <field name="name">acp_contrato.servicio_producto_extra.form</field>
          <field name="model">acp_contrato.servicio_producto_extra</field>

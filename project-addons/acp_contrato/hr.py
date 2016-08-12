@@ -30,14 +30,14 @@ from openerp.tools.translate import _
 _logger = logging.getLogger(__name__)
 
 class hr_employee(osv.osv):
-	_inherit = 'hr.employee'
+    _inherit = 'hr.employee'
 
-	_columns = {
-		#'operario': fields.related('address_home_id', 'operario', type="boolean", string="Operario"),
-		'horas_objetivo': fields.float('Objetivo diario de horas' ),
-		'product_rel_id': fields.many2one('product.product', 'Producto Asociado'),
+    _columns = {
+        #'operario': fields.related('address_home_id', 'operario', type="boolean", string="Operario"),
+        'horas_objetivo': fields.float('Objetivo diario de horas' ),
+        'product_rel_id': fields.many2one('product.product', 'Producto Asociado'),
 
 
-	}
+    }
 
 hr_employee()

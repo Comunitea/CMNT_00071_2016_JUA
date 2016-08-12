@@ -13,7 +13,7 @@
             <field name="flow_start">True</field>
             <field name="name">open</field>
             <field name="kind">function</field>
-            <field name="action">write({'state':'open'})</field>            
+            <field name="action">write({'state':'open'})</field>
         </record>
 
         <record id="act_confirmed" model="workflow.activity">
@@ -21,14 +21,14 @@
             <field name="name">confirmed</field>
             <field name="kind">function</field>
             <field name="action">wkf_action_confirmed()</field>
-        </record> 
-        
+        </record>
+
         <record id="act_done" model="workflow.activity">
             <field name="wkf_id" ref="wkf_expediente"/>
             <field name="name">done</field>
             <field name="kind">function</field>
             <field name="action">wkf_action_done()</field>
-        </record>   
+        </record>
 
         <record id="act_invoiced" model="workflow.activity">
             <field name="wkf_id" ref="wkf_expediente"/>
@@ -43,14 +43,14 @@
             <field name="name">exception</field>
             <field name="kind">function</field>
             <field name="action">wkf_action_exception()</field>
-        </record> 
+        </record>
         <record id="act_cancel" model="workflow.activity">
             <field name="wkf_id" ref="wkf_expediente"/>
             <field name="name">cancel</field>
             <field name="kind">function</field>
             <field name="flow_stop">True</field>
             <field name="action">wkf_action_cancel()</field>
-        </record> 
+        </record>
 
         <!-- Transistion -->
 
@@ -59,18 +59,18 @@
             <field name="act_to" ref="act_confirmed"/>
             <field name="signal">set_confirmed</field>
         </record>
-        
+
         <record id="trans_confirmed_done" model="workflow.transition">
             <field name="act_from" ref="act_confirmed"/>
             <field name="act_to" ref="act_done"/>
             <field name="signal">set_done</field>
         </record>
-        
+
         <record id="trans_confirmed_invoiced" model="workflow.transition">
             <field name="act_from" ref="act_confirmed"/>
             <field name="act_to" ref="act_invoiced"/>
             <field name="signal">set_invoiced</field>
-        </record>        
+        </record>
         <record id="trans_confirmed_exception" model="workflow.transition">
             <field name="act_from" ref="act_confirmed"/>
             <field name="act_to" ref="act_exception"/>
@@ -80,13 +80,13 @@
             <field name="act_from" ref="act_exception"/>
             <field name="act_to" ref="act_confirmed"/>
             <field name="signal">set_ignore_exception</field>
-        </record>   
+        </record>
         <record id="trans_done_confirmed" model="workflow.transition">
             <field name="act_from" ref="act_done"/>
             <field name="act_to" ref="act_confirmed"/>
             <field name="signal">set_reopen_done</field>
-        </record>        
- 
+        </record>
+
 
         <record id="trans_confirmed_cancel" model="workflow.transition">
             <field name="act_from" ref="act_confirmed"/>
@@ -97,17 +97,17 @@
             <field name="act_from" ref="act_done"/>
             <field name="act_to" ref="act_cancel"/>
             <field name="signal">set_cancel</field>
-        </record>        
+        </record>
         <record id="trans_invoiced_cancel" model="workflow.transition">
             <field name="act_from" ref="act_invoiced"/>
             <field name="act_to" ref="act_cancel"/>
             <field name="signal">set_cancel</field>
-        </record> 
+        </record>
         <record id="trans_exception_cancel" model="workflow.transition">
             <field name="act_from" ref="act_exception"/>
             <field name="act_to" ref="act_cancel"/>
             <field name="signal">set_cancel</field>
-        </record>                            
+        </record>
 
     </data>
 </openerp>

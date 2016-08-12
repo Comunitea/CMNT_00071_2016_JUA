@@ -30,17 +30,16 @@ class res_users(osv.osv):
     _inherit = 'res.users'
 
     _columns = {
-        'contrato_ids': fields.many2many('acp_contrato.contrato', 'acp_contrato_res_users_rel', string='Contratos', ondelete="restrict", copy=False),        
-        
+        'contrato_ids': fields.many2many('acp_contrato.contrato', 'acp_contrato_res_users_rel', string='Contratos', ondelete="restrict", copy=False),
 
-     
-     }    
-  
-     
+
+
+     }
+
+
 
 
 
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

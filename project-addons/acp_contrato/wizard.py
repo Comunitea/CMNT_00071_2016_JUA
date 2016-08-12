@@ -53,23 +53,23 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                 ('12', 'Diciembre'),
             ], 'Mes', select=True,required=True),
         'generar_facturas': fields.boolean('Generar facturas programadas'),
-        'diario_id': fields.many2one('account.journal', 'Diario', select=True),  
-        'facturar_servicios': fields.boolean('Generar facturas servicios'),         
-        'generar_servicios': fields.boolean('Generar servicios'),                     
+        'diario_id': fields.many2one('account.journal', 'Diario', select=True),
+        'facturar_servicios': fields.boolean('Generar facturas servicios'),
+        'generar_servicios': fields.boolean('Generar servicios'),
     }
-    
-    
+
+
     _defaults = {
         'ano': lambda *a: int(time.strftime("%Y", time.localtime())),
     }
-    
+
 
     def action_cancel(self, cr, uid, ids, context=None):
 
         return {'type':'ir.actions.act_window_close'}
 
-                                
-                    
+
+
 
 
     def genera_servicio(self, cr, uid, ids, ano, mes, context=None):
@@ -84,7 +84,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
         contador = 0
         contador_opp = 0
         serv_obj = self.pool.get('acp_contrato.servicio')
-        opp_obj = self.pool.get('crm.lead')        
+        opp_obj = self.pool.get('crm.lead')
         serv_mat_obj = self.pool.get('acp_contrato.servicio_producto')
 
         # Se seleccionan los servicios programados que no esten dados de baja
@@ -99,10 +99,10 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                     INNER  join acp_contrato_fechas_servicio \
                     on acp_contrato_programar_servicio.id = acp_contrato_fechas_servicio.programacion_id \
                     and acp_contrato_fechas_servicio.mes = '"+ mes +"' \
-                    and acp_contrato_contrato.state != 'baja'")        
+                    and acp_contrato_contrato.state != 'baja'")
 
         for contrato in cr.dictfetchall():
-            # No esta marcado la opcion de contratado se crea una oportunidad           
+            # No esta marcado la opcion de contratado se crea una oportunidad
             if contrato['contratado'] == False:
                 # Se comprueba si está creada ya la oportunidad del contrato para el mes y año
                 cr.execute("select count(*) AS total from crm_lead \
@@ -114,13 +114,13 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                                 from acp_contrato_servicio, \
                                 acp_contrato_servicio_producto_extra \
                                 where acp_contrato_servicio.contrato_id = "+ str(contrato['id']) +" \
-                                and acp_contrato_servicio_producto_extra.servicio_id = acp_contrato_servicio.id") 
-                    
+                                and acp_contrato_servicio_producto_extra.servicio_id = acp_contrato_servicio.id")
+
                     planned_revenue = cr.fetchone()[0]
                     sales_man = self.pool.get('res.partner').browse(cr, uid, contrato['cliente_id']).user_id.id
                     phone = self.pool.get('res.partner').browse(cr, uid, contrato['cliente_direccion_id']).phone
                     email = self.pool.get('res.partner').browse(cr, uid, contrato['cliente_direccion_id']).email
-                
+
                     opp = {
                         'contrato_id': contrato['id'],
                         'fecha': '01/' + mes + '/' + str(ano),
@@ -134,7 +134,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                         'priority': '3',
                         'state': 'draft',
                         'type': 'opportunity',
-                        'description': 'Oportunidad de realizar un servicio no contratado para el contrato: ' + str(contrato['name']) + ', Mes: '+ mes + '/' + str(ano),                    
+                        'description': 'Oportunidad de realizar un servicio no contratado para el contrato: ' + str(contrato['name']) + ', Mes: '+ mes + '/' + str(ano),
                         'optin': False,
                         'phone': phone,
                         'active': True,
@@ -150,7 +150,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                     opp_id = opp_obj.create(cr, uid, opp, context=context)
                     contador_opp = contador_opp + 1
 
-      
+
             if contrato['contratado'] == True:
                 # Comprueba si el tipo de servicio ya está creado para el contrato y mes/año
                 cr.execute("select count(*) AS total\
@@ -158,9 +158,9 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                             where acp_contrato_servicio.contrato_id = "+ str(contrato['id']) +" \
                               and acp_contrato_servicio.tipo_servicio = "+ str(contrato['tipo_servicio_id']) +" \
                               and acp_contrato_servicio.servicio_prog_id = "+ str(contrato['servicio_prog_id']) +" \
-                              and to_char(acp_contrato_servicio.fecha,'MM/YYYY') = '"+ mes + '/' + str(ano)+"'")                
+                              and to_char(acp_contrato_servicio.fecha,'MM/YYYY') = '"+ mes + '/' + str(ano)+"'")
                 total = cr.fetchone()[0]
-                # Recupera los datos del ultimo servicio              
+                # Recupera los datos del ultimo servicio
                 cr.execute( "select id as id, fecha as ultima_fecha \
                              from acp_contrato_servicio \
                              where acp_contrato_servicio.contrato_id = "+ str(contrato['id']) +"  \
@@ -169,15 +169,15 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                                             from acp_contrato_servicio\
                                             where acp_contrato_servicio.contrato_id = "+ str(contrato['id']) +"  \
                                               and acp_contrato_servicio.tipo_servicio = "+ str(contrato['tipo_servicio_id']) +" \
-                                              and acp_contrato_servicio.fecha < to_date('"+ mes + '/' + str(ano)+"','mm/yyyy'))")                
+                                              and acp_contrato_servicio.fecha < to_date('"+ mes + '/' + str(ano)+"','mm/yyyy'))")
                 ultimo_servicio = cr.fetchone()
-                if ultimo_servicio: 
+                if ultimo_servicio:
                     ultimo_servicio_id = ultimo_servicio[0]
                     ultima_fecha_servicio = ultimo_servicio[1]
                 else:
                     ultimo_servicio_id = None
                     ultima_fecha_servicio = None
-                
+
                 if total == 0:
                     serv = {
                         'contrato_id': contrato['id'],
@@ -204,7 +204,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                                     where contrato_id = "+ str(contrato['id']) +"  \
                                       and estado = 'enservicio' \
                                       and programar_servicio_id = " + str(contrato['servicio_prog_id']))
-                        for serv_mat in cr.dictfetchall():  
+                        for serv_mat in cr.dictfetchall():
                             print "<<<<<<<<<<<<<<<<<<<<  serv_mat['product_id']: ",serv_mat['product_id']
                             serv_material = {
                                 'servicio_id': serv_id,
@@ -212,16 +212,16 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                                 'product_id': serv_mat['product_id'],
                                 'satisfactorio': 'no',
                                 'ubicacion': serv_mat['ubicacion'],
-                                'observaciones': serv_mat['observaciones'],                                
-                                'estado': serv_mat['estado'], 
+                                'observaciones': serv_mat['observaciones'],
+                                'estado': serv_mat['estado'],
                                 'tipo_producto_n': serv_mat['tipo_producto_n'],
                                 'prodlot_id': serv_mat['prodlot_id'],
-                                'contrato_producto_id': serv_mat['id'], 
+                                'contrato_producto_id': serv_mat['id'],
                                 }
-                            serv_mat_id = serv_mat_obj.create(cr, uid, serv_material, context=context)                          
-                    '''                            
+                            serv_mat_id = serv_mat_obj.create(cr, uid, serv_material, context=context)
+                    '''
             print 'se han generado %s servicio y %s oportunidades'%(str(contador),str(contador_opp))
-        return True     
+        return True
 
     def _prepara_facturas_programadas(self, cr, uid, ids, ano, mes, diario_id, context=None):
         if context is None:
@@ -236,7 +236,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
 
         result = []
         # Se seleccionan facturas programadas de los contratos que no estén dados de baja
-        # y tengan configurado el mes  
+        # y tengan configurado el mes
 
         cr.execute("select acp_contrato_contrato.id as contrato_id , acp_contrato_contrato.name,acp_contrato_contrato.partner_id as cliente_id ,\
                     acp_contrato_contrato.partner_direccion_id cliente_direccion_id,acp_contrato_facturacion.id as programa_id, \
@@ -257,19 +257,19 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                         where account_invoice.type = 'out_invoice' \
                         and account_invoice_line.invoice_id = account_invoice.id \
                         and account_invoice_line.factprog_id =  "+ str(factprog['programa_id']) +" \
-                        and to_char(account_invoice.date_invoice,'MM/YYYY') = '"+ mes + '/' + str(ano)+"'") 
+                        and to_char(account_invoice.date_invoice,'MM/YYYY') = '"+ mes + '/' + str(ano)+"'")
 
-            total = cr.fetchone()[0] 
+            total = cr.fetchone()[0]
 
             if total == 0:
-                fiscal_position_id = self.pool.get('res.partner').browse(cr, uid, factprog['cliente_id']).property_account_position.id 
+                fiscal_position_id = self.pool.get('res.partner').browse(cr, uid, factprog['cliente_id']).property_account_position.id
                 #Recuperamos las lineas a facturar
                 fact_lin_ids = fact_lin_obj.search(cr, uid,[('facturacion_id','=',factprog['programa_id'])], context=context)
                 inv_line = []
                 for fact_lin in fact_lin_obj.browse(cr, uid, fact_lin_ids, context=context):
                     val = inv_line_obj.product_id_change(cr, uid, [], fact_lin.product_id.id,
                         False, partner_id=factprog['cliente_id'], fposition_id=fiscal_position_id)
-                    res = val['value']                  
+                    res = val['value']
 
                     # determine and check income account
                     if not fact_lin.product_id :
@@ -296,9 +296,9 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                     if not res.get('name'):
                         #TODO: should find a way to call formatLang() from rml_parse
                         symbol = self.pool.get('res.partner').browse(cr, uid, factprog['cliente_id']).property_product_pricelist.currency_id.symbol
-                        symbol_position = self.pool.get('res.partner').browse(cr, uid, factprog['cliente_id']).property_product_pricelist.currency_id.position                        
+                        symbol_position = self.pool.get('res.partner').browse(cr, uid, factprog['cliente_id']).property_product_pricelist.currency_id.position
                         partner_lang = self.pool.get('res.partner').browse(cr, uid, factprog['cliente_id']).lang
-                        
+
                         if symbol_position == 'after':
                             symbol_order = (inv_amount, symbol)
                         else:
@@ -312,7 +312,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                        res['invoice_line_tax_id'] = False
 
                     d = ir_sequence_obj._interpolation_dict()
-                    line_name = ir_sequence_obj._interpolate(fact_lin.name, d)                       
+                    line_name = ir_sequence_obj._interpolate(fact_lin.name, d)
 
                     # create the invoice
                     inv_line_values = {
@@ -327,7 +327,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                         'contrato_id': factprog['contrato_id'],
                         'factprog_id': factprog['programa_id'],
                     }
-                    inv_line.append((0,0,inv_line_values))               
+                    inv_line.append((0,0,inv_line_values))
 
                 inv_values = {
                     'name': factprog['facturacion_name'],
@@ -341,7 +341,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                     'payment_term': self.pool.get('res.partner').browse(cr, uid, factprog['cliente_id']).property_payment_term.id,
                     'fiscal_position': fiscal_position_id,
                     'dft_contrato_id': factprog['contrato_id'],
-                    'dft_factprog_id': factprog['programa_id'],                        
+                    'dft_factprog_id': factprog['programa_id'],
                     'date_invoice': factprog['dia_factura'] + '/' + mes + '/' + str(ano),
                     'journal_id': diario_id,
                 }
@@ -363,8 +363,8 @@ class acp_contrato_genera_servicio(osv.osv_memory):
         for factprog_id, inv_values in self._prepara_facturas_programadas(cr, uid, ids, ano, mes, diario_id, context=context):
             inv_ids.append(self._crea_facturas(cr, uid, inv_values, context=context))
 
-        return True          
-  
+        return True
+
     def action_genera(self, cr, uid, ids, context=None):
         mod_obj = self.pool.get('ir.model.data')
         data = self.read(cr, uid, ids, [], context=context)[0]
@@ -380,18 +380,18 @@ class acp_contrato_genera_servicio(osv.osv_memory):
         if genera_fact_prog:
             print "<<<<<<<<<<<<<<<<<<<<<  Genera Facturas Programadas"
             self.genera_factura_programada(cr,uid,ids,ano,mes,diario_id,context=None)
-            
+
         if genera_servicio:
             print "<<<<<<<<<<<<<<<<<<<<<  Genera Servicios"
             self.genera_servicio(cr,uid,ids,ano,mes,context=None)
 
-        return True 
+        return True
 
 acp_contrato_genera_servicio()
 
 #~ class acp_contrato_genera_factura_servicio(osv.osv_memory):
     #~ """ PGenera serviciog """
-#~ 
+#~
     #~ _name = 'acp_contrato.generar_factura_servicio'
     #~ _description = 'Creacion factura de servicio'
     #~ _columns = {
@@ -400,20 +400,20 @@ acp_contrato_genera_servicio()
                 #~ ('cliente', 'Cliente'),
                 #~ ('servicio', 'Servicio'),
             #~ ], 'Agrupar facturar por', select=True, required=True),
-        #~ 'diario_id': fields.many2one('account.journal', 'Diario', select=True, required=True), 
+        #~ 'diario_id': fields.many2one('account.journal', 'Diario', select=True, required=True),
         #~ 'fecha_factura': fields.date('Fecha Factura', required=True, select=True),
     #~ }
     #~ _defaults = {
         #~ 'agrupar': "contrato",
     #~ }
-    #~ 
-#~ 
+    #~
+#~
     #~ def action_cancel(self, cr, uid, ids, context=None):
-#~ 
+#~
         #~ return {'type':'ir.actions.act_window_close'}
-#~ 
+#~
     #~ def _prepara_facturas_servicios(self, cr, uid, ids, agrupar, fecha_factura, diario_id,context=None):
-        #~ 
+        #~
         #~ if context is None:
             #~ context = {}
         #~ fact_obj = self.pool.get('acp_contrato.facturacion')
@@ -422,7 +422,7 @@ acp_contrato_genera_servicio()
         #~ fiscal_obj = self.pool.get('account.fiscal.position')
         #~ inv_line_obj = self.pool.get('account.invoice.line')
         #~ ir_sequence_obj = self.pool.get('ir.sequence')
-#~ 
+#~
         #~ # Actualiza los datos de clientes en servicios si no los tiene indicados
         #~ # los actualiza segun el cliente de contrato
         #~ cr.execute("select distinct acp_contrato_servicio.id as servicio_id,acp_contrato_contrato.partner_id as cont_partner_id, \
@@ -435,38 +435,38 @@ acp_contrato_genera_servicio()
                     #~ where acp_contrato_servicio_producto_extra.id in %s and\
                           #~ acp_contrato_servicio.id = acp_contrato_servicio_producto_extra.servicio_id  and\
                           #~ acp_contrato_contrato.id = acp_contrato_servicio.contrato_id ",(tuple(ids),))
-#~ 
+#~
         #~ for check in cr.dictfetchall():
             #~ if not check['serv_partner_id']:
                 #~ cr.execute('UPDATE acp_contrato_servicio \
                             #~ SET partner_id = %s, partner_direccion_id = %s, partner_factura_id = %s \
-                            #~ WHERE id = %s',(check['cont_partner_id'],check['cont_partner_direccion_id'],check['cont_partner_factura_id'],check['servicio_id'])) 
-#~ 
+                            #~ WHERE id = %s',(check['cont_partner_id'],check['cont_partner_direccion_id'],check['cont_partner_factura_id'],check['servicio_id']))
+#~
             #~ if not check['serv_partner_direccion_id']:
                 #~ cr.execute('UPDATE acp_contrato_servicio \
                             #~ SET  partner_direccion_id = %s \
-                            #~ WHERE id = %s',(check['cont_partner_direccion_id'],check['servicio_id'])) 
-#~ 
+                            #~ WHERE id = %s',(check['cont_partner_direccion_id'],check['servicio_id']))
+#~
             #~ if not check['serv_partner_factura_id']:
                 #~ cr.execute('UPDATE acp_contrato_servicio \
                             #~ SET  partner_factura_id = %s \
-                            #~ WHERE id = %s',(check['cont_partner_factura_id'],check['servicio_id']))                                              
-#~ 
-#~ 
-#~ 
+                            #~ WHERE id = %s',(check['cont_partner_factura_id'],check['servicio_id']))
+#~
+#~
+#~
         #~ result = []
         #~ # Se seleccionan facturas programadas de los contratos que no estén dados de baja
-        #~ # y tengan configurado el mes  
+        #~ # y tengan configurado el mes
         #~ if agrupar== 'contrato':
             #~ agrupar_campo = "acp_contrato_servicio.contrato_id"
-#~ 
+#~
         #~ if agrupar == 'cliente':
             #~ agrupar_campo = "acp_contrato_servicio.partner_factura_id"
-#~ 
+#~
         #~ if agrupar == 'servicio':
             #~ agrupar_campo = "acp_contrato_servicio.servicio_id"
-#~ 
-#~ 
+#~
+#~
         #~ cr.execute("select acp_contrato_servicio.partner_factura_id as cliente_direccion_id, \
                             #~ "+ agrupar_campo +"  as id \
                     #~ from acp_contrato_servicio_producto_extra,acp_contrato_servicio,acp_contrato_contrato \
@@ -476,13 +476,13 @@ acp_contrato_genera_servicio()
                     #~ group by acp_contrato_servicio.partner_factura_id, "+ agrupar_campo,(tuple(ids),))
         #~ for serv_fact in cr.dictfetchall():
             #~ # Datos de cabecera de factura
-#~ 
+#~
             #~ cliente_factura_id = serv_fact['cliente_direccion_id']
-#~ 
-#~ 
-#~ 
-            #~ fiscal_position_id = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_account_position.id 
-#~ 
+#~
+#~
+#~
+            #~ fiscal_position_id = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_account_position.id
+#~
             #~ cr.execute("select acp_contrato_servicio_producto_extra.product_id as product_id, acp_contrato_servicio_producto_extra.cantidad as cantidad, \
                         #~ acp_contrato_servicio_producto_extra.importe as precio,acp_contrato_servicio_producto_extra.id as servicio_extra_id, \
                         #~ acp_contrato_servicio.id as servicio_id,acp_contrato_contrato.id as contrato_id \
@@ -493,11 +493,11 @@ acp_contrato_genera_servicio()
                               #~ " + agrupar_campo + "= %s",(tuple(ids),serv_fact['id'],))
             #~ inv_line = []
             #~ for serv_fact_lin in cr.dictfetchall():
-                #~ # Datos de linea de factura  
+                #~ # Datos de linea de factura
                 #~ val = inv_line_obj.product_id_change(cr, uid, [], serv_fact_lin['product_id'],
                         #~ False, partner_id=cliente_factura_id, fposition_id=fiscal_position_id)
-                #~ res = val['value']                  
-#~ 
+                #~ res = val['value']
+#~
                 #~ # determine and check income account
                 #~ if not serv_fact_lin['product_id'] :
                     #~ prop = ir_property_obj.get(cr, uid,
@@ -508,44 +508,44 @@ acp_contrato_genera_servicio()
                         #~ raise osv.except_osv(_('Configuration Error!'),
                             #~ _('There is no income account defined as global property.'))
                     #~ res['account_id'] = account_id
-#~ 
+#~
                 #~ if not res.get('account_id'):
                     #~ raise osv.except_osv(_('Configuration Error!'),
                             #~ _('There is no income account defined for this product: "%s" (id:%d).') % \
                             #~ (fact_lin.name, fact_lin.product_id,))
-#~ 
+#~
                 #~ # determine invoice amount
                 #~ if (serv_fact_lin['cantidad'] * serv_fact_lin['precio']) <= 0.00:
                         #~ raise osv.except_osv(_('Incorrect Data'),
                             #~ _('The value of Advance Amount must be positive.'))
-#~ 
+#~
                 #~ inv_amount =  (serv_fact_lin['cantidad'] * serv_fact_lin['precio'])
-#~ 
+#~
                 #~ if not res.get('name'):
                     #~ #TODO: should find a way to call formatLang() from rml_parse
                     #~ symbol = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.symbol
-                    #~ symbol_position = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.position                        
+                    #~ symbol_position = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.position
                     #~ partner_lang = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).lang
-                        #~ 
+                        #~
                     #~ if symbol_position == 'after':
                         #~ symbol_order = (inv_amount, symbol)
                     #~ else:
                         #~ symbol_order = (symbol, inv_amount)
                     #~ res['name'] = self._translate_advance(cr, uid, context=dict(context, lang=partner_lang)) % symbol_order
-#~ 
+#~
                 #~ # determine taxes
                 #~ if res.get('invoice_line_tax_id'):
                     #~ res['invoice_line_tax_id'] = [(6, 0, res.get('invoice_line_tax_id'))]
                 #~ else:
-                    #~ res['invoice_line_tax_id'] = False 
-#~ 
-#~ 
-                #~ 
+                    #~ res['invoice_line_tax_id'] = False
+#~
+#~
+                #~
                 #~ taxes = []
                 #~ for tax in self.pool.get('acp_contrato.servicio_producto_extra').browse(cr, uid, serv_fact_lin['servicio_extra_id']):
                     #~ if tax.tax_id not in taxes:
                         #~ taxes.append(tax.tax_id.id)
-#~ 
+#~
                 #~ # create the invoice
                 #~ inv_line_values = {
                     #~ 'name': res['name'],
@@ -561,7 +561,7 @@ acp_contrato_genera_servicio()
                     #~ 'servicio_extra_id': serv_fact_lin['servicio_extra_id'],
                 #~ }
                 #~ inv_line.append((0,0,inv_line_values))
-#~ 
+#~
             #~ inv_values = {
                 #~ #'name': factprog['facturacion_name'],
                 #~ 'type': 'out_invoice',
@@ -572,34 +572,34 @@ acp_contrato_genera_servicio()
                 #~ 'currency_id': self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.id,
                 #~ 'comment': '',
                 #~ 'payment_term': self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_payment_term.id,
-                #~ 'fiscal_position': fiscal_position_id,                      
+                #~ 'fiscal_position': fiscal_position_id,
                 #~ 'date_invoice': fecha_factura,
                 #~ 'journal_id': diario_id,
             #~ }
-#~ 
-            #~ result.append(( inv_values))                                         
-        #~ return result           
-#~ 
+#~
+            #~ result.append(( inv_values))
+        #~ return result
+#~
     #~ def action_create_invoice(self, cr, uid, ids, context=None):
         #~ genera_obj = self.pool.get('acp_contrato.genera_servicio')
         #~ mod_obj = self.pool.get('ir.model.data')
         #~ act_obj = self.pool.get('ir.actions.act_window')
         #~ if context is None:
             #~ context = {}
-        #~ 
+        #~
         #~ data = self.read(cr, uid, ids)[0]
         #~ """ Crea las facturas programadas pendientes """
         #~ inv_ids = []
         #~ for inv_values in self._prepara_facturas_servicios(cr,uid,context.get(('active_ids'), []),data['agrupar'],data['fecha_factura'],data['diario_id'][0],context=None):
             #~ inv_ids.append(genera_obj._crea_facturas(cr, uid, inv_values, context=context))
-#~ 
-#~ 
+#~
+#~
         #~ inv_line_obj = self.pool.get('account.invoice.line')
-        #~ inv_line_ids = inv_line_obj.search(cr, uid,[('invoice_id','in',inv_ids)], context=context) 
+        #~ inv_line_ids = inv_line_obj.search(cr, uid,[('invoice_id','in',inv_ids)], context=context)
         #~ for inv_line in inv_line_obj.browse(cr, uid, inv_line_ids, context=context):
-            #~ self.pool.get('acp_contrato.servicio_producto_extra').write(cr, uid, inv_line.servicio_extra_id.id, {'invoice_state': 'facturado'}, context=context)                   
-        #~ return True   
-#~ 
+            #~ self.pool.get('acp_contrato.servicio_producto_extra').write(cr, uid, inv_line.servicio_extra_id.id, {'invoice_state': 'facturado'}, context=context)
+        #~ return True
+#~
 #~ acp_contrato_genera_factura_servicio()
 
 class acp_contrato_genera_factura_servicio(osv.osv_memory):
@@ -613,20 +613,20 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
                 ('cliente', 'Cliente'),
                 ('servicio', 'Servicio'),
             ], 'Agrupar facturar por', select=True, required=True),
-        'diario_id': fields.many2one('account.journal', 'Diario', select=True, required=True), 
+        'diario_id': fields.many2one('account.journal', 'Diario', select=True, required=True),
         'fecha_factura': fields.date('Fecha Factura', required=True, select=True),
     }
     _defaults = {
         'agrupar': "contrato",
     }
-    
+
 
     def action_cancel(self, cr, uid, ids, context=None):
 
         return {'type':'ir.actions.act_window_close'}
 
     def _prepara_facturas_servicios(self, cr, uid, ids, agrupar, fecha_factura, diario_id,context=None):
-        
+
         if context is None:
             context = {}
         fact_obj = self.pool.get('acp_contrato.facturacion')
@@ -654,23 +654,23 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
             if not check['serv_partner_id']:
                 cr.execute('UPDATE acp_contrato_servicio \
                             SET partner_id = %s, partner_direccion_id = %s, partner_factura_id = %s \
-                            WHERE id = %s',(check['cont_partner_id'],check['cont_partner_direccion_id'],check['cont_partner_factura_id'],check['servicio_id'])) 
+                            WHERE id = %s',(check['cont_partner_id'],check['cont_partner_direccion_id'],check['cont_partner_factura_id'],check['servicio_id']))
 
             if not check['serv_partner_direccion_id']:
                 cr.execute('UPDATE acp_contrato_servicio \
                             SET  partner_direccion_id = %s \
-                            WHERE id = %s',(check['cont_partner_direccion_id'],check['servicio_id'])) 
+                            WHERE id = %s',(check['cont_partner_direccion_id'],check['servicio_id']))
 
             if not check['serv_partner_factura_id']:
                 cr.execute('UPDATE acp_contrato_servicio \
                             SET  partner_factura_id = %s \
-                            WHERE id = %s',(check['cont_partner_factura_id'],check['servicio_id']))                                              
+                            WHERE id = %s',(check['cont_partner_factura_id'],check['servicio_id']))
 
 
 
         result = []
         # Se seleccionan facturas programadas de los contratos que no estén dados de baja
-        # y tengan configurado el mes  
+        # y tengan configurado el mes
         if agrupar== 'contrato':
             agrupar_campo = "acp_contrato_servicio.contrato_id"
 
@@ -696,7 +696,7 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
 
 
 
-            fiscal_position_id = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_account_position.id 
+            fiscal_position_id = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_account_position.id
 
             cr.execute("select acp_contrato_tarea_producto.product_id as product_id, acp_contrato_tarea_producto.cantidad as cantidad, \
                         acp_contrato_tarea_producto.importe as precio,acp_contrato_tarea_producto.id as tarea_producto_id, \
@@ -709,10 +709,10 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
                               " + agrupar_campo + "= %s",(tuple(ids),serv_fact['id'],))
             inv_line = []
             for serv_fact_lin in cr.dictfetchall():
-                # Datos de linea de factura  
+                # Datos de linea de factura
                 val = inv_line_obj.product_id_change(cr, uid, [], serv_fact_lin['product_id'],
                         False, partner_id=cliente_factura_id, fposition_id=fiscal_position_id)
-                res = val['value']                  
+                res = val['value']
 
                 # determine and check income account
                 if not serv_fact_lin['product_id'] :
@@ -740,9 +740,9 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
                 if not res.get('name'):
                     #TODO: should find a way to call formatLang() from rml_parse
                     symbol = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.symbol
-                    symbol_position = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.position                        
+                    symbol_position = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.position
                     partner_lang = self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).lang
-                        
+
                     if symbol_position == 'after':
                         symbol_order = (inv_amount, symbol)
                     else:
@@ -753,10 +753,10 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
                 if res.get('invoice_line_tax_id'):
                     res['invoice_line_tax_id'] = [(6, 0, res.get('invoice_line_tax_id'))]
                 else:
-                    res['invoice_line_tax_id'] = False 
+                    res['invoice_line_tax_id'] = False
 
 
-                
+
                 taxes = []
                 for tax in self.pool.get('acp_contrato.tarea_producto').browse(cr, uid, serv_fact_lin['tarea_producto_id']):
                     if tax.tax_id not in taxes:
@@ -789,13 +789,13 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
                 'currency_id': self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_product_pricelist.currency_id.id,
                 'comment': '',
                 'payment_term': self.pool.get('res.partner').browse(cr, uid, cliente_factura_id).property_payment_term.id,
-                'fiscal_position': fiscal_position_id,                      
+                'fiscal_position': fiscal_position_id,
                 'date_invoice': fecha_factura,
                 'journal_id': diario_id,
             }
 
-            result.append(( inv_values))                                         
-        return result           
+            result.append(( inv_values))
+        return result
 
     def action_create_invoice(self, cr, uid, ids, context=None):
         genera_obj = self.pool.get('acp_contrato.genera_servicio')
@@ -803,7 +803,7 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
         act_obj = self.pool.get('ir.actions.act_window')
         if context is None:
             context = {}
-        
+
         data = self.read(cr, uid, ids)[0]
         """ Crea las facturas programadas pendientes """
         inv_ids = []
@@ -812,10 +812,10 @@ class acp_contrato_genera_factura_servicio(osv.osv_memory):
 
 
         inv_line_obj = self.pool.get('account.invoice.line')
-        inv_line_ids = inv_line_obj.search(cr, uid,[('invoice_id','in',inv_ids)], context=context) 
+        inv_line_ids = inv_line_obj.search(cr, uid,[('invoice_id','in',inv_ids)], context=context)
         for inv_line in inv_line_obj.browse(cr, uid, inv_line_ids, context=context):
-            self.pool.get('acp_contrato.tarea_producto').write(cr, uid, inv_line.tarea_producto_id.id, {'invoice_state': 'facturado'}, context=context)                   
-        return True   
+            self.pool.get('acp_contrato.tarea_producto').write(cr, uid, inv_line.tarea_producto_id.id, {'invoice_state': 'facturado'}, context=context)
+        return True
 
 acp_contrato_genera_factura_servicio()
 

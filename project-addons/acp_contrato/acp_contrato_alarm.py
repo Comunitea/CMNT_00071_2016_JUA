@@ -179,7 +179,7 @@ class acp_contrato_alarm_manager(osv.AbstractModel):
                 cr,
                 uid,
                 [tarea.id],
-                email_from=tarea.user_id.partner_id.email,###############################################################33/*	OJO SI ES EL ADMINI N FUNCIONA*/
+                email_from=tarea.user_id.partner_id.email,###############################################################33/*   OJO SI ES EL ADMINI N FUNCIONA*/
                 template_xmlid='acp_contrato_template_task_reminder',
                 force=True,
                 context=context
@@ -336,4 +336,3 @@ class calendar_event_type(osv.Model):
     }
 
 '''
-

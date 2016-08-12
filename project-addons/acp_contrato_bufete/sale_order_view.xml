@@ -17,9 +17,9 @@
         </field>
         <field name="tipo_contrato" position = "replace"/>
         <field name="dft_contrato_id" position = "before">
-          <field name="tipo_contrato" attrs="{'readonly': [('state','not in',['draft','sent'])]}" widget="selection" string="Tipo Expediente" required="1" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>              
-          <field name="referencia" attrs="{'readonly': [('state','not in',['draft','sent'])]}" string="Referencia Expediente" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>              
-        </field>    
+          <field name="tipo_contrato" attrs="{'readonly': [('state','not in',['draft','sent'])]}" widget="selection" string="Tipo Expediente" required="1" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
+          <field name="referencia" attrs="{'readonly': [('state','not in',['draft','sent'])]}" string="Referencia Expediente" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
+        </field>
         <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
           <page string='Materias'>
             <field name="line_materia_ids" attrs="{'readonly': [('state','not in',['draft','sent'])]}" colspan="4" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user">
@@ -52,14 +52,10 @@
                     <field name="perioricidad" string="Perioricidad de facturacion"/>
                     <field name="descripcion_iguala" colspan="4" />
                 </group>
-            </page>            
-        </page>        
-        
+            </page>
+        </page>
+
       </field>
     </record>
   </data>
 </openerp>
-
-
-
-

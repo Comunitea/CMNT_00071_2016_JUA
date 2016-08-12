@@ -13,9 +13,9 @@
         <xpath expr="/form/sheet/notebook/page/group/group/field[@name='supplier']" position="after">
           <field name="procurador"/>
           <field name="partidos_judiciales" widget="many2many_tags" attrs="{'invisible':[('procurador','=',False)]}"/>
-          
+
           <field name="abogado"/>
-        </xpath> 
+        </xpath>
       </field>
     </record>
   </data>
