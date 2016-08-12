@@ -8,6 +8,14 @@
       <field name="global" eval="True" />
       <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
     </record>
+
+    <record model="ir.rule" id="acp_contrato_conceptos_factura_company_rule">
+      <field name="name">conceptos_factura multi-company</field>
+      <field name="model_id" ref="model_acp_contrato_conceptos_factura" />
+      <field name="global" eval="True" />
+      <field name="domain_force">['|',('product_id.company_id','=',False),('product_id.company_id','=',user.company_id.id)]</field>
+    </record>
+
     <!-- Regla para que los clientes solo vean sus expedientes  -->
     <record model="ir.rule" id="acp_contrato_contrato_portal">
       <field name="name">Los clientes solo ven sus expedientes</field>
