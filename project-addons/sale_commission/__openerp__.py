@@ -45,9 +45,9 @@
                 'product_view.xml',
                 'stock_picking_view.xml',
                 'cc_commission_report.xml',
+                'security/ir_rule.xml'
             ],
     'installable': True,
     'application': False
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

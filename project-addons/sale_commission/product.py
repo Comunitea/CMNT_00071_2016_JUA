@@ -37,6 +37,10 @@ class product_agent_commission(orm.Model):
                                       'product_agent_sale_agent_rel',
                                       'product_commission_id',
                                       'agent_id', 'Agents'),
+        'company_id': fields.related('commission_id', 'company_id',
+                                     type='many2one', relation='res.company',
+                                     string='Company', readonly=True,
+                                     store=True),
     }
 
 

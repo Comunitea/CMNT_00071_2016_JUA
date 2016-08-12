@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class settled_wizard (models.TransientModel):
@@ -29,25 +29,22 @@ class settled_wizard (models.TransientModel):
     date_from = fields.Date('From', required=True)
     date_to = fields.Date('To', required=True)
 
-    def settlement_exec(self, cr, uid, ids, context=None):
+    @api.multi
+    def settlement_exec(self):
         """Execute correctly for both."""
-        if context is None:
-            context = {}
-        pool_liq = self.pool['settlement']
-        for o in self.browse(cr, uid, ids, context=context):
+        self.ensure_one()
+        agents = self.env['sale.agent'].browse(self._context.get('active_ids', False))
+        companies = agents.mapped('company_id')
+        for company in companies:
             vals = {
-                'name': o.date_from + " // " + o.date_to,
-                'date_from': o.date_from,
-                'date_to': o.date_to
+                'name': self.date_from + " // " + self.date_to,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
+                'company_id': company.id
             }
-            liq_id = pool_liq.create(cr, uid, vals, context=context)
-            pool_liq.calculate(
-                cr, uid, liq_id,
-                context['active_ids'],
-                o.date_from,
-                o.date_to,
-                context=context
-            )
+            settlement = self.env['settlement'].create(vals)
+            agents_company = agents.filtered(lambda r: r.company_id == company)
+            settlement.calcula(agents_company.ids, self.date_from, self.date_to)
 
         return {
             'type': 'ir.actions.act_window_close',

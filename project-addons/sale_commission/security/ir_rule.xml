@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data>
+        <record model="ir.rule" id="sale_commission_commission_multicompany">
+            <field name="name">Commission multi-company</field>
+            <field name="model_id" ref="model_commission" />
+            <field name="global" eval="True" />
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record model="ir.rule" id="sale_commission_sale_agent_multicompany">
+            <field name="name">Agent multi-company</field>
+            <field name="model_id" ref="model_sale_agent" />
+            <field name="global" eval="True" />
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record model="ir.rule" id="sale_commission_partner_agent_multicompany">
+            <field name="name">partner agent multi-company</field>
+            <field name="model_id" ref="model_res_partner_agent" />
+            <field name="global" eval="True" />
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record model="ir.rule" id="sale_commission_product_agent_commission_multicompany">
+            <field name="name">Product agent multi-company</field>
+            <field name="model_id" ref="model_product_agent_commission" />
+            <field name="global" eval="True" />
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record model="ir.rule" id="sale_commission_settlement_multicompany">
+            <field name="name">settlement multi-company</field>
+            <field name="model_id" ref="model_settlement" />
+            <field name="global" eval="True" />
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <!--record model="ir.rule" id="sale_commission__multicompany">
+            <field name="name">multi-company</field>
+            <field name="model_id" ref="model_" />
+            <field name="global" eval="True" />
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record-->
+
+    </data>
+</openerp>

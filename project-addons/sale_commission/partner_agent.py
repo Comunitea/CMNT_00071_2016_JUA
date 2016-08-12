@@ -77,7 +77,11 @@ class res_partner_agent(orm.Model):
                                         ['type'], 10),
                                    'res.partner.agent':
                                        (lambda self, cr, uid, ids, c={}: ids,
-                                        None, 20)})
+                                        None, 20)}),
+        'company_id': fields.related('commission_id', 'company_id',
+                                     type='many2one', relation='res.company',
+                                     string='Company', readonly=True,
+                                     store=True),
     }
 
     def onchange_agent_id(self, cr, uid, ids, agent_id):

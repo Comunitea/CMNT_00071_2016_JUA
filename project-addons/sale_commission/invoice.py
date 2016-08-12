@@ -165,7 +165,6 @@ class account_invoice(orm.Model):
         """
         res = super(account_invoice, self)._refund_cleanup_lines(cr, uid,
                                                                  lines)
-        # import ipdb; ipdb.set_trace()
         for line in res:
             if 'commission_ids' in line[2]:
                 duply_ids = []

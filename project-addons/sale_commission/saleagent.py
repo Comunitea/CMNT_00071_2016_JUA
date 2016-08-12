@@ -27,6 +27,13 @@ class commission(orm.Model):
 
     _name = "commission"
     _description = "Commission"
+
+    def _get_default_company(self, cr, uid, context=None):
+        company_id = self.pool.get('res.users')._get_company(cr, uid, context=context)
+        if not company_id:
+            raise osv.except_osv(_('Error!'), _('There is no default company for the current user!'))
+        return company_id
+
     _columns = {
         'name': fields.char('Name', size=64, required=True),
         'type': fields.selection((('fijo', 'Fix percentage'),
@@ -36,10 +43,12 @@ class commission(orm.Model):
         'sections': fields.one2many('commission.section',
                                     'commission_id', 'Sections'),
         'product_agent_ids': fields.one2many('product.agent.commission',
-                                             'commission_id', 'Agents')
+                                             'commission_id', 'Agents'),
+        'company_id': fields.many2one('res.company', 'Company'),
     }
     _defaults = {
         'type': lambda *a: 'fijo',
+        'company_id': _get_default_company,
     }
 
     def calcula_tramos(self, cr, uid, ids, base):
@@ -74,6 +83,12 @@ class sale_agent(orm.Model):
     _name = "sale.agent"
     _description = "Sale agent"
 
+    def _get_default_company(self, cr, uid, context=None):
+        company_id = self.pool.get('res.users')._get_company(cr, uid, context=context)
+        if not company_id:
+            raise osv.except_osv(_('Error!'), _('There is no default company for the current user!'))
+        return company_id
+
     _columns = {
         'name': fields.char('Saleagent Name', size=125, required=True),
         'type': fields.selection((('asesor', 'Adviser'),
@@ -103,12 +118,14 @@ class sale_agent(orm.Model):
         'retention_id': fields.many2one('account.tax', 'Applied retention'),
         'settlement_ids': fields.one2many('settlement.agent', 'agent_id',
                                           'Settlements executed',
-                                          readonly=True)
+                                          readonly=True),
+        'company_id': fields.many2one('res.company', 'Company'),
     }
 
     _defaults = {
         'active': lambda *a: True,
         'type': lambda *a: 'asesor',
+        'company_id': _get_default_company,
     }
 
     def calcula_tramos(self, cr, uid, ids, base):

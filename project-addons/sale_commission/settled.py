@@ -26,7 +26,7 @@ from openerp.tools.translate import _
 import time
 from openerp import tools
 
-
+'''
 class settled_wizard (orm.TransientModel):
     """settled.wizard"""
 
@@ -114,7 +114,7 @@ class recalculate_commision_wizard(orm.TransientModel):
         return {
             'type': 'ir.actions.act_window_close',
         }
-
+'''
 
 class settlement(orm.Model):
     """Objeto Liquidación"""
@@ -134,7 +134,8 @@ class settlement(orm.Model):
         'state': fields.selection([('settled', 'Settled'),
                                    ('invoiced', 'Invoiced'),
                                    ('cancel', 'Cancel')],
-                                  'State', required=True, readonly=True)
+                                  'State', required=True, readonly=True),
+        'company_id': fields.many2one('res.company', 'Company'),
     }
     _defaults = {
         'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -165,8 +166,9 @@ class settlement(orm.Model):
         total = 0
         for agent in agents:
             # genera una entrada de liquidación por agente
+            import ipdb; ipdb.set_trace()
             liq_agent_id = self.pool.get('settlement.agent').create(
-                cr, uid, {'agent_id': agent.id, 'settlement_id': ids})
+                cr, uid, {'agent_id': agent.id, 'settlement_id': ids[0]})
             self.pool.get('settlement.agent').calcula(cr, uid, liq_agent_id,
                                                       date_from, date_to)
             liq_agent = self.pool.get('settlement.agent').browse(cr, uid,
@@ -263,7 +265,8 @@ class settlement_agent(orm.Model):
                 'account_id': account_id,
                 'partner_id': partner.id,
                 'payment_term': payment_term_id,
-                'fiscal_position': partner.property_account_position.id
+                'fiscal_position': partner.property_account_position.id,
+                'company_id': settlement.settlement_id.company_id.id,
             }
             cur_id = self.get_currency_id(cursor, user, settlement)
             if cur_id:
@@ -361,7 +364,7 @@ class settlement_agent(orm.Model):
               'WHERE invoice_line_agent.agent_id=' + str(set_agent.agent_id.id) + ' AND invoice_line_agent.settled=True ' \
               'AND account_invoice.state not in (\'draft\',\'cancel\') AND account_invoice.type=\'out_invoice\''\
               'AND account_invoice.date_invoice >= \'' + date_from + '\' AND account_invoice.date_invoice <= \'' + date_to + '\''\
-              ' AND account_invoice.company_id = ' + str(user.company_id.id)
+              ' AND account_invoice.company_id = ' + str(set_agent.settlement_id.company_id.id)
 
         cr.execute(sql)
         res = cr.fetchall()
@@ -376,7 +379,7 @@ class settlement_agent(orm.Model):
               'WHERE invoice_line_agent.agent_id=' + str(set_agent.agent_id.id) + ' AND invoice_line_agent.settled=False ' \
               'AND account_invoice.state not in (\'draft\',\'cancel\') AND account_invoice.type in (\'out_invoice\',\'out_refund\')'\
               'AND account_invoice.date_invoice >= \'' + date_from + '\' AND account_invoice.date_invoice <= \'' + date_to + '\''\
-              ' AND account_invoice.company_id = ' + str(user.company_id.id)
+              ' AND account_invoice.company_id = ' + str(set_agent.settlement_id.company_id.id)
 
         cr.execute(sql)
         res = cr.fetchall()

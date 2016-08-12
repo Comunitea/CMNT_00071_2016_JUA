@@ -247,6 +247,7 @@
                     <field name="date_from"/>
                     <field name="date_to"/>
                     <field name="total" sum="Settled total"/>
+                    <field name="company_id"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -266,6 +267,7 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="company_id"/>
                             <field name="total"/>
                             <field name="date_from"/>
                             <field name="date_to"/>
