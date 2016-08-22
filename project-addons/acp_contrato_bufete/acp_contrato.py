@@ -228,6 +228,7 @@ class acp_contrato_contrato(osv.osv):
 
             x[record.id] = tota_trabajado
         return x
+
     def _total_coste(self, cr, uid, ids, field_name, arg, context=None):
         if not ids:
             return {}

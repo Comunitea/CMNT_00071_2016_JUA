@@ -2,13 +2,6 @@
 <openerp>
   <data>
 
-    <record model="ir.rule" id="acp_contrato_multi_company_rule">
-      <field name="name">Contratos-Expedientes multi-company</field>
-      <field name="model_id" ref="crm.model_crm_lead" />
-      <field name="global" eval="True" />
-      <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
-    </record>
-
     <record model="ir.rule" id="acp_contrato_conceptos_factura_company_rule">
       <field name="name">conceptos_factura multi-company</field>
       <field name="model_id" ref="model_acp_contrato_conceptos_factura" />

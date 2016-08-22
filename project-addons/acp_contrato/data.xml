@@ -315,7 +315,7 @@ tipo
  <record id="acp_contrato_email_template" model="email.template">
             <field name="name">Expediente/Contrato</field>
             <field name="email_from">${(object.user_id.email or object.company_id.email or 'noreply@localhost')|safe}</field>
-            <field name="subject">${object.company_id.name|safe} Contrato (N\ ${object.name or 'n/a'})</field>
+            <field name="subject">${object.company_id.name|safe} Expediente (N\ ${object.name or 'n/a'})</field>
             <field name="partner_to">${object.partner_id.id}</field>
             <field name="model_id" ref="acp_contrato.model_acp_contrato_contrato"/>
             <field name="auto_delete" eval="True"/>
@@ -329,14 +329,14 @@ tipo
 
     <p>Hola ${object.partner_id.name},</p>
 
-    <p>Tiene Un nuevo contrato: </p>
+    <p>Tiene Un nuevo expediente: </p>
 
     <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
-       &nbsp;&nbsp;<strong>REFERECIA</strong><br />
+       &nbsp;&nbsp;<strong>REFERENCIA</strong><br />
        &nbsp;&nbsp;Numero: <strong>${object.name}</strong><br />
        &nbsp;&nbsp;Referencia: <strong>${object.referencia}</strong><br />
        % if object.user_id:
-       &nbsp;&nbsp;Su contacto: <a href="mailto:${object.user_id.email or ''}?subject=Contrato%20${object.referencia}">${object.user_id.name}</a>
+       &nbsp;&nbsp;Su contacto: <a href="mailto:${object.user_id.email or ''}?subject=Expediente%20${object.referencia}">${object.user_id.name}</a>
        % endif
     </p>
 

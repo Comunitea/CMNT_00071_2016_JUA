@@ -14,16 +14,16 @@
         <field name="name">Oportunidades multi-company</field>
         <field name="model_id" ref="model_crm_lead"/>
         <field name="global" eval="True"/>
-        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
-    </record> 
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
 
-    <!--creamos una regla de seguridad para portal-->             
+    <!--creamos una regla de seguridad para portal-->
      <record id="portal_historico_facturas" model="ir.rule">
             <field name="name">Portal Historico de Facturas</field>
             <field name="model_id" ref="model_acp_yanez_invoice"/>
             <field name="domain_force">[('partner_id','=',user.commercial_partner_id.id)]</field>
             <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
-     </record>  
+     </record>
 
      <record id="portal_product_templae_yanez" model="ir.rule">
             <field name="name">Product template portal yanez</field>
@@ -33,8 +33,8 @@
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>            
-     </record>      
+        <field name="perm_unlink" eval="False"/>
+     </record>
      <record id="portal_product_yanez" model="ir.rule">
             <field name="name">Product portal yanez</field>
             <field name="model_id" ref="product.model_product_product"/>
@@ -43,8 +43,8 @@
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>            
-     </record>      
+        <field name="perm_unlink" eval="False"/>
+     </record>
 
      <record id="portal_res_partner_yanez" model="ir.rule">
             <field name="name">Partner write portal yanez</field>
@@ -54,9 +54,9 @@
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
         <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>            
-     </record> 
+        <field name="perm_unlink" eval="False"/>
+     </record>
 
-     
+
 </data>
 </openerp>
