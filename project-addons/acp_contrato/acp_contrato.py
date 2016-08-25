@@ -1459,8 +1459,8 @@ class acp_contrato_tarea(osv.osv):
             if record.tipo == 'cita':
                 desc = 'Cita/Reunion :' + desc_obs
             if record.tipo == 'contacto':
-
-                desc = str(record.contacto or '') + ', Tipo:' + str(record.tipo_contacto or '') + ', Relacion:' + str(record.relacion or '') + ', Telefonos:' + str(record.phone or '') + ' ' +  str(record.mobile or '') + desc_obs
+                desc = desc_obs
+                # desc = str(record.contacto or '') + ', Tipo:' + str(record.tipo_contacto or '') + ', Relacion:' + str(record.relacion or '') + ', Telefonos:' + str(record.phone or '') + ' ' +  str(record.mobile or '') + desc_obs
 
             res[record.id] = desc
         return res
