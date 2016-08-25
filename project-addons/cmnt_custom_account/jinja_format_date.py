@@ -84,6 +84,26 @@ def format_date(context, dtstr, new_format=None, tz=None):
     return date.strftime(new_format)
 
 
+@contextfilter
+def format_float(context, val, field_name):
+    if not val:
+        return val
+    new_val = val
+    if context.get("user") and context["user"].lang:
+        user = context["user"]
+        cr, uid = user._cr, user._uid
+        lang_obj = user.pool["res.lang"]
+        precision = False
+        if context.get('object', False):
+            precision = context['object']._fields[field_name].digits[1]
+        fmt = '%f' if precision is None else '%.{precision}f'
+        new_val = lang_obj.format(
+            cr, uid, [user.lang], fmt.format(precision=precision), val,
+            grouping=True)
+    return new_val
+
+
 email_template.mako_template_env.filters.update(
     format_date=format_date,
+    format_float=format_float
 )
