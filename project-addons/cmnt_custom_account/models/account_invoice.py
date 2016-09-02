@@ -20,7 +20,7 @@ class AccountInvoice(models.Model):
         for inv in self:
             pay_mode = inv.payment_mode_id
             if pay_mode and pay_mode.type.id == export_type.id \
-                    and not inv.mandate_id:
+                    and not inv.mandate_id and inv.type == 'out_invoice':
                 err = _('You selected a payment mode thar requires a direct'
                         ' debit mandate for this customer')
                 raise except_orm(_('Error!'), err)
