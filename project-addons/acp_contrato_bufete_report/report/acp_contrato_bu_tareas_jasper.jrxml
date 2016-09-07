@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="acp_expbu_actuaciones_jasper" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="60" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="acp_expbu_actuaciones_jasper" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="60" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2447ab7f-a3ac-437e-9e29-726cba59f62d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -24,24 +24,24 @@
        aca.name tarea_actividad,
        rp_tar_con.abogado,
 
-       sum((select sum(horas)
+       coalesce(sum((select sum(horas)
                                 from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
                                 where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id)) as tiempo_tarea,
+                                and acp_contrato_tarea1.id = act.id)), 0) as tiempo_tarea,
 
-       trunc(sum((select sum(horas)
+       coalesce(trunc(sum((select sum(horas)
                                 from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
                                 where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id))) as horas,
+                                and acp_contrato_tarea1.id = act.id))), 0) as horas,
 
-       round((sum((select sum(horas)
+       coalesce((round((sum((select sum(horas)
                                 from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
                                 where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
                                 and acp_contrato_tarea1.id = act.id)) -
        trunc(sum((select sum(horas)
                                 from acp_contrato_tarea acp_contrato_tarea1,acp_contrato_tarea_horas acp_contrato_tarea_horas1
                                 where acp_contrato_tarea_horas1.tarea_id = acp_contrato_tarea1.id
-                                and acp_contrato_tarea1.id = act.id))))*60) as minutos
+                                and acp_contrato_tarea1.id = act.id))))*60)), 0) as minutos
 from acp_contrato_contrato acc,
      acp_contrato_tipo_contrato actc,
      acp_contrato_tarea act,
@@ -116,213 +116,212 @@ group by
 	<title>
 		<band height="57" splitType="Stretch">
 			<staticText>
-				<reportElement x="2" y="30" width="388" height="20"/>
+				<reportElement x="2" y="30" width="388" height="20" uuid="79032af3-1b89-4d06-956c-4fa5acbe276e"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Actuaciones por Expediente]]></text>
 			</staticText>
 			<image evaluationTime="Report">
-				<reportElement x="413" y="0" width="100" height="50"/>
-				<imageExpression class="java.io.InputStream"><![CDATA[$V{LOGO}]]></imageExpression>
+				<reportElement x="413" y="0" width="100" height="50" uuid="b0418b58-5c36-46da-9032-debc48747772"/>
+				<imageExpression><![CDATA[$V{LOGO}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="89" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="37" width="100" height="20"/>
+				<reportElement x="0" y="37" width="100" height="20" uuid="abe276b9-2b59-41f5-a918-37fd72e3a84a"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Tipo Expediente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="18" width="100" height="20"/>
+				<reportElement x="0" y="18" width="100" height="20" uuid="23ed2053-3f6d-42a7-afc0-794cf5013e08"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Expediente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="262" y="56" width="83" height="20"/>
+				<reportElement x="262" y="56" width="83" height="20" uuid="b0008c30-1400-4ada-99d7-3f42a2fc3c6f"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Autos:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="345" y="18" width="170" height="20"/>
+				<reportElement x="345" y="18" width="170" height="20" uuid="12fb473d-c07f-449d-9b30-b44783b3dd1c"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{expediente_responsable}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{expediente_responsable}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="56" width="100" height="20"/>
+				<reportElement x="0" y="56" width="100" height="20" uuid="ec6414cb-821f-4a12-a0dd-e91769d2a93d"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="345" y="56" width="100" height="20"/>
+				<reportElement x="345" y="56" width="100" height="20" uuid="66184170-d151-40d6-a51d-fa26ea8db79e"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{expediente_auto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{expediente_auto}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="345" y="37" width="170" height="20"/>
+				<reportElement x="345" y="37" width="170" height="20" uuid="2bc44b8a-a833-4b66-a137-9ad02dafaac8"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cliente_nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cliente_nombre}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="100" y="37" width="100" height="20"/>
+				<reportElement x="100" y="37" width="100" height="20" uuid="eaa526bc-202c-49a5-8e80-57a7b9379563"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{expediente_tipo_contrato}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{expediente_tipo_contrato}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="262" y="37" width="83" height="20"/>
+				<reportElement x="262" y="37" width="83" height="20" uuid="d53f28ed-311d-4ede-ad69-aa876706bc34"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Cliente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="262" y="18" width="83" height="20"/>
+				<reportElement x="262" y="18" width="83" height="20" uuid="4a5f43b7-18e5-46b3-b6da-8a8fd99129e5"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
 				<text><![CDATA[Responsable:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="100" y="56" width="100" height="20"/>
+				<reportElement x="100" y="56" width="100" height="20" uuid="dbd88c93-d40c-42cf-822e-6cfdcb19b5d6"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{expediente_fecha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{expediente_fecha}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="100" y="18" width="144" height="20"/>
+				<reportElement x="100" y="18" width="144" height="20" uuid="92261f24-17ba-4538-aacb-7a845399b0f1"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{expediente_numero}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{expediente_numero}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="2" y="10" width="513" height="1"/>
+				<reportElement x="2" y="10" width="513" height="1" uuid="ff61d0aa-cb84-4dea-a432-9dced7a79fba"/>
 			</line>
 			<line>
-				<reportElement x="0" y="85" width="513" height="1"/>
+				<reportElement x="0" y="85" width="513" height="1" uuid="7f45dfb0-4e96-4632-887c-22757f69b189"/>
 			</line>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="66" y="0" width="254" height="20"/>
+				<reportElement x="66" y="0" width="254" height="20" uuid="6c8750c0-c8e5-4425-b518-d67d6b9a75df"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
 				<text><![CDATA[Observaciones]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="407" y="0" width="108" height="20"/>
+				<reportElement x="407" y="0" width="108" height="20" uuid="55f3b622-fbc6-4146-9115-987e68a88e9a"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
 				<text><![CDATA[Asignado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="0" width="53" height="20"/>
+				<reportElement x="1" y="0" width="53" height="20" uuid="d6842f8d-b97f-4213-89c4-b0761b7646f1"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
 				<text><![CDATA[Tiempo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="332" y="0" width="71" height="20"/>
+				<reportElement x="332" y="0" width="71" height="20" uuid="5b3322c6-0d79-43f3-94ef-12af36911b76"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="13" width="513" height="1"/>
+				<reportElement x="0" y="13" width="513" height="1" uuid="5a016486-448b-4e99-be1d-6db505b2ecde"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="26" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="64" y="0" width="256" height="20"/>
+				<reportElement x="64" y="0" width="256" height="20" uuid="d6f48ee9-c0e9-41a4-8d2c-07742873b541"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{observaciones}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="407" y="0" width="108" height="20"/>
+				<reportElement x="407" y="0" width="108" height="20" uuid="3474eb21-768d-4aa0-9af9-bb21c86cf005"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{tarea_asignado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tarea_asignado}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="332" y="0" width="71" height="20"/>
+				<reportElement x="332" y="0" width="71" height="20" uuid="9498054d-1a5d-4167-8641-2a1566983096"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{state}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm" isBlankWhenNull="true">
-				<reportElement x="2" y="0" width="52" height="20"/>
+				<reportElement x="2" y="0" width="52" height="20" uuid="29aa76b9-38b5-4154-879a-b838129406f5"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#00").format($F{horas}) +':'+ new DecimalFormat("00").format($F{minutos})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#00").format($F{horas}) +':'+ new DecimalFormat("00").format($F{minutos})]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<lastPageFooter>
 		<band height="50">
 			<line>
-				<reportElement x="0" y="3" width="513" height="1"/>
+				<reportElement x="0" y="3" width="513" height="1" uuid="dba1b3da-181a-43fa-b4e0-7503da87315c"/>
 			</line>
 			<textField>
-				<reportElement x="413" y="7" width="100" height="15"/>
+				<reportElement x="413" y="7" width="100" height="15" uuid="87d9d849-6b08-4655-8931-70d4537d06a7"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="413" y="21" width="100" height="15"/>
+				<reportElement x="413" y="21" width="100" height="15" uuid="9b3110c9-ea83-4418-a76d-94c6120860dc"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
 	<summary>
 		<band height="50">
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="11" width="100" height="20"/>
+				<reportElement x="0" y="11" width="100" height="20" uuid="7e2c64f3-6af3-43e6-b110-ceecde5eb9a5"/>
 				<textElement>
 					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$V{total_horas} +':'+ new DecimalFormat("00").format($V{total_minutos})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{total_horas} +':'+ new DecimalFormat("00").format($V{total_minutos})]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="2" y="4" width="513" height="1"/>
+				<reportElement x="2" y="4" width="513" height="1" uuid="1bca4361-0664-474c-9ea3-c4c1f57774a5"/>
 			</line>
 		</band>
 	</summary>
 </jasperReport>
-
