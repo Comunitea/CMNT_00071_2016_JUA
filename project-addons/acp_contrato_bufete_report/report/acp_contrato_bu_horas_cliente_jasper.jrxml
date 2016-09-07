@@ -23,9 +23,9 @@
        rc.logo_web,
        rp_tar_con.abogado,
        acp_contrato_materia.name expediente_materia,
-       sum(acth.horas) as tiempo_tarea,
-       trunc(sum(acth.horas)) as horas,
-       round((sum(acth.horas) - trunc(sum(acth.horas)))*60) as minutos
+       coalesce(sum(acth.horas),0) as tiempo_tarea,
+       coalesce(trunc(sum(acth.horas)),0) as horas,
+       coalesce((round((sum(acth.horas) - trunc(sum(acth.horas)))*60)),0) as minutos
 from acp_contrato_contrato acc
         LEFT OUTER JOIN acp_contrato_materia on ( acc.materia_id = acp_contrato_materia.id)
         LEFT OUTER JOIN acp_contrato_tipo_contrato actc on ( actc.id = acc.tipo_contrato)
