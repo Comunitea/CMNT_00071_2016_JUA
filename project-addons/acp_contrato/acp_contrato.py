@@ -1766,14 +1766,14 @@ class acp_contrato_tarea(osv.osv):
                 else:
                    obs = ''
 
-
                 #partner_id = self.pool.get('res.users').browse(cr, SUPERUSER_ID, user_seg_id, context=context).partner_id.id
                 sql='''select partner_id from res_users
                        where id =  %s '''%(user_seg_id)
                 cr.execute(sql)
                 partner_id =cr.dictfetchall()[0]['partner_id']
 
-
+                if 'default_parent_id' in ctx:
+                    del ctx['default_parent_id']
                 subject = contrato.name + ' NUEVA ACTIVIDAD ASIGNADA:' + self.pool.get('acp_contrato.actividad').browse(cr, uid, vals.get('actividad_id',False), context=context).name
                 body = contrato.name + ' NUEVA ACTIVIDAD ASIGNADA:' + self.pool.get('acp_contrato.actividad').browse(cr, uid, vals.get('actividad_id',False), context=context).name + ' , Observaciones:' + obs
                 mail_id = mail_obj.create(cr, uid, {'partner_ids':[(6, 0, [partner_id])],'subject':subject,'body':body}, context=ctx)
