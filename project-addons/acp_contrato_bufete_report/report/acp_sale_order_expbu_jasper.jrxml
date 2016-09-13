@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale_order_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="60" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale_order_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="60" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4416740-596b-4899-afa3-c30533ad55b5">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="1296"/>
 	<property name="OPENERP_RELATIONS" value="[&apos;line_group_ids&apos;]"/>
 	<queryString language="xPath">
 		<![CDATA[]]>
@@ -199,102 +199,102 @@
 	</variable>
 	<background>
 		<band height="802" splitType="Stretch">
-			<image>
-				<reportElement x="92" y="221" width="340" height="340"/>
-				<imageExpression class="java.lang.String"><![CDATA[$F{company-marca_agua}]]></imageExpression>
+			<image onErrorType="Blank">
+				<reportElement x="92" y="221" width="340" height="340" uuid="ff35090a-d5f1-41f8-91ae-5e233a8ceaa8"/>
+				<imageExpression><![CDATA[$F{company-marca_agua}]]></imageExpression>
 			</image>
 		</band>
 	</background>
 	<pageHeader>
 		<band height="250" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="148" width="327" height="22"/>
+				<reportElement x="0" y="148" width="327" height="22" uuid="e83c4e5e-80af-4f83-8bc2-7163105b03f8"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Presupuesto Nº " + $F{pedido-numero}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Presupuesto Nº " + $F{pedido-numero}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="176" width="38" height="15"/>
+				<reportElement x="0" y="176" width="38" height="15" uuid="acbb0625-61a9-4088-8288-bb4e43b25d77"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="74" width="301" height="15"/>
+				<reportElement x="0" y="74" width="301" height="15" uuid="7d962d54-826a-46c7-8017-43bcab846fa5"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Titulo-name}+" "+$F{customer-nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Titulo-name}+" "+$F{customer-nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="88" width="301" height="47"/>
+				<reportElement x="0" y="88" width="301" height="47" uuid="15a4e15f-9735-420c-b948-5731b111bf30"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{customer-calle1}.toUpperCase() + "\r" +
+				<textFieldExpression><![CDATA[$F{customer-calle1}.toUpperCase() + "\r" +
 $F{customer-cp} + " " + $F{customer-ciudad}.toUpperCase() + "\r" +
 $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="40" y="176" width="123" height="15"/>
+				<reportElement x="40" y="176" width="123" height="15" uuid="7b3c84c5-020d-48fa-a7c4-77e08f896913"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{pedido-fecha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pedido-fecha}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Right">
-				<reportElement x="327" y="0" width="188" height="64"/>
-				<imageExpression class="java.lang.String"><![CDATA[$F{company-logo}]]></imageExpression>
+				<reportElement x="327" y="0" width="188" height="64" uuid="45b3fe92-4ade-4bcc-868f-196913ae353e"/>
+				<imageExpression><![CDATA[$F{company-logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="0" y="192" width="117" height="15"/>
+				<reportElement x="0" y="192" width="117" height="15" uuid="f192dfe8-1d52-4a40-9621-0fe8cbd8a6b0"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Persona de Contacto]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="117" y="192" width="295" height="15"/>
+				<reportElement x="117" y="192" width="295" height="15" uuid="77bdb917-e84b-4b94-8ddc-8fed2863c39a"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{pedido-vendedor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pedido-vendedor}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="101" y="0" width="210" height="20"/>
+				<reportElement x="101" y="0" width="210" height="20" uuid="2f599a5f-8661-4a26-b0c8-17fbdecf5376"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="450" y="0" width="65" height="20"/>
+				<reportElement x="450" y="0" width="65" height="20" uuid="eb78c4e6-5327-44d4-b401-539ef68ad253"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Importe]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="17" width="515" height="1"/>
+				<reportElement x="0" y="17" width="515" height="1" uuid="62ef3777-a149-4f57-bb44-26d0de2a7c98"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="0" width="98" height="20"/>
+				<reportElement x="3" y="0" width="98" height="20" uuid="d00cd377-0296-4b55-80e6-40c37e86a071"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Concepto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="375" y="0" width="65" height="20"/>
+				<reportElement x="375" y="0" width="65" height="20" uuid="711982e9-c39f-4ddf-9af8-679480e97ca6"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
@@ -305,130 +305,130 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 	<detail>
 		<band height="16" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="101" y="0" width="271" height="15"/>
+				<reportElement x="101" y="0" width="271" height="15" uuid="2cbf366e-cafa-48a5-8e7a-85454b976435"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Descripcion-name2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Descripcion-name2}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="450" y="0" width="65" height="15"/>
+				<reportElement x="450" y="0" width="65" height="15" uuid="479aa915-64b9-4565-8d74-08dfe4233cb0"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Subtotal-total}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Subtotal-total}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="3" y="1" width="98" height="15"/>
+				<reportElement x="3" y="1" width="98" height="15" uuid="877985f8-3bd8-4f6f-a9b9-57d7b74132e3"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nombre-name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="372" y="0" width="70" height="15"/>
+				<reportElement x="372" y="0" width="70" height="15" uuid="99aadea6-e66d-496e-8c20-3ed39c56b95c"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Impuestos-tax_print}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Impuestos-tax_print}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="172" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="282" y="8" width="150" height="15"/>
+				<reportElement mode="Transparent" x="282" y="8" width="150" height="15" uuid="2f6690a3-a355-4a59-81db-8382ed5bc2b0"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Total sin Impuestos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="282" y="36" width="150" height="15"/>
+				<reportElement x="282" y="36" width="150" height="15" uuid="bfbff850-d745-40e5-ad81-8f4ca8cd5419"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="442" y="36" width="73" height="15"/>
+				<reportElement x="442" y="36" width="73" height="15" uuid="27716aa0-a2b6-448c-8b48-c75bb7a8dedc"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Total-amount_total}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Total-amount_total}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="133" width="406" height="15"/>
+				<reportElement x="0" y="133" width="406" height="15" uuid="98b17c36-e0bc-4e38-852b-b2c89de345f8"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Forma de pago:  " + $F{Plazo_de_pago-name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Forma de pago:  " + $F{Plazo_de_pago-name}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="282" y="22" width="150" height="15"/>
+				<reportElement mode="Transparent" x="282" y="22" width="150" height="15" uuid="4aa4b0ab-c3d8-41aa-b79a-de7590a5a505"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Impuesto]]></text>
 			</staticText>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="442" y="22" width="73" height="15"/>
+				<reportElement x="442" y="22" width="73" height="15" uuid="a5be98ac-e64d-4668-8553-87c972ea0bad"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Impuestos-amount_tax}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Impuestos-amount_tax}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="442" y="8" width="73" height="15"/>
+				<reportElement x="442" y="8" width="73" height="15" uuid="284adf82-db1d-45a3-afc5-db3213396753"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Base_imponible-amount_untaxed}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Base_imponible-amount_untaxed}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="282" y="50" width="150" height="15"/>
+				<reportElement x="282" y="50" width="150" height="15" uuid="f1ff3955-3e8c-434a-b03a-b7e0c4150517"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[% D.P.P]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="282" y="64" width="150" height="15"/>
+				<reportElement x="282" y="64" width="150" height="15" uuid="5ffa7e38-ba93-4b1f-9a54-608cfd0d3d7a"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Importe con D.P.P.]]></text>
 			</staticText>
 			<textField pattern="#,##0.00 %" isBlankWhenNull="true">
-				<reportElement x="442" y="50" width="73" height="15"/>
+				<reportElement x="442" y="50" width="73" height="15" uuid="319f0c07-8b34-4c14-a74c-685a36b4d32d"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Desc._P.P.-early_payment_discount} * 0.01]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Desc._P.P.-early_payment_discount} * 0.01]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="442" y="64" width="73" height="15"/>
+				<reportElement x="442" y="64" width="73" height="15" uuid="8c952af9-bcc4-446b-85a6-3eba6cd21a7e"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{Total-amount_total} * ( 1 -($F{Desc._P.P.-early_payment_discount} * 0.01))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Total-amount_total} * ( 1 -($F{Desc._P.P.-early_payment_discount} * 0.01))]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="116" width="276" height="15"/>
+				<reportElement x="0" y="116" width="276" height="15" uuid="f896b318-6e5c-4b39-aac8-b899f0f1dcec"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Tipo de Contrato  " + $F{Tipo_Expediente-name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Tipo de Contrato  " + $F{Tipo_Expediente-name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="173" y="99" width="117" height="15"/>
+				<reportElement x="173" y="99" width="117" height="15" uuid="fcdd48bd-6bcf-4c1d-9f50-4f8bbd6d6ecc"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{pedido-fecha_confirmacion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pedido-fecha_confirmacion}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="99" width="173" height="15"/>
+				<reportElement x="0" y="99" width="173" height="15" uuid="2ccebbbe-8d0c-4da9-983d-d403fbccf07a"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
@@ -439,32 +439,32 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 	<pageFooter>
 		<band height="53" splitType="Stretch">
 			<textField>
-				<reportElement x="417" y="1" width="80" height="14"/>
+				<reportElement x="417" y="1" width="80" height="14" uuid="b60b432f-5453-4318-abe5-a23d03a3d5d2"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="489" y="1" width="21" height="14"/>
+				<reportElement x="489" y="1" width="21" height="14" uuid="0f2e1371-75aa-4f2b-9836-37237ccf2057"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="3" width="282" height="15" forecolor="#808080"/>
+				<reportElement x="3" y="3" width="282" height="15" forecolor="#808080" uuid="4cf2a38d-7584-4be1-889b-181912bb5b1d"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{company-nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="2" y="20" width="513" height="29" forecolor="#C0C0C0"/>
+				<reportElement x="2" y="20" width="513" height="29" forecolor="#C0C0C0" uuid="5eeae552-0680-4ed9-8de2-e87861fd4117"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-calle1}+ ", " + $F{company-cp} + " - " + $F{company-provincia} + " - Tel. " + $F{company-phone}+ "\r" +
+				<textFieldExpression><![CDATA[$F{company-calle1}+ ", " + $F{company-cp} + " - " + $F{company-provincia} + " - Tel. " + $F{company-phone}+ "\r" +
 $F{company-website} + "  -  " +$F{company-email}]]></textFieldExpression>
 			</textField>
 		</band>
