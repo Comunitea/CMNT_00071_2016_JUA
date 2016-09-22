@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="acp_account_invoice_jasper" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="acp_account_invoice_jasper" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4d698b87-9714-4777-bc3a-b228e7bb28d8">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -164,18 +164,20 @@
 	<pageHeader>
 		<band height="191" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="282" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="0" y="0" width="282" height="15" uuid="6297f6ce-b8ef-45a3-b574-6edc8491de80"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{company-nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="2" y="15" width="337" height="59"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="2" y="15" width="337" height="59" uuid="ab09740d-2ca7-4cc8-a6e4-016ff49276b2"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="7"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-calle1}.toUpperCase() + "\r" +
+				<textFieldExpression><![CDATA[$F{company-calle1}.toUpperCase() + "\r" +
 $F{company-calle2}.toUpperCase() + "\r" +
 $F{company-cp} + " " + $F{company-ciudad}.toUpperCase() + "\r" +
 $F{company-provincia}.toUpperCase() + "\r" +
@@ -184,164 +186,182 @@ $F{company-cif}+ "\r" +
 "email: " +$F{company-email}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="347" y="132" width="75" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="347" y="132" width="75" height="15" uuid="e313d1b9-f9d9-49dc-9b07-8df60875613e"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="347" y="147" width="75" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="347" y="147" width="75" height="15" uuid="82ee5a76-0505-4367-9871-bb46a50f64b7"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gestor]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="346" y="102" width="75" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="346" y="102" width="75" height="15" uuid="9312480a-e974-4153-b6cc-8e6461c30e3f"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Número]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="346" y="117" width="75" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="346" y="117" width="75" height="15" uuid="1e457111-c03a-4309-84c8-62e0bb5fdcad"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Referencia]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="23" y="97" width="317" height="81" forecolor="#999999"/>
+				<reportElement x="23" y="97" width="317" height="81" forecolor="#999999" uuid="265127c4-c047-411e-b268-d73b7678493e"/>
 			</rectangle>
 			<textField>
-				<reportElement x="28" y="102" width="301" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="28" y="102" width="301" height="15" uuid="372cfab1-5b96-496f-b9e0-e8b06e30d854"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Titulo-name}+" "+$F{customer-nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Titulo-name}+" "+$F{customer-nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="28" y="116" width="301" height="47"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="28" y="116" width="301" height="47" uuid="507f5891-be13-45a2-ac0f-9134eb8a29c1"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{customer-calle1}.toUpperCase() + "\r" +
+				<textFieldExpression><![CDATA[$F{customer-calle1}.toUpperCase() + "\r" +
 ($F{customer-calle2}? $F{customer-calle2}.toUpperCase() + "\r":"") +
 $F{customer-cp} + " " + $F{customer-ciudad}.toUpperCase() + "\r" +
 $F{customer-provincia}.toUpperCase()+ "\r" +
 "Cif:" + $F{customer-nif}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="336" y="74" width="211" height="20"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="336" y="74" width="211" height="20" uuid="ae7d6a59-5424-496c-a67d-8ceb609e6871"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="16" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Factura]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="421" y="102" width="100" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="421" y="102" width="100" height="15" uuid="1186be53-d1d3-49a0-bd47-796f307501df"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{factura-numero}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{factura-numero}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="422" y="117" width="100" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="422" y="117" width="100" height="15" uuid="7667a9d1-9411-4eb3-9018-355dab3886c2"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{factura-referencia}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{factura-referencia}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="422" y="132" width="100" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="422" y="132" width="100" height="15" uuid="8167d0b9-5da6-44b3-a108-6c318f48ceed"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{factura-fecha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{factura-fecha}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement x="422" y="148" width="100" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="422" y="148" width="100" height="15" uuid="dbb0cd80-6a78-4486-98d0-4ebf5c654654"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Name-name}]]></textFieldExpression>
 			</textField>
-			<image hAlign="Right">
-				<reportElement x="366" y="0" width="188" height="64"/>
-				<imageExpression class="java.lang.String"><![CDATA[$F{company-logo}]]></imageExpression>
+			<image hAlign="Right" onErrorType="Blank">
+				<reportElement x="366" y="0" width="188" height="64" uuid="2de06b9d-510a-49a5-b5a4-b5111b7d0541"/>
+				<imageExpression><![CDATA[$F{company-logo}]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="27" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="0" y="0" width="100" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="0" y="0" width="100" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="889faf35-286e-4849-8f18-8accf3daab04"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="0" y="0" width="100" height="20" uuid="141a980c-5c5c-46e3-a0fb-0e96c3bc65b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Referencia]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="102" y="0" width="169" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="102" y="0" width="169" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="9e437fb8-7c3a-41a3-b7b4-2a80d2207210"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="104" y="0" width="167" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="104" y="0" width="167" height="20" uuid="acf3114f-238d-4778-83a0-15e077870edd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="273" y="0" width="40" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="273" y="0" width="40" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="96915024-efbb-40d5-ac55-4c5b7bd8f0fc"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="283" y="0" width="21" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="283" y="0" width="21" height="20" uuid="6de6bb56-f247-4f26-926e-16eaf1b2abc9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Ctd.]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="316" y="0" width="63" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="316" y="0" width="63" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="eb9184fe-e999-4ea2-9a55-33d8e2f029fc"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="319" y="0" width="57" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="319" y="0" width="57" height="20" uuid="6ce4fc82-fd1a-45fa-b816-87c7a90199cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Precio Base]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="425" y="0" width="63" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="425" y="0" width="63" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="f459485a-4d02-4c88-9c8b-7dfc811265ab"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="427" y="0" width="63" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="427" y="0" width="63" height="20" uuid="c5ac609c-7686-4c7c-8b4a-a216b6dcd12b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Precio U]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="382" y="0" width="40" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="382" y="0" width="40" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="9f3c5af4-1341-4dc0-aa21-b2d0d71403bf"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="382" y="0" width="40" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="382" y="0" width="40" height="20" uuid="648f839c-5b08-4491-a1d3-41605f2668ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Dto.]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="491" y="0" width="64" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="491" y="0" width="64" height="20" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="d376bf12-31e8-4dd3-b44c-3ed4ccf1e108"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="491" y="0" width="63" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="491" y="0" width="63" height="20" uuid="738e24bd-0c22-4601-a671-ab480975a74f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Importe]]></text>
 			</staticText>
@@ -351,182 +371,200 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 		<band height="22" splitType="Stretch">
 			<printWhenExpression><![CDATA[$F{linea-referencia}.equals("DPP")?Boolean.FALSE:Boolean.TRUE]]></printWhenExpression>
 			<textField isBlankWhenNull="true">
-				<reportElement x="11" y="0" width="89" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="11" y="0" width="89" height="15" uuid="07a4b234-442d-4aae-9994-423f701a9ee7"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{linea-referencia}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{linea-referencia}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="111" y="0" width="160" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="111" y="0" width="160" height="15" uuid="597997dd-ccc7-4b29-a8c2-08aebf8c06e7"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{linea-descripcion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{linea-descripcion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="279" y="0" width="34" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="279" y="0" width="34" height="15" uuid="4ab5bd2b-0ee2-4255-90b7-d3f34de7f2b2"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{linea-cantidad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{linea-cantidad}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="323" y="0" width="53" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="323" y="0" width="53" height="15" uuid="cee7dd47-dd09-4aa7-bbd3-ad9aee60f2ae"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{linea-precio}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{linea-precio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 %" isBlankWhenNull="true">
-				<reportElement x="388" y="0" width="37" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="388" y="0" width="37" height="15" uuid="d0cb30b3-717c-4c19-a741-0bd29de3b3f0"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[($F{linea-descuento}!= null) ?  $F{linea-descuento} * 0.01:  new DecimalFormat("0.00").format(0.0)]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{linea-descuento}!= null) ?  $F{linea-descuento} * 0.01:  new DecimalFormat("0.00").format(0.0)]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="491" y="0" width="63" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="491" y="0" width="63" height="15" uuid="19843e7e-0df1-4c4c-a2d9-11d7c15f4caf"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{linea-subtotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{linea-subtotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="435" y="0" width="53" height="15"/>
+				<reportElement x="435" y="0" width="53" height="15" uuid="6f198dc4-d9e9-4bea-ae43-a8e2e538debf"/>
 				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{linea-precio}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{linea-precio}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="150" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="2" y="8" width="416" height="29" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+				<reportElement x="2" y="8" width="416" height="29" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="83b2b597-4bfa-45a0-9833-ded5d9226565"/>
 			</rectangle>
 			<rectangle radius="10">
-				<reportElement x="429" y="8" width="125" height="44" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+				<reportElement x="429" y="8" width="125" height="44" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="c47d30b9-9907-4ec8-a6ec-f1e7fdbdba25"/>
 			</rectangle>
 			<staticText>
-				<reportElement mode="Transparent" x="185" y="8" width="72" height="28"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement mode="Transparent" x="185" y="8" width="72" height="28" uuid="df3b927b-af72-406b-9f2a-4679a3a75065"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Total Base Imponible]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="435" y="10" width="110" height="15"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="435" y="10" width="110" height="15" uuid="d3b704d5-d743-4259-b7cf-5b49af7769c7"/>
+				<textElement textAlignment="Center">
 					<font fontName="Helvetica-Light" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Total Factura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="265" y="21" width="74" height="15"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement mode="Transparent" x="265" y="21" width="74" height="15" uuid="2a5986b3-f231-45bf-88b8-25c23ccad758"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Impuesto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="347" y="21" width="63" height="15"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement mode="Transparent" x="347" y="21" width="63" height="15" uuid="f5cefa48-5f7e-433c-926a-7d9f30bc3403"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Helvetica-Light" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Importe]]></text>
 			</staticText>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="167" y="40" width="89" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="167" y="40" width="89" height="15" uuid="fd03135e-cde1-4b95-9bc4-d35998291bab"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total-baseimponible}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{total-baseimponible}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="345" y="40" width="68" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="345" y="40" width="68" height="15" uuid="fa35115f-c7be-4d27-81af-4e16ad9be241"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total-impuesto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{total-impuesto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="445" y="25" width="100" height="20"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="445" y="25" width="100" height="20" uuid="3783c06a-7441-4290-911e-ae4afe62d28d"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total-factura}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{total-factura}]]></textFieldExpression>
 			</textField>
 			<rectangle radius="10">
-				<reportElement x="1" y="63" width="427" height="80" forecolor="#C0C0C0" backcolor="#C0C0C0"/>
+				<reportElement x="1" y="63" width="427" height="80" forecolor="#C0C0C0" backcolor="#C0C0C0" uuid="c6f093cd-a3af-4d22-a219-3c29d5212d55"/>
 			</rectangle>
 			<textField>
-				<reportElement x="6" y="66" width="389" height="15"/>
+				<reportElement x="6" y="66" width="389" height="15" uuid="c7f862e6-e12d-40db-b5d5-09bd4decc3ac"/>
 				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_del_banco-bank_name} + "    " + $F{IBAN-iban}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nombre_del_banco-bank_name} + "    " + $F{IBAN-iban}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="6" y="86" width="108" height="15"/>
+				<reportElement x="6" y="86" width="108" height="15" uuid="083701f4-fdc0-485a-8487-be51a03ffa34"/>
 				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Condiciones de Pago]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="125" y="86" width="297" height="15"/>
+				<reportElement x="125" y="86" width="297" height="15" uuid="faa38962-7101-49ba-9fbe-11b6152b3991"/>
 				<textElement>
 					<font fontName="Helvetica-Light" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Plazo_de_pago-name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Plazo_de_pago-name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement x="261" y="40" width="82" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="261" y="40" width="82" height="15" uuid="10bf71af-c379-4f8c-8b5a-61b54b321cc7"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$V{impuesto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{impuesto}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="144" splitType="Stretch">
 			<textField>
-				<reportElement x="456" y="80" width="80" height="14"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
+				<reportElement x="456" y="80" width="80" height="14" uuid="b8d8c0ef-0c4c-42ce-a586-c1d0f68cd962"/>
+				<textElement textAlignment="Right">
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="535" y="80" width="20" height="14"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="535" y="80" width="20" height="14" uuid="bf67c173-e8f9-4a85-ab96-014b78172098"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="3" width="555" height="1"/>
+				<reportElement x="0" y="3" width="555" height="1" uuid="7f15bd5a-7344-4013-a970-8326a3577ba0"/>
 			</line>
 			<textField>
-				<reportElement x="2" y="26" width="275" height="15"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="2" y="26" width="275" height="15" uuid="37f0b2b2-96b5-4da5-8405-05d1e31ed5c6"/>
+				<textElement>
 					<font fontName="Helvetica-Light" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{company-nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{company-nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="74" width="100" height="20"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="1" y="74" width="100" height="20" uuid="eef087c5-f0e9-4ef3-95a9-5d916c48d926"/>
+				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Fdo:]]></text>
 			</staticText>
 			<image hAlign="Center">
-				<reportElement x="2" y="94" width="552" height="50"/>
-				<imageExpression class="java.lang.String"><![CDATA[$F{Pie_de_pagina-footer_image}]]></imageExpression>
+				<reportElement x="2" y="94" width="552" height="50" uuid="188d791d-d572-44fc-aaf8-8330a7cf1800"/>
+				<imageExpression><![CDATA[$F{Pie_de_pagina-footer_image}]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

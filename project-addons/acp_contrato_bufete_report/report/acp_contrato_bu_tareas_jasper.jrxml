@@ -122,7 +122,7 @@ group by
 				</textElement>
 				<text><![CDATA[Actuaciones por Expediente]]></text>
 			</staticText>
-			<image evaluationTime="Report">
+			<image onErrorType="Blank" evaluationTime="Report">
 				<reportElement x="413" y="0" width="100" height="50" uuid="b0418b58-5c36-46da-9032-debc48747772"/>
 				<imageExpression><![CDATA[$V{LOGO}]]></imageExpression>
 			</image>
