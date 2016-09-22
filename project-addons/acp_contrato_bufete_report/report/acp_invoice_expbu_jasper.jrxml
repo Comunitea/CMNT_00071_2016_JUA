@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="acp_account_invoice_jasper" language="groovy" pageWidth="595" pageHeight="842" columnWidth="540" leftMargin="35" rightMargin="20" topMargin="20" bottomMargin="20" uuid="acf9375c-b9e3-4a82-a0e8-984798018b66">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.x" value="33"/>
+	<property name="ireport.y" value="1200"/>
 	<property name="OPENERP_RELATIONS" value="[&apos;line_group_ids&apos;]"/>
 	<parameter name="SUBREPORT_VENCIMIENTOS" class="java.lang.Object"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String">
@@ -208,7 +208,7 @@
 	</variable>
 	<background>
 		<band height="802" splitType="Stretch">
-			<image>
+			<image onErrorType="Blank">
 				<reportElement x="94" y="230" width="340" height="340" uuid="0b5f64ca-d1c7-4658-b163-e02c7d404d0b"/>
 				<imageExpression><![CDATA[$F{company-marca_agua}]]></imageExpression>
 			</image>
