@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale_order_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="60" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4416740-596b-4899-afa3-c30533ad55b5">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1296"/>
+	<property name="ireport.x" value="33"/>
+	<property name="ireport.y" value="336"/>
 	<property name="OPENERP_RELATIONS" value="[&apos;line_group_ids&apos;]"/>
 	<queryString language="xPath">
 		<![CDATA[]]>
@@ -311,15 +311,15 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Descripcion-name2}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="450" y="0" width="65" height="15" uuid="479aa915-64b9-4565-8d74-08dfe4233cb0"/>
-				<textElement textAlignment="Right">
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="448" y="0" width="60" height="15" uuid="479aa915-64b9-4565-8d74-08dfe4233cb0"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Subtotal-total}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="3" y="1" width="98" height="15" uuid="877985f8-3bd8-4f6f-a9b9-57d7b74132e3"/>
+				<reportElement x="3" y="0" width="98" height="15" uuid="877985f8-3bd8-4f6f-a9b9-57d7b74132e3"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
@@ -331,6 +331,13 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Impuestos-tax_print}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="5" height="15" uuid="445524bc-d719-4b5b-97c8-7842be803db3"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{simbolo_moneda}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -350,9 +357,9 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="442" y="36" width="73" height="15" uuid="27716aa0-a2b6-448c-8b48-c75bb7a8dedc"/>
-				<textElement textAlignment="Right">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="440" y="36" width="68" height="15" uuid="27716aa0-a2b6-448c-8b48-c75bb7a8dedc"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Total-amount_total}]]></textFieldExpression>
@@ -371,16 +378,16 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[Impuesto]]></text>
 			</staticText>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="442" y="22" width="73" height="15" uuid="a5be98ac-e64d-4668-8553-87c972ea0bad"/>
-				<textElement textAlignment="Right">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="440" y="22" width="68" height="15" uuid="a5be98ac-e64d-4668-8553-87c972ea0bad"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Impuestos-amount_tax}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="442" y="8" width="73" height="15" uuid="284adf82-db1d-45a3-afc5-db3213396753"/>
-				<textElement textAlignment="Right">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="440" y="8" width="68" height="15" uuid="284adf82-db1d-45a3-afc5-db3213396753"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Base_imponible-amount_untaxed}]]></textFieldExpression>
@@ -401,14 +408,14 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 			</staticText>
 			<textField pattern="#,##0.00 %" isBlankWhenNull="true">
 				<reportElement x="442" y="50" width="73" height="15" uuid="319f0c07-8b34-4c14-a74c-685a36b4d32d"/>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Desc._P.P.-early_payment_discount} * 0.01]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
 				<reportElement x="442" y="64" width="73" height="15" uuid="8c952af9-bcc4-446b-85a6-3eba6cd21a7e"/>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Total-amount_total} * ( 1 -($F{Desc._P.P.-early_payment_discount} * 0.01))]]></textFieldExpression>
@@ -434,6 +441,27 @@ $F{customer-provincia}.toUpperCase()]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[Fecha de confirmación del cliente:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="510" y="8" width="5" height="15" uuid="2a044c54-19c1-470f-96ed-abb1a6593b1e"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{simbolo_moneda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="22" width="5" height="15" uuid="c4138d66-8feb-4fc2-aa6f-adeee8635816"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{simbolo_moneda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="36" width="5" height="15" uuid="ab18251f-b5bc-4c49-a487-2024a27348c4"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{simbolo_moneda}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>

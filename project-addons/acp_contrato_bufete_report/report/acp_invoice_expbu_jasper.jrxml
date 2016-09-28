@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="acp_account_invoice_jasper" language="groovy" pageWidth="595" pageHeight="842" columnWidth="540" leftMargin="35" rightMargin="20" topMargin="20" bottomMargin="20" uuid="acf9375c-b9e3-4a82-a0e8-984798018b66">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="33"/>
-	<property name="ireport.y" value="1200"/>
+	<property name="ireport.y" value="192"/>
 	<property name="OPENERP_RELATIONS" value="[&apos;line_group_ids&apos;]"/>
 	<parameter name="SUBREPORT_VENCIMIENTOS" class="java.lang.Object"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String">
@@ -373,7 +373,7 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 				<text><![CDATA[Importe]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="17" width="515" height="1" uuid="97640d1f-f1ca-42f9-ad45-d7bc0dfcd66f"/>
+				<reportElement x="0" y="17" width="539" height="3" uuid="97640d1f-f1ca-42f9-ad45-d7bc0dfcd66f"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -397,8 +397,8 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Descripcion-name2}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="475" y="0" width="65" height="15" uuid="50b106c3-fc43-4d94-bed4-56f6f341a199"/>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="473" y="0" width="59" height="15" uuid="50b106c3-fc43-4d94-bed4-56f6f341a199"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
@@ -418,6 +418,13 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Impuestos-tax_print}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="534" y="0" width="5" height="15" uuid="ce1aa305-759b-458d-b187-285f0208b20a"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Simbolo_moneda}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -429,8 +436,8 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="467" y="36" width="73" height="15" uuid="2e597618-b5ee-4f6e-876f-6204ec5af3cb"/>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="465" y="36" width="67" height="15" uuid="2e597618-b5ee-4f6e-876f-6204ec5af3cb"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
@@ -443,8 +450,8 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 				</textElement>
 				<textFieldExpression><![CDATA["Forma de pago:  " + $F{Plazo_de_pago-name}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="467" y="8" width="73" height="15" uuid="3d1cd061-2916-4d61-839f-c50ae9dbc1e0"/>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="465" y="8" width="67" height="15" uuid="3d1cd061-2916-4d61-839f-c50ae9dbc1e0"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
@@ -471,8 +478,8 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 				</textElement>
 				<text><![CDATA[Total sin Impuestos]]></text>
 			</staticText>
-			<textField pattern="#,##0.00 ¤" isBlankWhenNull="true">
-				<reportElement x="467" y="22" width="73" height="15" uuid="fc9922f5-9cbe-478d-b258-2bb484168cf6"/>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="465" y="22" width="67" height="15" uuid="fc9922f5-9cbe-478d-b258-2bb484168cf6"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
@@ -493,6 +500,27 @@ $F{customer-provincia}.toUpperCase()+ "\r" +
 				</textElement>
 				<text><![CDATA[Vencimientos:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="534" y="8" width="5" height="15" uuid="c9193f2a-e629-45f3-a2ec-672fbe1947bb"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Simbolo_moneda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="534" y="22" width="5" height="15" uuid="7b300e68-d392-444f-b076-64ad69f10f95"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Simbolo_moneda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="534" y="36" width="5" height="15" uuid="1ea43874-717c-4178-bf89-86c96745542d"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Simbolo_moneda}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
