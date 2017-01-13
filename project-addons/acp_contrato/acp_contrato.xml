@@ -89,7 +89,7 @@
                         <field name="referencia" />
                         <field name="user_id" attrs="{'readonly': [('state','!=','open')]}" />
                         <field name="tipo_contrato" widget="selection" attrs="{'readonly': [('state','!=','open')]}" />
-                        <field name="contrato_plantilla" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="contrato_plantilla"/>
                         <field name="id" invisible="1" />
                         <field name="perioricidad" />
                       </group>
