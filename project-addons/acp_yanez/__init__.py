@@ -30,7 +30,7 @@ import calendar_event
 import crm_lead
 import mass_mail
 import wizard
-import sale_commission
+# import sale_commission
 import product
 import event
 import event2

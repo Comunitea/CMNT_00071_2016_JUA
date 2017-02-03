@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml version="1.0" encoding="utf-8"?>
 <openerp>
   <data>
     <record id="acp_yanez.view_partner_agent_comision_tree" model="ir.ui.view">
@@ -54,3 +54,4 @@
     </record>
   </data>
 </openerp>
+ -->

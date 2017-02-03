@@ -23,16 +23,16 @@ from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import datetime
 
-class res_partner_agent(orm.Model):
-    """
-        objeto de comportamiento many2many que relaciona agentes o
-        comerciales con partners
-    """
-    _inherit = "res.partner.agent"
-    _columns = {
-                'date_from': fields.date('Desde Fecha'),                                                
-                'date_to': fields.date('Hasta Fecha'),                    
-    }
+# class res_partner_agent(orm.Model):
+#     """
+#         objeto de comportamiento many2many que relaciona agentes o
+#         comerciales con partners
+#     """
+#     _inherit = "res.partner.agent"
+#     _columns = {
+#                 'date_from': fields.date('Desde Fecha'),                                                
+#                 'date_to': fields.date('Hasta Fecha'),                    
+#     }
 
 
 class sale_order(orm.Model):
