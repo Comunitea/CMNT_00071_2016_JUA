@@ -69,7 +69,9 @@ Desde un expediente o servicio puede generar presupuesto de compras / Ventas, as
                 'l10n_es_partner',
                 'hr_contract',
                 'acp_document',
-                'mail'],
+                'mail',
+                'sale_commission' # Por el contexto del order line
+                ],
     'init_xml': [],
     'data': [
         'data/acp_contrato_sequence.xml',
