@@ -13,22 +13,22 @@
     <!--
          Botones en clientes
      -->
-    <record model="ir.ui.view" id="acp_yanez_partner_view_buttons">
+<!--     <record model="ir.ui.view" id="acp_yanez_partner_view_buttons">
       <field name="name">acp_yanez.partner.view.buttons</field>
       <field name="model">res.partner</field>
       <field name="inherit_id" ref="base.view_partner_form" />
-      <field name="arch" type="xml">
+      <field name="arch" type="xml"> -->
 		 <!-- 
         <xpath expr="/form/sheet/notebook/page/group/group/field[@name='customer']" position="before">
           <field name="lead" />
         </xpath>
         -->
-        <page name="sales_purchases" position="after">
+      <!--   <page name="sales_purchases" position="after"> -->
           <!--<page name="Mandato" string="Mandato">
             <field name="mandato_text" />
           </page>
           -->
-          <page name="condiciones_especiales" string="Condiciones Especiales">
+<!--           <page name="condiciones_especiales" string="Condiciones Especiales">
             <field name="condiciones_especiales" />
           </page>
         </page>
@@ -62,7 +62,7 @@
           </button>
         </xpath>
       </field>
-    </record>  
+    </record>   -->
     <!--
          Añadido filtro de cliente potencial
     
