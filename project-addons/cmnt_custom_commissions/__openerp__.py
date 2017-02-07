@@ -10,17 +10,19 @@
     'license': 'AGPL-3',
     'depends': [
         'base',
-        'sale_commission_product'
+        'sale_commission',
+        'acp_yanez',
     ],
     'contributors': [
         "Comunitea ",
         "Javier Colmenero <javier@comunitea.com>"
     ],
     "data": [
-    ],
-    "demo": [
-    ],
-    'test': [
+        'security/ir.model.access.csv',
+        'views/commission_plan_view.xml',
+        'views/res_partner_view.xml',
+        'views/account_invoice_view.xml',
+        'views/sale_view.xml',
     ],
     "installable": True
 }

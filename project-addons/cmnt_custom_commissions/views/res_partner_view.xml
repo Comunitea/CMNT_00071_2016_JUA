@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_partner_form_commission_plan" model="ir.ui.view">
+            <field name="name">res.partner.form.commission.plan</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sale_commission.view_partner_form_agent"/>
+            <field name="arch" type="xml">
+                <field name="commission" position="attributes">
+                    <attribute name="attrs"></attribute>
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="commission" position="after">
+                    <field name="plan_id" attrs="{'required': [('agent', '=', True)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

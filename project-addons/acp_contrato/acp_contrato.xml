@@ -86,6 +86,7 @@
                       <group colspan="2" col="2">
                         <separator string="Información General" colspan="4" />
                         <field name="fecha" attrs="{'readonly': [('state','!=','open')]}" />
+                        <field name="sale_id"/>
                         <field name="referencia" />
                         <field name="user_id" attrs="{'readonly': [('state','!=','open')]}" />
                         <field name="tipo_contrato" widget="selection" attrs="{'readonly': [('state','!=','open')]}" />
