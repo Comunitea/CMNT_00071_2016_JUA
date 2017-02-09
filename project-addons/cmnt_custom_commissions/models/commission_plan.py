@@ -12,14 +12,17 @@ class CommissionPlan(models.Model):
     lines = fields.One2many('commission.plan.line', 'plan_id')
 
     @api.model
-    def get_product_commission(self, product_id, origin_id=False):
+    def get_product_commission(self, product_id, origin_id=False,
+                               exp=False):
         res = False
         # Busco lineas para el producto dado
-        lines = self.lines.filtered(lambda l: l.product_id.id == product_id)
+        lines = self.lines.filtered(
+            lambda l: l.product_id.id == product_id and
+            l.expedient == exp)
         if not lines:
             return False
 
-        # Busco lineas con el origen o sin el si no tiene
+        # De las anteriores busco lineas con el origen o sin el, si no tiene
         if origin_id:
             lines = lines.filtered(lambda l: l.origin_id.id == origin_id)
         else:
@@ -39,3 +42,4 @@ class SaleAgentPlanLine(models.Model):
     origin_id = fields.Many2one('acp_yanez.origen_cliente', 'Customer Origin')
     commission = fields.Many2one('sale.commission', 'Commission',
                                  required=True)
+    expedient = fields.Boolean('Apply to expedient')

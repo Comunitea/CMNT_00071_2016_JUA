@@ -12,6 +12,7 @@
         'base',
         'sale_commission',
         'acp_yanez',
+        'acp_contrato',
     ],
     'contributors': [
         "Comunitea ",
@@ -23,6 +24,8 @@
         'views/res_partner_view.xml',
         'views/account_invoice_view.xml',
         'views/sale_view.xml',
+        'views/acp_contrato_view.xml',
+        'views/settlement_view.xml',
     ],
     "installable": True
 }

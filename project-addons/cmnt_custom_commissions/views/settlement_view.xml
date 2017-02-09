@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_settlement_form_hour" model="ir.ui.view">
+            <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+            <field name="model">sale.commission.settlement</field>
+            <field name="arch" type="xml">
+                <group string="Commission lines" position="after">
+                    <group string="Commission lines per hours">
+                        <field name="hour_lines" nolabel="1">
+                            <tree string="Hour Settlement lines">
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>
+

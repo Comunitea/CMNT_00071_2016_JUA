@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_acp_contrato_tarea_form_commission" model="ir.ui.view">
+            <field name="model">acp_contrato.tarea</field>
+            <field name="inherit_id" ref="acp_contrato.view_acp_contrato_tarea_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Commissions">
+                        <group>
+                           <field name="agent_id"/>
+                           <field name="commission"/>
+                           <field name="price_hour"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

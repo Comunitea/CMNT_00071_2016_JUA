@@ -8,4 +8,4 @@ class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
-    plan_id = fields.Many2one('commission.plan')
+    plan_id = fields.Many2one('commission.plan', 'Commission Plan')

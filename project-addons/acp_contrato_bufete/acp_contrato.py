@@ -299,7 +299,6 @@ class acp_contrato_contrato(osv.osv):
     def _total_horas_facturadas(self, cr, uid, ids, field_name, arg, context=None):
         if not ids:
             return {}
-
         x={}
         contrato_obj = self.pool.get('acp_contrato.contrato')
         for record in self.browse(cr, uid, ids):

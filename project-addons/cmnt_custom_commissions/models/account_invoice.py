@@ -17,8 +17,8 @@ class AccountInvoiceLine(models.Model):
 
     @api.depends('price_subtotal', 'exempt_price')
     def _compute_base_commisison(self):
-        for record in self:
-            record.commission_base = self.price_subtotal - self.exempt_price
+        for line in self:
+            line.commission_base = line.price_subtotal - line.exempt_price
 
     agents = fields.One2many(default=_default_agents)
     exempt_price = fields.Float('Exempt Commisison')
