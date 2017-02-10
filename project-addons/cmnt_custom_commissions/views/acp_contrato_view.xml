@@ -5,6 +5,7 @@
             <field name="model">acp_contrato.tarea</field>
             <field name="inherit_id" ref="acp_contrato.view_acp_contrato_tarea_form"/>
             <field name="arch" type="xml">
+                <!-- Añadimos pestaña con la info de las comisiones -->
                 <notebook position="inside">
                     <page string="Commissions">
                         <group>
@@ -14,6 +15,11 @@
                         </group>
                     </page>
                 </notebook>
+
+                <!-- Check de liquidado a las horas -->
+                <xpath expr="//field[@name='horas_lineas']/tree/field[@name='horas']" position="after">
+                    <field name="settled"/>
+                </xpath>
             </field>
         </record>
     </data>

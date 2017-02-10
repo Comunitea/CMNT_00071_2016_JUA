@@ -9,6 +9,10 @@
                     <group string="Commission lines per hours">
                         <field name="hour_lines" nolabel="1">
                             <tree string="Hour Settlement lines">
+                                <field name="task_id"/>
+                                <field name="hours"  widget="float_time"/>
+                                <field name="price_hour"/>
+                                <field name="commission"/>
                                 <field name="amount"/>
                             </tree>
                         </field>

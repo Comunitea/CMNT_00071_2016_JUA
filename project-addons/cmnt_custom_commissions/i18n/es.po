@@ -18,25 +18,25 @@ msgstr ""
 #. module: cmnt_custom_commissions
 #: field:acp_contrato.tarea,agent_id:0
 msgid "Agent"
-msgstr "Agent"
+msgstr "Agente"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan.line,expedient:0
 msgid "Apply to expedient"
-msgstr "Apply to expedient"
+msgstr "Aplicar a tareas expediente"
 
 #. module: cmnt_custom_commissions
 #: field:acp_contrato.tarea,commission:0
 #: field:commission.plan.line,commission:0
 msgid "Commission"
-msgstr "Commission"
+msgstr "Commisión"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan.line,plan_id:0
 #: model:ir.ui.menu,name:cmnt_custom_commissions.commission_plan_menu
 #: field:res.partner,plan_id:0
 msgid "Commission Plan"
-msgstr "Commission Plan"
+msgstr "Plan de comisiones"
 
 #. module: cmnt_custom_commissions
 #: view:sale.commission.settlement:cmnt_custom_commissions.view_settlement_form_hour
@@ -46,29 +46,29 @@ msgstr "Líneas de comisión"
 #. module: cmnt_custom_commissions
 #: view:sale.commission.settlement:cmnt_custom_commissions.view_settlement_form_hour
 msgid "Commission lines per hours"
-msgstr "Commission lines per hours"
+msgstr "Lineas de comisión por horas"
 
 #. module: cmnt_custom_commissions
 #: view:commission.plan:cmnt_custom_commissions.commission_plan_view_form
 #: model:ir.actions.act_window,name:cmnt_custom_commissions.commission_plan_action
 msgid "Commission plan"
-msgstr "Commission plan"
+msgstr "Plan de comisiones"
 
 #. module: cmnt_custom_commissions
 #: view:commission.plan:cmnt_custom_commissions.commission_plan_view_tree
 msgid "Commission plans"
-msgstr "Commission plans"
+msgstr "Planes de comisiones"
 
 #. module: cmnt_custom_commissions
 #: view:acp_contrato.tarea:cmnt_custom_commissions.view_acp_contrato_tarea_form_commission
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Comisiones"
 
 #. module: cmnt_custom_commissions
 #: code:addons/cmnt_custom_commissions/wizard/wizard_settle.py:83
 #, python-format
 msgid "Created Settlements"
-msgstr "Created Settlements"
+msgstr "Liquidaciones creadas"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan,create_uid:0
@@ -87,13 +87,13 @@ msgstr "Created on"
 #. module: cmnt_custom_commissions
 #: field:commission.plan.line,origin_id:0
 msgid "Customer Origin"
-msgstr "Customer Origin"
+msgstr "Origen cliente"
 
 #. module: cmnt_custom_commissions
 #: field:account.invoice.line,exempt_price:0
 #: field:sale.order.line,exempt_price:0
 msgid "Exempt Commisison"
-msgstr "Exempt Commisison"
+msgstr "Exento de comisión"
 
 #. module: cmnt_custom_commissions
 #: model:ir.model,name:cmnt_custom_commissions.model_acp_contrato_tarea_horas
@@ -103,12 +103,12 @@ msgstr "Horas asociados a tareas"
 #. module: cmnt_custom_commissions
 #: view:sale.commission.settlement:cmnt_custom_commissions.view_settlement_form_hour
 msgid "Hour Settlement lines"
-msgstr "Hour Settlement lines"
+msgstr "Lineas de liquidación por horas"
 
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,hours:0
 msgid "Hours"
-msgstr "Hours"
+msgstr "Horas"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan,id:0
@@ -139,12 +139,12 @@ msgstr "Last Updated on"
 #. module: cmnt_custom_commissions
 #: field:commission.plan,lines:0
 msgid "Lines"
-msgstr "Lines"
+msgstr "Lineas"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan,name:0
 msgid "Name"
-msgstr "Name"
+msgstr "Nombre"
 
 #. module: cmnt_custom_commissions
 #: model:ir.model,name:cmnt_custom_commissions.model_res_partner
@@ -154,12 +154,12 @@ msgstr "Empresa"
 #. module: cmnt_custom_commissions
 #: field:acp_contrato.tarea,price_hour:0
 msgid "Price Hour"
-msgstr "Price Hour"
+msgstr "Precio hora"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan.line,product_id:0
 msgid "Product"
-msgstr "Product"
+msgstr "Producto"
 
 #. module: cmnt_custom_commissions
 #: model:ir.model,name:cmnt_custom_commissions.model_sale_order_line
@@ -169,22 +169,22 @@ msgstr "Línea pedido de venta"
 #. module: cmnt_custom_commissions
 #: field:acp_contrato.tarea_horas,settled:0
 msgid "Settled"
-msgstr "Settled"
+msgstr "Liquidado"
 
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,amount:0
 msgid "Settled Amount"
-msgstr "Settled Amount"
+msgstr "Importe liquidado"
 
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,settlement:0
 msgid "Settlement"
-msgstr "Settlement"
+msgstr "Liquidación"
 
 #. module: cmnt_custom_commissions
 #: field:sale.commission.settlement,hour_lines:0
 msgid "Settlement hour lines"
-msgstr "Settlement hour lines"
+msgstr "Ñineas de liquidación por horas"
 
 #. module: cmnt_custom_commissions
 #: model:ir.model,name:cmnt_custom_commissions.model_acp_contrato_tarea
@@ -194,7 +194,7 @@ msgstr "Tareas de los servicios"
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,task_id:0
 msgid "Task"
-msgstr "Task"
+msgstr "Tarea"
 
 #. module: cmnt_custom_commissions
 #: view:sale.order:cmnt_custom_commissions.view_order_agent_form_inherit_exent

@@ -62,3 +62,10 @@ class Tarea(models.Model):
                          'agent_id': agent.id,
                          'price_hour': price_hour})
         return tarea
+
+
+class TareaHoras(models.Model):
+
+    _inherit = 'acp_contrato.tarea_horas'
+
+    settled = fields.Boolean('Settled', readonly=True)
