@@ -20,7 +20,7 @@ class Settlement(models.Model):
                 sum(x.amount for x in record.hour_lines)
 
 
-class HourSettlementLine(models.TransientModel):
+class HourSettlementLine(models.Model):
     _name = "hour.settlement.line"
 
     settlement = fields.Many2one("sale.commission.settlement", 'Settlement',
