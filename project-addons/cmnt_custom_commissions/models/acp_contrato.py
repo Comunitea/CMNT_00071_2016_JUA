@@ -43,14 +43,14 @@ class Tarea(models.Model):
                 # Asigno el agente
                 agent = tarea.user_seg_id.partner_id
                 product_prices_dic = tarea._get_expedient_products()
-                orig = tarea.partner_id.origen_cliente_id or False
+                orig_id = tarea.partner_id.origen_cliente_id.id or False
 
                 # Busco el primer producto que esté en e plan, y devuelvc
                 # la comisión en función del origen
                 for product_id in product_prices_dic:
                     commission = \
                         agent.plan_id.get_product_commission(product_id,
-                                                             origin_id=orig,
+                                                             origin_id=orig_id,
                                                              exp=True)
                     # Si el primero de los productos está en el plan para
                     if commission:

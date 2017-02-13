@@ -39,14 +39,14 @@ class SaleOrderLine(models.Model):
         if partner_id and product:
             agent_list = []
             partner = self.env["res.partner"].browse(partner_id)
-            origin = partner.origen_cliente_id or False
+            origin_id = partner.origen_cliente_id.id or False
 
             for agent in partner.agents:
                 # default commission_id for agent
                 commission_id = agent.commission.id
 
                 commission_id_product = \
-                    agent.plan_id.get_product_commission(product, origin)
+                    agent.plan_id.get_product_commission(product, origin_id)
                 if commission_id_product:
                     commission_id = commission_id_product
 
