@@ -343,7 +343,12 @@ class acp_contrato_contrato(osv.osv):
                             break
                         fecha_inicio = fecha_fin
                     if fecha_inicio_trimestre and fecha_fin_trimestre:
-                        tarea_horas_ids = tarea_horas_obj.search(cr, uid, [('contrato_id','=',record.id),('fecha','>=',fecha_inicio_trimestre),('fecha','<=',fecha_fin_trimestre)], context=context)
+                        domain = [('contrato_id','=',record.id),('fecha','>=',fecha_inicio_trimestre),('fecha','<=',fecha_fin_trimestre)]
+                        if record.perioricidad == 'unica':
+                            # Restablecemos las fecha inicio y no buscamos por fecha fin
+                            init_date = record.parent_id.fecha
+                            domain = [('contrato_id','=',record.id),('fecha','>=',init_date)]
+                        tarea_horas_ids = tarea_horas_obj.search(cr, uid, domain, context=context)
                         tota_trabajado = 0.0
                         for tarea_hora in  tarea_horas_obj.browse(cr, uid, tarea_horas_ids, context=context):
                           tota_trabajado = tota_trabajado + tarea_hora.horas
@@ -374,7 +379,12 @@ class acp_contrato_contrato(osv.osv):
                     fecha_inicio = fecha_fin
                 if fecha_inicio_trimestre and fecha_fin_trimestre:
                     #calculamso el total de horas en este trimestre
-                    tarea_horas_ids = tarea_horas_obj.search(cr, uid, [('parent_id','=',record.id),('fecha','>=',fecha_inicio_trimestre),('fecha','<=',fecha_fin_trimestre)], context=context)
+                    domain = [('parent_id','=',record.id),('fecha','>=',fecha_inicio_trimestre),('fecha','<=',fecha_fin_trimestre)]
+                    if record.perioricidad == 'unica':
+                        # Restablecemos las fecha inicio y no buscamos por fecha fin
+                        init_date = record.fecha
+                        domain = [('parent_id','=',record.id),('fecha','>=',init_date)]
+                    tarea_horas_ids = tarea_horas_obj.search(cr, uid, domain, context=context)
                     tota_trabajado = 0.0
                     for tarea_hora in  tarea_horas_obj.browse(cr, uid, tarea_horas_ids, context=context):
                         horas = horas + tarea_hora.horas
@@ -397,7 +407,12 @@ class acp_contrato_contrato(osv.osv):
                         fecha_inicio = fecha_fin
                     if fecha_inicio_trimestre and fecha_fin_trimestre:
                         #calculamso el total de horas en este trimestre
-                        tarea_horas_ids = tarea_horas_obj.search(cr, uid, [('contrato_id.materia_id','=',record.materia_id.id),('parent_id','=',record.parent_id.id),('fecha','>=',fecha_inicio_trimestre),('fecha','<=',fecha_fin_trimestre)], context=context)
+                        domain = [('contrato_id.materia_id','=',record.materia_id.id),('parent_id','=',record.parent_id.id),('fecha','>=',fecha_inicio_trimestre),('fecha','<=',fecha_fin_trimestre)]
+                        if record.perioricidad == 'unica':
+                            # Restablecemos las fecha inicio y no buscamos por fecha fin
+                            init_date = record.parent_id.fecha
+                            domain = [('contrato_id.materia_id','=',record.materia_id.id),('parent_id','=',record.parent_id.id),('fecha','>=',init_date)]
+                        tarea_horas_ids = tarea_horas_obj.search(cr, uid, domain, context=context)
                         tota_trabajado = 0.0
                         for tarea_hora in  tarea_horas_obj.browse(cr, uid, tarea_horas_ids, context=context):
                             horas = horas + tarea_hora.horas
@@ -482,8 +497,8 @@ class acp_contrato_contrato(osv.osv):
         'riesgo_operacional':  fields.float('Riego operacional', digits_compute= dp.get_precision('Account'), required=False),
         'solicitante': fields.many2one('res.partner', 'Solicitante', select=True,required=False),
         'total_horas_facturadas': fields.function(_total_horas_facturadas, digits_compute= dp.get_precision('Account'), string="Horas Facturadas en iguala"),
-        'total_horas_trabajadas_expediente': fields.function(_total_horas_trabajadas_expediente,  digits_compute= dp.get_precision('Account'),  string="Horas Trabajadas Expediente (Trimestre)"),
-        'total_horas_trabajadas': fields.function(_total_horas_trabajadas_totales,  digits_compute= dp.get_precision('Account'),  string="Horas totales trabajadas (Trimestre)"),
+        'total_horas_trabajadas_expediente': fields.function(_total_horas_trabajadas_expediente,  digits_compute= dp.get_precision('Account'),  string="Horas Trabajadas Expediente"),
+        'total_horas_trabajadas': fields.function(_total_horas_trabajadas_totales,  digits_compute= dp.get_precision('Account'),  string="Horas totales trabajadas"),
         'total_trabajado': fields.function(_total_trabajado,  digits_compute= dp.get_precision('Account'),  string="Total Trabajado"),
         'total_coste': fields.function(_total_coste,  digits_compute= dp.get_precision('Account'),  string="Total Coste"),
         'total_facturado': fields.function(_total_facturado, digits_compute= dp.get_precision('Account'), string="Total Facturado"),
