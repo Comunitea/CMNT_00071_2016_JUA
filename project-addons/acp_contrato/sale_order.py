@@ -104,7 +104,6 @@ class sale_order(osv.osv):
                                                     }, context=context)
 
 
-
         rango_factura = 0
         if order.perioricidad:
             print "<<<<<<<<<<<<<<<<<<  order.perioricidad: ",order.perioricidad
@@ -114,7 +113,7 @@ class sale_order(osv.osv):
                 rango_factura = 3
             if order.perioricidad == 'semestral':
                 rango_factura = 6
-            if order.perioricidad == 'anual':
+            if order.perioricidad in ['unica', 'anual']:
                 rango_factura = 12
 
         for line in order.order_line:

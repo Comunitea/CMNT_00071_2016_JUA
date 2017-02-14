@@ -288,7 +288,7 @@
                   <field name="recurso_ids" widget="many2many_tags" />
                 </group>
               </page>
-              <page string="Gastos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+              <page string="Gastos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager">
                 <group string="Total Factura / Rectificativa">
                     <field name="total_in_refund"/>
                 </group>
@@ -372,7 +372,7 @@
                   </tree>
                 </field>
               </page>
-              <page string="Ingresos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager" attrs="{'invisible': [('contrato_plantilla','=',True)]}">
+              <page string="Ingresos" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager">
                 <group string="Total Factura / Rectificativa">
                     <field name="total_out_refund"/>
                 </group>
