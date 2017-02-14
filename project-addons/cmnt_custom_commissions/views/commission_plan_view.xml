@@ -11,7 +11,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Commission plans">
-                    <field name="name"/>
+                    <field name="product_id" domain="[('commission_free', '=', False)]"/>
                 </tree>
             </field>
         </record>
@@ -24,14 +24,13 @@
                 <form string="Commission plan">
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <field name="product_id"/>
                         </group>
                         <field name="lines">
                             <tree editable="bottom">
-                                <field name="product_id" domain="[('commission_free', '=', False)]"/>
                                 <field name="origin_id"/>
                                 <field name="commission"/>
-                                <field name="expedient"/>
+                                <field name="agent_id" domain="[('agent', '=', True)]"/>
                             </tree>
                         </field>
                     </sheet>
@@ -45,7 +44,7 @@
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <search>
-                   <field name="name"/>
+                   <field name="product_id"/>
                </search>
             </field>
         </record>

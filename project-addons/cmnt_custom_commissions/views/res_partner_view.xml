@@ -10,9 +10,9 @@
                     <attribute name="attrs"></attribute>
                     <attribute name="invisible">1</attribute>
                 </field>
-                <field name="commission" position="after">
+               <!--  <field name="commission" position="after">
                     <field name="plan_id" attrs="{'required': [('agent', '=', True)]}"/>
-                </field>
+                </field> -->
             </field>
         </record>
     </data>

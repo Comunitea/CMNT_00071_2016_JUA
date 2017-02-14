@@ -36,7 +36,8 @@ class Tarea(models.Model):
         Al crear la tarea asigno agente y comisión correspondiente
         """
         tarea = super(Tarea, self).create(vals)
-        agent = commission = False
+        plan_obj = self.env['commission.plan']
+        agent = line = False
         price_hour = 0.0
         if tarea.tipo_servicio.name == 'Actuaciones Profesionales':
             if tarea.user_seg_id.partner_id.agent:
@@ -45,20 +46,17 @@ class Tarea(models.Model):
                 product_prices_dic = tarea._get_expedient_products()
                 orig_id = tarea.partner_id.origen_cliente_id.id or False
 
-                # Busco el primer producto que esté en e plan, y devuelvc
+                # Busco el primer producto que esté en e plan, y devuelvo
                 # la comisión en función del origen
                 for product_id in product_prices_dic:
-                    commission = \
-                        agent.plan_id.get_product_commission(product_id,
-                                                             origin_id=orig_id,
-                                                             exp=True)
+                    line = plan_obj.get_line(product_id, orig_id, agent.id)
                     # Si el primero de los productos está en el plan para
-                    if commission:
+                    if line:
                         price_hour = product_prices_dic[product_id]
                         break
 
-        if agent and commission:
-            tarea.write({'commission': commission.id,
+        if agent and line:
+            tarea.write({'commission': line.commission.id,
                          'agent_id': agent.id,
                          'price_hour': price_hour})
         return tarea

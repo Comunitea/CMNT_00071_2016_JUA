@@ -36,27 +36,17 @@ class SaleOrderLine(models.Model):
             name=name, partner_id=partner_id, lang=lang, update_tax=update_tax,
             date_order=date_order, packaging=packaging,
             fiscal_position=fiscal_position, flag=flag)
+        plan_obj = self.env['commission.plan']
         if partner_id and product:
             agent_list = []
             partner = self.env["res.partner"].browse(partner_id)
             origin_id = partner.origen_cliente_id.id or False
 
-            for agent in partner.agents:
-                # default commission_id for agent
-                commission_id = agent.commission.id
-
-                commission_id_product = \
-                    agent.plan_id.get_product_commission(product, origin_id)
-                if commission_id_product:
-                    commission_id = commission_id_product
-
-                    # Solo creamos la comision si encontramos una en el plan
-                    agent_list.append({'agent': agent.id,
-                                       'commission': commission_id
-                                       })
-
+            plan_line = plan_obj.get_line(product, origin_id, False)
+            if plan_line:
+                agent_list.append({'agent': plan_line.agent_id.id,
+                                  'commission': plan_line.commission.id})
                 res['value']['agents'] = [(0, 0, x) for x in agent_list]
-
         return res
 
     @api.model

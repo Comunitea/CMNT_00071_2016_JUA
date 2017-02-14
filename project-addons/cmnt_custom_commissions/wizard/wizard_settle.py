@@ -6,7 +6,6 @@
 from openerp import models, fields, api, _
 import time
 from datetime import date, timedelta
-from dateutil.relativedelta import relativedelta
 
 
 class SaleCommissionMakeSettle(models.TransientModel):
@@ -27,6 +26,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
         settlement_obj = self.env['sale.commission.settlement']
         hour_settlement_line_obj = self.env['hour.settlement.line']
         settlement_ids = []
+        settlement = False
         if not self.agents:
             self.agents = self.env['res.partner'].search(
                 [('agent', '=', True)])
@@ -74,40 +74,55 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                             ]})
                         pos += 1
 
-                # Obtener tareas donde esté asignado el agente
-                date_to_agent = self._get_period_start(agent, date_to)
-                domain = [
-                    ('tarea_id.agent_id', '=', agent.id),
-                    ('tarea_id.company_id', '=', company.id),
-                    ('tarea_id.contrato_id.state', '=', 'confirmed'),
-                    ('fecha', '<=', date_to_agent),
-                    ('settled', '=', False)
-                ]
-                task_hours_objs = t_h_obj.search(domain)
+            # Obtener tareas donde esté asignado el agente
+            company = self.env['res.users'].browse(self._uid).company_id
+            date_to_agent = self._get_period_start(agent, date_to)
+            domain = [
+                ('tarea_id.agent_id', '=', agent.id),
+                ('tarea_id.company_id', '=', company.id),
+                ('tarea_id.contrato_id.state', '=', 'confirmed'),
+                ('fecha', '<=', date_to_agent),
+                ('settled', '=', False)
+            ]
+            task_hours_objs = t_h_obj.search(domain)
 
-                if not task_hours_objs:
-                    continue
-                # Agrupamos las horas totales por tarea
-                hours_by_task = {}
-                for th in task_hours_objs:
-                    if th.tarea_id not in hours_by_task:
-                        hours_by_task[th.tarea_id] = 0.0
-                    hours_by_task[th.tarea_id] += th.horas
+            if not task_hours_objs:
+                continue
 
-                # Creamos una linea de liquidación por las horas de cada tarea
-                for task in hours_by_task:
-                    hours = hours_by_task[task]
-                    amount = \
-                        hours * task.price_hour * (task.commission.fix_qty / 100.0)
-                    vals = {
-                        'settlement': settlement.id,
-                        'task_id': task.id,
-                        'hours': hours_by_task[task],
-                        'amount': amount
-                    }
-                    hour_settlement_line_obj.create(vals)
-                # Marcamos las horas como liquidadas
-                task_hours_objs.write({'settled': True})
+            if not settlement:
+                sett_from = \
+                    self._get_period_start(agent,
+                                           time.strftime('%Y-%m-%d'))
+                sett_to = fields.Date.to_string(
+                    self._get_next_period_date(agent, sett_from) -
+                    timedelta(days=1))
+                settlement = settlement_obj.create(
+                    {'agent': agent.id,
+                     'date_from': sett_from,
+                     'date_to': sett_to,
+                     'company_id': company.id})
+            # Agrupamos las horas totales por tarea
+            hours_by_task = {}
+            for th in task_hours_objs:
+                if th.tarea_id not in hours_by_task:
+                    hours_by_task[th.tarea_id] = 0.0
+                hours_by_task[th.tarea_id] += th.horas
+
+            # Creamos una linea de liquidación por las horas de cada tarea
+            for task in hours_by_task:
+                hours = hours_by_task[task]
+                amount = \
+                    hours * task.price_hour * \
+                    (task.commission.fix_qty / 100.0)
+                vals = {
+                    'settlement': settlement.id,
+                    'task_id': task.id,
+                    'hours': hours_by_task[task],
+                    'amount': amount
+                }
+                hour_settlement_line_obj.create(vals)
+            # Marcamos las horas como liquidadas
+            task_hours_objs.write({'settled': True})
 
         # go to results
         if len(settlement_ids):
@@ -122,4 +137,3 @@ class SaleCommissionMakeSettle(models.TransientModel):
         else:
             res = {'type': 'ir.actions.act_window_close'}
         return res
-

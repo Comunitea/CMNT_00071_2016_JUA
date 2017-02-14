@@ -4,8 +4,8 @@
 from openerp import models, fields
 
 
-class ResPartner(models.Model):
+# class ResPartner(models.Model):
 
-    _inherit = 'res.partner'
+#     _inherit = 'res.partner'
 
-    plan_id = fields.Many2one('commission.plan', 'Commission Plan')
+#     plan_id = fields.Many2one('commission.plan', 'Commission Plan')
