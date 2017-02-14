@@ -26,12 +26,12 @@ class SaleCommissionMakeSettle(models.TransientModel):
         settlement_obj = self.env['sale.commission.settlement']
         hour_settlement_line_obj = self.env['hour.settlement.line']
         settlement_ids = []
-        settlement = False
         if not self.agents:
             self.agents = self.env['res.partner'].search(
                 [('agent', '=', True)])
         date_to = fields.Date.from_string(self.date_to)
         for agent in self.agents:
+            settlement = False
             date_to_agent = self._get_period_start(agent, date_to)
             # Get non settled invoices
             agent_lines = agent_line_obj.search(
@@ -101,6 +101,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
                      'date_from': sett_from,
                      'date_to': sett_to,
                      'company_id': company.id})
+                settlement_ids.append(settlement.id)
             # Agrupamos las horas totales por tarea
             hours_by_task = {}
             for th in task_hours_objs:
