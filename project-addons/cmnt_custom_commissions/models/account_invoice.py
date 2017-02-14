@@ -53,6 +53,12 @@ class AccountInvoiceLineAgent(models.Model):
 
     _inherit = 'account.invoice.line.agent'
 
+    pending_agent_line = fields.Many2many(
+        comodel_name='pending.sale.commission.settlement.line',
+        relation='pending_settlement_agent_line_rel',
+        column1='pending_agent_line_id', column2='settlement_id',
+        copy=False)
+
     @api.depends('invoice_line.price_subtotal', 'invoice_line.exempt_price')
     def _compute_amount(self):
         """

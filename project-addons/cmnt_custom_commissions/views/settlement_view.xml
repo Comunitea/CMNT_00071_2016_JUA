@@ -17,7 +17,23 @@
                             </tree>
                         </field>
                     </group>
+                    <group string="Pending Commission lines" colspan="4">
+                            <field name="pending_line_ids" nolabel="1">
+                                <tree string="Pending Settlement lines">
+                                    <field name="date"/>
+                                    <field name="invoice"/>
+                                    <field name="invoice_line"/>
+                                    <field name="commission"/>
+                                    <field name="settled_amount"/>
+                                </tree>
+                            </field>
+                    </group>
                 </group>
+
+                <field name="total" position="after">
+                    <field name="total_pending"/>
+                    <field name="total_and_pending"/>
+                </field>
             </field>
         </record>
     </data>

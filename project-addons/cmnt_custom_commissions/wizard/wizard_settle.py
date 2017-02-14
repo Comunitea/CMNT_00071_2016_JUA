@@ -21,6 +21,8 @@ class SaleCommissionMakeSettle(models.TransientModel):
         agent_line_obj = self.env['account.invoice.line.agent']
         settlement_obj = self.env['sale.commission.settlement']
         settlement_line_obj = self.env['sale.commission.settlement.line']
+        pending_settlement_line_obj = \
+            self.env['pending.sale.commission.settlement.line']
 
         t_h_obj = self.env['acp_contrato.tarea_horas']
         settlement_obj = self.env['sale.commission.settlement']
@@ -32,6 +34,7 @@ class SaleCommissionMakeSettle(models.TransientModel):
         date_to = fields.Date.from_string(self.date_to)
         for agent in self.agents:
             settlement = False
+            pending_line = False
             date_to_agent = self._get_period_start(agent, date_to)
             # Get non settled invoices
             agent_lines = agent_line_obj.search(
@@ -47,11 +50,17 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                                          month=1,
                                                          day=1))
                     while pos < len(agent_lines_company):
-                        if (agent.commission.invoice_state == 'paid' and
+                        if (agent_lines_company[pos].commission.
+                            invoice_state == 'paid' and
                                 agent_lines_company[pos].invoice.state !=
                                 'paid'):
-                            pos += 1
-                            continue
+                            # Marco linea para que vaya a pendientes
+                            # Ya no la saltamos
+                            pending_line = True
+
+                            # pos += 1
+
+                            # continue
                         if agent_lines_company[pos].invoice_date > sett_to:
                             sett_from = self._get_period_start(
                                 agent,
@@ -67,11 +76,20 @@ class SaleCommissionMakeSettle(models.TransientModel):
                                  'date_to': sett_to,
                                  'company_id': company.id})
                             settlement_ids.append(settlement.id)
-                        settlement_line_obj.create(
-                            {'settlement': settlement.id,
-                             'agent_line': [(6, 0,
-                                             [agent_lines_company[pos].id])
-                                            ]})
+
+                        # Decido si va a lineas pendientes o no
+                        sett_line_obj = settlement_line_obj
+                        vals = {'settlement': settlement.id,
+                                'agent_line':
+                                [(6, 0, [agent_lines_company[pos].id])]}
+                        if pending_line:
+                                sett_line_obj = pending_settlement_line_obj
+                                vals = {'settlement': settlement.id,
+                                        'pending_agent_line':
+                                        [(6, 0, [agent_lines_company[pos].id])]
+                                        }
+                                pending_line = False
+                        sett_line_obj.create(vals)
                         pos += 1
 
             # Obtener tareas donde esté asignado el agente
