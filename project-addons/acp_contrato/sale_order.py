@@ -39,6 +39,7 @@ class sale_order(osv.osv):
         'dft_contrato_id': fields.many2one('acp_contrato.contrato', 'Contrato', readonly=False,required=False,copy=False),
         'dft_servicio_id': fields.many2one('acp_contrato.servicio', 'Servicio', readonly=False,required=False,copy=False),
         'perioricidad': fields.selection([
+                     ('unica','Única'),
                      ('mensual','Mensual'),
                      ('trimestral','Trimestral'),
                      ('semestral','Semestral'),

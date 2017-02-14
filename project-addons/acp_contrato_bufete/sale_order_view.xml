@@ -20,7 +20,7 @@
           <field name="tipo_contrato" attrs="{'readonly': [('state','not in',['draft','sent'])]}" widget="selection" string="Tipo Expediente" required="1" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
           <field name="referencia" attrs="{'readonly': [('state','not in',['draft','sent'])]}" string="Referencia Expediente" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
         </field>
-        <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
+<!--         <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
           <page string='Materias'>
             <field name="line_materia_ids" attrs="{'readonly': [('state','not in',['draft','sent'])]}" colspan="4" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user">
               <tree string="Materias" editable="top">
@@ -30,7 +30,7 @@
               </tree>
             </field>
           </page>
-        </xpath>
+        </xpath> -->
         <button name="crea_contrato" position = "replace">
             <button name="crea_contrato_bufete" string="Crear Contrato" type="object" states="manual,progress" class="oe_highlight" groups="acp_contrato.contratos_user_accounting,acp_contrato.contratos_manager,acp_contrato.contratos_user"/>
         </button>

@@ -652,6 +652,7 @@ class acp_contrato_contrato(osv.osv):
         'purchase_order_lineas': fields.one2many('purchase.order.line', 'contrato_id', 'Presupuestos Compra',copy=False),
         'hours_next_act': fields.function(_get_hours_next_act,method=True,type='integer', string="Horas Proxima Tarea"),
         'perioricidad': fields.selection([
+                     ('unica','Única'),
                      ('semanal','Semanal'),
                      ('quincenal','Quincenal'),
                      ('mensual','Mensual'),
@@ -1552,7 +1553,7 @@ class acp_contrato_tarea(osv.osv):
         'child_ids': fields.one2many('acp_contrato.tarea', 'parent_id','Tareas generadas', select=True,required=False),
         'fecha': fields.datetime('Fecha', required=True, select=True),
         'fecha_fin': fields.datetime('Fecha Finalización', required=False),
-        'actividad_id': fields.many2one('acp_contrato.actividad', 'Actividad', select=True,required=True),
+        'actividad_id': fields.many2one('acp_contrato.actividad', 'Actividad', select=True,required=False),
         'tipo': fields.selection([
                      ('anular','Anular'),
                      ('finalizar','Finalizar'),
