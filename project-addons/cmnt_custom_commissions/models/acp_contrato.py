@@ -49,7 +49,8 @@ class Tarea(models.Model):
                 # Busco el primer producto que esté en e plan, y devuelvo
                 # la comisión en función del origen
                 for product_id in product_prices_dic:
-                    line = plan_obj.get_line(product_id, orig_id, agent.id)
+                    line = plan_obj.get_line(product_id, orig_id, True,
+                                             agent.id)
                     # Si el primero de los productos está en el plan para
                     if line:
                         price_hour = product_prices_dic[product_id]

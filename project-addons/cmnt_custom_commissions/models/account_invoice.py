@@ -40,7 +40,7 @@ class AccountInvoiceLine(models.Model):
             partner = self.env["res.partner"].browse(partner_id)
             origin_id = partner.origen_cliente_id.id or False
 
-            plan_line = plan_obj.get_line(product, origin_id, False)
+            plan_line = plan_obj.get_line(product, origin_id)
             if plan_line:
                 agent_list.append({'agent': plan_line.agent_id.id,
                                   'commission': plan_line.commission.id})

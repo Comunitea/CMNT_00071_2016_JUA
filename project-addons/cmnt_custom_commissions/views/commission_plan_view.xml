@@ -12,6 +12,7 @@
             <field name="arch" type="xml">
                 <tree string="Commission plans">
                     <field name="product_id" domain="[('commission_free', '=', False)]"/>
+                    <field name="exp"/>
                 </tree>
             </field>
         </record>
@@ -25,6 +26,7 @@
                     <sheet>
                         <group>
                             <field name="product_id"/>
+                            <field name="exp"/>
                         </group>
                         <field name="lines">
                             <tree editable="bottom">

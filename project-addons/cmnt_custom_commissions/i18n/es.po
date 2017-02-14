@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-14 12:30+0000\n"
-"PO-Revision-Date: 2017-02-14 12:30+0000\n"
+"POT-Creation-Date: 2017-02-14 18:34+0000\n"
+"PO-Revision-Date: 2017-02-14 18:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,20 +23,20 @@ msgid "Agent"
 msgstr "Agente"
 
 #. module: cmnt_custom_commissions
-#: field:pending.sale.commission.settlement.line,agent_line:0
-msgid "Agent line"
-msgstr "Linea agente"
-
-#. module: cmnt_custom_commissions
 #: field:pending.sale.commission.settlement.line,settled_amount:0
 msgid "Amount settled"
 msgstr "Importe liquidado"
 
 #. module: cmnt_custom_commissions
+#: field:commission.plan,exp:0
+msgid "Apply in expedient"
+msgstr "Solo aplicar en tareas de expediente"
+
+#. module: cmnt_custom_commissions
 #: field:acp_contrato.tarea,commission:0
 #: field:commission.plan.line,commission:0
 msgid "Commission"
-msgstr "Comisión"
+msgstr "Commission"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan.line,plan_id:0
@@ -76,10 +76,10 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: cmnt_custom_commissions
-#: code:addons/cmnt_custom_commissions/wizard/wizard_settle.py:144
+#: code:addons/cmnt_custom_commissions/wizard/wizard_settle.py:149
 #, python-format
 msgid "Created Settlements"
-msgstr "Liquidaciones creadas"
+msgstr "Created Settlements"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan,create_uid:0
@@ -106,12 +106,12 @@ msgstr "Customer Origin"
 #: field:account.invoice.line,exempt_price:0
 #: field:sale.order.line,exempt_price:0
 msgid "Exempt Commisison"
-msgstr "Exento de comisión"
+msgstr "Exempt Commisison"
 
 #. module: cmnt_custom_commissions
 #: model:ir.model,name:cmnt_custom_commissions.model_acp_contrato_tarea_horas
 msgid "Horas asociados a tareas"
-msgstr "Horas asociadas a tareas"
+msgstr "Horas asociados a tareas"
 
 #. module: cmnt_custom_commissions
 #: view:sale.commission.settlement:cmnt_custom_commissions.view_settlement_form_hour
@@ -121,7 +121,7 @@ msgstr "Lineas de liquidación por horas"
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,hours:0
 msgid "Hours"
-msgstr "Horas"
+msgstr "Hours"
 
 #. module: cmnt_custom_commissions
 #: field:commission.plan,id:0
@@ -175,7 +175,7 @@ msgstr "Última actualización en"
 #. module: cmnt_custom_commissions
 #: field:commission.plan,lines:0
 msgid "Lines"
-msgstr "Líneas"
+msgstr "Lines"
 
 #. module: cmnt_custom_commissions
 #: model:ir.model,name:cmnt_custom_commissions.model_res_partner
@@ -191,6 +191,12 @@ msgstr "Líneas de comisión pendientes"
 #: view:sale.commission.settlement:cmnt_custom_commissions.view_settlement_form_hour
 msgid "Pending Settlement lines"
 msgstr "Líneas de comisión pendientes"
+
+#. module: cmnt_custom_commissions
+#: field:account.invoice.line.agent,pending_agent_line:0
+#: field:pending.sale.commission.settlement.line,pending_agent_line:0
+msgid "Pending agent line"
+msgstr "Pending agent line"
 
 #. module: cmnt_custom_commissions
 #: field:sale.commission.settlement,pending_line_ids:0
@@ -215,12 +221,12 @@ msgstr "Línea pedido de venta"
 #. module: cmnt_custom_commissions
 #: field:acp_contrato.tarea_horas,settled:0
 msgid "Settled"
-msgstr "Liquidado"
+msgstr "Settled"
 
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,amount:0
 msgid "Settled Amount"
-msgstr "Importe liquidado"
+msgstr "Settled Amount"
 
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,settlement:0
@@ -231,7 +237,7 @@ msgstr "Liquidación"
 #. module: cmnt_custom_commissions
 #: field:sale.commission.settlement,hour_lines:0
 msgid "Settlement hour lines"
-msgstr "Linéas liquidación por horas"
+msgstr "Settlement hour lines"
 
 #. module: cmnt_custom_commissions
 #: model:ir.model,name:cmnt_custom_commissions.model_acp_contrato_tarea
@@ -241,4 +247,10 @@ msgstr "Tareas de los servicios"
 #. module: cmnt_custom_commissions
 #: field:hour.settlement.line,task_id:0
 msgid "Task"
-msgstr "Tarea"
+msgstr "Task"
+
+#. module: cmnt_custom_commissions
+#: view:sale.order:cmnt_custom_commissions.view_order_agent_form_inherit_exent
+msgid "{'partner_id': partner_id}"
+msgstr "{'partner_id': partner_id}"
+
