@@ -1000,7 +1000,7 @@
           <field name="servicio_id" />
           <field name="fecha" />
           <field name="partner_id" />
-          <!-- <field name="actividad_id" /> -->
+          <field name="actividad_id" />
           <field name="fecha_limite" />
           <field name="prioridad" />
           <field name="detalle" />
@@ -1051,7 +1051,7 @@
                     <field name="fecha" attrs="{'readonly': [('is_created','=',True)]}" />
                     <field name="fecha_fin" readonly="1" />
                     <field name="is_created" invisible="True" />
-                    <!-- <field name="actividad_id" widget="selection" on_change="onchange_actividad_id(actividad_id, fecha, servicio_id, context)" attrs="{'readonly': [('is_created','=',True)]}" domain="['|',('tipo_servicio','=',tipo_servicio),('tipo_servicio','=',False)]" /> -->
+                    <field name="actividad_id" widget="selection" on_change="onchange_actividad_id(actividad_id, fecha, servicio_id, context)" attrs="{'readonly': [('is_created','=',True)]}" domain="['|',('tipo_servicio','=',tipo_servicio),('tipo_servicio','=',False)]" />
                     <field name="tipo" invisible="True" />
                     <field name="user_seg_id" widget="selection" attrs="{'readonly': [('is_created','=',True)]}" domain="[('share','=',False)]" />
                     <field name="fecha_limite" />
