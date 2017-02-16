@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 
 
 class CommissionPlan(models.Model):
@@ -13,8 +13,10 @@ class CommissionPlan(models.Model):
     lines = fields.One2many('commission.plan.line', 'plan_id')
     exp = fields.Boolean('Apply in expedient')
 
-    sql_constraints = [('plan_product_unique', 'unique(product_id)',
-                       'You already have commission plan for this product')]
+    _sql_constraints = [(
+        'plan_product_unique', 'unique(product_id)',
+        _('You already have commission plan for this product'))
+    ]
 
     @api.model
     def get_line(self, product_id, origin_id, exp=False, agent_id=False):
