@@ -15,7 +15,7 @@ class CommissionPlan(models.Model):
 
     _sql_constraints = [(
         'plan_product_unique', 'unique(product_id)',
-        _('You already have commission plan for this product'))
+        _('Ya tienes un plan de comisiones definido para este producto'))
     ]
 
     @api.model
