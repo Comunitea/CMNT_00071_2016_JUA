@@ -14,8 +14,10 @@ class CommissionPlan(models.Model):
     exp = fields.Boolean('Apply in expedient')
 
     _sql_constraints = [(
-        'plan_product_unique', 'unique(product_id)',
-        _('Ya tienes un plan de comisiones definido para este producto'))
+        'plan_product_unique', 'unique(product_id, exp)',
+        _('Ya tienes un plan de comisiones definido para este producto \
+          y con la misma opción de aplicar a tareas de expediente \
+          seleccionada'))
     ]
 
     @api.model
