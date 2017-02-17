@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="res.groups" id="group_only_own_settlements">
+            <field name="name">View own settlements only</field>
+        </record>
+
+        <record id="sale_commission_settlement_only_user" model="ir.rule">
+            <field name="name">Settlement view only for user agent </field>
+            <field name="model_id" ref="model_sale_commission_settlement"/>
+            <field name="global" eval="False"/>
+            <field name="domain_force">[('agent', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(6,0, [ref('group_only_own_settlements')])]"/>
+        </record>
+
+
+    </data>
+</openerp>
