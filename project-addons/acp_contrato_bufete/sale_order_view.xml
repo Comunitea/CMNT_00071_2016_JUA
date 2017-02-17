@@ -48,7 +48,7 @@
             <page string="Información expediente iguala" groups="base.group_user">
                 <group>
                     <field name="riesgo_operacional" />
-                    <field name="meses_contratado" />
+                    <field name="meses_contratado" attrs="{'invisible': [('perioricidad','in',['unica'])]}"/>
                     <field name="perioricidad" string="Perioricidad de facturacion"/>
                     <field name="descripcion_iguala" colspan="4" />
                 </group>
