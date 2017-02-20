@@ -104,7 +104,7 @@ class acp_contrato_bufete_horas_letrado_wizard(osv.osv_memory):
         else:
            fecha_hasta_c = '3000/01/01' 
            
-        logo = self.pool.get('res.partner').browse(cr, uid, 1, context=context).company_id.logo
+        logo = self.pool.get('res.partner').browse(cr, 1, 1, context=context).company_id.logo
         parameters={}
         parameters['FECHA_DESDE'] = fecha_desde_c
         parameters['FECHA_HASTA'] = fecha_hasta_c
@@ -200,7 +200,7 @@ class acp_contrato_bufete_actuaciones_wizard(osv.osv_memory):
         if not ids:
             raise osv.except_osv(_('Información'), _("No se han encontrado registros con los criterios seleccionados. Repita la búsqueda con otros criterios."))
 
-        logo = self.pool.get('acp_contrato.contrato').browse(cr, uid, data['contrato_id'][0], context=context).company_id.logo
+        logo = self.pool.get('acp_contrato.contrato').browse(cr, 1, data['contrato_id'][0], context=context).company_id.logo
                                  
         return {
             'type': 'ir.actions.report.xml',
@@ -412,7 +412,7 @@ class acp_contrato_bufete_igualas_wizard(osv.osv_memory):
 
            
 
-        logo = self.pool.get('res.company').browse(cr, uid, 1, context=context).logo
+        logo = self.pool.get('res.company').browse(cr, 1, 1, context=context).logo
         
         if print_report:
             return self.action_return( cr, uid, ids,data,report_id,fecha_desde_c,fecha_hasta_c,logo, context = context)
