@@ -159,8 +159,7 @@ class acp_contrato_bufete_horas_cliente_wizard(osv.osv_memory):
            fecha_hasta_c = fecha_hasta_d.strftime('%Y/%m/%d')
         else:
            fecha_hasta_c =  '3000/01/01'  
-           
-        logo = self.pool.get('res.partner').browse(cr, uid, data['partner_id'][0], context=context).company_id.logo
+        logo = self.pool.get('res.partner').browse(cr, 1, data['partner_id'][0], context=context).company_id.logo
         parameters={}
         parameters['FECHA_DESDE'] = fecha_desde_c
         parameters['FECHA_HASTA'] = fecha_hasta_c
