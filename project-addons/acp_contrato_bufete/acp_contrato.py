@@ -311,8 +311,8 @@ class acp_contrato_contrato(osv.osv):
                 horas = 0.0
                 if record.parent_id and record.parent_id.tipo_contrato.name == 'Iguala':
                     for materia in record.parent_id.contrato_materia_ids:
-                        if materia.materia_id.id == record.materia_id.id:
-                            horas = horas + materia.horas
+                        # if materia.materia_id.id == record.materia_id.id:
+                        horas = horas + materia.horas
                 x[record.id] = horas
         return x
 
