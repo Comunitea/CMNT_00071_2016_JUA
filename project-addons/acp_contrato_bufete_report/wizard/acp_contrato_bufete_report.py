@@ -85,6 +85,8 @@ class acp_contrato_bufete_horas_letrado_wizard(osv.osv_memory):
     }
 
     def action_print(self, cr, uid, ids, context = None):
+        # cmnt. Parche para que usuarios que no tienes acceso a los subexpedientes de las igualas puedan hacer el search de las horas
+        uid = 1
         if context is None:
             context = {}
         data = self.read(cr, uid, ids, [])
@@ -140,6 +142,8 @@ class acp_contrato_bufete_horas_cliente_wizard(osv.osv_memory):
     }
 
     def action_print(self, cr, uid, ids, context = None):
+        # cmnt. Parche para que usuarios que no tienes acceso a los subexpedientes de las igualas puedan hacer el search de las horas
+        uid = 1
         if context is None:
             context = {}
         data = self.read(cr, uid, ids, [])
@@ -192,6 +196,8 @@ class acp_contrato_bufete_actuaciones_wizard(osv.osv_memory):
     }
 
     def action_print(self, cr, uid, ids, context = None):
+        # cmnt. Parche para que usuarios que no tienes acceso a los subexpedientes de las igualas puedan hacer el search de las horas
+        uid = 1
         if context is None:
             context = {}
         data = self.read(cr, uid, ids, [])
@@ -300,6 +306,8 @@ class acp_contrato_bufete_igualas_wizard(osv.osv_memory):
         return {'value': {'fecha_desde':fecha_desde,'fecha_hasta':fecha_hasta}}
         
     def action_print(self, cr, uid, ids,print_report=True, context = None):
+        # cmnt. Parche para que usuarios que no tienes acceso a los subexpedientes de las igualas puedan hacer el search de las horas
+        uid = 1
         report_obj = self.pool.get('acp_contrato.bufete.igualas.report')
         expediente_obj = self.pool.get('acp_contrato.contrato')
         horas_obj = self.pool.get('acp_contrato.tarea_horas')
