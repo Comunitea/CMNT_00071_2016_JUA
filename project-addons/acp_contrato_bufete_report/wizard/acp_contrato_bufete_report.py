@@ -207,7 +207,10 @@ class acp_contrato_bufete_actuaciones_wizard(osv.osv_memory):
             raise osv.except_osv(_('Información'), _("No se han encontrado registros con los criterios seleccionados. Repita la búsqueda con otros criterios."))
 
         logo = self.pool.get('acp_contrato.contrato').browse(cr, 1, data['contrato_id'][0], context=context).company_id.logo
-                                 
+    
+        tarea_ids = self.pool.get('acp_contrato.tarea').search(cr, uid, [('contrato_id', '=',data['contrato_id'][0])] , context=context)
+        if not tarea_ids:
+            raise osv.except_osv(_('Información'), _("No se han encontrado tareas asociadas al expediente seleccionado. No se imprimirá el informe"))
         return {
             'type': 'ir.actions.report.xml',
             'report_name': 'acp_contrato_bu_tareas_jasper',
