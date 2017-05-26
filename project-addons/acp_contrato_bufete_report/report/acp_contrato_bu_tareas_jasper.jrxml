@@ -61,7 +61,7 @@ where act.contrato_id = acc.id
   and  ru_tar.id = act.user_seg_id
   and rp_tar_con.id = ru_tar.partner_id
   and aca.id = act.actividad_id
-  and acc.id = $P{CONTRATO_ID}
+  and (acc.id = $P{CONTRATO_ID} or acc.parent_id = $P{CONTRATO_ID})
 group by
        acc.id ,
        acc.company_id,

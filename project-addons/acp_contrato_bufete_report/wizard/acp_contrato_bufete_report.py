@@ -202,15 +202,23 @@ class acp_contrato_bufete_actuaciones_wizard(osv.osv_memory):
             context = {}
         data = self.read(cr, uid, ids, [])
         data = data and data[0] or {}
-        ids = self.pool.get('acp_contrato.contrato').search(cr, uid, [('id','=',data['contrato_id'][0])] , context = context)
+
+        contrato_id = data['contrato_id'][0]
+        ids = self.pool.get('acp_contrato.contrato').search(cr, uid, [('id','=',contrato_id)] , context = context)
         if not ids:
             raise osv.except_osv(_('Información'), _("No se han encontrado registros con los criterios seleccionados. Repita la búsqueda con otros criterios."))
 
-        logo = self.pool.get('acp_contrato.contrato').browse(cr, 1, data['contrato_id'][0], context=context).company_id.logo
-    
-        tarea_ids = self.pool.get('acp_contrato.tarea').search(cr, uid, [('contrato_id', '=',data['contrato_id'][0])] , context=context)
+        logo = self.pool.get('acp_contrato.contrato').browse(cr, 1, contrato_id, context=context).company_id.logo
+        
+        tarea_obj = self.pool.get('acp_contrato.contrato').browse(cr, uid, contrato_id , context = context)
+
+        contrato_ids = [contrato_id]
+        for c in tarea_obj.child_ids:
+            if c.id not in contrato_ids:
+                contrato_ids.append(c.id)
+        tarea_ids = self.pool.get('acp_contrato.tarea').search(cr, uid, [('contrato_id', 'in', contrato_ids)] , context=context)
         if not tarea_ids:
-            raise osv.except_osv(_('Información'), _("No se han encontrado tareas asociadas al expediente seleccionado. No se imprimirá el informe"))
+            raise osv.except_osv(_('Información'), _("No se han encontrado tareas asociadas al expediente seleccionado ni a sus hijos. No se imprimirá el informe"))
         return {
             'type': 'ir.actions.report.xml',
             'report_name': 'acp_contrato_bu_tareas_jasper',
@@ -219,7 +227,7 @@ class acp_contrato_bufete_actuaciones_wizard(osv.osv_memory):
                 #'id': context.get('active_ids') and context.get('active_ids')[0] or False,
                 #'ids': ids,
                 'form': data,
-                'parameters': {'CONTRATO_ID':  data['contrato_id'][0],
+                'parameters': {'CONTRATO_ID':  contrato_id,
                                'LOGO': logo
                                }
             },
@@ -360,6 +368,9 @@ class acp_contrato_bufete_igualas_wizard(osv.osv_memory):
                                                                 '|',('fecha_limite_asignada','=',False),
                                                                 ('fecha_limite_asignada','>=',fecha_hasta_c),
                                                                 ], context = context)
+
+        if not expediente_iguala_ids:
+            raise osv.except_osv(_('Información'), _("No se han encontrado igualas con los filtros seleccionados"))
 
         #comprobamos si tiene un vencimiento entre las fechas del informe
         expedientes_ids = []
