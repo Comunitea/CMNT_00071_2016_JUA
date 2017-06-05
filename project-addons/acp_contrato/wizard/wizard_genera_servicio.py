@@ -226,7 +226,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
         result = []
         # Se seleccionan facturas programadas de los contratos que no estén dados de baja
         # y tengan configurado el mes
-
+        import ipdb; ipdb.set_trace()
         cr.execute("select acp_contrato_contrato.id as contrato_id , acp_contrato_contrato.name,acp_contrato_contrato.partner_id as cliente_id ,\
                     acp_contrato_contrato.partner_direccion_id cliente_direccion_id,acp_contrato_facturacion.id as programa_id, \
                     acp_contrato_facturacion.name as facturacion_name,to_char(acp_contrato_fechas_facturacion.dia,'00') as dia_factura \
@@ -304,18 +304,7 @@ class acp_contrato_genera_servicio(osv.osv_memory):
                     line_name = ir_sequence_obj._interpolate(fact_lin.name, d)
 
                     # create the invoice
-                    inv_line_values = {
-                        'name': line_name,
-                        'account_id': res['account_id'],
-                        'price_unit': fact_lin.importe,
-                        'quantity': fact_lin.cantidad,
-                        'discount': False,
-                        'uos_id': res.get('uos_id', False),
-                        'product_id': fact_lin.product_id.id,
-                        'invoice_line_tax_id': res.get('invoice_line_tax_id'),
-                        'contrato_id': factprog['contrato_id'],
-                        'factprog_id': factprog['programa_id'],
-                    }
+                    inv_line_values = self._get_inv_line_values(cr, uid, ids, fact_lin, line_name, res, factprog, context=context)
                     inv_line.append((0,0,inv_line_values))
                 if not inv_line:
                     continue
@@ -353,6 +342,22 @@ class acp_contrato_genera_servicio(osv.osv_memory):
 
                 result.append((factprog['programa_id'], inv_values))
         return result
+
+    def _get_inv_line_values(self, cr, uid, ids, fact_lin, line_name, res, factprog, context=None):
+        res = {
+            'name': line_name,
+            'account_id': res['account_id'],
+            'price_unit': fact_lin.importe,
+            'quantity': fact_lin.cantidad,
+            'discount': False,
+            'uos_id': res.get('uos_id', False),
+            'product_id': fact_lin.product_id.id,
+            'invoice_line_tax_id': res.get('invoice_line_tax_id'),
+            'contrato_id': factprog['contrato_id'],
+            'factprog_id': factprog['programa_id'],
+        }
+        return res
+
 
     def _crea_facturas(self, cr, uid, inv_values, context=None):
         print "<<<<<<<<<<<<<<<<<<<<< FUNCION CREA FACTURA"
