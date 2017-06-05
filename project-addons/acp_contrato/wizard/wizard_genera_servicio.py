@@ -226,7 +226,6 @@ class acp_contrato_genera_servicio(osv.osv_memory):
         result = []
         # Se seleccionan facturas programadas de los contratos que no estén dados de baja
         # y tengan configurado el mes
-        import ipdb; ipdb.set_trace()
         cr.execute("select acp_contrato_contrato.id as contrato_id , acp_contrato_contrato.name,acp_contrato_contrato.partner_id as cliente_id ,\
                     acp_contrato_contrato.partner_direccion_id cliente_direccion_id,acp_contrato_facturacion.id as programa_id, \
                     acp_contrato_facturacion.name as facturacion_name,to_char(acp_contrato_fechas_facturacion.dia,'00') as dia_factura \
