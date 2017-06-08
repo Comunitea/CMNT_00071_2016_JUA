@@ -19,3 +19,5 @@ atlassian-ide-plugin.xml
 *~
 devel_*
 *.jasper
+eggs-custom/
+.mr*
