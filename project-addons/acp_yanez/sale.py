@@ -626,7 +626,7 @@ class sale_order_line(osv.osv):
         res = dict(map(lambda x: (x,0), ids))
 
 
-        for line in self.browse(cr, uid, ids, context):
+        for line in self.sudo().browse(cr, uid, ids, context):
             res[line.id] = line.product_id.product_tmpl_id.name
 
         return res 
