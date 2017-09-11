@@ -25,5 +25,5 @@ class res_users(osv.osv):
     _inherit = 'res.users'
 
     _columns = {
-        'portal_user': fields.integer('Portal user'),
+        'portal_user': fields.integer('Portal user', default=0),
     }
