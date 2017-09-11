@@ -66,7 +66,7 @@ class sale_order(osv.osv):
             return result    
 
         for sale in self.browse(cr, uid, ids, context=context):
-            attach = ira.browse(cr, uid, attch_id, context=context)
+            attach = ira.browse(cr, 1, attch_id, context=context)
             if attach.store_fname:
                 result[sale.id] = attach._file_read( attach.store_fname, bin_size)
             else:
@@ -95,7 +95,7 @@ class sale_order(osv.osv):
                 result[sale.id] = False
             return result         
         for sale in self.browse(cr, uid, ids, context=context):
-            attach = ira.browse(cr, uid, attch_id, context=context)
+            attach = ira.browse(cr, 1, attch_id, context=context)
             if attach.store_fname:
                 result[sale.id] = attach._file_read( attach.store_fname, bin_size)
             else:
