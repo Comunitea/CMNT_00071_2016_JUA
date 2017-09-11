@@ -38,6 +38,7 @@ import account
 import survey
 import sale_line_group
 import invoice_line_group
+import res_users
 
 
 

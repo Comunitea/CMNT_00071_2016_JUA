@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!--
+         User Extension
+    -->
+    <record id="res_users_form_portal_user" model="ir.ui.view">
+      <field name="name">res_users_form_portal_user</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form" />
+      <field name="arch" type="xml">
+        <page string="Preferences" position="after">
+          <page string="Avanzado">
+            <group>
+                <field name="portal_user"/>
+            </group>
+          </page>
+        </page>
+      </field>
+    </record>
+  </data>
+</openerp>

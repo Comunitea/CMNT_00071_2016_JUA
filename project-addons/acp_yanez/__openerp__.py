@@ -51,6 +51,7 @@ Descripcion pendiente
         'mail_message_view.xml',
         'mass_mail_view.xml',        
         'sale_view.xml',
+        'res_users_view.xml',
         'partner_view.xml',        
         'payment_mode_view.xml',        
         'payment_term_view.xml', 
