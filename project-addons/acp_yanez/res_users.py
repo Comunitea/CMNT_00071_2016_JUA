@@ -17,6 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import fields, osv
 
 
@@ -24,5 +25,5 @@ class res_users(osv.osv):
     _inherit = 'res.users'
 
     _columns = {
-        'portal_user': fields.boolean('Portal user'),
+        'portal_user': fields.Integer('Portal user'),
     }
