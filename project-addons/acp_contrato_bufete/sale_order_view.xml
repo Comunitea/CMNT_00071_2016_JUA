@@ -40,7 +40,7 @@
         <page string="Other Information" groups="base.group_user" position="after">
             <page string="Información expediente general" attrs="{'invisible': [('tipo_contrato','=',1)]}">
                 <group>
-                   <!--  <field name="materia_id" /> -->
+                    <field name="materia_id" />
                     <field name="horas" />
                     <field name="descripcion_lineas" colspan="4" />
                 </group>
