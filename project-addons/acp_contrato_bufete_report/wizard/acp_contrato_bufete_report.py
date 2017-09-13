@@ -350,7 +350,7 @@ class acp_contrato_bufete_igualas_wizard(osv.osv_memory):
         if data['partner_id']:
             expediente_iguala_ids = expediente_obj.search(cr, uid, [
                                                                 ('partner_id','=',data['partner_id'][0]),
-                                                                ('state','in',['exception','confirmed']),                                                                
+                                                                ('state','in',['exception','confirmed','done']),                                                                
                                                                 ('fecha','<=',fecha_hasta_c),
                                                                 ('tipo_contrato.name' ,'=', 'Iguala'),
                                                                 ('contrato_plantilla' ,'=', True),
@@ -361,7 +361,7 @@ class acp_contrato_bufete_igualas_wizard(osv.osv_memory):
             print expediente_iguala_ids
         else:
             expediente_iguala_ids = expediente_obj.search(cr, uid, [
-                                                                ('state','in',['exception','confirmed']),
+                                                                ('state','in',['exception','confirmed','done']),
                                                                 ('fecha','<=',fecha_hasta_c),
                                                                 ('tipo_contrato.name' ,'=', 'Iguala'),
                                                                 ('contrato_plantilla' ,'=', True),
