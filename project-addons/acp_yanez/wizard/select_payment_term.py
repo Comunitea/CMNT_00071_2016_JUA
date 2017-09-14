@@ -52,6 +52,8 @@ class acp_yanez_select_payment_term_l(osv.osv_memory):
         desgrose_obj = self.pool.get('acp_yanez.sale_order_desglose')
         for wiz in self.browse(cr, uid, ids, context=context):
             order = wiz.wiz_id.sale_id
+            if order.tipo_contrato.name == 'Iguala' and wiz.term_id.name != 'Pago inmediato':
+                 raise osv.except_osv(_('Error!'), _('El único plazo de pago válido para los presupuestos cuyo expediente es de tipo Iguala es pago inmediato.'))
             order.write({'payment_term2':wiz.term_id.id,'dummy_mostrar_desglose':False})
 
             #elminimamos los plazos actuales
