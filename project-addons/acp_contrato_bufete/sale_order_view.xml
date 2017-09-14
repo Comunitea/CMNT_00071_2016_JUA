@@ -37,7 +37,7 @@
 
 
         <field name="perioricidad" position="replace"/>
-        <page string="Other Information" groups="base.group_user" position="after">
+        <page string="Order Lines" position="after">
             <page string="Información expediente general" attrs="{'invisible': [('tipo_contrato','=',1)]}">
                 <group>
                     <field name="materia_id" />
@@ -45,7 +45,7 @@
                     <field name="descripcion_lineas" colspan="4" />
                 </group>
             </page>
-            <page string="Información expediente iguala" attrs="{'invisible': [('tipo_contrato','=',2)]}"  groups="base.group_user">
+            <page string="Información expediente iguala" attrs="{'invisible': [('tipo_contrato','=',2)]}">
                 <group>
                     <field name="riesgo_operacional" />
                     <field name="meses_contratado" attrs="{'invisible': [('perioricidad','in',['unica'])]}"/>
