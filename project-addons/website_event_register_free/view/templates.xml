@@ -8,7 +8,7 @@
         </template>
         <template id="event_description_full" inherit_id="website_event.event_description_full">
             <xpath expr="//div[@t-field='event.description']" position="before">
-                <form t-attf-action="/event/#{event.id}/register/register_free" method="post" t-if="not hasattr(event, 'event_ticket_ids') or not event.event_ticket_ids">
+                <form t-attf-action="/event/#{event.id}/register/register_free" method="post">
                     <table class="table table-striped">
                         <thead>
                             <tr>
