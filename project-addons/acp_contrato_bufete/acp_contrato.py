@@ -260,7 +260,7 @@ class acp_contrato_contrato(osv.osv):
                             record.pricelist_id.check_access_rule("read")
                         except (osv.except_osv, orm.except_orm):
                             continue
-                        price = product.standard_price
+                        # price = product.standard_price
                         #taxes = product.supplier_taxes_id
                         #taxes = tax_obj.compute_all(cr, uid, taxes, price, tarea_hora.horas, employee.product_rel_id, record.partner_id)
                         cur = record.pricelist_id.currency_id
