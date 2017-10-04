@@ -265,7 +265,7 @@ class acp_contrato_contrato(osv.osv):
                         #taxes = tax_obj.compute_all(cr, uid, taxes, price, tarea_hora.horas, employee.product_rel_id, record.partner_id)
                         cur = record.pricelist_id.currency_id
                         #price_final = cur_obj.round(cr, uid, cur, taxes['total_included'])
-                        price_final = cur_obj.round(cr, uid, cur, product.standard_price * tarea_hora.horas)
+                        price_final = cur_obj.round(cr, uid, cur, product.sudo().standard_price * tarea_hora.horas)
                         tota_trabajado = tota_trabajado + price_final
 
             x[record.id] = tota_trabajado
